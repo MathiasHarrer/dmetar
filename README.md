@@ -36,7 +36,7 @@ devtools::install_github("MathiasHarrer/dmetar")
 
 <br></br>
 
-## Learning More
+## Learning More 
 
 The **dmetar** package was developed for the online guide **Doing Meta-Analysis in R** by Mathias Harrer, Pim Cuijpers, Toshi Furukawa and David Daniel Ebert. This guide gives an introduction on how meta-analyses can be conducted in R, with a focus on biomedical and psychological research. 
 
