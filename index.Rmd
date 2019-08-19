@@ -1,13 +1,10 @@
 ---
 output: github_document
 ---
-<img src="man/figures/logo.png" align="left" alt="" width="100" />
 
-## dmetar
+# dmetar <a href='http://dmetar.protectlab.org'><img src='man/figures/logo.png' align="right" height="138.5" /></a>
 
 **Doing Meta-Analysis in R**
-
-![](docs/front.png)
 
 
 The **dmetar** package serves as the companion R package for the guide [**Doing Meta-Analysis in R**](https://bookdown.org/MathiasHarrer/Doing_Meta_Analysis_in_R/) by Mathias Harrer, Pim Cuijpers, Toshi Furukawa and David Daniel Ebert. The package contains utility functions to facilitate the conduction of meta-analyses using the **meta**, **metafor**, **netmeta** and **gemtc** packages.
