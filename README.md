@@ -1,9 +1,4 @@
-<br></br>
 <img src="man/figures/logo.png" align="left" alt="" width="100" />
-<br></br>
-<br></br>
-<br></br>
-<br></br>
 
 ## dmetar
 
