@@ -4,14 +4,13 @@
 
 **Doing Meta-Analysis in R**
 
-![](docs/front.png)
-
 [![DOI](https://zenodo.org/badge/152492192.svg)](https://zenodo.org/badge/latestdoi/152492192)
 [![Twitter URL](https://img.shields.io/twitter/url/https/twitter.com/MathiasHarrer.svg?style=social&label=Follow%20%40MathiasHarrer)](https://twitter.com/MathiasHarrer)
 [![Twitter URL](https://img.shields.io/twitter/url/https/twitter.com/pimcuijpers.svg?style=social&label=Follow%20%40pimcuijpers)](https://twitter.com/pimcuijpers)
 [![Twitter URL](https://img.shields.io/twitter/url/https/twitter.com/pimcuijpers.svg?style=social&label=Follow%20%40Toshi_FRKW)](https://twitter.com/Toshi_FRKW)
 [![Twitter URL](https://img.shields.io/twitter/url/https/twitter.com/DDEbert.svg?style=social&label=Follow%20%40DDEbert)](https://twitter.com/DDEbert)
 
+![](docs/front.png)
 
 
 The **dmetar** package serves as the companion R package for the guide [**Doing Meta-Analysis in R**](https://bookdown.org/MathiasHarrer/Doing_Meta_Analysis_in_R/) by Mathias Harrer, Pim Cuijpers, Toshi Furukawa and David Daniel Ebert. The package contains utility functions to facilitate the conduction of meta-analyses using the **meta**, **metafor**, **netmeta** and **gemtc** packages.
