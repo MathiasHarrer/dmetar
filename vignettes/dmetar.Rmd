@@ -5,6 +5,7 @@ output:
     toc: true
     toc_depth: 3
     vignette: >
+      %\VignetteIndexEntry{Get Started}
       %\VignetteEngine{knitr::rmarkdown}
       %\VignetteEncoding{UTF-8}
 ---
@@ -31,7 +32,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 The `dmetar` package serves as the companion *R* package for the online guide [**Doing Meta-Analysis in R - A Hands-on Guide**](https://bookdown.org/MathiasHarrer/Doing_Meta_Analysis_in_R/) written by Mathias Harrer, Pim Cuijpers, Toshi Furukawa and David Ebert. This freely available guide shows how to perform meta-analyses in *R* from scratch with no prior *R* knowledge required. The guide, as well as the `dmetar` package, have a focus on biomedical and psychological research synthesis, but methods are applicable to other research fields too. The guide primarily focuses on two widely used packages for meta-analysis, `meta` (Schwarzer, 2007) and `metafor` (Viechtbauer, 2010), and how they can be applied in real-world use cases. The `dmetar` package thus aims to provide additional tools and functionalities for researchers conducting meta-analyses using these packages and the Doing Meta-Analysis in R guide.
 
-In this vignette, we provide a rough overview of the core functionalities of the package. An in-depth introduction into the package and how its functions can be applied to "real-world" meta-analyses can be found in the online version of the guide. To get detailed documentation of specific functions, you can consult the `dmetar` [reference page](www.dmetar.protectlab.org/reference/index.html).
+In this vignette, we provide a rough overview of the core functionalities of the package. An in-depth introduction into the package and how its functions can be applied to "real-world" meta-analyses can be found in the online version of the guide. To get detailed documentation of specific functions, you can consult the `dmetar` [reference page](https://dmetar.protectlab.org/reference/index.html).
 
 Currently, the `dmetar` package is still under development (version 0.0.9000). This means that, despite intense testing, we cannot guarantee that functions will work as intended under all circumstances and for all environments used. To report a bug, or ask a question, please contact **Mathias** (mathias.harrer@fau.de) or **David** (d.d.ebert@vu.nl)
 
@@ -101,7 +102,7 @@ data("NetDataNetmeta")
 
 ## Power Analysis
 
-The `dmetar` package contains two functions for *a priori* [power analyses](https://bookdown.org/MathiasHarrer/Doing_Meta_Analysis_in_R/power-analysis.html) of a meta-analysis: [`power.analysis`](www.dmetar.protectlab.org/reference/power.analysis.html) and [`power.analysis.subgroups`](www.dmetar.protectlab.org&/reference/power.analysis.subgroup.html). Let us assume that researchers expect to have approximately 18 studies in their meta-analysis, with moderate between-group heterogeneity and about 50 participants per arm and study. Will there be sufficient power to detect an assumed minimally important difference of $d=0.18$? The `power.analysis` function can be used to answer this question.
+The `dmetar` package contains two functions for *a priori* [power analyses](https://bookdown.org/MathiasHarrer/Doing_Meta_Analysis_in_R/power-analysis.html) of a meta-analysis: [`power.analysis`](https://dmetar.protectlab.org/reference/power.analysis.html) and [`power.analysis.subgroups`](https://dmetar.protectlab.org&/reference/power.analysis.subgroup.html). Let us assume that researchers expect to have approximately 18 studies in their meta-analysis, with moderate between-group heterogeneity and about 50 participants per arm and study. Will there be sufficient power to detect an assumed minimally important difference of $d=0.18$? The `power.analysis` function can be used to answer this question.
 
 ```{r, fig.align='center'}
 power.analysis(d = .18, k = 18, n1 = 50, n2 = 50, heterogeneity = "moderate")
@@ -113,7 +114,7 @@ power.analysis(d = .18, k = 18, n1 = 50, n2 = 50, heterogeneity = "moderate")
 
 ## Effect size calculation
 
-The `dmetar` packge includes several functions to calculate effect sizes needed for meta-analyses: [`NNT`](www.dmetar.protectlab.org/reference/NNT.html), [`se.from.p`](www.dmetar.protectlab.org/reference/se.from.p.html) and [`pool.groups`](www.dmetar.protectlab.org/reference/pool.groups.html).
+The `dmetar` packge includes several functions to calculate effect sizes needed for meta-analyses: [`NNT`](https://dmetar.protectlab.org/reference/NNT.html), [`se.from.p`](https://dmetar.protectlab.org/reference/se.from.p.html) and [`pool.groups`](https://dmetar.protectlab.org/reference/pool.groups.html).
 
 Using the `NNT` function, we can calculate the number needed to treat $NNT$ for the first effect size in `ThirdWave`. In this example, we use Furukawa's method (Furukawa & Leucht, 2011), assuming a control group event
 ratio (`CER`) of 0.2
@@ -142,7 +143,7 @@ se.from.p(effect.size = 0.38, p = 0.0456, N = 83)
 
 In biomedical literature, it is common to assess the Risk of Bias of included studies using the [**Cochrane Risk of Bias Tool**](https://handbook-5-1.cochrane.org/chapter_8/8_assessing_risk_of_bias_in_included_studies.htm). Such Risk of Bias assessments can be directly performed in [RevMan](https://community.cochrane.org/help/tools-and-software/revman-5), but this comes with certain drawbacks: RevMan graphics are usually of lower quality, and journals often require high-resolution charts and plots; using RevMan along with *R* to perform a meta-analysis also means that two programs have to be used, which may consume unncessary extra time; lastly, using RevMan to generate Risk of Bias summary plots also reduces the reproducibility of your meta-analysis if you decide to make all your other *R* analyses fully reproducible using tools such as [**RMarkdown**](https://rmarkdown.rstudio.com/). 
 
-The [`rob.summary`](www.dmetar.protectlab.org/reference/rob.summary.html) function allows you to generate RevMan-style Risk of Bias charts based on `ggplot2` graphics directly in *R* from a *R* data frame. Here is an example:
+The [`rob.summary`](https://dmetar.protectlab.org/reference/rob.summary.html) function allows you to generate RevMan-style Risk of Bias charts based on `ggplot2` graphics directly in *R* from a *R* data frame. Here is an example:
 
 ```{r, echo=FALSE}
 data = data.frame(
@@ -176,7 +177,7 @@ knitr::include_graphics("fig/rob_table.png")
 
 ## Subgroup Analysis & Meta-Regression
 
-The `dmetar` package contains two functions related to the topic of **moderator variables** of meta-analysis results: [`subgroup.analysis.mixed.effects`](www.dmetar.protectlab.org/reference/subgroup.analysis.mixed.effects.html) and [`multimodel.inference`](www.dmetar.protectlab.org/reference/multimodel.inference.html).
+The `dmetar` package contains two functions related to the topic of **moderator variables** of meta-analysis results: [`subgroup.analysis.mixed.effects`](https://dmetar.protectlab.org/reference/subgroup.analysis.mixed.effects.html) and [`multimodel.inference`](https://dmetar.protectlab.org/reference/multimodel.inference.html).
 
 <br></br>
 
@@ -203,7 +204,10 @@ subgroup.analysis.mixed.effects(x = meta,
 subgroup.analysis.mixed.effects(x = meta, subgroups = ThirdWave$TypeControlGroup, plot=FALSE)
 ```
 
-<img src="fig/forest_subgroup.png" align="left" alt="" width="700" />
+```{r, echo=FALSE, out.width = '70%', fig.align="center"}
+knitr::include_graphics("fig/forest_subgroup.png")
+```
+
 
 
 <br></br>
@@ -211,7 +215,7 @@ subgroup.analysis.mixed.effects(x = meta, subgroups = ThirdWave$TypeControlGroup
 **Multimodel Inference**
 
 
-The `multimodel.inference` function, on the other hand, can be used to perform [**Multimodel Inference**](www.dmetar.protectlab.org/reference/multimodel.inference.html#details) for a meta-regression model.
+The `multimodel.inference` function, on the other hand, can be used to perform [**Multimodel Inference**](https://dmetar.protectlab.org/reference/multimodel.inference.html#details) for a meta-regression model.
 
 Here is an example using the `MVRegressionData` dataset, using `pubyear`, `quality`, `reputation` and `continent` as predictors:
 
@@ -301,7 +305,7 @@ Influence Analysis can be helpful to detect studies which:
 * contribute highly to the between-study heterogeneity found in a meta-analysis (e.g., outliers) and could therefore be excluded in a sensitivity analysis, or
 * have a large impact on the pooled effect size of a meta-analysis, meaning that the overall effect size may change considerably when this one study is removed.
 
-The [`InfluenceAnalysis`](www.dmetar.protectlab.org/reference/InfluenceAnalysis.html) is a wrapper around several influence analysis function included in the `meta` and `metafor` package. It provides four types of influence diagnostics in one single plot. The function works for meta-analysis objects created by `meta` functions, which can then be directly used as input for the function:
+The [`InfluenceAnalysis`](https://dmetar.protectlab.org/reference/InfluenceAnalysis.html) is a wrapper around several influence analysis function included in the `meta` and `metafor` package. It provides four types of influence diagnostics in one single plot. The function works for meta-analysis objects created by `meta` functions, which can then be directly used as input for the function:
 
 ```{r, fig.width=10, fig.height=8}
 InfluenceAnalysis(meta)
@@ -313,7 +317,7 @@ InfluenceAnalysis(meta)
 
 ## Publication Bias
 
-The package contains two functions to assess the potential presence of publication bias in a meta-analysis: [`eggers.test`](www.dmetar.protectlab.org/reference/eggers.test.html) and [`pcurve`](www.dmetar.protectlab.org/reference/eggers.test.html). Both methods are optimized for conducting meta-analyses using the `meta` package, and only have to be provided with a `meta` meta-analysis results object.
+The package contains two functions to assess the potential presence of publication bias in a meta-analysis: [`eggers.test`](https://dmetar.protectlab.org/reference/eggers.test.html) and [`pcurve`](https://dmetar.protectlab.org/reference/eggers.test.html). Both methods are optimized for conducting meta-analyses using the `meta` package, and only have to be provided with a `meta` meta-analysis results object.
 
 <br></br>
 
@@ -340,7 +344,7 @@ pcurve(meta)
 
 The package contains two utility functions for network meta-analysis using the `gemtc` (Van Valkenhoef & Kuiper, 2016) and `netmeta` (Rücker, Krahn, König, Efthimiou & Schwarzer, 2019) packages.
 
-The first one, [`direct.evidence.plot`](www.dmetar.protectlab.org/reference/direct.evidence.plot.html) creates a plot for the direct evidence proportion of comparisons included in a network meta-analysis model and displays diagnostics proposed by König, Krahn and Binder (2013). It only requires a network meta-analysis object created by the `netmeta` function as input. We will use `dmetar`s in-built `NetDataNetmeta` dataset for this example:
+The first one, [`direct.evidence.plot`](https://dmetar.protectlab.org/reference/direct.evidence.plot.html) creates a plot for the direct evidence proportion of comparisons included in a network meta-analysis model and displays diagnostics proposed by König, Krahn and Binder (2013). It only requires a network meta-analysis object created by the `netmeta` function as input. We will use `dmetar`s in-built `NetDataNetmeta` dataset for this example:
 
 ```{r, eval=FALSE}
 library(netmeta)
@@ -360,7 +364,7 @@ knitr::include_graphics("fig/directevidence.png")
 
 <br></br>
 
-The second, [`sucra`](www.dmetar.protectlab.org/reference/sucra.html), calculates the $SUCRA$ for each treatment when provided with a `gemtc` network meta-analysis results object, or a matrix containing rank probabilities. In this example, we will use `dmetar`s in-built `NetDataGemtc` data set.
+The second, [`sucra`](https://dmetar.protectlab.org/reference/sucra.html), calculates the $SUCRA$ for each treatment when provided with a `gemtc` network meta-analysis results object, or a matrix containing rank probabilities. In this example, we will use `dmetar`s in-built `NetDataGemtc` data set.
 
 ```{r, eval=FALSE}
 library(gemtc)
@@ -407,5 +411,5 @@ knitr::include_graphics("fig/sucra.png")
 
 **Van Valkenhoef, G. & Kuiper, J. (2016)**. gemtc: Network Meta-Analysis Using Bayesian Methods. *R package version 0.8-2*. https://CRAN.R-project.org/package=gemtc
 
-**Viechtbauer, W. (2010)**. Conducting meta-analyses in R with the metafor package. *Journal of Statistical Software, 36*(3), 1-48. URL: http://www.jstatsoft.org/v36/i03/
+**Viechtbauer, W. (2010)**. Conducting meta-analyses in R with the metafor package. *Journal of Statistical Software, 36*(3), 1-48. URL: https://www.jstatsoft.org/v36/i03/
 
