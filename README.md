@@ -1,6 +1,6 @@
 <img src="man/figures/logo.png" align="left" alt="" width="100" />
 
-## dmetar
+# dmetar
 
 **Doing Meta-Analysis in R**
 
