@@ -1,0 +1,28 @@
+Package: dmetar
+Title: Companion R Package For The Guide 'Doing Meta-Analysis in R'
+Author: Mathias Harrer, Pim Cuijpers, Toshi Furukawa, David Daniel Ebert
+Version: 0.0.9000
+Authors@R: c(
+    person("Mathias", "Harrer", email = "mathias.harrer@fau.de", role = "cre", comment = c(ORCID = "0000-0001-7016-2687")),
+    person("Pim", "Cuijpers", email = "p.cuijpers@vu.nl", role = "aut", comment = c(ORCID = "0000-0001-5497-2743")),
+    person("Toshi", "Furukawa", email = "furukawa@kuhp.kyoto-u.ac.jp", role = "aut", comment = c(ORCID = "0000-0003-2159-3776")),
+    person("David Daniel", "Ebert", email = "david.daniel.ebert@gmail.com", role = "aut", comment = c(ORCID = "0000-0001-6820-0146")))
+Description: This package serves as the companion R package for the guide 'Doing Meta-Analysis in R' by 
+    Mathias Harrer, Pim Cuijpers, Toshi Furukawa and David Daniel Ebert. The package contains 
+    complementary functions to facilitate the conduction of meta-analyses using the meta, metafor, 
+    netmeta and gemtc packages.
+URL: https://github.com/MathiasHarrer/dmetar
+Depends: R (>= 3.5)
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.1.1
+Imports: 
+    ggplot2 (>= 3.2.0), esc (>= 0.4.1), forcats (>= 0.3.0), gridExtra (>= 2.3), netmeta (>= 1.0.1), 
+    reshape2 (>= 1.4.3), meta (>= 4.9.4),  metafor (>= 2.1.0), ggrepel (>= 0.8.0), dplyr (>= 0.8.0.1), 
+    grid (>= 3.5.2), tidyr (>= 0.8.3), gemtc (>= 0.8.2), poibin (>= 1.3), stringr (>= 1.4.0), 
+    MuMIn (>= 1.43.6), magrittr (>= 1.5), scales (>= 1.0.0), igraph (>= 1.2.2), graphics (>= 3.5.2),
+    stats (>= 3.5.2)
+Suggests: 
+    testthat, knitr, rmarkdown
+VignetteBuilder: knitr

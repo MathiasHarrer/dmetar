@@ -1,0 +1,71 @@
+url: http://dmetar.protectlab.org
+
+
+template:
+  params:
+    bootswatch: flatly
+
+home:
+  links:
+  - text: Online guide
+    href: https://bookdown.org/MathiasHarrer/Doing_Meta_Analysis_in_R/
+
+navbar:
+  type: default
+  left:
+  - text: Get Started
+    href: articles/dmetar.html
+  - text: Documentation
+    href: reference/index.html
+  - text: Book
+    href: https://bookdown.org/MathiasHarrer/Doing_Meta_Analysis_in_R/
+  - text: Protect Lab
+    href: https://protectlab.org/en
+
+reference:
+  - title: Effect size calculation
+    contents:
+    - NNT
+    - se.from.p
+    - pool.groups
+
+  - title: Small-study effects & Publication bias
+    contents:
+    - eggers.test
+    - InfluenceAnalysis
+    - pcurve
+
+  - title: Power analysis
+    contents:
+    - power.analysis
+    - power.analysis.subgroup
+
+  - title: Meta-regression & Subgroups
+    contents:
+    - multimodel.inference
+    - subgroup.analysis.mixed.effects
+
+  - title: Network meta-analysis
+    contents:
+    - direct.evidence.plot
+    - sucra
+
+  - title: Risk of bias
+    contents:
+    - rob.summary
+
+  - title: Data sets
+    contents:
+    - ThirdWave
+    - MVRegressionData
+    - NetDataGemtc
+    - NetDataNetmeta
+
+  - title: Package
+    contents:
+    - dmetar
+
+
+
+
+
