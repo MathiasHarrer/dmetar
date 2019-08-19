@@ -11,7 +11,7 @@ citEntry(entry = "Manual",
   url          = "http://dmetar.protectlab.org",
 
   textVersion  =
-  paste("Harrer, M., Cuijpers, P., Furukawa, T. A. & Ebert, D. D. (2019).",
+  paste("Harrer, M., Cuijpers, P., Furukawa, T. & Ebert, D. D. (2019).",
         "dmetar: Companion R Package For The Guide 'Doing Meta-Analysis in R'.",
         "R package version 0.0.9000. URL http://dmetar.protectlab.org.")
 )
