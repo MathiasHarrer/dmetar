@@ -67,19 +67,60 @@ library(dmetar)
 
 <br></br>
 
+### Installation errors
+
+#### R Version
+
+The `dmetar` package requires that *R* Version 3.5 or greater is installed and used in RStudio. You can check your current *R* version by running:
+
+```{r, eval=FALSE}
+R.Version()$version.string
+```
+
+If you have an *R* version below 3.5 installed, installing `dmetar` will likely cause an error because the dependency `metafor` was not found. This means that you have to update *R*. A tutorial on how to update *R* on your system can be found [here](https://www.linkedin.com/pulse/3-methods-update-r-rstudio-windows-mac-woratana-ngarmtrakulchol/).
+
+#### JAGS
+
+Another common problem involves the dependency `rjags`. This package needs JAGS installed on your computer to function properly. JAGS is a computer program and can be downloaded for free [here](https://sourceforge.net/projects/mcmc-jags/files/).
+If this package is not already installed, the installation manager may ask you this question:
+
+```
+There is a binary version available but the source version is later:
+      binary source needs_compilation
+rjags    4-8    4-9              TRUE
+
+Do you want to install from sources the package which needs compilation? (Yes/no/cancel) 
+```
+
+If you answer with `Yes`, and do not have JAGS installed, the installation manager will likely throw this error:
+
+```
+configure: error: "automatic detection of JAGS failed. 
+Please use pkg-config to locate the JAGS library. 
+See the INSTALL file for details."
+ERROR: configuration failed for package ‘rjags’
+```
+
+**If this happens, you have two options:**
+
+1.  Install JAGS on your computer, and rerun the installation process as before.
+2.  Rerun the analysis, and answer `no` the next time you are asked if `rjags` should be installed. This may affect the `sucra` function of the `dmetar` package because the `gemtc` package cannot be used but all other packages keep their functionality.
+
 
 <br></br>
 
 ## Functionality
 
-The `dmetar` package provides tools for different stages of the meta-analysis process. Functions cover topics such as power analysis, effect size calculation, small-study effects, publication bias, meta-regression, subgroup analysis, risk of bias assessment, and network meta-analyses. Many `dmetar` functions heavily interact with functions from the `meta` package to improve the work flow when conducting meta-analysis. Therefore, the `meta` package should be installed and loaded into from the library first.
+The `dmetar` package provides tools for different stages of the meta-analysis process. Functions cover topics such as power analysis, effect size calculation, small-study effects, publication bias, meta-regression, subgroup analysis, risk of bias assessment, and network meta-analyses. Many `dmetar` functions heavily interact with functions from the `meta` and `metafor` package to improve the work flow when conducting meta-analysis. Therefore, the `meta` and `metafor` package should be loaded from the library first.
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 library(meta)
+library(metafor)
 ```
 
 ```{r, eval=FALSE}
 library(meta)
+library(metafor)
 ```
 
 <br></br>
@@ -289,6 +330,7 @@ knit_hooks$set(output = function(x, options) {
 
 
 ```{r, fig.align="center", hook_output=-(1:32), fig.width=5, fig.height=1.5}
+library(metafor)
 multimodel.inference(TE = 'yi', seTE = 'sei', data = MVRegressionData,
                            predictors = c('pubyear', 'quality',
                                           'reputation', 'continent'))
@@ -364,7 +406,7 @@ knitr::include_graphics("fig/directevidence.png")
 
 <br></br>
 
-The second, [`sucra`](https://dmetar.protectlab.org/reference/sucra.html), calculates the $SUCRA$ for each treatment when provided with a `gemtc` network meta-analysis results object, or a matrix containing rank probabilities. In this example, we will use `dmetar`s in-built `NetDataGemtc` data set.
+The second, [`sucra`](https://dmetar.protectlab.org/reference/sucra.html), calculates the $SUCRA$ for each treatment when provided with a `mtc.rank.probability` network meta-analysis results object, or a matrix containing rank probabilities. In this example, we will use `dmetar`s in-built `NetDataGemtc` data set.
 
 ```{r, eval=FALSE}
 library(gemtc)
@@ -382,8 +424,10 @@ model = mtc.model(network, linearModel = "fixed",
 mcmc = mtc.run(model, n.adapt = 5000, 
                n.iter = 100000, thin = 10)
 
+rp = rank.probability(mcmc)
+
 # Create sucra
-sucra(mcmc, lower.is.better = TRUE)
+sucra(rp, lower.is.better = TRUE)
 ```
 
 ```{r, echo=FALSE, fig.align="center", out.width="40%"}

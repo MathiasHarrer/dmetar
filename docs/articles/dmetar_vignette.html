@@ -80,7 +80,7 @@
       <h1>dmetar Vignette</h1>
                         <h4 class="author">Mathias Harrer &amp; David Daniel Ebert</h4>
             
-            <h4 class="date">2019-08-19</h4>
+            <h4 class="date">2019-08-20</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/MathiasHarrer/dmetar/blob/master/vignettes/dmetar_vignette.Rmd"><code>vignettes/dmetar_vignette.Rmd</code></a></small>
       <div class="hidden name"><code>dmetar_vignette.Rmd</code></div>
@@ -117,8 +117,34 @@
 devtools<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/devtools/man/reexports.html">install_github</a></span>(<span class="st">"MathiasHarrer/dmetar"</span>)</code></pre></div>
 <p>The package can then be loaded as usual using the <code><a href="https://rdrr.io/r/base/library.html">library()</a></code> function.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(dmetar)</code></pre></div>
+<div id="installation-errors" class="section level3">
+<h3 class="hasAnchor">
+<a href="#installation-errors" class="anchor"></a>Installation errors</h3>
+<div id="r-version" class="section level4">
+<h4 class="hasAnchor">
+<a href="#r-version" class="anchor"></a>R Version</h4>
+<p>The <code>dmetar</code> package requires that <em>R</em> Version 3.5 or greater is installed and used in RStudio. You can check your current <em>R</em> version by running:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://rdrr.io/r/base/Version.html">R.Version</a></span>()<span class="op">$</span>version.string</code></pre></div>
+<p>If you have an <em>R</em> version below 3.5 installed, installing <code>dmetar</code> will likely cause an error because the dependency <code>metafor</code> was not found. This means that you have to update <em>R</em>. A tutorial on how to update <em>R</em> on your system can be found <a href="https://www.linkedin.com/pulse/3-methods-update-r-rstudio-windows-mac-woratana-ngarmtrakulchol/">here</a>.</p>
+</div>
+<div id="jags" class="section level4">
+<h4 class="hasAnchor">
+<a href="#jags" class="anchor"></a>JAGS</h4>
+<p>Another common problem involves the dependency <code>rjags</code>. This package needs JAGS installed on your computer to function properly. JAGS is a computer program and can be downloaded for free <a href="https://sourceforge.net/projects/mcmc-jags/files/">here</a>. If this package is not already installed, the installation manager may ask you this question:</p>
+<pre><code>There is a binary version available but the source version is later:
+      binary source needs_compilation
+rjags    4-8    4-9              TRUE
+
+Do you want to install from sources the package which needs compilation? (Yes/no/cancel) </code></pre>
+<p>If you answer with <code>Yes</code>, and do not have JAGS installed, the installation manager will likely throw this error:</p>
+<pre><code>configure: error: "automatic detection of JAGS failed. 
+Please use pkg-config to locate the JAGS library. 
+See the INSTALL file for details."
+ERROR: configuration failed for package ‘rjags’</code></pre>
 <p><br></p>
 <p><br></p>
+</div>
+</div>
 </div>
 <div id="functionality" class="section level2">
 <h2 class="hasAnchor">
@@ -144,7 +170,7 @@ devtools<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/
 <p>The <code>dmetar</code> package contains two functions for <em>a priori</em> <a href="https://bookdown.org/MathiasHarrer/Doing_Meta_Analysis_in_R/power-analysis.html">power analyses</a> of a meta-analysis: <a href="www.dmetar.protectlab.org/reference/power.analysis.html"><code>power.analysis</code></a> and <a href="www.dmetar.protectlab.org&amp;/reference/power.analysis.subgroup.html"><code>power.analysis.subgroups</code></a>. Let us assume that researchers expect to have approximately 18 studies in their meta-analysis, with moderate between-group heterogeneity and about 50 participants per arm and study. Will there be sufficient power to detect an assumed minimally important difference of <span class="math inline">\(d=0.18\)</span>? The <code>power.analysis</code> function can be used to answer this question.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://rdrr.io/pkg/dmetar/man/power.analysis.html">power.analysis</a></span>(<span class="dt">d =</span> .<span class="dv">18</span>, <span class="dt">k =</span> <span class="dv">18</span>, <span class="dt">n1 =</span> <span class="dv">50</span>, <span class="dt">n2 =</span> <span class="dv">50</span>, <span class="dt">heterogeneity =</span> <span class="st">"moderate"</span>)
 <span class="co">#&gt; Random-effects model used (moderate heterogeneity assumed).</span></code></pre></div>
-<p><img src="dmetar_vignette_files/figure-html/unnamed-chunk-7-1.png" width="700" style="display: block; margin: auto;"></p>
+<p><img src="dmetar_vignette_files/figure-html/unnamed-chunk-8-1.png" width="700" style="display: block; margin: auto;"></p>
 <pre><code>#&gt; Power:
 #&gt; [1] 0.8386247</code></pre>
 <p><br></p>
@@ -270,8 +296,8 @@ devtools<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/
 <span class="co">#&gt; --------------------------</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt; Global model call: rma(yi = TE, sei = seTE, mods = form, data = glm.data, method = method, </span>
-<span class="co">#&gt;     test = test)</span>
+<span class="co">#&gt; Global model call: metafor::rma(yi = TE, sei = seTE, mods = form, data = glm.data, </span>
+<span class="co">#&gt;     method = method, test = test)</span>
 <span class="co">#&gt; ---</span>
 <span class="co">#&gt; Model selection table </span>
 <span class="co">#&gt;    (Intrc) cntnn  pubyr   qulty   rpttn df logLik AICc delta weight</span>
@@ -304,7 +330,7 @@ devtools<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/
 <span class="co">#&gt; 2  continent  0.9621839</span>
 <span class="co">#&gt; 3 reputation  0.9428750</span>
 <span class="co">#&gt; 4    quality  0.4432826</span></code></pre></div>
-<p><img src="dmetar_vignette_files/figure-html/unnamed-chunk-19-1.png" width="480" style="display: block; margin: auto;"></p>
+<p><img src="dmetar_vignette_files/figure-html/unnamed-chunk-20-1.png" width="480" style="display: block; margin: auto;"></p>
 <p><br></p>
 <p><br></p>
 </div>
@@ -319,7 +345,7 @@ devtools<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/
 <p>The <a href="www.dmetar.protectlab.org/reference/InfluenceAnalysis.html"><code>InfluenceAnalysis</code></a> is a wrapper around several influence analysis function included in the <code>meta</code> and <code>metafor</code> package. It provides four types of influence diagnostics in one single plot. The function works for meta-analysis objects created by <code>meta</code> functions, which can then be directly used as input for the function:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://rdrr.io/pkg/dmetar/man/InfluenceAnalysis.html">InfluenceAnalysis</a></span>(meta)
 <span class="co">#&gt; [============================================================</span></code></pre></div>
-<p><img src="dmetar_vignette_files/figure-html/unnamed-chunk-20-1.png" width="960"></p>
+<p><img src="dmetar_vignette_files/figure-html/unnamed-chunk-21-1.png" width="960"></p>
 <pre><code>#&gt; ===============] DONE</code></pre>
 <p><br></p>
 <p><br></p>
@@ -336,7 +362,7 @@ devtools<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/
 <p><br></p>
 <p><strong>And here for</strong> <code>pcurve</code><strong>:</strong></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://rdrr.io/pkg/dmetar/man/pcurve.html">pcurve</a></span>(meta)</code></pre></div>
-<p><img src="dmetar_vignette_files/figure-html/unnamed-chunk-22-1.png" width="576" style="display: block; margin: auto;"></p>
+<p><img src="dmetar_vignette_files/figure-html/unnamed-chunk-23-1.png" width="576" style="display: block; margin: auto;"></p>
 <pre><code>#&gt; P-curve analysis 
 #&gt;  ----------------------- 
 #&gt; - Total number of provided studies: k = 18 
@@ -375,7 +401,7 @@ nmeta =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/ne
 <span class="kw"><a href="https://rdrr.io/pkg/dmetar/man/direct.evidence.plot.html">direct.evidence.plot</a></span>(nmeta)</code></pre></div>
 <p><img src="fig/directevidence.png" width="500" style="display: block; margin: auto;"></p>
 <p><br></p>
-<p>The second, <a href="www.dmetar.protectlab.org/reference/sucra.html"><code>sucra</code></a>, calculates the <span class="math inline">\(SUCRA\)</span> for each treatment when provided with a <code>gemtc</code> network meta-analysis results object, or a matrix containing rank probabilities. In this example, we will use <code>dmetar</code>s in-built <code>NetDataGemtc</code> data set.</p>
+<p>The second, <a href="www.dmetar.protectlab.org/reference/sucra.html"><code>sucra</code></a>, calculates the <span class="math inline">\(SUCRA\)</span> for each treatment when provided with a <code>mtc.rank.probability</code> network meta-analysis results object, or a matrix containing rank probabilities. In this example, we will use <code>dmetar</code>s in-built <code>NetDataGemtc</code> data set.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(gemtc)
 
 <span class="kw"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="st">"NetDataGemtc"</span>)
@@ -391,8 +417,10 @@ model =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/ge
 mcmc =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/gemtc/man/mtc.run.html">mtc.run</a></span>(model, <span class="dt">n.adapt =</span> <span class="dv">5000</span>, 
                <span class="dt">n.iter =</span> <span class="dv">100000</span>, <span class="dt">thin =</span> <span class="dv">10</span>)
 
+rp =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/gemtc/man/rank.probability.html">rank.probability</a></span>(mcmc)
+
 <span class="co"># Create sucra</span>
-<span class="kw"><a href="https://rdrr.io/pkg/dmetar/man/sucra.html">sucra</a></span>(mcmc, <span class="dt">lower.is.better =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<span class="kw"><a href="https://rdrr.io/pkg/dmetar/man/sucra.html">sucra</a></span>(rp, <span class="dt">lower.is.better =</span> <span class="ot">TRUE</span>)</code></pre></div>
 <p><img src="fig/sucra.png" width="40%" style="display: block; margin: auto;"></p>
 <p><br></p>
 <p><br></p>

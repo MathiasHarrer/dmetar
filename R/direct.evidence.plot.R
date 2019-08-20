@@ -71,7 +71,7 @@
 #'
 #' @examples
 #' # Load Senn2013 data from netmeta
-#' \dontshow{suppressPackageStartupMessages(library(netmeta))}
+#' suppressPackageStartupMessages(library(netmeta))
 #' data(Senn2013)
 #'
 #' # Conduct network meta-analysis (fixed-effects model)

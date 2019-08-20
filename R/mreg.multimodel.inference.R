@@ -97,6 +97,7 @@
 #' \dontrun{
 #' # Example 1: Perform multimodel inference with default settings
 #' data('MVRegressionData')
+#' library(metafor)
 #' mmi = multimodel.inference(TE = 'yi', seTE = 'sei', data = MVRegressionData,
 #'                            predictors = c('pubyear', 'quality',
 #'                                           'reputation', 'continent'))
@@ -356,7 +357,7 @@ multimodel.inference = function(TE, seTE, data, predictors, method = "REML", tes
 
 
         # Build rma model
-        full = suppressMessages(suppressWarnings(rma(yi = TE, sei = seTE, mods = form, data = glm.data, method = method,
+        full = suppressMessages(suppressWarnings(metafor::rma(yi = TE, sei = seTE, mods = form, data = glm.data, method = method,
             test = test)))
 
 

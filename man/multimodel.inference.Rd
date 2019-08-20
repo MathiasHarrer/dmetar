@@ -92,6 +92,7 @@ Parts of the computations in this function are based on a vignette by Wolfgang V
 \dontrun{
 # Example 1: Perform multimodel inference with default settings
 data('MVRegressionData')
+library(metafor)
 mmi = multimodel.inference(TE = 'yi', seTE = 'sei', data = MVRegressionData,
                            predictors = c('pubyear', 'quality',
                                           'reputation', 'continent'))

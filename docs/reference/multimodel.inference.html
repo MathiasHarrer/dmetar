@@ -247,6 +247,7 @@ Last accessed 01-Aug-2019.</p>
     <pre class="examples"><span class='co'># NOT RUN {</span>
 <span class='co'># Example 1: Perform multimodel inference with default settings</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='st'>'MVRegressionData'</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metafor</span>)
 <span class='no'>mmi</span> <span class='kw'>=</span> <span class='fu'>multimodel.inference</span>(<span class='kw'>TE</span> <span class='kw'>=</span> <span class='st'>'yi'</span>, <span class='kw'>seTE</span> <span class='kw'>=</span> <span class='st'>'sei'</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>MVRegressionData</span>,
                            <span class='kw'>predictors</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>'pubyear'</span>, <span class='st'>'quality'</span>,
                                           <span class='st'>'reputation'</span>, <span class='st'>'continent'</span>))
