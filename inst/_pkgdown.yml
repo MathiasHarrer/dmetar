@@ -33,6 +33,7 @@ reference:
     contents:
     - eggers.test
     - InfluenceAnalysis
+    - gosh.diagnostics
     - pcurve
 
   - title: Power analysis
@@ -60,6 +61,7 @@ reference:
     - MVRegressionData
     - NetDataGemtc
     - NetDataNetmeta
+    - m.gosh
 
   - title: Package
     contents:

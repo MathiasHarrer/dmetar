@@ -198,7 +198,7 @@ Presenting Results from Multiple-Treatment Meta-Analysis: An Overview and Tutori
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='co'># Example: conduct NMA using gemtc, calculate SUCRAs</span>
+<span class='co'># Example1 : conduct NMA using gemtc, calculate SUCRAs</span>
 <span class='fu'><a href='https://rdrr.io/r/base/message.html'>suppressPackageStartupMessages</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>gemtc</span>))
 <span class='fu'><a href='https://rdrr.io/r/base/message.html'>suppressPackageStartupMessages</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>igraph</span>))
 <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='st'>"NetDataGemtc"</span>)
@@ -217,7 +217,28 @@ Presenting Results from Multiple-Treatment Meta-Analysis: An Overview and Tutori
 <span class='no'>rp</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/gemtc/man/rank.probability.html'>rank.probability</a></span>(<span class='no'>mcmc</span>)
 
 <span class='fu'>sucra</span>(<span class='no'>rp</span>, <span class='kw'>lower.is.better</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-<span class='co'># }</span></pre>
+<span class='co'># }</span><div class='input'>
+
+
+<span class='co'># Example 2: construct rank proabability matrix, then use sucra function</span>
+<span class='no'>rp</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/cbind.html'>rbind</a></span>(<span class='kw'>CBT</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.000000</span>, <span class='fl'>0.000000</span>, <span class='fl'>0.000000</span>, <span class='fl'>0.000000</span>, <span class='fl'>0.000000</span>, <span class='fl'>0.001500</span>, <span class='fl'>0.088025</span>, <span class='fl'>0.910475</span>),
+           <span class='kw'>IPT</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.000000</span>, <span class='fl'>0.000000</span>, <span class='fl'>0.000000</span>, <span class='fl'>0.000000</span>, <span class='fl'>0.000000</span>, <span class='fl'>0.176975</span>, <span class='fl'>0.748300</span>, <span class='fl'>0.074725</span>),
+           <span class='kw'>PDT</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.000000</span>, <span class='fl'>0.000000</span>, <span class='fl'>0.000250</span>, <span class='fl'>0.021725</span>, <span class='fl'>0.976525</span>, <span class='fl'>0.001500</span>, <span class='fl'>0.000000</span>, <span class='fl'>0.000000</span>),
+           <span class='kw'>PLA</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.003350</span>, <span class='fl'>0.546075</span>, <span class='fl'>0.266125</span>, <span class='fl'>0.182125</span>, <span class='fl'>0.002325</span>, <span class='fl'>0.000000</span>, <span class='fl'>0.000000</span>, <span class='fl'>0.000000</span>),
+           <span class='kw'>PST</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.000000</span>, <span class='fl'>0.000000</span>, <span class='fl'>0.000000</span>, <span class='fl'>0.000000</span>, <span class='fl'>0.001500</span>, <span class='fl'>0.820025</span>, <span class='fl'>0.163675</span>, <span class='fl'>0.014800</span>),
+           <span class='kw'>SUP</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.000000</span>, <span class='fl'>0.217450</span>, <span class='fl'>0.403950</span>, <span class='fl'>0.378000</span>, <span class='fl'>0.000600</span>, <span class='fl'>0.000000</span>, <span class='fl'>0.000000</span>, <span class='fl'>0.000000</span>),
+           <span class='kw'>TAU</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.000225</span>, <span class='fl'>0.232900</span>, <span class='fl'>0.329675</span>, <span class='fl'>0.418150</span>, <span class='fl'>0.019050</span>, <span class='fl'>0.000000</span>, <span class='fl'>0.000000</span>, <span class='fl'>0.000000</span>),
+           <span class='kw'>WLC</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.996425</span>, <span class='fl'>0.003575</span>, <span class='fl'>0.000000</span>, <span class='fl'>0.000000</span>, <span class='fl'>0.000000</span>, <span class='fl'>0.000000</span>, <span class='fl'>0.000000</span>, <span class='fl'>0.000000</span>))
+
+<span class='fu'>sucra</span>(<span class='no'>rp</span>, <span class='kw'>lower.is.better</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='img'><img src='sucra-1.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt;            SUCRA
+#&gt; CBT 0.9869964286
+#&gt; IPT 0.8425357143
+#&gt; PST 0.7416821429
+#&gt; PDT 0.5684678571
+#&gt; TAU 0.3175571429
+#&gt; SUP 0.3088214286
+#&gt; PLA 0.2334285714
+#&gt; WLC 0.0005107143</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

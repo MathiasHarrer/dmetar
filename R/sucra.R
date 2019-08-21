@@ -61,7 +61,7 @@
 #'
 #' @examples
 #' \dontrun{
-#' # Example: conduct NMA using gemtc, calculate SUCRAs
+#' # Example1 : conduct NMA using gemtc, calculate SUCRAs
 #' suppressPackageStartupMessages(library(gemtc))
 #' suppressPackageStartupMessages(library(igraph))
 #' data("NetDataGemtc")
@@ -81,7 +81,19 @@
 #'
 #' sucra(rp, lower.is.better = TRUE)}
 #'
-#' # Example 2: construct
+#'
+#'
+#' # Example 2: construct rank proabability matrix, then use sucra function
+#' rp = rbind(CBT = c(0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.001500, 0.088025, 0.910475),
+#'            IPT = c(0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.176975, 0.748300, 0.074725),
+#'            PDT = c(0.000000, 0.000000, 0.000250, 0.021725, 0.976525, 0.001500, 0.000000, 0.000000),
+#'            PLA = c(0.003350, 0.546075, 0.266125, 0.182125, 0.002325, 0.000000, 0.000000, 0.000000),
+#'            PST = c(0.000000, 0.000000, 0.000000, 0.000000, 0.001500, 0.820025, 0.163675, 0.014800),
+#'            SUP = c(0.000000, 0.217450, 0.403950, 0.378000, 0.000600, 0.000000, 0.000000, 0.000000),
+#'            TAU = c(0.000225, 0.232900, 0.329675, 0.418150, 0.019050, 0.000000, 0.000000, 0.000000),
+#'            WLC = c(0.996425, 0.003575, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000, 0.000000))
+#'
+#' sucra(rp, lower.is.better = TRUE)
 
 
 sucra = function(x, lower.is.better = FALSE, plot = TRUE) {
