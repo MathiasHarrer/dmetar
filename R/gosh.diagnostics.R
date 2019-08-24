@@ -111,7 +111,7 @@
 #'
 #' @author Mathias Harrer & David Daniel Ebert
 #'
-#' @import dplyr cluster
+#' @import dplyr cluster mvtnorm
 #' @importFrom factoextra fviz_cluster
 #' @importFrom fpc dbscan
 #' @importFrom cowplot plot_grid
