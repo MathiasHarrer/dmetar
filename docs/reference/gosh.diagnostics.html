@@ -43,7 +43,7 @@
 
 <meta property="og:description" content="This function uses three unsupervised learning learning algorithms
 (k-means, DBSCAN and Gaussian Mixture Models) to identify studies
-contributing to the heterogeneity-effect site patterns found in GOSH (graphic
+contributing to the heterogeneity-effect size patterns found in GOSH (graphic
 display of study heterogeneity) plots." />
 
 <meta property="og:image" content="http://dmetar.protectlab.org/logo.png" />
@@ -127,7 +127,7 @@ display of study heterogeneity) plots." />
     
     <p>This function uses three unsupervised learning learning algorithms
 (<em>k</em>-means, DBSCAN and Gaussian Mixture Models) to identify studies
-contributing to the heterogeneity-effect site patterns found in GOSH (graphic
+contributing to the heterogeneity-effect size patterns found in GOSH (graphic
 display of study heterogeneity) plots.</p>
     
     </div>
@@ -180,6 +180,11 @@ algorithm. Default is 3.</p></td>
 restricted to diagonal matrices? Default is TRUE.</p></td>
     </tr>
     <tr>
+      <th>gmm.clusters</th>
+      <td><p>Number of clusters to assume for the Gaussian Mixture
+Model. Default is 2.</p></td>
+    </tr>
+    <tr>
       <th>gmm.tolerance</th>
       <td><p>Relative change threshold of log-likelihood used to stop
 the Expectation-Maximization algorithm for the Gaussian Mixture Model.
@@ -194,11 +199,6 @@ reach convergence. Default is 10000.</p></td>
     <tr>
       <th>seed</th>
       <td><p>Seed used for reproducibility. Default seed is 123.</p></td>
-    </tr>
-    <tr>
-      <th>gmm.cluster</th>
-      <td><p>Number of clusters to assume for the Gaussian Mixture
-Model. Default is 2.</p></td>
     </tr>
     </table>
     

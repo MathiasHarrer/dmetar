@@ -2,7 +2,7 @@
 #'
 #' This function uses three unsupervised learning learning algorithms
 #' (\emph{k}-means, DBSCAN and Gaussian Mixture Models) to identify studies
-#' contributing to the heterogeneity-effect site patterns found in GOSH (graphic
+#' contributing to the heterogeneity-effect size patterns found in GOSH (graphic
 #' display of study heterogeneity) plots.
 #'
 #' @usage gosh.diagnostics(data, km = TRUE, db = TRUE, gmm = TRUE, km.centers =

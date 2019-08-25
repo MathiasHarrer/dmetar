@@ -49,7 +49,7 @@ reach convergence. Default is 10000.}
 \description{
 This function uses three unsupervised learning learning algorithms
 (\emph{k}-means, DBSCAN and Gaussian Mixture Models) to identify studies
-contributing to the heterogeneity-effect site patterns found in GOSH (graphic
+contributing to the heterogeneity-effect size patterns found in GOSH (graphic
 display of study heterogeneity) plots.
 }
 \details{
