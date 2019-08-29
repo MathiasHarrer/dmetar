@@ -176,7 +176,7 @@ pcurve = function(x, effect.estimation = FALSE, N, dmin = 0, dmax = 1){
   rm(x)
 
   # Stop if metaobject is not meta or does not contain TE or seTE column
-  if (!(class(metaobject)[1] %in% c("metagen", "metabin", "metacont", "metacor", "metainc", "meta"))){
+  if (!(class(metaobject)[1] %in% c("metagen", "metabin", "metacont", "metacor", "metainc", "meta", "metaprop"))){
 
     for (i in 1:length(colnames(metaobject))){
 

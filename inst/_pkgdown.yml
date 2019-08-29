@@ -46,6 +46,10 @@ reference:
     - multimodel.inference
     - subgroup.analysis.mixed.effects
 
+  - title: Multilevel Meta-Analysis
+    contents:
+    - mlm.variance.distribution
+
   - title: Network meta-analysis
     contents:
     - direct.evidence.plot

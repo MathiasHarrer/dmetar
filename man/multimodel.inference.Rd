@@ -37,7 +37,7 @@ set to \code{'z'} automatically as the Knapp-Hartung method was not meant to be 
 \code{'BIC'} (Bayesian Information Criterion).}
 
 \item{interaction}{If set to \code{FALSE} (default), no interactions between predictors are considered. Setting this parameter to
-\code{TRUE} means that all interactions are modeled.}
+\code{TRUE} means that all interactions are modeled (interactions will only be modeled if the number of provided predictors is 4 or less).}
 
 \item{seed}{Optional. Set a seed for the function.}
 }

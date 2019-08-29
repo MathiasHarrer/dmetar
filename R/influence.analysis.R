@@ -203,7 +203,7 @@ InfluenceAnalysis = function(x, random = FALSE, subplot.heights = c(30, 18), sub
         while (length(unique(cheungviechtdata$study)) < length(cheungviechtdata$study)) {
 
             i = i + 1
-            cheungviechtdata$study = substr(rownames(metafor.inf$inf), 1, i)
+            cheungviechtdata$study = substr(rownames(as.data.frame(metafor.inf$inf)), 1, i)
 
         }
 

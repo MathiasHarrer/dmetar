@@ -28,7 +28,7 @@
 #' (default; corrected Akaike's Information Criterion), \code{'AIC'} (Akaike's Information Criterion) or
 #' \code{'BIC'} (Bayesian Information Criterion).
 #' @param interaction If set to \code{FALSE} (default), no interactions between predictors are considered. Setting this parameter to
-#' \code{TRUE} means that all interactions are modeled.
+#' \code{TRUE} means that all interactions are modeled (interactions will only be modeled if the number of provided predictors is 4 or less).
 #' @param seed Optional. Set a seed for the function.
 #'
 #' @details Multi-model methods differ from stepwise methods as they do not try to successively build
@@ -292,7 +292,7 @@ multimodel.inference = function(TE, seTE, data, predictors, method = "REML", tes
 
     MetaforMuMIn()
 
-    inner_mmi = function() {
+
         # Set supplied seed
         seed = seed
         set.seed(seed)
@@ -338,13 +338,19 @@ multimodel.inference = function(TE, seTE, data, predictors, method = "REML", tes
             stop("'eval.criterion' must be either 'AICc' (default), 'AIC' or 'BIC'.")
         }
 
+        if (length(predictors) > 4 & interaction == TRUE){
+          interaction = FALSE
+          cat("You entered", length(predictors), "predictors. Interactions can only be modeled for four or less predictors. Therefore, no interactions are modeled.", "\n")
+
+        }
+
 
         TE = data[TE]
         seTE = data[seTE]
         preds = data[predictors]
-        glm.data = data.frame(TE = TE, seTE = seTE)
+        glm.data = data.frame(TE, seTE)
         colnames(glm.data) = c("TE", "seTE")
-        glm.data = cbind(glm.data, preds)
+        glm.data = cbind(glm.data, as.data.frame(preds))
 
         # Build the formula
         interaction = interaction
@@ -415,9 +421,6 @@ multimodel.inference = function(TE, seTE, data, predictors, method = "REML", tes
             predictor.importance = predictor.importance, predictor.importance.plot = suppressWarnings(suppressMessages(ggpredictor)),
             formula = form, fitted.models = nrow(all.models), eval.criterion = eval.criterion))
 
-    }
-
-    invisible(inner_mmi())
 }
 
 
