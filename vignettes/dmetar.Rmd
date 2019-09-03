@@ -71,13 +71,13 @@ library(dmetar)
 
 #### R Version
 
-The `dmetar` package requires that *R* Version 3.5 or greater is installed and used in RStudio. You can check your current *R* version by running:
+The `dmetar` package requires that *R* Version 3.5.2 or greater is installed and used in RStudio. You can check your current *R* version by running:
 
 ```{r, eval=FALSE}
 R.Version()$version.string
 ```
 
-If you have an *R* version below 3.5 installed, installing `dmetar` will likely cause an error because the dependency `metafor` was not found. This means that you have to update *R*. A tutorial on how to update *R* on your system can be found [here](https://www.linkedin.com/pulse/3-methods-update-r-rstudio-windows-mac-woratana-ngarmtrakulchol/).
+If you have an *R* version below 3.5.2 installed, installing `dmetar` will likely cause an error (e.g, because the dependency `metafor` was not found). This means that you have to update *R*. A tutorial on how to update *R* on your system can be found [here](https://www.linkedin.com/pulse/3-methods-update-r-rstudio-windows-mac-woratana-ngarmtrakulchol/).
 
 #### JAGS
 
