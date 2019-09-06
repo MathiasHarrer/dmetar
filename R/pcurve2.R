@@ -11,7 +11,7 @@
 #' @param effect.estimation Logical. Should the true effect size underlying the \emph{p}-curve be estimated?
 #' If set to \code{TRUE}, a vector containing the total sample size for each study must be provided for
 #' \code{N}. \code{FALSE} by default.
-#' @param N A numeric vector of same length as the number of effect sizes included in \code{x} specifiying the
+#' @param N A numeric vector of same length as the number of effect sizes included in \code{x} specifying the
 #' total sample size \eqn{N} corresponding to each effect. Only needed if \code{effect.estimation = TRUE}.
 #' @param dmin If \code{effect.estimation = TRUE}: lower limit for the effect size (\eqn{d}) space in which
 #' the true effect size should be searched. Must be greater or equal to 0. Default is 0.

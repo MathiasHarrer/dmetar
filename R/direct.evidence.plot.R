@@ -27,7 +27,7 @@
 #' evidence may contribute to the violation of the assumption of consistency underlying network
 #' meta-analysis models. Nevertheless, this plot allows to distinguish comparison estimates
 #'  for which direct evidence was used, and to what extent, and comparisons which had to be inferred
-#'  by indirected evidence alone.
+#'  by indirect evidence alone.
 #' \item \strong{Minimal Parallelism}. This bar chart displays the minimum number of independent paths
 #' contributing to the effect estimate on aggregated level. Large values of parallelism can be
 #' as supporting the robustness of the estimate.

@@ -12,7 +12,7 @@
 #' column in the dataset (in quotation marks; e.g. \code{seTE = "se"}).
 #' @param data A \code{data.frame} containing columns for the effect size, standard error and
 #' meta-regression predictors of each study/effect.
-#' @param predictors A concentenated array of characters specifying the predictors to be used
+#' @param predictors A concantenated array of characters specifying the predictors to be used
 #' for multimodel inference. Names of the predictors must be identical to the names of the column
 #' names of the \code{data.frame} supplied to \code{data}.
 #' @param method Meta-analysis model to use for pooling effect sizes. Use \code{'FE'} for the
@@ -33,9 +33,9 @@
 #'
 #' @details Multi-model methods differ from stepwise methods as they do not try to successively build
 #' the “best” one (meta-regression) model explaining most of the variance. Instead, in this procedure,
-#' all possible combinations of a predifined selection of predictors are modeled, and evaluated using
+#' all possible combinations of a predefined selection of predictors are modeled, and evaluated using
 #' a criterion such as Akaike’s Information Criterion, which rewards simpler models.
-#' This enables a full eximination of all possible models, and how they perform.
+#' This enables a full examination of all possible models, and how they perform.
 #' A common finding using this procedure is that there are many different kinds of predictor
 #' combinations within a model which lead to a good fit. In multimodel inference, the estimated
 #' coefficients of predictors can then be synthesized across all possible models to infer how
@@ -80,7 +80,7 @@
 #' sign (for categorical predictors) indicates that a predictor/interaction term was used for the
 #' model, while empty cells indicate that the predictor was omitted in this model. Other metrics such as the
 #' \code{weight}, evaluation metric \code{delta} compared to the best model, logLikelihood and degrees of freedom
-#' are also diplayed
+#' are also displayed.
 #' \item \strong{Multimodel Inference Coefficients}: Displays the coefficients and statistical significance
 #' of each regression term in the model.
 #' \item \strong{Predictor Importance}: Displays the importance value for each model term. The table is sorted from

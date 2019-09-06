@@ -27,7 +27,7 @@ algorithm. Default is 3.}
 \item{db.eps}{The distance radius \eqn{\epsilon} used to determine clusters
 (DBSCAN). Default is 0.15.}
 
-\item{db.min.pts}{The mininum number of points \eqn{minPts} required within
+\item{db.min.pts}{The minimum number of points \eqn{minPts} required within
 \eqn{\epsilon} used to determine clusters. Default is 20.}
 
 \item{gmm.diag}{Logical. Should the covariance matrix of the components be

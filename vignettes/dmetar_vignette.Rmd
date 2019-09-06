@@ -150,7 +150,7 @@ power.analysis(d = .18, k = 18, n1 = 50, n2 = 50, heterogeneity = "moderate")
 
 ## Effect size calculation
 
-The `dmetar` packge includes several functions to calculate effect sizes needed for meta-analyses: [`NNT`](www.dmetar.protectlab.org/reference/NNT.html), [`se.from.p`](www.dmetar.protectlab.org/reference/se.from.p.html) and [`pool.groups`](www.dmetar.protectlab.org/reference/pool.groups.html).
+The `dmetar` package includes several functions to calculate effect sizes needed for meta-analyses: [`NNT`](www.dmetar.protectlab.org/reference/NNT.html), [`se.from.p`](www.dmetar.protectlab.org/reference/se.from.p.html) and [`pool.groups`](www.dmetar.protectlab.org/reference/pool.groups.html).
 
 Using the `NNT` function, we can calculate the number needed to treat $NNT$ for the first effect size in `ThirdWave`. In this example, we use Furukawa's method (Furukawa & Leucht, 2011), assuming a control group event
 ratio (`CER`) of 0.2
@@ -177,7 +177,7 @@ se.from.p(effect.size = 0.38, p = 0.0456, N = 83)
 
 ## Risk of Bias
 
-In biomedical literature, it is common to assess the Risk of Bias of included studies using the [**Cochrane Risk of Bias Tool**](https://handbook-5-1.cochrane.org/chapter_8/8_assessing_risk_of_bias_in_included_studies.htm). Such Risk of Bias assessments can be directly performed in [RevMan](https://community.cochrane.org/help/tools-and-software/revman-5), but this comes with certain drawbacks: RevMan graphics are usually of lower quality, and journals often require high-resolution charts and plots; using RevMan along with *R* to perform a meta-analysis also means that two programs have to be used, which may consume unncessary extra time; lastly, using RevMan to generate Risk of Bias summary plots also reduces the reproducibility of your meta-analysis if you decide to make all your other *R* analyses fully reproducible using tools such as [**RMarkdown**](https://rmarkdown.rstudio.com/). 
+In biomedical literature, it is common to assess the Risk of Bias of included studies using the [**Cochrane Risk of Bias Tool**](https://handbook-5-1.cochrane.org/chapter_8/8_assessing_risk_of_bias_in_included_studies.htm). Such Risk of Bias assessments can be directly performed in [RevMan](https://community.cochrane.org/help/tools-and-software/revman-5), but this comes with certain drawbacks: RevMan graphics are usually of lower quality, and journals often require high-resolution charts and plots; using RevMan along with *R* to perform a meta-analysis also means that two programs have to be used, which may consume unnecessary extra time; lastly, using RevMan to generate Risk of Bias summary plots also reduces the reproducibility of your meta-analysis if you decide to make all your other *R* analyses fully reproducible using tools such as [**RMarkdown**](https://rmarkdown.rstudio.com/). 
 
 The [`rob.summary`](www.dmetar.protectlab.org/reference/rob.summary.html) function allows you to generate RevMan-style Risk of Bias charts based on `ggplot2` graphics directly in *R* from a *R* data frame. Here is an example:
 

@@ -8,7 +8,7 @@
 #' @param d The hypothesized, or plausible overall effect size of a treatment/intervention under study compared
 #' to control, expressed as the standardized mean difference (SMD). Effect sizes must be positive
 #' numerics (i.e., expressed as positive effect sizes).
-#' @param OR The hypthesized, or plausible overall effect size of a treatment/intervention under study compared
+#' @param OR The hypothesized, or plausible overall effect size of a treatment/intervention under study compared
 #' to control, expressed as the Odds Ratio (OR). If both \code{d} and \code{OR} are specified, results
 #' will only be computed for the value of \code{d}.
 #' @param k The expected number of studies to be included in the meta-analysis.
@@ -25,7 +25,7 @@
 #' However, researchers have some control over the number of studies they want to include in their
 #' meta-analysis (e.g., through more leniently or strictly defined inclusion criteria).
 #' Therefore, one can change the power to some extent by including more or less studies into
-#' the meta-analysis. Conventionally, a power of \eqn{1-\beta = 0.8} is deemed suffienct to detect an existing effect.
+#' the meta-analysis. Conventionally, a power of \eqn{1-\beta = 0.8} is deemed sufficient to detect an existing effect.
 #' There are four things one has to make assumptions about when assessing the power of meta-analysis a priori.
 #'
 #' \itemize{

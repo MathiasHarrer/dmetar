@@ -45,7 +45,7 @@ Two methods to calculate the \eqn{NTT} from \code{d} are implemented in this fun
 calculates\eqn{NTT} from the Area Under the Curve (\eqn{AUC}) defined as the probability that a patient in the treatment
 has an outcome preferable to one in the control. This method allows to calculate the NNT directly from \code{d} without
 any extra variables.
-\item The method by \strong{Furukawa} calculates the \eqn{NNT} from \code{d} using a reasonable estatimate
+\item The method by \strong{Furukawa} calculates the \eqn{NNT} from \code{d} using a reasonable estimate
 of \eqn{CER}, in this context the response rate in the control group.
 }
 

@@ -28,8 +28,8 @@
 #' @param table Should an additional RevMan style risk of bias table be produced? If set to \code{TRUE},
 #' \code{studies} must be specified. \code{FALSE} by default.
 #'
-#' @details The function automatically removes seperators like "-" or "." from column names/risk of bias criteria. To produce
-#' a "clean" plot, you may therefore seperate words in the column names of the \code{data} data frame using these
+#' @details The function automatically removes separators like "-" or "." from column names/risk of bias criteria. To produce
+#' a "clean" plot, you may therefore separate words in the column names of the \code{data} data frame using these
 #' symbols (e.g. \code{"Allocation_Concealment"} to return "Allocation Concealment").
 #'
 #' @references Harrer, M., Cuijpers, P., Furukawa, T.A, & Ebert, D. D. (2019).
