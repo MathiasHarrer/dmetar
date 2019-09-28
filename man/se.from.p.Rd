@@ -28,9 +28,9 @@ corrected for small sample bias (Hedges' \eqn{g}). \code{FALSE} by default.}
 \value{
 A dataframe containing the following columns:
 \itemize{
-\item \code{(log)EffectSize}: The input effect size. Log-transformed if \code{effect.size.type="ratio"}.
+\item \code{(log)EffectSize}: The input effect size. Log-transformed if \code{effect.size.type} is \code{"ratio"}.
 \item \code{Hedges.g}: The calculated Hedges' g values (only if \code{calculate.g=TRUE}).
-\item \code{(log)StandardError}: The standard error (SE) for the effect size. Log-transformed if \code{effect.size.type="ratio"}.
+\item \code{(log)StandardError}: The standard error (SE) for the effect size. Log-transformed if \code{effect.size.type} is \code{"ratio"}.
 \item \code{(log)LLCI} and \code{(log)ULCI}: The lower and upper 95\% confidence interval of the effect size. Log-transformed if \code{effect.size.type="ratio"}.}
 }
 \description{

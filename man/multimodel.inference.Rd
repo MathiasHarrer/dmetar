@@ -22,7 +22,8 @@ for multimodel inference. Names of the predictors must be identical to the names
 names of the \code{data.frame} supplied to \code{data}.}
 
 \item{method}{Meta-analysis model to use for pooling effect sizes. Use \code{'FE'} for the
-fixed-effect model. Different random-effect models are available: \code{'DL', 'HE', 'SJ', 'ML', 'REML', 'EB', 'HS', 'GENQ'}.
+fixed-effect model. Different random-effect models are available: "\code{DL}", "\code{HE}", "\code{SJ}",
+"\code{ML}", "\code{REML}", "\code{EB}", "\code{HS}" or "\code{GENQ}.
 If \code{'FE'} is used, the \code{test} argument is automatically set to \code{'z'}, as the Knapp-Hartung
 method is not meant to be used with fixed-effect models. Default is \code{'REML'}, and it is strongly advised to remain with
 this option to use a standard (mixed-effects) meta-regression model.}

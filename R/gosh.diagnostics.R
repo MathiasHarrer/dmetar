@@ -325,7 +325,7 @@ gosh.diagnostics = function(data,
     # Cook's Distance Plot###########################
     # K-Means############################################
 
-    m.cd.km = by(delta.df, as.factor(delta.df$Cluster), function(x) lm(Delta_Percentage ~ Study, data = x))
+    m.cd.km = by(delta.df, as.factor(delta.df$Cluster), function(x) lm(Delta_Percentage ~ 1, data = x))
     m.cd.km$`0` = NULL
     m.cd.km = lapply(m.cd.km, cooks.distance)
     m.cd.km.df = data.frame(Cooks.Distance = matrix(unlist(m.cd.km)))
@@ -407,7 +407,7 @@ gosh.diagnostics = function(data,
     # Cook's Distance Plot###########################
     # DBSCAN############################################
 
-    m.cd.db = by(delta.df, as.factor(delta.df$Cluster), function(x) lm(Delta_Percentage ~ Study, data = x))
+    m.cd.db = by(delta.df, as.factor(delta.df$Cluster), function(x) lm(Delta_Percentage ~ 1, data = x))
     m.cd.db$`0` = NULL
     m.cd.db = lapply(m.cd.db, cooks.distance)
     m.cd.db.df = data.frame(Cooks.Distance = matrix(unlist(m.cd.db)))
@@ -490,7 +490,7 @@ gosh.diagnostics = function(data,
     # Cook's Distance Plot###########################
     # GMM ############################################
 
-    m.cd.gmm = by(delta.df, as.factor(delta.df$Cluster), function(x) lm(Delta_Percentage ~ Study, data = x))
+    m.cd.gmm = by(delta.df, as.factor(delta.df$Cluster), function(x) lm(Delta_Percentage ~ 1, data = x))
     m.cd.gmm$`0` = NULL
     m.cd.gmm = lapply(m.cd.gmm, cooks.distance)
     m.cd.gmm.df = data.frame(Cooks.Distance = matrix(unlist(m.cd.gmm)))

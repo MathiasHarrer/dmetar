@@ -151,14 +151,15 @@ meta-regression predictors of each study/effect.</p></td>
     </tr>
     <tr>
       <th>predictors</th>
-      <td><p>A concentenated array of characters specifying the predictors to be used
+      <td><p>A concantenated array of characters specifying the predictors to be used
 for multimodel inference. Names of the predictors must be identical to the names of the column
 names of the <code>data.frame</code> supplied to <code>data</code>.</p></td>
     </tr>
     <tr>
       <th>method</th>
       <td><p>Meta-analysis model to use for pooling effect sizes. Use <code>'FE'</code> for the
-fixed-effect model. Different random-effect models are available: <code>'DL', 'HE', 'SJ', 'ML', 'REML', 'EB', 'HS', 'GENQ'</code>.
+fixed-effect model. Different random-effect models are available: "<code>DL</code>", "<code>HE</code>", "<code>SJ</code>",
+"<code>ML</code>", "<code>REML</code>", "<code>EB</code>", "<code>HS</code>" or "<code>GENQ</code>.
 If <code>'FE'</code> is used, the <code>test</code> argument is automatically set to <code>'z'</code>, as the Knapp-Hartung
 method is not meant to be used with fixed-effect models. Default is <code>'REML'</code>, and it is strongly advised to remain with
 this option to use a standard (mixed-effects) meta-regression model.</p></td>
@@ -197,7 +198,7 @@ Predictors are displayed as columns of the table, and models as rows. A number (
 sign (for categorical predictors) indicates that a predictor/interaction term was used for the
 model, while empty cells indicate that the predictor was omitted in this model. Other metrics such as the
 <code>weight</code>, evaluation metric <code>delta</code> compared to the best model, logLikelihood and degrees of freedom
-are also diplayed</p></li>
+are also displayed.</p></li>
 <li><p><strong>Multimodel Inference Coefficients</strong>: Displays the coefficients and statistical significance
 of each regression term in the model.</p></li>
 <li><p><strong>Predictor Importance</strong>: Displays the importance value for each model term. The table is sorted from
@@ -211,9 +212,9 @@ highest to lowest. A common rule of thumb is to consider a predictor as importan
 
     <p>Multi-model methods differ from stepwise methods as they do not try to successively build
 the “best” one (meta-regression) model explaining most of the variance. Instead, in this procedure,
-all possible combinations of a predifined selection of predictors are modeled, and evaluated using
+all possible combinations of a predefined selection of predictors are modeled, and evaluated using
 a criterion such as Akaike’s Information Criterion, which rewards simpler models.
-This enables a full eximination of all possible models, and how they perform.
+This enables a full examination of all possible models, and how they perform.
 A common finding using this procedure is that there are many different kinds of predictor
 combinations within a model which lead to a good fit. In multimodel inference, the estimated
 coefficients of predictors can then be synthesized across all possible models to infer how

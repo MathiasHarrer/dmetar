@@ -28,7 +28,7 @@ unless defaults for those parameters are used.}
 labels for the risk of bias ratings. Only has to be specified when \code{table = TRUE}.}
 
 \item{name.missing}{Character specifying how missing information was coded in \code{data}
-(e.g., \code{name.missing = "missing"}). Default is \code{"Missing"}. All ratings, including missing
+(e.g., \code{name.missing} = \code{"missing"}). Default is \code{"Missing"}. All ratings, including missing
 information, must be coded as strings, so using \code{NA} in \code{data} to signify missing information
 is not valid.}
 

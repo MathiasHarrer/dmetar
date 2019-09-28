@@ -168,7 +168,7 @@ labels for the risk of bias ratings. Only has to be specified when <code>table =
     <tr>
       <th>name.missing</th>
       <td><p>Character specifying how missing information was coded in <code>data</code>
-(e.g., <code>name.missing = "missing"</code>). Default is <code>"Missing"</code>. All ratings, including missing
+(e.g., <code>name.missing</code> = <code>"missing"</code>). Default is <code>"Missing"</code>. All ratings, including missing
 information, must be coded as strings, so using <code>NA</code> in <code>data</code> to signify missing information
 is not valid.</p></td>
     </tr>
@@ -181,8 +181,8 @@ is not valid.</p></td>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>The function automatically removes seperators like "-" or "." from column names/risk of bias criteria. To produce
-a "clean" plot, you may therefore seperate words in the column names of the <code>data</code> data frame using these
+    <p>The function automatically removes separators like "-" or "." from column names/risk of bias criteria. To produce
+a "clean" plot, you may therefore separate words in the column names of the <code>data</code> data frame using these
 symbols (e.g. <code>"Allocation_Concealment"</code> to return "Allocation Concealment").</p>
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>

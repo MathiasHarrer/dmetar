@@ -14,7 +14,7 @@ InfluenceAnalysis(x, random = FALSE, subplot.heights = c(30,18),
 
 \item{random}{Logical. Should the random-effects model be used to generate the influence diagnostics?
 Uses the \code{method.tau} specified in the \code{meta} object if one
-of \code{"DL", "HE", "SJ", "ML", "REML", "EB", "HS"} or \code{"GENQ"} (to ensure compatibility with
+of "\code{DL}", "\code{HE}", "\code{SJ}", "\code{ML}", "\code{REML}", "\code{EB}", "\code{HS}" or "\code{GENQ}" (to ensure compatibility with
 the \code{\link[metafor]{metafor}} package). Otherwise, the DerSimonian-Laird
 (\code{"DL"}; DerSimonian & Laird, 1986) estimator is used. \code{FALSE} by default.}
 

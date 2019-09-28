@@ -168,9 +168,9 @@ corrected for small sample bias (Hedges' \(g\)). <code>FALSE</code> by default.<
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A dataframe containing the following columns:</p><ul>
-<li><p><code>(log)EffectSize</code>: The input effect size. Log-transformed if <code>effect.size.type="ratio"</code>.</p></li>
+<li><p><code>(log)EffectSize</code>: The input effect size. Log-transformed if <code>effect.size.type</code> is <code>"ratio"</code>.</p></li>
 <li><p><code>Hedges.g</code>: The calculated Hedges' g values (only if <code>calculate.g=TRUE</code>).</p></li>
-<li><p><code>(log)StandardError</code>: The standard error (SE) for the effect size. Log-transformed if <code>effect.size.type="ratio"</code>.</p></li>
+<li><p><code>(log)StandardError</code>: The standard error (SE) for the effect size. Log-transformed if <code>effect.size.type</code> is <code>"ratio"</code>.</p></li>
 <li><p><code>(log)LLCI</code> and <code>(log)ULCI</code>: The lower and upper 95% confidence interval of the effect size. Log-transformed if <code>effect.size.type="ratio"</code>.</p></li>
 </ul>
 

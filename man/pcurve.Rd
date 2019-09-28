@@ -16,7 +16,7 @@ for each study.}
 If set to \code{TRUE}, a vector containing the total sample size for each study must be provided for
 \code{N}. \code{FALSE} by default.}
 
-\item{N}{A numeric vector of same length as the number of effect sizes included in \code{x} specifiying the
+\item{N}{A numeric vector of same length as the number of effect sizes included in \code{x} specifying the
 total sample size \eqn{N} corresponding to each effect. Only needed if \code{effect.estimation = TRUE}.}
 
 \item{dmin}{If \code{effect.estimation = TRUE}: lower limit for the effect size (\eqn{d}) space in which

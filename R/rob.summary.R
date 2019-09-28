@@ -20,7 +20,7 @@
 #' @param name.low Character specifying how the "low risk of bias" category was coded in \code{data}
 #' (e.g., \code{name.low = "low"}). Default is \code{"Low"}.
 #' @param name.missing Character specifying how missing information was coded in \code{data}
-#' (e.g., \code{name.missing = "missing"}). Default is \code{"Missing"}. All ratings, including missing
+#' (e.g., \code{name.missing} = \code{"missing"}). Default is \code{"Missing"}. All ratings, including missing
 #' information, must be coded as strings, so using \code{NA} in \code{data} to signify missing information
 #' is not valid.
 #' @param studies A vector of the same length as the number of rows in \code{data} specifying the study

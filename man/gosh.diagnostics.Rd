@@ -99,7 +99,7 @@ display of study heterogeneity) plots.
   which can be tuned using the \code{gmm.tolerance} and \code{gmm.itermax}
   parameters. }
 
-  To assess which studies predominantely contribute to a detected cluster,
+  To assess which studies predominantly contribute to a detected cluster,
   the function calculates the cluster imbalance of a specific study using the
   difference between (i) the expected share of subsets containing a specific
   study if the cluster makeup was purely random (viz., representative for the
