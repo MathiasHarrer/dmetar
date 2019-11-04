@@ -74,8 +74,8 @@ mlm.variance.distribution = function(x){
 
   # Calculate variance proportions
   level1=((est.samp.var)/(m$sigma2[1]+m$sigma2[2]+est.samp.var)*100)
-  level2=((m$sigma2[1])/(m$sigma2[1]+m$sigma2[2]+est.samp.var)*100)
-  level3=((m$sigma2[2])/(m$sigma2[1]+m$sigma2[2]+est.samp.var)*100)
+  level2=((m$sigma2[2])/(m$sigma2[1]+m$sigma2[2]+est.samp.var)*100)
+  level3=((m$sigma2[1])/(m$sigma2[1]+m$sigma2[2]+est.samp.var)*100)
 
   # Prepare df for return
   Level=c("Level 1", "Level 2", "Level 3")
