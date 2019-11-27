@@ -67,7 +67,7 @@ library(dmetar)
 
 <br></br>
 
-### Installation errors
+### Installation Errors
 
 #### R Version
 
@@ -153,7 +153,7 @@ power.analysis(d = .18, k = 18, n1 = 50, n2 = 50, heterogeneity = "moderate")
 
 <br></br>
 
-## Effect size calculation
+## Effect Size Calculation
 
 The `dmetar` package includes several functions to calculate effect sizes needed for meta-analyses: [`NNT`](https://dmetar.protectlab.org/reference/NNT.html), [`se.from.p`](https://dmetar.protectlab.org/reference/se.from.p.html) and [`pool.groups`](https://dmetar.protectlab.org/reference/pool.groups.html).
 
@@ -339,6 +339,27 @@ multimodel.inference(TE = 'yi', seTE = 'sei', data = MVRegressionData,
 <br></br>
 
 <br></br>
+
+## Outlier Detection
+
+To obtain a more robust estimate of the pooled effect size, especially when the between-study heterogeneity of a meta-analysis is high, it can be helpful to search for **outliers** and recalculate the effects when excluding them.
+
+The `find.outliers` function automatically searches for outliers (defined as studies for which the 95%CI is outside the 95%CI of the pooled effect) in your meta-analysis and recalculates the results without these outliers. The function works for meta-analysis objects created with functions of the `meta` package as well as the `rma.uni` function in `metafor`. 
+
+```{r}
+meta <- metagen(TE, seTE, 
+                data = ThirdWave, 
+                studlab = ThirdWave$Author,
+                method.tau = "SJ",
+                comb.fixed = FALSE)
+
+find.outliers(meta)
+```
+
+<br></br>
+
+<br></br>
+
 
 ## Influence Analysis
 

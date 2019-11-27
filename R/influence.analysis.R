@@ -11,7 +11,7 @@
 #' \code{metacont}, \code{metacor}, \code{metainc}, \code{metarate} or \code{metaprop} function.
 #' @param random Logical. Should the random-effects model be used to generate the influence diagnostics?
 #' Uses the \code{method.tau} specified in the \code{meta} object if one
-#' of "\code{DL}", "\code{HE}", "\code{SJ}", "\code{ML}", "\code{REML}", "\code{EB}", "\code{HS}" or "\code{GENQ}" (to ensure compatibility with
+#' of "\code{DL}", "\code{HE}", "\code{SJ}", "\code{ML}", "\code{REML}", "\code{EB}", "\code{PM}", "\code{HS}" or "\code{GENQ}" (to ensure compatibility with
 #' the \code{\link[metafor]{metafor}} package). Otherwise, the DerSimonian-Laird
 #' (\code{"DL"}; DerSimonian & Laird, 1986) estimator is used. \code{FALSE} by default.
 #' @param subplot.heights Concatenated array of two numerics. Specifies the heights of the
@@ -179,7 +179,7 @@ InfluenceAnalysis = function(x, random = FALSE, subplot.heights = c(30, 18), sub
         method.rma = "FE"
         method.meta = "fixed"
     } else {
-        if (x$method.tau %in% c("DL", "HE", "SJ", "ML", "REML", "EB", "HS", "GENQ")) {
+        if (x$method.tau %in% c("DL", "HE", "SJ", "ML", "REML", "EB", "HS", "GENQ", "PM")) {
             method.rma = x$method.tau
         } else {
             method.rma = "DL"
@@ -819,7 +819,7 @@ InfluenceAnalysis = function(x, random = FALSE, subplot.heights = c(30, 18), sub
     bjt = baujat.silent(x)
 
     BaujatPlot = ggplot(bjt, aes(x = x, y = y)) + geom_point(aes(size = (1/se)), color = "blue", alpha = 0.75) +
-        geom_rug(color = "lightgray", alpha = 0.5) + theme(legend.position = "none") + xlab("Overall hetereogeneity contribution") +
+        geom_rug(color = "lightgray", alpha = 0.5) + theme(legend.position = "none") + xlab("Overall heterogeneity contribution") +
         ylab("Influence on pooled result") + geom_label_repel(label = bjt$studlab, color = "black", size = 1.5 *
         text.scale, alpha = 0.7)
 

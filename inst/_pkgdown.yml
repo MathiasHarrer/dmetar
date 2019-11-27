@@ -32,6 +32,7 @@ reference:
   - title: Small-study effects & Publication bias
     contents:
     - eggers.test
+    - find.outliers
     - InfluenceAnalysis
     - gosh.diagnostics
     - pcurve

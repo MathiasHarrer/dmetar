@@ -118,7 +118,7 @@
 <p><br></p>
 <div id="installation-errors" class="section level3">
 <h3 class="hasAnchor">
-<a href="#installation-errors" class="anchor"></a>Installation errors</h3>
+<a href="#installation-errors" class="anchor"></a>Installation Errors</h3>
 <div id="r-version" class="section level4">
 <h4 class="hasAnchor">
 <a href="#r-version" class="anchor"></a>R Version</h4>
@@ -182,7 +182,7 @@ ERROR: configuration failed for package ‘rjags’</code></pre>
 </div>
 <div id="effect-size-calculation" class="section level2">
 <h2 class="hasAnchor">
-<a href="#effect-size-calculation" class="anchor"></a>Effect size calculation</h2>
+<a href="#effect-size-calculation" class="anchor"></a>Effect Size Calculation</h2>
 <p>The <code>dmetar</code> package includes several functions to calculate effect sizes needed for meta-analyses: <a href="https://dmetar.protectlab.org/reference/NNT.html"><code>NNT</code></a>, <a href="https://dmetar.protectlab.org/reference/se.from.p.html"><code>se.from.p</code></a> and <a href="https://dmetar.protectlab.org/reference/pool.groups.html"><code>pool.groups</code></a>.</p>
 <p>Using the <code>NNT</code> function, we can calculate the number needed to treat <span class="math inline">\(NNT\)</span> for the first effect size in <code>ThirdWave</code>. In this example, we use Furukawa’s method (Furukawa &amp; Leucht, 2011), assuming a control group event ratio (<code>CER</code>) of 0.2</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="kw"><a href="../reference/NNT.html">NNT</a></span>(ThirdWave<span class="op">$</span>TE[<span class="dv">1</span>], <span class="dt">CER =</span> <span class="fl">0.2</span>)</a></code></pre></div>
@@ -339,6 +339,62 @@ ERROR: configuration failed for package ‘rjags’</code></pre>
 <p><br></p>
 <p><br></p>
 </div>
+<div id="outlier-detection" class="section level2">
+<h2 class="hasAnchor">
+<a href="#outlier-detection" class="anchor"></a>Outlier Detection</h2>
+<p>To obtain a more robust estimate of the pooled effect size, especially when the between-study heterogeneity of a meta-analysis is high, it can be helpful to search for <strong>outliers</strong> and recalculate the effects when excluding them.</p>
+<p>The <code>find.outliers</code> function automatically searches for outliers (defined as studies for which the 95%CI is outside the 95%CI of the pooled effect) in your meta-analysis and recalculates the results without these outliers. The function works for meta-analysis objects created with functions of the <code>meta</code> package as well as the <code>rma.uni</code> function in <code>metafor</code>.</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1">meta &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/meta/man/metagen.html">metagen</a></span>(TE, seTE, </a>
+<a class="sourceLine" id="cb25-2" data-line-number="2">                <span class="dt">data =</span> ThirdWave, </a>
+<a class="sourceLine" id="cb25-3" data-line-number="3">                <span class="dt">studlab =</span> ThirdWave<span class="op">$</span>Author,</a>
+<a class="sourceLine" id="cb25-4" data-line-number="4">                <span class="dt">method.tau =</span> <span class="st">"SJ"</span>,</a>
+<a class="sourceLine" id="cb25-5" data-line-number="5">                <span class="dt">comb.fixed =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb25-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb25-7" data-line-number="7"><span class="kw"><a href="../reference/find.outliers.html">find.outliers</a></span>(meta)</a></code></pre></div>
+<pre><code>## Identified outliers (random-effects model) 
+## ------------------------------------------ 
+## "DanitzOrsillo", "Shapiro et al." 
+##  
+## Results with outliers removed 
+## ----------------------------- 
+##                                          95%-CI %W(random) exclude
+## Call et al.            0.7091 [ 0.1979; 1.2203]        5.0        
+## Cavanagh et al.        0.3549 [-0.0300; 0.7397]        6.9        
+## DanitzOrsillo          1.7912 [ 1.1139; 2.4685]        0.0       *
+## de Vibe et al.         0.1825 [-0.0484; 0.4133]       10.4        
+## Frazier et al.         0.4219 [ 0.1380; 0.7057]        9.1        
+## Frogeli et al.         0.6300 [ 0.2458; 1.0142]        7.0        
+## Gallego et al.         0.7249 [ 0.2846; 1.1652]        6.0        
+## Hazlett-Stevens &amp; Oren 0.5287 [ 0.1162; 0.9412]        6.4        
+## Hintz et al.           0.2840 [-0.0453; 0.6133]        8.1        
+## Kang et al.            1.2751 [ 0.6142; 1.9360]        3.5        
+## Kuhlmann et al.        0.1036 [-0.2781; 0.4853]        7.0        
+## Lever Taylor et al.    0.3884 [-0.0639; 0.8407]        5.8        
+## Phang et al.           0.5407 [ 0.0619; 1.0196]        5.4        
+## Rasanen et al.         0.4262 [-0.0794; 0.9317]        5.1        
+## Ratanasiripong         0.5154 [-0.1731; 1.2039]        3.3        
+## Shapiro et al.         1.4797 [ 0.8618; 2.0977]        0.0       *
+## Song &amp; Lindquist       0.6126 [ 0.1683; 1.0569]        5.9        
+## Warnecke et al.        0.6000 [ 0.1120; 1.0880]        5.3        
+## 
+## Number of studies combined: k = 16
+## 
+##                                       95%-CI    z  p-value
+## Random effects model 0.4708 [0.3297; 0.6119] 6.54 &lt; 0.0001
+## 
+## Quantifying heterogeneity:
+## tau^2 = 0.0361; H = 1.15 [1.00; 1.56]; I^2 = 24.8% [0.0%; 58.7%]
+## 
+## Test of heterogeneity:
+##      Q d.f. p-value
+##  19.95   15  0.1739
+## 
+## Details on meta-analytical method:
+## - Inverse variance method
+## - Sidik-Jonkman estimator for tau^2</code></pre>
+<p><br></p>
+<p><br></p>
+</div>
 <div id="influence-analysis" class="section level2">
 <h2 class="hasAnchor">
 <a href="#influence-analysis" class="anchor"></a>Influence Analysis</h2>
@@ -348,30 +404,30 @@ ERROR: configuration failed for package ‘rjags’</code></pre>
 <li>have a large impact on the pooled effect size of a meta-analysis, meaning that the overall effect size may change considerably when this one study is removed.</li>
 </ul>
 <p>The <a href="https://dmetar.protectlab.org/reference/InfluenceAnalysis.html"><code>InfluenceAnalysis</code></a> is a wrapper around several influence analysis function included in the <code>meta</code> and <code>metafor</code> package. It provides four types of influence diagnostics in one single plot. The function works for meta-analysis objects created by <code>meta</code> functions, which can then be directly used as input for the function:</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1"><span class="kw"><a href="../reference/InfluenceAnalysis.html">InfluenceAnalysis</a></span>(meta)</a></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1"><span class="kw"><a href="../reference/InfluenceAnalysis.html">InfluenceAnalysis</a></span>(meta)</a></code></pre></div>
 <pre><code>## [============================================================</code></pre>
-<p><img src="dmetar_files/figure-html/unnamed-chunk-22-1.png" width="960"></p>
+<p><img src="dmetar_files/figure-html/unnamed-chunk-23-1.png" width="960"></p>
 <pre><code>## ===============] DONE</code></pre>
 <p><br></p>
 <p>Additionally, the <a href="https://dmetar.protectlab.org/reference/gosh.diagnostics.html"><code>gosh.diagnostics</code></a> can be used to analyze influence patterns using objects generated by <code>metafor</code>s <code>gosh</code> function. The <code>gosh.diagnostics</code> function uses unsupervised learning algorithms to determine effect size-heterogeneity patterns in the meta-analysis data. We can use <code>dmetars</code> in-built <code>m.gosh</code> data set, which has been generated using <code>metafor</code>s <code>gosh</code> function as an example:</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="st">"m.gosh"</span>)</a>
-<a class="sourceLine" id="cb28-2" data-line-number="2"><span class="kw"><a href="../reference/gosh.diagnostics.html">gosh.diagnostics</a></span>(m.gosh)</a></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="st">"m.gosh"</span>)</a>
+<a class="sourceLine" id="cb30-2" data-line-number="2"><span class="kw"><a href="../reference/gosh.diagnostics.html">gosh.diagnostics</a></span>(m.gosh)</a></code></pre></div>
 <pre><code>##   
 ##  Perform Clustering... 
 ## [==============================================================================================] DONE</code></pre>
-<p><img src="dmetar_files/figure-html/unnamed-chunk-23-1.png" width="700"></p>
+<p><img src="dmetar_files/figure-html/unnamed-chunk-24-1.png" width="700"></p>
 <pre><code>## 
 ##  Number of k-means clusters used: 3</code></pre>
-<p><img src="dmetar_files/figure-html/unnamed-chunk-23-2.png" width="700"></p>
+<p><img src="dmetar_files/figure-html/unnamed-chunk-24-2.png" width="700"></p>
 <pre><code>## 
 ##  Number of DBSCAN clusters detected: 2</code></pre>
-<p><img src="dmetar_files/figure-html/unnamed-chunk-23-3.png" width="700"></p>
+<p><img src="dmetar_files/figure-html/unnamed-chunk-24-3.png" width="700"></p>
 <pre><code>## 
 ##  Number of GMM clusters detected: 2 
 ## 
 ##  Identification of potential outliers 
 ##  ---------------------------------</code></pre>
-<p><img src="dmetar_files/figure-html/unnamed-chunk-23-4.png" width="700"><img src="dmetar_files/figure-html/unnamed-chunk-23-5.png" width="700"></p>
+<p><img src="dmetar_files/figure-html/unnamed-chunk-24-4.png" width="700"><img src="dmetar_files/figure-html/unnamed-chunk-24-5.png" width="700"></p>
 <pre><code>##   
 ##  Studies identified as potential outliers: 
 ## 
@@ -389,13 +445,13 @@ ERROR: configuration failed for package ‘rjags’</code></pre>
 <p>The package contains two functions to assess the potential presence of publication bias in a meta-analysis: <a href="https://dmetar.protectlab.org/reference/eggers.test.html"><code>eggers.test</code></a> and <a href="https://dmetar.protectlab.org/reference/eggers.test.html"><code>pcurve</code></a>. Both methods are optimized for conducting meta-analyses using the <code>meta</code> package, and only have to be provided with a <code>meta</code> meta-analysis results object.</p>
 <p><br></p>
 <p><strong>Here is an example output for</strong> <code>eggers.test</code><strong>:</strong></p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" data-line-number="1"><span class="kw"><a href="../reference/eggers.test.html">eggers.test</a></span>(meta)</a></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" data-line-number="1"><span class="kw"><a href="../reference/eggers.test.html">eggers.test</a></span>(meta)</a></code></pre></div>
 <pre><code>##              Intercept ConfidenceInterval     t       p
 ## Egger's test     4.111        2.347-5.875 4.677 0.00025</code></pre>
 <p><br></p>
 <p><strong>And here for</strong> <code>pcurve</code><strong>:</strong></p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" data-line-number="1"><span class="kw"><a href="../reference/pcurve.html">pcurve</a></span>(meta)</a></code></pre></div>
-<p><img src="dmetar_files/figure-html/unnamed-chunk-25-1.png" width="576" style="display: block; margin: auto;"></p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" data-line-number="1"><span class="kw"><a href="../reference/pcurve.html">pcurve</a></span>(meta)</a></code></pre></div>
+<p><img src="dmetar_files/figure-html/unnamed-chunk-26-1.png" width="576" style="display: block; margin: auto;"></p>
 <pre><code>## P-curve analysis 
 ##  ----------------------- 
 ## - Total number of provided studies: k = 18 
@@ -423,37 +479,37 @@ ERROR: configuration failed for package ‘rjags’</code></pre>
 <a href="#network-meta-analysis" class="anchor"></a>Network Meta-Analysis</h2>
 <p>The package contains two utility functions for network meta-analysis using the <code>gemtc</code> (Van Valkenhoef &amp; Kuiper, 2016) and <code>netmeta</code> (Rücker, Krahn, König, Efthimiou &amp; Schwarzer, 2019) packages.</p>
 <p>The first one, <a href="https://dmetar.protectlab.org/reference/direct.evidence.plot.html"><code>direct.evidence.plot</code></a> creates a plot for the direct evidence proportion of comparisons included in a network meta-analysis model and displays diagnostics proposed by König, Krahn and Binder (2013). It only requires a network meta-analysis object created by the <code>netmeta</code> function as input. We will use <code>dmetar</code>s in-built <code>NetDataNetmeta</code> dataset for this example:</p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(netmeta)</a>
-<a class="sourceLine" id="cb38-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb38-3" data-line-number="3"><span class="kw"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="st">"NetDataNetmeta"</span>)</a>
-<a class="sourceLine" id="cb38-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb38-5" data-line-number="5">nmeta =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/netmeta/man/netmeta.html">netmeta</a></span>(TE, seTE, treat1, treat2, </a>
-<a class="sourceLine" id="cb38-6" data-line-number="6">                  <span class="dt">data=</span>NetDataNetmeta, </a>
-<a class="sourceLine" id="cb38-7" data-line-number="7">                  <span class="dt">studlab =</span> NetDataNetmeta<span class="op">$</span>studlab)</a>
-<a class="sourceLine" id="cb38-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb38-9" data-line-number="9"><span class="kw"><a href="../reference/direct.evidence.plot.html">direct.evidence.plot</a></span>(nmeta)</a></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(netmeta)</a>
+<a class="sourceLine" id="cb40-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb40-3" data-line-number="3"><span class="kw"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="st">"NetDataNetmeta"</span>)</a>
+<a class="sourceLine" id="cb40-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb40-5" data-line-number="5">nmeta =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/netmeta/man/netmeta.html">netmeta</a></span>(TE, seTE, treat1, treat2, </a>
+<a class="sourceLine" id="cb40-6" data-line-number="6">                  <span class="dt">data=</span>NetDataNetmeta, </a>
+<a class="sourceLine" id="cb40-7" data-line-number="7">                  <span class="dt">studlab =</span> NetDataNetmeta<span class="op">$</span>studlab)</a>
+<a class="sourceLine" id="cb40-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb40-9" data-line-number="9"><span class="kw"><a href="../reference/direct.evidence.plot.html">direct.evidence.plot</a></span>(nmeta)</a></code></pre></div>
 <p><img src="fig/directevidence.png" width="500" style="display: block; margin: auto;"></p>
 <p><br></p>
 <p>The second, <a href="https://dmetar.protectlab.org/reference/sucra.html"><code>sucra</code></a>, calculates the <span class="math inline">\(SUCRA\)</span> for each treatment when provided with a <code>mtc.rank.probability</code> network meta-analysis results object, or a matrix containing rank probabilities. In this example, we will use <code>dmetar</code>s in-built <code>NetDataGemtc</code> data set.</p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(gemtc)</a>
-<a class="sourceLine" id="cb39-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb39-3" data-line-number="3"><span class="kw"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="st">"NetDataGemtc"</span>)</a>
-<a class="sourceLine" id="cb39-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb39-5" data-line-number="5"><span class="co"># Create Network Meta-Analysis Model</span></a>
-<a class="sourceLine" id="cb39-6" data-line-number="6">network =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/gemtc/man/mtc.network.html">mtc.network</a></span>(<span class="dt">data.re =</span> NetDataGemtc)</a>
-<a class="sourceLine" id="cb39-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb39-8" data-line-number="8">model =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/gemtc/man/mtc.model.html">mtc.model</a></span>(network, <span class="dt">linearModel =</span> <span class="st">"fixed"</span>,</a>
-<a class="sourceLine" id="cb39-9" data-line-number="9">                   <span class="dt">n.chain =</span> <span class="dv">4</span>,</a>
-<a class="sourceLine" id="cb39-10" data-line-number="10">                   <span class="dt">likelihood =</span> <span class="st">"normal"</span>,</a>
-<a class="sourceLine" id="cb39-11" data-line-number="11">                   <span class="dt">link =</span> <span class="st">"identity"</span>)</a>
-<a class="sourceLine" id="cb39-12" data-line-number="12"></a>
-<a class="sourceLine" id="cb39-13" data-line-number="13">mcmc =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/gemtc/man/mtc.run.html">mtc.run</a></span>(model, <span class="dt">n.adapt =</span> <span class="dv">5000</span>, </a>
-<a class="sourceLine" id="cb39-14" data-line-number="14">               <span class="dt">n.iter =</span> <span class="dv">100000</span>, <span class="dt">thin =</span> <span class="dv">10</span>)</a>
-<a class="sourceLine" id="cb39-15" data-line-number="15"></a>
-<a class="sourceLine" id="cb39-16" data-line-number="16">rp =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/gemtc/man/rank.probability.html">rank.probability</a></span>(mcmc)</a>
-<a class="sourceLine" id="cb39-17" data-line-number="17"></a>
-<a class="sourceLine" id="cb39-18" data-line-number="18"><span class="co"># Create sucra</span></a>
-<a class="sourceLine" id="cb39-19" data-line-number="19"><span class="kw"><a href="../reference/sucra.html">sucra</a></span>(rp, <span class="dt">lower.is.better =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" data-line-number="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(gemtc)</a>
+<a class="sourceLine" id="cb41-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb41-3" data-line-number="3"><span class="kw"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="st">"NetDataGemtc"</span>)</a>
+<a class="sourceLine" id="cb41-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb41-5" data-line-number="5"><span class="co"># Create Network Meta-Analysis Model</span></a>
+<a class="sourceLine" id="cb41-6" data-line-number="6">network =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/gemtc/man/mtc.network.html">mtc.network</a></span>(<span class="dt">data.re =</span> NetDataGemtc)</a>
+<a class="sourceLine" id="cb41-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb41-8" data-line-number="8">model =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/gemtc/man/mtc.model.html">mtc.model</a></span>(network, <span class="dt">linearModel =</span> <span class="st">"fixed"</span>,</a>
+<a class="sourceLine" id="cb41-9" data-line-number="9">                   <span class="dt">n.chain =</span> <span class="dv">4</span>,</a>
+<a class="sourceLine" id="cb41-10" data-line-number="10">                   <span class="dt">likelihood =</span> <span class="st">"normal"</span>,</a>
+<a class="sourceLine" id="cb41-11" data-line-number="11">                   <span class="dt">link =</span> <span class="st">"identity"</span>)</a>
+<a class="sourceLine" id="cb41-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb41-13" data-line-number="13">mcmc =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/gemtc/man/mtc.run.html">mtc.run</a></span>(model, <span class="dt">n.adapt =</span> <span class="dv">5000</span>, </a>
+<a class="sourceLine" id="cb41-14" data-line-number="14">               <span class="dt">n.iter =</span> <span class="dv">100000</span>, <span class="dt">thin =</span> <span class="dv">10</span>)</a>
+<a class="sourceLine" id="cb41-15" data-line-number="15"></a>
+<a class="sourceLine" id="cb41-16" data-line-number="16">rp =<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/gemtc/man/rank.probability.html">rank.probability</a></span>(mcmc)</a>
+<a class="sourceLine" id="cb41-17" data-line-number="17"></a>
+<a class="sourceLine" id="cb41-18" data-line-number="18"><span class="co"># Create sucra</span></a>
+<a class="sourceLine" id="cb41-19" data-line-number="19"><span class="kw"><a href="../reference/sucra.html">sucra</a></span>(rp, <span class="dt">lower.is.better =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <p><img src="fig/sucra.png" width="40%" style="display: block; margin: auto;"></p>
 <p><br></p>
 <p><br></p>
@@ -482,9 +538,10 @@ ERROR: configuration failed for package ‘rjags’</code></pre>
       <li><a href="#functionality">Functionality</a></li>
       <li><a href="#datasets">Datasets</a></li>
       <li><a href="#power-analysis">Power Analysis</a></li>
-      <li><a href="#effect-size-calculation">Effect size calculation</a></li>
+      <li><a href="#effect-size-calculation">Effect Size Calculation</a></li>
       <li><a href="#risk-of-bias">Risk of Bias</a></li>
       <li><a href="#subgroup-analysis-meta-regression">Subgroup Analysis &amp; Meta-Regression</a></li>
+      <li><a href="#outlier-detection">Outlier Detection</a></li>
       <li><a href="#influence-analysis">Influence Analysis</a></li>
       <li><a href="#publication-bias">Publication Bias</a></li>
       <li><a href="#network-meta-analysis">Network Meta-Analysis</a></li>

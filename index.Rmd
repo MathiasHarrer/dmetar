@@ -23,7 +23,7 @@ The **dmetar** package serves as the companion R package for the guide [**Doing 
 
 ## Installation
 
-The latest development version can be installed using [**devtools**](https://devtools.r-lib.org/) from **GitHub**.
+The latest development version can be installed from **GitHub** using [**devtools**](https://devtools.r-lib.org/).
 
 ```{r, eval=FALSE}
 if (!require("devtools")) {
