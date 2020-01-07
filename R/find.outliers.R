@@ -112,7 +112,7 @@ find.outliers = spot.outliers.random = spot.outliers.fixed = function(x){
   }
 
   if (class(x)[1] %in% c("metagen", "metapropr",
-                         "metacor", "metainc",
+                         "metacor", "metainc", "metacont",
                          "metaprop", "metabin", "metabin")){
 
     token = "meta"
@@ -214,7 +214,7 @@ find.outliers = spot.outliers.random = spot.outliers.fixed = function(x){
 
   }
 
-  if (!class(x)[1] %in% c("rma.uni", "rma",
+  if (!class(x)[1] %in% c("rma.uni", "rma", "metacont",
                           "metagen", "metapropr",
                           "metacor", "metainc",
                           "metaprop", "metabin", "metabin")){
