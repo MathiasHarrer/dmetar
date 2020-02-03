@@ -38,7 +38,15 @@
 <script src="../pkgdown.js"></script>
 
 
+<!-- docsearch -->
+<script src="../docsearch.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous" />
+<link href="../docsearch.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
 
+
+  <link href="../extra.css" rel="stylesheet">
+  
 <meta property="og:title" content="Plot for direct evidence proportions in a network meta-analysis using <code>netmeta</code> — direct.evidence.plot" />
 
 <meta property="og:description" content="This function plots relevant measures quantifying the direct evidence proportion, mean path length
@@ -95,6 +103,12 @@ netmeta." />
 <li>
   <a href="https://protectlab.org/en">Protect Lab</a>
 </li>
+<li>
+  <a href="https://twitter.com/MathiasHarrer">
+    <span class="fa fa-twitter"></span>
+     
+  </a>
+</li>
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
@@ -105,6 +119,12 @@ netmeta." />
   </a>
 </li>
       </ul>
+      
+      <form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
+        <div class="form-group">
+          <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
+        </div>
+      </form>
       
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
@@ -138,7 +158,7 @@ and aggregated minimal parallelism of a frequentist network meta-analysis model 
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>An object of class 'netmeta' containing the results of a network meta-analysis
+      <td><p>An object of class <code>netmeta</code> containing the results of a network meta-analysis
 using the <code><a href='https://rdrr.io/pkg/netmeta/man/netmeta.html'>netmeta</a></code> function.</p></td>
     </tr>
     <tr>
@@ -167,7 +187,7 @@ the three subplots included in the plot (from left to right). Default is <code><
 
     
 <ul>
-<li><p><code>data</code>: A data.frame containing columns for the proportion of direct and indirect
+<li><p><code>data</code>: A <code>data.frame</code> containing columns for the proportion of direct and indirect
 evidence of each comparison (<code>proportion.direct</code> and <code>proportion.indirect</code>), the
 mean path length (<code>meanpath</code>) and the minimal parallelism (<code>minpar</code>)
 for each comparison.</p></li>
@@ -179,15 +199,15 @@ for each comparison.</p></li>
 
     <p>The function generates a plot containing three subplots displaying relevant characteristics
 to evaluate the reliability of effect size estimates within a network meta-analysis model.</p><ul>
-<li><p><strong>Direct evidence proportion</strong>. This bar chart displays the proportion of direct
+<li><p><strong>Direct Evidence Proportion</strong>. This bar chart displays the proportion of direct
 evidence (orange) contained in each network estimate. It is of note that both direct and indirect
 evidence may contribute to the violation of the assumption of consistency underlying network
 meta-analysis models. Nevertheless, this plot allows to distinguish comparison estimates
  for which direct evidence was used, and to what extent, and comparisons which had to be inferred
  by indirect evidence alone.</p></li>
 <li><p><strong>Minimal Parallelism</strong>. This bar chart displays the minimum number of independent paths
-contributing to the effect estimate on aggregated level. Large values of parallelism can be
-as supporting the robustness of the estimate.</p></li>
+contributing to the effect estimate on an aggregated level. Large values of parallelism can be
+interpreted as supporting the robustness of the estimate.</p></li>
 <li><p><strong>Mean Path Length</strong>. This bar chart displays the mean path length, which characterizes
 the degree of indirectness of an estimate. Higher mean path lengths indicate less reliable
 estimates, given that more similarity assumptions have to be made when serially combining
@@ -220,7 +240,55 @@ characterizing mixed treatment comparisons. <em>Statistics in Medicine, 32</em>,
               <span class='kw'>data</span><span class='kw'>=</span><span class='no'>Senn2013</span>, <span class='kw'>sm</span><span class='kw'>=</span><span class='st'>'MD'</span>, <span class='kw'>comb.random</span><span class='kw'>=</span><span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: Note, treatments within a comparison have been re-sorted in increasing order.</span></div><div class='input'>
 <span class='co'># Generate the plot</span>
 <span class='no'>dep</span> <span class='kw'>=</span> <span class='fu'>direct.evidence.plot</span>(<span class='no'>nma</span>, <span class='kw'>random</span><span class='kw'>=</span><span class='fl'>FALSE</span>, <span class='kw'>comparison.label.size</span> <span class='kw'>=</span> <span class='fl'>1</span>,
-<span class='kw'>numeric.label.size</span><span class='kw'>=</span><span class='fl'>1</span>, <span class='kw'>subplot.ratio</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>3</span>,<span class='fl'>1</span>,<span class='fl'>1</span>))</div><div class='img'><img src='direct.evidence.plot-1.png' alt='' width='700' height='433' /></div></pre>
+<span class='kw'>numeric.label.size</span><span class='kw'>=</span><span class='fl'>1</span>, <span class='kw'>subplot.ratio</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>3</span>,<span class='fl'>1</span>,<span class='fl'>1</span>))
+<span class='no'>dep</span></div><div class='output co'>#&gt; Direct Evidence Proportion for each Network Estimate 
+#&gt;  ------------------------------------------------- 
+#&gt;           Direct Indirect meanpath   minpar
+#&gt; benf:plac 1.0000   0.0000 1.000000 1.000000
+#&gt; migl:plac 1.0000   0.0000 1.000000 1.000000
+#&gt; plac:sita 1.0000   0.0000 1.000000 1.000000
+#&gt; plac:vild 1.0000   0.0000 1.000000 1.000000
+#&gt; plac:rosi 0.8317   0.1683 1.232039 1.202321
+#&gt; metf:piog 0.6760   0.3240 1.406080 1.479374
+#&gt; acar:plac 0.6283   0.3717 1.821171 1.741244
+#&gt; metf:plac 0.5827   0.4173 1.575341 1.793512
+#&gt; metf:sulf 0.5592   0.4408 1.827966 1.788188
+#&gt; acar:sulf 0.5331   0.4669 1.924880 1.875690
+#&gt; rosi:sulf 0.4106   0.5894 2.126199 2.305411
+#&gt; piog:plac 0.3578   0.6422 1.831364 2.038564
+#&gt; piog:rosi 0.1995   0.8005 2.175930 1.703670
+#&gt; metf:rosi 0.1750   0.8250 1.965334 1.657166
+#&gt; acar:metf 0.1025   0.8975 2.161838 1.921063
+#&gt; acar:benf 0.0000   1.0000 2.821171 1.000000
+#&gt; acar:migl 0.0000   1.0000 2.821171 1.000000
+#&gt; acar:piog 0.0000   1.0000 2.636489 1.843204
+#&gt; acar:rosi 0.0000   1.0000 2.287610 1.543073
+#&gt; acar:sita 0.0000   1.0000 2.821171 1.000000
+#&gt; acar:vild 0.0000   1.0000 2.821171 1.000000
+#&gt; benf:metf 0.0000   1.0000 2.575341 1.000000
+#&gt; benf:migl 0.0000   1.0000 2.000000 1.000000
+#&gt; benf:piog 0.0000   1.0000 2.831364 1.000000
+#&gt; benf:rosi 0.0000   1.0000 2.232039 1.000000
+#&gt; benf:sita 0.0000   1.0000 2.000000 1.000000
+#&gt; benf:sulf 0.0000   1.0000 3.138291 1.000000
+#&gt; benf:vild 0.0000   1.0000 2.000000 1.000000
+#&gt; metf:migl 0.0000   1.0000 2.575341 1.000000
+#&gt; metf:sita 0.0000   1.0000 2.575341 1.000000
+#&gt; metf:vild 0.0000   1.0000 2.575341 1.000000
+#&gt; migl:piog 0.0000   1.0000 2.831364 1.000000
+#&gt; migl:rosi 0.0000   1.0000 2.232039 1.000000
+#&gt; migl:sita 0.0000   1.0000 2.000000 1.000000
+#&gt; migl:sulf 0.0000   1.0000 3.138291 1.000000
+#&gt; migl:vild 0.0000   1.0000 2.000000 1.000000
+#&gt; piog:sita 0.0000   1.0000 2.831364 1.000000
+#&gt; piog:sulf 0.0000   1.0000 2.372372 1.712385
+#&gt; piog:vild 0.0000   1.0000 2.831364 1.000000
+#&gt; plac:sulf 0.0000   1.0000 2.138291 2.215596
+#&gt; rosi:sita 0.0000   1.0000 2.232039 1.000000
+#&gt; rosi:vild 0.0000   1.0000 2.232039 1.000000
+#&gt; sita:sulf 0.0000   1.0000 3.138291 1.000000
+#&gt; sita:vild 0.0000   1.0000 2.000000 1.000000
+#&gt; sulf:vild 0.0000   1.0000 3.138291 1.000000</div><div class='img'><img src='direct.evidence.plot-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -257,6 +325,23 @@ characterizing mixed treatment comparisons. <em>Statistics in Medicine, 32</em>,
    </div>
 
   
+<script src="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.js" integrity="sha256-GKvGqXDznoRYHCwKXGnuchvKSwmx9SRMrZOTh2g4Sb0=" crossorigin="anonymous"></script>
+<script>
+  docsearch({
+    
+    
+    apiKey: '358a758fa720ccb381dab79f60a2b3a4',
+    indexName: 'dmetar',
+    inputSelector: 'input#search-input.form-control',
+    transformData: function(hits) {
+      return hits.map(function (hit) {
+        hit.url = updateHitURL(hit);
+        return hit;
+      });
+    }
+  });
+</script>
+
 
 
   </body>

@@ -37,7 +37,7 @@
 #' \item \code{Intercept}: The intercept (bias).
 #' \item \code{ConfidenceInterval}: The 95\% confidence interval of the intercept.
 #' \item \code{t}: The t-statistic for the intercept test.
-#' \item \code{p}: The p-value for Egger's test.
+#' \item \code{p}: The \eqn{p}-value for Egger's test.
 #' }
 #'
 #' @export eggers.test
@@ -51,7 +51,7 @@
 #' m = metagen(TE, seTE, studlab = paste(Author),
 #'     data = ThirdWave, comb.random = FALSE, hakn=TRUE)
 #'
-#' # Plug result into 'eggers_test' function
+#' # Plug result into 'eggers.test' function
 #' eggers.test(m)
 
 

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Calculate \(I^2\) and the variance distribution for multilevel meta-analysis models — mlm.variance.distribution • dmetar</title>
+<title>Calculate \(I\)-squared and the variance distribution for multilevel meta-analysis models — mlm.variance.distribution • dmetar</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -38,8 +38,16 @@
 <script src="../pkgdown.js"></script>
 
 
+<!-- docsearch -->
+<script src="../docsearch.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous" />
+<link href="../docsearch.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
 
-<meta property="og:title" content="Calculate \(I^2\) and the variance distribution for multilevel meta-analysis models — mlm.variance.distribution" />
+
+  <link href="../extra.css" rel="stylesheet">
+  
+<meta property="og:title" content="Calculate \(I\)-squared and the variance distribution for multilevel meta-analysis models — mlm.variance.distribution" />
 
 <meta property="og:description" content="This function calculates values of \(I^2\) and the variance distribution for multilevel meta-analysis
 models fitted with rma.mv." />
@@ -94,6 +102,12 @@ models fitted with rma.mv." />
 <li>
   <a href="https://protectlab.org/en">Protect Lab</a>
 </li>
+<li>
+  <a href="https://twitter.com/MathiasHarrer">
+    <span class="fa fa-twitter"></span>
+     
+  </a>
+</li>
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
@@ -104,6 +118,12 @@ models fitted with rma.mv." />
   </a>
 </li>
       </ul>
+      
+      <form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
+        <div class="form-group">
+          <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
+        </div>
+      </form>
       
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
@@ -116,7 +136,7 @@ models fitted with rma.mv." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Calculate \(I^2\) and the variance distribution for multilevel meta-analysis models</h1>
+    <h1>Calculate \(I\)-squared and the variance distribution for multilevel meta-analysis models</h1>
     <small class="dont-index">Source: <a href='https://github.com/MathiasHarrer/dmetar/blob/master/R/mlm.variance.distribution.R'><code>R/mlm.variance.distribution.R</code></a></small>
     <div class="hidden name"><code>mlm.variance.distribution.Rd</code></div>
     </div>
@@ -149,20 +169,19 @@ as well as a data frame for the results.</p>
     <p>This function estimates the distribution of variance in a three-level meta-analysis
 model (fitted with the <code><a href='https://rdrr.io/pkg/metafor/man/rma.mv.html'>rma.mv</a></code> function). The share of variance attributable to
 sampling error, within and between-cluster heterogeneity is calculated,
-and an estimate of \(I^2\) (total and for Level 2 and Level 3) is provided.</p>
-<p>The function uses the formula by Cheung (2014) to estimate the variance proportions attributable to each
-model component and to derive the \(I^2\) estimates.</p>
+and an estimate of \(I^2\) (total and for Level 2 and Level 3) is provided. The function uses the formula by
+Cheung (2014) to estimate the variance proportions attributable to each model component and to derive the \(I^2\) estimates.</p>
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Harrer, M., Cuijpers, P., Furukawa, T.A, &amp; Ebert, D. D. (2019).
-<em>Doing Meta-Analysis in R: A Hands-on Guide</em>. DOI: 10.5281/zenodo.2551803. <a href='https://bookdown.org/MathiasHarrer/Doing_Meta_Analysis_in_R/mlma.html'>Chapter 12</a></p>
+<em>Doing Meta-Analysis in R: A Hands-on Guide</em>. DOI: 10.5281/zenodo.2551803. <a href='https://bookdown.org/MathiasHarrer/Doing_Meta_Analysis_in_R/mlma.html'>Chapter 12</a>.</p>
 <p>Cheung, M. W. L. (2014). Modeling dependent effect sizes with three-level meta-analyses: a structural equation modeling approach. <em>Psychological Methods, 19</em>(2), 211.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Use dat.konstantopoulos2011 from the "metafor" package</span>
-<span class='fu'><a href='https://rdrr.io/r/base/message.html'>suppressPackageStartupMessages</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metafor</span>))
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metafor</span>)
 
 <span class='co'># Build Multilevel Model (Three Levels)</span>
 <span class='no'>m</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/metafor/man/rma.mv.html'>rma.mv</a></span>(<span class='no'>yi</span>, <span class='no'>vi</span>, <span class='kw'>random</span> <span class='kw'>=</span> ~ <span class='fl'>1</span> <span class='kw'>|</span> <span class='no'>district</span>/<span class='no'>school</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>dat.konstantopoulos2011</span>)
@@ -207,6 +226,23 @@ model component and to derive the \(I^2\) estimates.</p>
    </div>
 
   
+<script src="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.js" integrity="sha256-GKvGqXDznoRYHCwKXGnuchvKSwmx9SRMrZOTh2g4Sb0=" crossorigin="anonymous"></script>
+<script>
+  docsearch({
+    
+    
+    apiKey: '358a758fa720ccb381dab79f60a2b3a4',
+    indexName: 'dmetar',
+    inputSelector: 'input#search-input.form-control',
+    transformData: function(hits) {
+      return hits.map(function (hit) {
+        hit.url = updateHitURL(hit);
+        return hit;
+      });
+    }
+  });
+</script>
+
 
 
   </body>

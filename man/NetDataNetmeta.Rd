@@ -6,17 +6,17 @@
 \title{Toy Dataset for Network Meta-Analysis using the netmeta package}
 \format{A data.frame with 5 columns.
 \describe{
-\item{studlab}{Character. The name of the included study.}
-\item{treat1}{Character. The name of the first treatment. Includes psychotherapies for
+\item{studlab}{\code{character}. The name of the included study.}
+\item{treat1}{\code{character}. The name of the first treatment. Includes psychotherapies for
 the treatment of depression, "CBT" (Cognitive Behavioral Therapy), "PDT" (Psychodynamic Therapy),
 "IPT" (Interpersonal Therapy), "PST" (Problem-solving Therapy) and "SUP" (Supportive Counseling),
 and standard comparison conditions, "TAU" (Treatment as usual), "Placebo" (Placebo), and "WLC" (Waitlist control).}
-\item{treat2}{Character. The name of the treatment the first treatment was compared to. Includes psychotherapies for
+\item{treat2}{\code{character}. The name of the treatment the first treatment was compared to. Includes psychotherapies for
 the treatment of depression, "CBT" (Cognitive Behavioral Therapy), "PDT" (Psychodynamic Therapy),
 "IPT" (Interpersonal Therapy), "PST" (Problem-solving Therapy) and "SUP" (Supportive Counseling),
 and standard comparison conditions, "TAU" (Treatment as usual), "Placebo" (Placebo), and "WLC" (Waitlist control).}
-\item{TE}{Numeric. The standardized mean difference of the comparison.}
-\item{seTE}{Numeric. The standard error of the comparison.}
+\item{TE}{\code{numeric}. The standardized mean difference of the comparison.}
+\item{seTE}{\code{numeric}. The standard error of the comparison.}
 }}
 \source{
 Simulated data.

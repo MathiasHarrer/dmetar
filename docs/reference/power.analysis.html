@@ -38,7 +38,15 @@
 <script src="../pkgdown.js"></script>
 
 
+<!-- docsearch -->
+<script src="../docsearch.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous" />
+<link href="../docsearch.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
 
+
+  <link href="../extra.css" rel="stylesheet">
+  
 <meta property="og:title" content="A priori power calculator — power.analysis" />
 
 <meta property="og:description" content="This function performs an a priori power estimation of a meta-analysis
@@ -94,6 +102,12 @@ for different levels of assumed between-study heterogeneity." />
 <li>
   <a href="https://protectlab.org/en">Protect Lab</a>
 </li>
+<li>
+  <a href="https://twitter.com/MathiasHarrer">
+    <span class="fa fa-twitter"></span>
+     
+  </a>
+</li>
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
@@ -104,6 +118,12 @@ for different levels of assumed between-study heterogeneity." />
   </a>
 </li>
       </ul>
+      
+      <form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
+        <div class="form-group">
+          <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
+        </div>
+      </form>
       
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
@@ -136,13 +156,13 @@ for different levels of assumed between-study heterogeneity.</p>
     <tr>
       <th>d</th>
       <td><p>The hypothesized, or plausible overall effect size of a treatment/intervention under study compared
-to control, expressed as the standardized mean difference (SMD). Effect sizes must be positive
+to control, expressed as the standardized mean difference (<em>SMD</em>). Effect sizes must be positive
 numerics (i.e., expressed as positive effect sizes).</p></td>
     </tr>
     <tr>
       <th>OR</th>
       <td><p>The hypothesized, or plausible overall effect size of a treatment/intervention under study compared
-to control, expressed as the Odds Ratio (OR). If both <code>d</code> and <code>OR</code> are specified, results
+to control, expressed as the Odds Ratio (<em>OR</em>). If both <code>d</code> and <code>OR</code> are specified, results
 will only be computed for the value of <code>d</code>.</p></td>
     </tr>
     <tr>
@@ -171,10 +191,13 @@ for moderate-sized heterogeneity or <code>"high"</code> for high levels of heter
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>The <strong>estimated power</strong> of the meta-analysis, expressed as a value between 0 and 1 (i.e., 0%-100%).</p>
-<p>An additional plot is generated, showing the effect size (x), power (y), estimated power (red point) and
-estimated power for changing effect sizes (blue line). A dashed line at 80% power is also provided as a
-visual threshold for sufficient power.</p>
+    <p>Returns a <code>list</code> with two elements:</p>
+<ul>
+<li><p><code>Plot</code>: A plot showing the effect size (x), power (y), estimated power (red point) and
+estimated power for changing effect sizes (blue line). A dashed line at 80% power is also provided as a visual threshold for sufficient power.</p></li>
+<li><p><code>Power</code>: The <strong>estimated power</strong> of the meta-analysis, expressed as a value between 0 and 1 (i.e., 0%-100%).</p></li>
+</ul>
+
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
@@ -185,13 +208,13 @@ However, researchers have some control over the number of studies they want to i
 meta-analysis (e.g., through more leniently or strictly defined inclusion criteria).
 Therefore, one can change the power to some extent by including more or less studies into
 the meta-analysis. Conventionally, a power of \(1-\beta = 0.8\) is deemed sufficient to detect an existing effect.
-There are four things one has to make assumptions about when assessing the power of meta-analysis a priori.</p>
+There are four things one has to make assumptions about when assessing the power of a meta-analysis a priori.</p>
 <ul>
 <li><p>The number of included or includable studies</p></li>
 <li><p>The overall size of the studies we want to include (are the studies in the field rather small or large?)</p></li>
-<li><p>The effect size to determine. This is particularly important, as assumptions have to be made
+<li><p>The effect size. This is particularly important, as assumptions have to be made
 about how big an effect size has to be to still be clinically meaningful. One study calculated
-that for interventions against depression, even effects as small as <em>SMD</em>=0.24 may still
+that for interventions for depression, even effects as small as <em>SMD</em>=0.24 may still
 be meaningful for patients (Cuijpers et al. 2014). If the aim is to study negative effects of an
 intervention (e.g., death or symptom deterioration), even very small effect sizes are extremely
 important and should be detected.</p></li>
@@ -220,10 +243,13 @@ What Is the Threshold for a Clinically Relevant Effect? The Case of Major Depres
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='co'># Example 1: Using SMD and fixed-effect model (no heterogeneity)</span>
-<span class='fu'>power.analysis</span>(<span class='kw'>d</span><span class='kw'>=</span><span class='fl'>0.124</span>, <span class='kw'>k</span><span class='kw'>=</span><span class='fl'>10</span>, <span class='kw'>n1</span><span class='kw'>=</span><span class='fl'>50</span>, <span class='kw'>n2</span><span class='kw'>=</span><span class='fl'>50</span>, <span class='kw'>heterogeneity</span> <span class='kw'>=</span> <span class='st'>'fixed'</span>)</div><div class='output co'>#&gt; Fixed-effect model used. </div><div class='img'><img src='power.analysis-1.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; Power: </div><div class='output co'>#&gt; [1] 0.4995525</div><div class='input'>
+<span class='fu'>power.analysis</span>(<span class='kw'>d</span><span class='kw'>=</span><span class='fl'>0.124</span>, <span class='kw'>k</span><span class='kw'>=</span><span class='fl'>10</span>, <span class='kw'>n1</span><span class='kw'>=</span><span class='fl'>50</span>, <span class='kw'>n2</span><span class='kw'>=</span><span class='fl'>50</span>, <span class='kw'>heterogeneity</span> <span class='kw'>=</span> <span class='st'>'fixed'</span>)</div><div class='output co'>#&gt; Fixed-effect model used. </div><div class='img'><img src='power.analysis-1.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; Power: 49.96%</div><div class='input'>
 <span class='co'># Example 2: Using OR and assuming moderate heterogeneity</span>
-<span class='fu'>power.analysis</span>(<span class='kw'>OR</span><span class='kw'>=</span><span class='fl'>0.77</span>, <span class='kw'>k</span><span class='kw'>=</span><span class='fl'>12</span>, <span class='kw'>n1</span><span class='kw'>=</span><span class='fl'>50</span>, <span class='kw'>n2</span><span class='kw'>=</span><span class='fl'>50</span>, <span class='kw'>heterogeneity</span> <span class='kw'>=</span> <span class='st'>'high'</span>)</div><div class='output co'>#&gt; Power Analysis based on log-transformed OR. 
-#&gt; Random-effects model used (high heterogeneity assumed). </div><div class='img'><img src='power.analysis-2.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; Power: </div><div class='output co'>#&gt; [1] 0.421849</div></pre>
+<span class='no'>pa</span> <span class='kw'>=</span> <span class='fu'>power.analysis</span>(<span class='kw'>OR</span><span class='kw'>=</span><span class='fl'>0.77</span>, <span class='kw'>k</span><span class='kw'>=</span><span class='fl'>12</span>, <span class='kw'>n1</span><span class='kw'>=</span><span class='fl'>50</span>, <span class='kw'>n2</span><span class='kw'>=</span><span class='fl'>50</span>, <span class='kw'>heterogeneity</span> <span class='kw'>=</span> <span class='st'>'high'</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>pa</span>)</div><div class='output co'>#&gt; Power Analysis based on log-transformed OR. 
+#&gt; Random-effects model used (high heterogeneity assumed). </div><div class='img'><img src='power.analysis-2.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; Power: 42.18%</div><div class='input'>
+<span class='co'># Only show plot</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>pa</span>)</div><div class='img'><img src='power.analysis-3.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -260,6 +286,23 @@ What Is the Threshold for a Clinically Relevant Effect? The Case of Major Depres
    </div>
 
   
+<script src="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.js" integrity="sha256-GKvGqXDznoRYHCwKXGnuchvKSwmx9SRMrZOTh2g4Sb0=" crossorigin="anonymous"></script>
+<script>
+  docsearch({
+    
+    
+    apiKey: '358a758fa720ccb381dab79f60a2b3a4',
+    indexName: 'dmetar',
+    inputSelector: 'input#search-input.form-control',
+    transformData: function(hits) {
+      return hits.map(function (hit) {
+        hit.url = updateHitURL(hit);
+        return hit;
+      });
+    }
+  });
+</script>
+
 
 
   </body>

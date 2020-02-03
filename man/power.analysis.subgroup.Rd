@@ -36,11 +36,16 @@ linear continuous effect size) of the second subgroup of studies.}
 Default is \code{TRUE}.}
 }
 \value{
-Returns the estimated power of the subgroup contrast, expressed as a value between 0 and 1 (i.e., 0\%-100\%).
-
-An additional plot is generated, showing the effect size difference (x), power (y), estimated power (red point) and
+Returns a \code{list} with five elements:
+\itemize{
+\item \code{Power}: The estimated power of the subgroup contrast, expressed as a value between 0 and 1 (i.e., 0\%-100\%).
+\item \code{Plot}: A plot showing the effect size difference (x), power (y), estimated power (red point) and
 estimated power for changing effect size differences (blue line). A dashed line at 80\% power is also provided as a
 visual threshold for sufficient power.
+\item \code{Data}: A \code{data.frame} containing the data used to generate the plot in \code{Plot}.
+\item \code{Test}: The type of test used for the power calculations (\code{"one.tailed"} or \code{"two.tailed"}).
+\item \code{Gamma}: The analyzed effect size difference calculated from the inputs.
+}
 }
 \description{
 This function performs an \emph{a priori} power estimation for a test for subgroup differences
@@ -56,8 +61,12 @@ described by Hedges and Pigott (2001).
 power.analysis.subgroup(TE1=0.30, TE2=0.66, seTE1=0.13, seTE2=0.14)
 
 # Example 2: using variance and one-tailed test
-power.analysis.subgroup(TE1=-0.91, TE2=-1.22, var1 = 0.0023, var2 = 0.0078,
+pasg = power.analysis.subgroup(TE1=-0.91, TE2=-1.22, var1 = 0.0023, var2 = 0.0078,
     two.tailed = FALSE)
+summary(pasg)
+
+# Only show plot
+plot(pasg)
 }
 \references{
 Hedges, L. V., & Pigott, T. D. (2001). The power of statistical tests in meta-analysis.

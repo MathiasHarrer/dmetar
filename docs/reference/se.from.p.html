@@ -38,7 +38,15 @@
 <script src="../pkgdown.js"></script>
 
 
+<!-- docsearch -->
+<script src="../docsearch.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous" />
+<link href="../docsearch.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
 
+
+  <link href="../extra.css" rel="stylesheet">
+  
 <meta property="og:title" content="Calculate the standard error from the effect size and p-value — se.from.p" />
 
 <meta property="og:description" content="This function calculates the standard error of an effect size provided the exact
@@ -95,6 +103,12 @@ by Altman and Bland (2011)." />
 <li>
   <a href="https://protectlab.org/en">Protect Lab</a>
 </li>
+<li>
+  <a href="https://twitter.com/MathiasHarrer">
+    <span class="fa fa-twitter"></span>
+     
+  </a>
+</li>
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
@@ -105,6 +119,12 @@ by Altman and Bland (2011)." />
   </a>
 </li>
       </ul>
+      
+      <form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
+        <div class="form-group">
+          <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
+        </div>
+      </form>
       
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
@@ -178,7 +198,7 @@ corrected for small sample bias (Hedges' \(g\)). <code>FALSE</code> by default.<
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>This function calculates the standard error, standard deviation and 95% confidence
-interval of an effect size given the effect size and exact \(p\)-value. The function can be used for</p><ul>
+interval of an effect size given the effect size and exact \(p\)-value. The function can be used for:</p><ul>
 <li><p>effect sizes based on <strong>differences</strong> (e.g., mean differences) by setting <code>effect.size.type</code>
 to <code>"difference"</code>, or</p></li>
 <li><p>effect sizes based on <strong>ratios</strong> (e.g. risk ratios, odds ratios or
@@ -249,6 +269,23 @@ of a <em>p</em> value. <em>BMJ 343</em>:d2090.</p>
    </div>
 
   
+<script src="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.js" integrity="sha256-GKvGqXDznoRYHCwKXGnuchvKSwmx9SRMrZOTh2g4Sb0=" crossorigin="anonymous"></script>
+<script>
+  docsearch({
+    
+    
+    apiKey: '358a758fa720ccb381dab79f60a2b3a4',
+    indexName: 'dmetar',
+    inputSelector: 'input#search-input.form-control',
+    transformData: function(hits) {
+      return hits.map(function (hit) {
+        hit.url = updateHitURL(hit);
+        return hit;
+      });
+    }
+  });
+</script>
+
 
 
   </body>

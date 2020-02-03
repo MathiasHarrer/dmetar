@@ -38,7 +38,15 @@
 <script src="../pkgdown.js"></script>
 
 
+<!-- docsearch -->
+<script src="../docsearch.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous" />
+<link href="../docsearch.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
 
+
+  <link href="../extra.css" rel="stylesheet">
+  
 <meta property="og:title" content="Toy Dataset for Network Meta-Analysis using the netmeta package — NetDataNetmeta" />
 
 <meta property="og:description" content="This is a toy dataset containing simulated effect size data of a fictitious
@@ -98,6 +106,12 @@ the netmeta function." />
 <li>
   <a href="https://protectlab.org/en">Protect Lab</a>
 </li>
+<li>
+  <a href="https://twitter.com/MathiasHarrer">
+    <span class="fa fa-twitter"></span>
+     
+  </a>
+</li>
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
@@ -108,6 +122,12 @@ the netmeta function." />
   </a>
 </li>
       </ul>
+      
+      <form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
+        <div class="form-group">
+          <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
+        </div>
+      </form>
       
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
@@ -141,17 +161,17 @@ the <code><a href='https://rdrr.io/pkg/netmeta/man/netmeta.html'>netmeta</a></co
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
     <p>A data.frame with 5 columns.</p><dl class='dl-horizontal'>
-<dt>studlab</dt><dd><p>Character. The name of the included study.</p></dd>
-<dt>treat1</dt><dd><p>Character. The name of the first treatment. Includes psychotherapies for
+<dt>studlab</dt><dd><p><code>character</code>. The name of the included study.</p></dd>
+<dt>treat1</dt><dd><p><code>character</code>. The name of the first treatment. Includes psychotherapies for
 the treatment of depression, "CBT" (Cognitive Behavioral Therapy), "PDT" (Psychodynamic Therapy),
 "IPT" (Interpersonal Therapy), "PST" (Problem-solving Therapy) and "SUP" (Supportive Counseling),
 and standard comparison conditions, "TAU" (Treatment as usual), "Placebo" (Placebo), and "WLC" (Waitlist control).</p></dd>
-<dt>treat2</dt><dd><p>Character. The name of the treatment the first treatment was compared to. Includes psychotherapies for
+<dt>treat2</dt><dd><p><code>character</code>. The name of the treatment the first treatment was compared to. Includes psychotherapies for
 the treatment of depression, "CBT" (Cognitive Behavioral Therapy), "PDT" (Psychodynamic Therapy),
 "IPT" (Interpersonal Therapy), "PST" (Problem-solving Therapy) and "SUP" (Supportive Counseling),
 and standard comparison conditions, "TAU" (Treatment as usual), "Placebo" (Placebo), and "WLC" (Waitlist control).</p></dd>
-<dt>TE</dt><dd><p>Numeric. The standardized mean difference of the comparison.</p></dd>
-<dt>seTE</dt><dd><p>Numeric. The standard error of the comparison.</p></dd>
+<dt>TE</dt><dd><p><code>numeric</code>. The standardized mean difference of the comparison.</p></dd>
+<dt>seTE</dt><dd><p><code>numeric</code>. The standard error of the comparison.</p></dd>
 </dl>
     
     <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
@@ -188,6 +208,23 @@ and standard comparison conditions, "TAU" (Treatment as usual), "Placebo" (Place
    </div>
 
   
+<script src="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.js" integrity="sha256-GKvGqXDznoRYHCwKXGnuchvKSwmx9SRMrZOTh2g4Sb0=" crossorigin="anonymous"></script>
+<script>
+  docsearch({
+    
+    
+    apiKey: '358a758fa720ccb381dab79f60a2b3a4',
+    indexName: 'dmetar',
+    inputSelector: 'input#search-input.form-control',
+    transformData: function(hits) {
+      return hits.map(function (hit) {
+        hit.url = updateHitURL(hit);
+        return hit;
+      });
+    }
+  });
+</script>
+
 
 
   </body>

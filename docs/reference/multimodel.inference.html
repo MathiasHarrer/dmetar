@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Perform multimodel inference on a meta-regression model — multimodel.inference • dmetar</title>
+<title>Perform multimodel inference with a meta-regression model — multimodel.inference • dmetar</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -38,11 +38,19 @@
 <script src="../pkgdown.js"></script>
 
 
+<!-- docsearch -->
+<script src="../docsearch.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous" />
+<link href="../docsearch.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
 
-<meta property="og:title" content="Perform multimodel inference on a meta-regression model — multimodel.inference" />
+
+  <link href="../extra.css" rel="stylesheet">
+  
+<meta property="og:title" content="Perform multimodel inference with a meta-regression model — multimodel.inference" />
 
 <meta property="og:description" content="This function performs multimodel inference to evaluate the importance of predictors
-in a meta-analytical meta-regression model." />
+with a meta-analytical meta-regression model." />
 
 <meta property="og:image" content="http://dmetar.protectlab.org/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -94,6 +102,12 @@ in a meta-analytical meta-regression model." />
 <li>
   <a href="https://protectlab.org/en">Protect Lab</a>
 </li>
+<li>
+  <a href="https://twitter.com/MathiasHarrer">
+    <span class="fa fa-twitter"></span>
+     
+  </a>
+</li>
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
@@ -104,6 +118,12 @@ in a meta-analytical meta-regression model." />
   </a>
 </li>
       </ul>
+      
+      <form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
+        <div class="form-group">
+          <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
+        </div>
+      </form>
       
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
@@ -116,7 +136,7 @@ in a meta-analytical meta-regression model." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Perform multimodel inference on a meta-regression model</h1>
+    <h1>Perform multimodel inference with a meta-regression model</h1>
     <small class="dont-index">Source: <a href='https://github.com/MathiasHarrer/dmetar/blob/master/R/mreg.multimodel.inference.R'><code>R/mreg.multimodel.inference.R</code></a></small>
     <div class="hidden name"><code>multimodel.inference.Rd</code></div>
     </div>
@@ -124,12 +144,12 @@ in a meta-analytical meta-regression model." />
     <div class="ref-description">
     
     <p>This function performs multimodel inference to evaluate the importance of predictors
-in a meta-analytical meta-regression model.</p>
+with a meta-analytical meta-regression model.</p>
     
     </div>
 
     <pre class="usage"><span class='fu'>multimodel.inference</span>(<span class='no'>TE</span>, <span class='no'>seTE</span>, <span class='no'>data</span>, <span class='no'>predictors</span>, <span class='kw'>method</span><span class='kw'>=</span><span class='st'>'REML'</span>, <span class='kw'>test</span><span class='kw'>=</span><span class='st'>'knha'</span>,
-    <span class='kw'>eval.criterion</span><span class='kw'>=</span><span class='st'>'AICc'</span>, <span class='kw'>interaction</span><span class='kw'>=</span><span class='fl'>FALSE</span>, <span class='kw'>seed</span> <span class='kw'>=</span> <span class='fl'>123</span>)</pre>
+    <span class='kw'>eval.criterion</span><span class='kw'>=</span><span class='st'>'AICc'</span>, <span class='kw'>interaction</span><span class='kw'>=</span><span class='fl'>FALSE</span>, <span class='kw'>seed</span><span class='kw'>=</span><span class='fl'>123</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -141,7 +161,7 @@ column in the dataset (in quotation marks; e.g. <code>TE = "effectsize"</code>).
     </tr>
     <tr>
       <th>seTE</th>
-      <td><p>The precalculated standard error for each study. Must be supplied as the name of the standard error
+      <td><p>The precalculated standard error of the effect size for each study. Must be supplied as the name of the standard error
 column in the dataset (in quotation marks; e.g. <code>seTE = "se"</code>).</p></td>
     </tr>
     <tr>
@@ -151,9 +171,9 @@ meta-regression predictors of each study/effect.</p></td>
     </tr>
     <tr>
       <th>predictors</th>
-      <td><p>A concantenated array of characters specifying the predictors to be used
-for multimodel inference. Names of the predictors must be identical to the names of the column
-names of the <code>data.frame</code> supplied to <code>data</code>.</p></td>
+      <td><p>A character vector specifying the predictors to be used
+for multimodel inference. Names of the predictors must be identical to the names of the columns
+in the <code>data.frame</code> supplied to <code>data</code>.</p></td>
     </tr>
     <tr>
       <th>method</th>
@@ -169,7 +189,7 @@ this option to use a standard (mixed-effects) meta-regression model.</p></td>
       <td><p>Method to use to compute test statistics and confidence intervals. Default is <code>'knha'</code>
 which uses the Knapp-Hartung (Knapp &amp; Hartung, 2003) adjustment method. "Conventional" Wald-type tests and
 CIs are calculated by setting this argument to <code>'z'</code>. When <code>method='FE'</code>, this argument is
-set to <code>'z'</code> automatically as the Knapp-Hartung method was not meant to be used with fixed-effect models.</p></td>
+set to <code>'z'</code> automatically as the Knapp-Hartung method was not intended to be used with fixed-effect models.</p></td>
     </tr>
     <tr>
       <th>eval.criterion</th>
@@ -184,7 +204,7 @@ set to <code>'z'</code> automatically as the Knapp-Hartung method was not meant 
     </tr>
     <tr>
       <th>seed</th>
-      <td><p>Optional. Set a seed for the function.</p></td>
+      <td><p>Set a seed for the function. Default seed is <code>123</code>.</p></td>
     </tr>
     </table>
     
@@ -197,11 +217,11 @@ method to calculate test statistics and confidence intervals, interactions, and 
 Predictors are displayed as columns of the table, and models as rows. A number (weight) or <code>+</code>
 sign (for categorical predictors) indicates that a predictor/interaction term was used for the
 model, while empty cells indicate that the predictor was omitted in this model. Other metrics such as the
-<code>weight</code>, evaluation metric <code>delta</code> compared to the best model, logLikelihood and degrees of freedom
+<code>weight</code>, evaluation metric <code>delta</code> compared to the best model, log-Likelihood (<code>logLik</code>) and degrees of freedom
 are also displayed.</p></li>
-<li><p><strong>Multimodel Inference Coefficients</strong>: Displays the coefficients and statistical significance
+<li><p><strong>Multimodel Inference Coefficients</strong>: Displays the estimated coefficients and statistical significance
 of each regression term in the model.</p></li>
-<li><p><strong>Predictor Importance</strong>: Displays the importance value for each model term. The table is sorted from
+<li><p><strong>Predictor Importance</strong>: Displays the estimated importance of each model term. The table is sorted from
 highest to lowest. A common rule of thumb is to consider a predictor as important when its importance value is above 0.8.</p></li>
 <li><p><strong>Predictor Importance Plot</strong>: A bar plot for the predictor importance data along with a reference line for the
 0.8 value often used as a crude threshold to characterize a predictor as important.</p></li>
@@ -210,8 +230,8 @@ highest to lowest. A common rule of thumb is to consider a predictor as importan
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Multi-model methods differ from stepwise methods as they do not try to successively build
-the “best” one (meta-regression) model explaining most of the variance. Instead, in this procedure,
+    <p>Multimodel methods differ from stepwise regression methods as they do not try to successively build
+the “best” single (meta-regression) model explaining most of the variance. Instead, in this procedure,
 all possible combinations of a predefined selection of predictors are modeled, and evaluated using
 a criterion such as Akaike’s Information Criterion, which rewards simpler models.
 This enables a full examination of all possible models, and how they perform.
@@ -222,12 +242,11 @@ important certain predictors are overall.</p>
 <p>Multimodel Inference can be a useful way to obtain a comprehensive look on which predictors are
 more or less important for predicting differences in effect sizes. Despite avoiding some of the
 problems of stepwise regression methods, it should be noted that this method should still be rather
-seen as exploratory, and may be used when there are no prior knowledge on how our predictors are
+seen as exploratory, and may be used when there is no prior knowledge on how predictors are
 related to effect sizes in the research field under study.</p>
 <p>The <code>multimodel.inference</code> function calls the <code><a href='https://rdrr.io/pkg/metafor/man/rma.uni.html'>rma.uni</a></code> function internally,
-which is then fed forward to the <code><a href='https://rdrr.io/pkg/MuMIn/man/dredge.html'>dredge</a></code> function for multimodel inference through
-two utility functions returned by the <code>multimodel.inference</code> function.</p>
-<p>Parts of the computations in this function are based on a vignette by Wolfgang Viechtbauer, which can be found
+results of which are then fed forward to the <code><a href='https://rdrr.io/pkg/MuMIn/man/dredge.html'>dredge</a></code> function internally for multimodel inference.
+Parts of the computations in this function are based on a vignette by Wolfgang Viechtbauer, which can be found
 <a href='http://www.metafor-project.org/doku.php/tips:model_selection_with_glmulti_and_mumin'>here</a>.</p>
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
@@ -252,6 +271,11 @@ Last accessed 01-Aug-2019.</p>
 <span class='no'>mmi</span> <span class='kw'>=</span> <span class='fu'>multimodel.inference</span>(<span class='kw'>TE</span> <span class='kw'>=</span> <span class='st'>'yi'</span>, <span class='kw'>seTE</span> <span class='kw'>=</span> <span class='st'>'sei'</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>MVRegressionData</span>,
                            <span class='kw'>predictors</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>'pubyear'</span>, <span class='st'>'quality'</span>,
                                           <span class='st'>'reputation'</span>, <span class='st'>'continent'</span>))
+<span class='co'># Print summary</span>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>mmi</span>)
+
+<span class='co'># Plot predictor importance</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>mmi</span>)
 
 <span class='co'># Example 2: Model Interaction terms, set method to 'DL',</span>
 <span class='co'># change evaluation criterion to bic</span>
@@ -301,6 +325,23 @@ Last accessed 01-Aug-2019.</p>
    </div>
 
   
+<script src="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.js" integrity="sha256-GKvGqXDznoRYHCwKXGnuchvKSwmx9SRMrZOTh2g4Sb0=" crossorigin="anonymous"></script>
+<script>
+  docsearch({
+    
+    
+    apiKey: '358a758fa720ccb381dab79f60a2b3a4',
+    indexName: 'dmetar',
+    inputSelector: 'input#search-input.form-control',
+    transformData: function(hits) {
+      return hits.map(function (hit) {
+        hit.url = updateHitURL(hit);
+        return hit;
+      });
+    }
+  });
+</script>
+
 
 
   </body>

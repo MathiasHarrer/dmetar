@@ -8,11 +8,11 @@ power.analysis(d, OR, k, n1, n2, p = 0.05, heterogeneity = 'fixed')
 }
 \arguments{
 \item{d}{The hypothesized, or plausible overall effect size of a treatment/intervention under study compared
-to control, expressed as the standardized mean difference (SMD). Effect sizes must be positive
+to control, expressed as the standardized mean difference (\emph{SMD}). Effect sizes must be positive
 numerics (i.e., expressed as positive effect sizes).}
 
 \item{OR}{The hypothesized, or plausible overall effect size of a treatment/intervention under study compared
-to control, expressed as the Odds Ratio (OR). If both \code{d} and \code{OR} are specified, results
+to control, expressed as the Odds Ratio (\emph{OR}). If both \code{d} and \code{OR} are specified, results
 will only be computed for the value of \code{d}.}
 
 \item{k}{The expected number of studies to be included in the meta-analysis.}
@@ -28,11 +28,13 @@ will only be computed for the value of \code{d}.}
 for moderate-sized heterogeneity or \code{"high"} for high levels of heterogeneity. Default is \code{"fixed"}.}
 }
 \value{
-The \strong{estimated power} of the meta-analysis, expressed as a value between 0 and 1 (i.e., 0\%-100\%).
+Returns a \code{list} with two elements:
 
-An additional plot is generated, showing the effect size (x), power (y), estimated power (red point) and
-estimated power for changing effect sizes (blue line). A dashed line at 80\% power is also provided as a
-visual threshold for sufficient power.
+\itemize{
+\item \code{Plot}: A plot showing the effect size (x), power (y), estimated power (red point) and
+estimated power for changing effect sizes (blue line). A dashed line at 80\% power is also provided as a visual threshold for sufficient power.
+\item \code{Power}: The \strong{estimated power} of the meta-analysis, expressed as a value between 0 and 1 (i.e., 0\%-100\%).
+}
 }
 \description{
 This function performs an \emph{a priori} power estimation of a meta-analysis
@@ -46,14 +48,14 @@ However, researchers have some control over the number of studies they want to i
 meta-analysis (e.g., through more leniently or strictly defined inclusion criteria).
 Therefore, one can change the power to some extent by including more or less studies into
 the meta-analysis. Conventionally, a power of \eqn{1-\beta = 0.8} is deemed sufficient to detect an existing effect.
-There are four things one has to make assumptions about when assessing the power of meta-analysis a priori.
+There are four things one has to make assumptions about when assessing the power of a meta-analysis a priori.
 
 \itemize{
 \item The number of included or includable studies
 \item The overall size of the studies we want to include (are the studies in the field rather small or large?)
-\item The effect size to determine. This is particularly important, as assumptions have to be made
+\item The effect size. This is particularly important, as assumptions have to be made
 about how big an effect size has to be to still be clinically meaningful. One study calculated
-that for interventions against depression, even effects as small as \emph{SMD}=0.24 may still
+that for interventions for depression, even effects as small as \emph{SMD}=0.24 may still
 be meaningful for patients (Cuijpers et al. 2014). If the aim is to study negative effects of an
 intervention (e.g., death or symptom deterioration), even very small effect sizes are extremely
 important and should be detected.
@@ -71,7 +73,11 @@ are then reconverted.
 power.analysis(d=0.124, k=10, n1=50, n2=50, heterogeneity = 'fixed')
 
 # Example 2: Using OR and assuming moderate heterogeneity
-power.analysis(OR=0.77, k=12, n1=50, n2=50, heterogeneity = 'high')
+pa = power.analysis(OR=0.77, k=12, n1=50, n2=50, heterogeneity = 'high')
+summary(pa)
+
+# Only show plot
+plot(pa)
 }
 \references{
 Harrer, M., Cuijpers, P., Furukawa, T.A, & Ebert, D. D. (2019).

@@ -2,3 +2,8 @@
 ^doc$
 ^dmetar\.Rproj$
 ^\.Rproj\.user$
+^CNAME
+^docs$
+^index.Rmd
+^index.md
+^pkgdown$

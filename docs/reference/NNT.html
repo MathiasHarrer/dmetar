@@ -38,7 +38,15 @@
 <script src="../pkgdown.js"></script>
 
 
+<!-- docsearch -->
+<script src="../docsearch.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous" />
+<link href="../docsearch.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
 
+
+  <link href="../extra.css" rel="stylesheet">
+  
 <meta property="og:title" content="Calculate the number needed to treat (NNT) — NNT" />
 
 <meta property="og:description" content="This function calculates the number needed to treat (\(NTT\)) using event data or
@@ -94,6 +102,12 @@ effect sizes (such as Cohen's \(d\) or Hedges' \(g\))." />
 <li>
   <a href="https://protectlab.org/en">Protect Lab</a>
 </li>
+<li>
+  <a href="https://twitter.com/MathiasHarrer">
+    <span class="fa fa-twitter"></span>
+     
+  </a>
+</li>
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
@@ -104,6 +118,12 @@ effect sizes (such as Cohen's \(d\) or Hedges' \(g\))." />
   </a>
 </li>
       </ul>
+      
+      <form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
+        <div class="form-group">
+          <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
+        </div>
+      </form>
       
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
@@ -141,10 +161,10 @@ Kraemer and Kupfer is used automatically to calculate \(NNT\)s.</p></td>
     </tr>
     <tr>
       <th>CER</th>
-      <td><p>The control group event ratio. Furukawa's method (Furukawa &amp; Leucht, 2011) to calculate NNTs
+      <td><p>The control group event ratio. Furukawa's method (Furukawa &amp; Leucht, 2011) to calculate <code>NNT</code>s
 from <code>d</code> requires that the assumed response ("event") ratio in the control group (\(\frac{n_{responders}}{N_{total}}\))
 is specified. The CER can assume values from 0 to 1. If a value is specified for <code>CER</code>, Furukawa's method is
-used automatically. Parameter <code>method</code> has to be set to <code>"KraemerKupfer"</code> to override this.</p></td>
+used automatically. Argument <code>method</code> has to be set to <code>"KraemerKupfer"</code> to override this.</p></td>
     </tr>
     <tr>
       <th>event.e</th>
@@ -160,7 +180,7 @@ used automatically. Parameter <code>method</code> has to be set to <code>"Kraeme
     </tr>
     <tr>
       <th>n.c</th>
-      <td><p>Single number or numeric vector. The number participants in the control group.</p></td>
+      <td><p>Single number or numeric vector. The number of participants in the control group.</p></td>
     </tr>
     <tr>
       <th>names</th>
@@ -171,7 +191,7 @@ study/effect size labels.</p></td>
       <th>method</th>
       <td><p>The method to be used to calculate the NNT from <code>d</code>. Either <code>"KraemerKupfer"</code> for the
 method proposed by Kraemer and Kupfer (2006) or <code>"Furukawa"</code> for the Furukawa method (Furukawa &amp; Leucht, 2011).
-Please note that the Furukawa method can only be used when <code>CER</code> is specified.</p></td>
+Please note that the Furukawa's method can only be used when <code>CER</code> is specified.</p></td>
     </tr>
     </table>
     
@@ -181,7 +201,7 @@ Please note that the Furukawa method can only be used when <code>CER</code> is s
 or, alternatively, from raw event data.</p>
 <p>Two methods to calculate the \(NTT\) from <code>d</code> are implemented in this function.</p><ul>
 <li><p>The method by <strong>Kraemer and Kupfer</strong> (2006),
-calculates\(NTT\) from the Area Under the Curve (\(AUC\)) defined as the probability that a patient in the treatment
+calculates \(NTT\) from the Area Under the Curve (\(AUC\)) defined as the probability that a patient in the treatment
 has an outcome preferable to one in the control. This method allows to calculate the NNT directly from <code>d</code> without
 any extra variables.</p></li>
 <li><p>The method by <strong>Furukawa</strong> calculates the \(NNT\) from <code>d</code> using a reasonable estimate
@@ -199,7 +219,7 @@ is assumed to be inferior to the control group treatment based on the effect siz
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Harrer, M., Cuijpers, P., Furukawa, T.A, &amp; Ebert, D. D. (2019).
-<em>Doing Meta-Analysis in R: A Hands-on Guide</em>. DOI: 10.5281/zenodo.2551803. <a href='https://bookdown.org/MathiasHarrer/Doing_Meta_Analysis_in_R/smallstudyeffects.html'>Chapter 9.1</a></p>
+<em>Doing Meta-Analysis in R: A Hands-on Guide</em>. DOI: 10.5281/zenodo.2551803. <a href='https://bookdown.org/MathiasHarrer/Doing_Meta_Analysis_in_R/smallstudyeffects.html'>Chapter 9.1</a>.</p>
 <p>Furukawa, T. A., &amp; Leucht, S. (2011). How to obtain NNT from Cohen's d: comparison of two methods. <em>PloS one, 6</em>(4), e19070.</p>
 <p>Kraemer H.C., Kupfer D.J. (2006) Size of treatment effects and their importance
 to clinical research and practice. Biol. Psychiatry 59: 990–996.</p>
@@ -256,6 +276,23 @@ to clinical research and practice. Biol. Psychiatry 59: 990–996.</p>
    </div>
 
   
+<script src="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.js" integrity="sha256-GKvGqXDznoRYHCwKXGnuchvKSwmx9SRMrZOTh2g4Sb0=" crossorigin="anonymous"></script>
+<script>
+  docsearch({
+    
+    
+    apiKey: '358a758fa720ccb381dab79f60a2b3a4',
+    indexName: 'dmetar',
+    inputSelector: 'input#search-input.form-control',
+    transformData: function(hits) {
+      return hits.map(function (hit) {
+        hit.url = updateHitURL(hit);
+        return hit;
+      });
+    }
+  });
+</script>
+
 
 
   </body>

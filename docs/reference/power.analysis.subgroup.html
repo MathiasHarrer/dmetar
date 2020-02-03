@@ -38,7 +38,15 @@
 <script src="../pkgdown.js"></script>
 
 
+<!-- docsearch -->
+<script src="../docsearch.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous" />
+<link href="../docsearch.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
 
+
+  <link href="../extra.css" rel="stylesheet">
+  
 <meta property="og:title" content="A priori power calculator for subgroup contrasts — power.analysis.subgroup" />
 
 <meta property="og:description" content="This function performs an a priori power estimation for a test for subgroup differences
@@ -94,6 +102,12 @@ within a meta-analysis." />
 <li>
   <a href="https://protectlab.org/en">Protect Lab</a>
 </li>
+<li>
+  <a href="https://twitter.com/MathiasHarrer">
+    <span class="fa fa-twitter"></span>
+     
+  </a>
+</li>
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
@@ -104,6 +118,12 @@ within a meta-analysis." />
   </a>
 </li>
       </ul>
+      
+      <form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
+        <div class="form-group">
+          <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
+        </div>
+      </form>
       
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
@@ -183,10 +203,16 @@ Default is <code>TRUE</code>.</p></td>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Returns the estimated power of the subgroup contrast, expressed as a value between 0 and 1 (i.e., 0%-100%).</p>
-<p>An additional plot is generated, showing the effect size difference (x), power (y), estimated power (red point) and
+    <p>Returns a <code>list</code> with five elements:</p><ul>
+<li><p><code>Power</code>: The estimated power of the subgroup contrast, expressed as a value between 0 and 1 (i.e., 0%-100%).</p></li>
+<li><p><code>Plot</code>: A plot showing the effect size difference (x), power (y), estimated power (red point) and
 estimated power for changing effect size differences (blue line). A dashed line at 80% power is also provided as a
-visual threshold for sufficient power.</p>
+visual threshold for sufficient power.</p></li>
+<li><p><code>Data</code>: A <code>data.frame</code> containing the data used to generate the plot in <code>Plot</code>.</p></li>
+<li><p><code>Test</code>: The type of test used for the power calculations (<code>"one.tailed"</code> or <code>"two.tailed"</code>).</p></li>
+<li><p><code>Gamma</code>: The analyzed effect size difference calculated from the inputs.</p></li>
+</ul>
+
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
@@ -206,12 +232,15 @@ described by Hedges and Pigott (2001).</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Example 1: using standard error and two-tailed test</span>
-<span class='fu'>power.analysis.subgroup</span>(<span class='kw'>TE1</span><span class='kw'>=</span><span class='fl'>0.30</span>, <span class='kw'>TE2</span><span class='kw'>=</span><span class='fl'>0.66</span>, <span class='kw'>seTE1</span><span class='kw'>=</span><span class='fl'>0.13</span>, <span class='kw'>seTE2</span><span class='kw'>=</span><span class='fl'>0.14</span>)</div><div class='img'><img src='power.analysis.subgroup-1.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; Minimum effect size difference needed for sufficient power: 0.536 (input: 0.36)
-#&gt; Power for subgroup difference test (two-tailed): </div><div class='output co'>#&gt; [1] 0.4698997</div><div class='input'>
+<span class='fu'>power.analysis.subgroup</span>(<span class='kw'>TE1</span><span class='kw'>=</span><span class='fl'>0.30</span>, <span class='kw'>TE2</span><span class='kw'>=</span><span class='fl'>0.66</span>, <span class='kw'>seTE1</span><span class='kw'>=</span><span class='fl'>0.13</span>, <span class='kw'>seTE2</span><span class='kw'>=</span><span class='fl'>0.14</span>)</div><div class='output co'>#&gt; Minimum effect size difference needed for sufficient power: 0.536 (input: 0.36)
+#&gt; Power for subgroup difference test (two-tailed): 46.99%</div><div class='img'><img src='power.analysis.subgroup-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Example 2: using variance and one-tailed test</span>
-<span class='fu'>power.analysis.subgroup</span>(<span class='kw'>TE1</span><span class='kw'>=</span>-<span class='fl'>0.91</span>, <span class='kw'>TE2</span><span class='kw'>=</span>-<span class='fl'>1.22</span>, <span class='kw'>var1</span> <span class='kw'>=</span> <span class='fl'>0.0023</span>, <span class='kw'>var2</span> <span class='kw'>=</span> <span class='fl'>0.0078</span>,
-    <span class='kw'>two.tailed</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='img'><img src='power.analysis.subgroup-2.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; Minimum effect size difference needed for sufficient power: 0.25 (input: 0.31)
-#&gt; Power for subgroup difference test (one-tailed): </div><div class='output co'>#&gt; [1] 0.925717</div></pre>
+<span class='no'>pasg</span> <span class='kw'>=</span> <span class='fu'>power.analysis.subgroup</span>(<span class='kw'>TE1</span><span class='kw'>=</span>-<span class='fl'>0.91</span>, <span class='kw'>TE2</span><span class='kw'>=</span>-<span class='fl'>1.22</span>, <span class='kw'>var1</span> <span class='kw'>=</span> <span class='fl'>0.0023</span>, <span class='kw'>var2</span> <span class='kw'>=</span> <span class='fl'>0.0078</span>,
+    <span class='kw'>two.tailed</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>pasg</span>)</div><div class='output co'>#&gt; Minimum effect size difference needed for sufficient power: 0.25 (input: 0.31)
+#&gt; Power for subgroup difference test (one-tailed): 92.57%</div><div class='img'><img src='power.analysis.subgroup-2.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='co'># Only show plot</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>pasg</span>)</div><div class='img'><img src='power.analysis.subgroup-3.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -248,6 +277,23 @@ described by Hedges and Pigott (2001).</p>
    </div>
 
   
+<script src="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.js" integrity="sha256-GKvGqXDznoRYHCwKXGnuchvKSwmx9SRMrZOTh2g4Sb0=" crossorigin="anonymous"></script>
+<script>
+  docsearch({
+    
+    
+    apiKey: '358a758fa720ccb381dab79f60a2b3a4',
+    indexName: 'dmetar',
+    inputSelector: 'input#search-input.form-control',
+    transformData: function(hits) {
+      return hits.map(function (hit) {
+        hit.url = updateHitURL(hit);
+        return hit;
+      });
+    }
+  });
+</script>
+
 
 
   </body>

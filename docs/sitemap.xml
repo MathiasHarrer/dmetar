@@ -34,6 +34,12 @@
     <loc>http://dmetar.protectlab.org/reference/find.outliers.html</loc>
   </url>
   <url>
+    <loc>http://dmetar.protectlab.org/reference/forest.find.outliers.html</loc>
+  </url>
+  <url>
+    <loc>http://dmetar.protectlab.org/reference/forest.subgroup.analysis.mixed.effects.html</loc>
+  </url>
+  <url>
     <loc>http://dmetar.protectlab.org/reference/gosh.diagnostics.html</loc>
   </url>
   <url>
@@ -49,6 +55,30 @@
     <loc>http://dmetar.protectlab.org/reference/pcurve.html</loc>
   </url>
   <url>
+    <loc>http://dmetar.protectlab.org/reference/plot.InfluenceAnalysis.html</loc>
+  </url>
+  <url>
+    <loc>http://dmetar.protectlab.org/reference/plot.direct.evidence.plot.html</loc>
+  </url>
+  <url>
+    <loc>http://dmetar.protectlab.org/reference/plot.find.outliers.html</loc>
+  </url>
+  <url>
+    <loc>http://dmetar.protectlab.org/reference/plot.multimodel.inference.html</loc>
+  </url>
+  <url>
+    <loc>http://dmetar.protectlab.org/reference/plot.power.analysis.html</loc>
+  </url>
+  <url>
+    <loc>http://dmetar.protectlab.org/reference/plot.power.analysis.subgroup.html</loc>
+  </url>
+  <url>
+    <loc>http://dmetar.protectlab.org/reference/plot.subgroup.analysis.mixed.effects.html</loc>
+  </url>
+  <url>
+    <loc>http://dmetar.protectlab.org/reference/plot.sucra.html</loc>
+  </url>
+  <url>
     <loc>http://dmetar.protectlab.org/reference/pool.groups.html</loc>
   </url>
   <url>
@@ -56,6 +86,33 @@
   </url>
   <url>
     <loc>http://dmetar.protectlab.org/reference/power.analysis.subgroup.html</loc>
+  </url>
+  <url>
+    <loc>http://dmetar.protectlab.org/reference/print.InfluenceAnalysis.html</loc>
+  </url>
+  <url>
+    <loc>http://dmetar.protectlab.org/reference/print.direct.evidence.plot.html</loc>
+  </url>
+  <url>
+    <loc>http://dmetar.protectlab.org/reference/print.find.outliers.html</loc>
+  </url>
+  <url>
+    <loc>http://dmetar.protectlab.org/reference/print.multimodel.inference.html</loc>
+  </url>
+  <url>
+    <loc>http://dmetar.protectlab.org/reference/print.pcurve.html</loc>
+  </url>
+  <url>
+    <loc>http://dmetar.protectlab.org/reference/print.power.analysis.html</loc>
+  </url>
+  <url>
+    <loc>http://dmetar.protectlab.org/reference/print.power.analysis.subgroup.html</loc>
+  </url>
+  <url>
+    <loc>http://dmetar.protectlab.org/reference/print.subgroup.analysis.mixed.effects.html</loc>
+  </url>
+  <url>
+    <loc>http://dmetar.protectlab.org/reference/print.sucra.html</loc>
   </url>
   <url>
     <loc>http://dmetar.protectlab.org/reference/rob.summary.html</loc>
@@ -68,6 +125,30 @@
   </url>
   <url>
     <loc>http://dmetar.protectlab.org/reference/sucra.html</loc>
+  </url>
+  <url>
+    <loc>http://dmetar.protectlab.org/reference/summary.InfluenceAnalysis.html</loc>
+  </url>
+  <url>
+    <loc>http://dmetar.protectlab.org/reference/summary.direct.evidence.plot.html</loc>
+  </url>
+  <url>
+    <loc>http://dmetar.protectlab.org/reference/summary.find.outliers.html</loc>
+  </url>
+  <url>
+    <loc>http://dmetar.protectlab.org/reference/summary.multimodel.inference.html</loc>
+  </url>
+  <url>
+    <loc>http://dmetar.protectlab.org/reference/summary.pcurve.html</loc>
+  </url>
+  <url>
+    <loc>http://dmetar.protectlab.org/reference/summary.power.analysis.html</loc>
+  </url>
+  <url>
+    <loc>http://dmetar.protectlab.org/reference/summary.power.analysis.subgroup.html</loc>
+  </url>
+  <url>
+    <loc>http://dmetar.protectlab.org/reference/summary.subgroup.analysis.mixed.effects.html</loc>
   </url>
   <url>
     <loc>http://dmetar.protectlab.org/articles/dmetar.html</loc>

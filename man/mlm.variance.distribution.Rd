@@ -2,7 +2,7 @@
 % Please edit documentation in R/mlm.variance.distribution.R
 \name{mlm.variance.distribution}
 \alias{mlm.variance.distribution}
-\title{Calculate \eqn{I^2} and the variance distribution for multilevel meta-analysis models}
+\title{Calculate \eqn{I}-squared and the variance distribution for multilevel meta-analysis models}
 \usage{
 mlm.variance.distribution(x)
 }
@@ -21,14 +21,12 @@ models fitted with \code{\link[metafor]{rma.mv}}.
 This function estimates the distribution of variance in a three-level meta-analysis
 model (fitted with the \code{\link[metafor]{rma.mv}} function). The share of variance attributable to
 sampling error, within and between-cluster heterogeneity is calculated,
-and an estimate of \eqn{I^2} (total and for Level 2 and Level 3) is provided.
-
-The function uses the formula by Cheung (2014) to estimate the variance proportions attributable to each
-model component and to derive the \eqn{I^2} estimates.
+and an estimate of \eqn{I^2} (total and for Level 2 and Level 3) is provided. The function uses the formula by
+Cheung (2014) to estimate the variance proportions attributable to each model component and to derive the \eqn{I^2} estimates.
 }
 \examples{
 # Use dat.konstantopoulos2011 from the "metafor" package
-suppressPackageStartupMessages(library(metafor))
+library(metafor)
 
 # Build Multilevel Model (Three Levels)
 m = rma.mv(yi, vi, random = ~ 1 | district/school, data=dat.konstantopoulos2011)
@@ -38,7 +36,7 @@ mlm.variance.distribution(m)
 }
 \references{
 Harrer, M., Cuijpers, P., Furukawa, T.A, & Ebert, D. D. (2019).
-\emph{Doing Meta-Analysis in R: A Hands-on Guide}. DOI: 10.5281/zenodo.2551803. \href{https://bookdown.org/MathiasHarrer/Doing_Meta_Analysis_in_R/mlma.html}{Chapter 12}
+\emph{Doing Meta-Analysis in R: A Hands-on Guide}. DOI: 10.5281/zenodo.2551803. \href{https://bookdown.org/MathiasHarrer/Doing_Meta_Analysis_in_R/mlma.html}{Chapter 12}.
 
 Cheung, M. W. L. (2014). Modeling dependent effect sizes with three-level meta-analyses: a structural equation modeling approach. \emph{Psychological Methods, 19}(2), 211.
 }

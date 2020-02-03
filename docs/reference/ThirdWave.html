@@ -38,14 +38,22 @@
 <script src="../pkgdown.js"></script>
 
 
+<!-- docsearch -->
+<script src="../docsearch.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous" />
+<link href="../docsearch.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
 
+
+  <link href="../extra.css" rel="stylesheet">
+  
 <meta property="og:title" content="'Third-Wave' cognitive behavioral interventions for perceived stress in college students dataset — ThirdWave" />
 
 <meta property="og:description" content="This is a toy dataset containing pre-calculated effect size data of a meta-analysis on
 randomized controlled trials comparing the effectiveness of 'third-wave' CBT interventions
 for perceived stress in college students to inactive controls. Effect size data is provided
 as the standardized mean difference (SMD) between the intervention and control group
-and its corresponding standard error for each study at post.
+and the corresponding standard error for each study at post.
 The dataset also contains columns for study characteristics which may serve as potential
 effect size moderators." />
 
@@ -99,6 +107,12 @@ effect size moderators." />
 <li>
   <a href="https://protectlab.org/en">Protect Lab</a>
 </li>
+<li>
+  <a href="https://twitter.com/MathiasHarrer">
+    <span class="fa fa-twitter"></span>
+     
+  </a>
+</li>
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
@@ -109,6 +123,12 @@ effect size moderators." />
   </a>
 </li>
       </ul>
+      
+      <form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
+        <div class="form-group">
+          <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
+        </div>
+      </form>
       
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
@@ -132,7 +152,7 @@ effect size moderators." />
 randomized controlled trials comparing the effectiveness of 'third-wave' CBT interventions
 for perceived stress in college students to inactive controls. Effect size data is provided
 as the standardized mean difference (SMD) between the intervention and control group
-and its corresponding standard error for each study at post.
+and the corresponding standard error for each study at post.
 The dataset also contains columns for study characteristics which may serve as potential
 effect size moderators.</p>
     
@@ -142,15 +162,15 @@ effect size moderators.</p>
         
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>A data.frame with 8 columns.</p><dl class='dl-horizontal'>
-<dt>Author</dt><dd><p>Character. The study label containing the author(s) of the study</p></dd>
-<dt>TE</dt><dd><p>Numeric. The calculated standardized mean difference at post-test between the intervention and control group</p></dd>
-<dt>seTE</dt><dd><p>Numeric. The standard error of the standardized mean difference</p></dd>
-<dt>RiskOfBias</dt><dd><p>Character. The risk of bias rating according to the Cochrance Risk of Bias Tool.</p></dd>
-<dt>TypeControlGroup</dt><dd><p>Character. The type of control group used in the study</p></dd>
-<dt>InterventionDuration</dt><dd><p>Character. The dichotomized duration of the intervention</p></dd>
-<dt>InterventionType</dt><dd><p>Character. The type of third-wave intervention rationale used</p></dd>
-<dt>ModeOfDelivery</dt><dd><p>Character. The mode of delivery used for the intervention</p></dd>
+    <p>A <code>data.frame</code> with 8 columns.</p><dl class='dl-horizontal'>
+<dt>Author</dt><dd><p><code>character</code>. The study label containing the author(s) of the study.</p></dd>
+<dt>TE</dt><dd><p><code>numeric</code>. The calculated standardized mean difference at post-test between the intervention and control group.</p></dd>
+<dt>seTE</dt><dd><p><code>numeric</code>. The standard error of the standardized mean difference.</p></dd>
+<dt>RiskOfBias</dt><dd><p><code>character</code>. The risk of bias rating according to the Cochrane Risk of Bias Tool.</p></dd>
+<dt>TypeControlGroup</dt><dd><p><code>character</code>. The type of control group used in the study.</p></dd>
+<dt>InterventionDuration</dt><dd><p><code>character</code>. The dichotomized duration of the intervention.</p></dd>
+<dt>InterventionType</dt><dd><p><code>character</code>. The type of third-wave intervention rationale used.</p></dd>
+<dt>ModeOfDelivery</dt><dd><p><code>character</code>. The mode of delivery used for the intervention.</p></dd>
 </dl>
     
     <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
@@ -188,6 +208,23 @@ perceived stress in college students.</p>
    </div>
 
   
+<script src="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.js" integrity="sha256-GKvGqXDznoRYHCwKXGnuchvKSwmx9SRMrZOTh2g4Sb0=" crossorigin="anonymous"></script>
+<script>
+  docsearch({
+    
+    
+    apiKey: '358a758fa720ccb381dab79f60a2b3a4',
+    indexName: 'dmetar',
+    inputSelector: 'input#search-input.form-control',
+    transformData: function(hits) {
+      return hits.map(function (hit) {
+        hit.url = updateHitURL(hit);
+        return hit;
+      });
+    }
+  });
+</script>
+
 
 
   </body>

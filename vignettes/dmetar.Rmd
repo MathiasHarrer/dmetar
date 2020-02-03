@@ -157,11 +157,11 @@ power.analysis(d = .18, k = 18, n1 = 50, n2 = 50, heterogeneity = "moderate")
 
 The `dmetar` package includes several functions to calculate effect sizes needed for meta-analyses: [`NNT`](https://dmetar.protectlab.org/reference/NNT.html), [`se.from.p`](https://dmetar.protectlab.org/reference/se.from.p.html) and [`pool.groups`](https://dmetar.protectlab.org/reference/pool.groups.html).
 
-Using the `NNT` function, we can calculate the number needed to treat $NNT$ for the first effect size in `ThirdWave`. In this example, we use Furukawa's method (Furukawa & Leucht, 2011), assuming a control group event
+Using the `NNT` function, we can calculate the number needed to treat $NNT$ for the first effect size in `ThirdWave` ($g$=0.71). In this example, we use Furukawa's method (Furukawa & Leucht, 2011), assuming a control group event
 ratio (`CER`) of 0.2
 
 ```{r}
-NNT(ThirdWave$TE[1], CER = 0.2)
+NNT(0.71, CER = 0.2)
 ```
 
 We can also pool together two groups of a study into one group using the `pool.groups` function once we have obtained the $n$, mean and SD of each arm. This can be helpful if we want to avoid a [unit-of-analysis error](https://handbook-5-1.cochrane.org/chapter_9/9_3_1_unit_of_analysis_issues.htm). Here is an example:
@@ -242,7 +242,7 @@ subgroup.analysis.mixed.effects(x = meta,
 ```
 
 ```{r, echo=FALSE}
-subgroup.analysis.mixed.effects(x = meta, subgroups = ThirdWave$TypeControlGroup, plot=FALSE)
+subgroup.analysis.mixed.effects(x = meta, subgroups = ThirdWave$TypeControlGroup)
 ```
 
 ```{r, echo=FALSE, out.width = '70%', fig.align="center"}
@@ -346,7 +346,7 @@ To obtain a more robust estimate of the pooled effect size, especially when the 
 
 The `find.outliers` function automatically searches for outliers (defined as studies for which the 95%CI is outside the 95%CI of the pooled effect) in your meta-analysis and recalculates the results without these outliers. The function works for meta-analysis objects created with functions of the `meta` package as well as the `rma.uni` function in `metafor`. 
 
-```{r}
+```{r, fig.height=6}
 meta <- metagen(TE, seTE, 
                 data = ThirdWave, 
                 studlab = ThirdWave$Author,
@@ -354,6 +354,7 @@ meta <- metagen(TE, seTE,
                 comb.fixed = FALSE)
 
 find.outliers(meta)
+forest(find.outliers(meta), col.study = "blue")
 ```
 
 <br></br>
@@ -371,7 +372,8 @@ Influence Analysis can be helpful to detect studies which:
 The [`InfluenceAnalysis`](https://dmetar.protectlab.org/reference/InfluenceAnalysis.html) is a wrapper around several influence analysis function included in the `meta` and `metafor` package. It provides four types of influence diagnostics in one single plot. The function works for meta-analysis objects created by `meta` functions, which can then be directly used as input for the function:
 
 ```{r, fig.width=10, fig.height=8}
-InfluenceAnalysis(meta)
+infan = InfluenceAnalysis(meta)
+plot(infan)
 ```
 
 <br></br>

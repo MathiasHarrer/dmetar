@@ -2,13 +2,13 @@
 #'
 #' This function generates summary plots for study quality assessments using the
 #' \href{https://bit.ly/2KGQtfG}{Cochrance Risk of Bias Tool}.
-#' Summary plots follow the style of \href{https://bit.ly/30eJK29}{RevMan} RoB summary charts.
+#' Summary plots follow the style of \href{https://bit.ly/30eJK29}{RevMan} Risk of Bias (RoB) summary charts.
 #'
 #' @usage rob.summary(data, name.high="High", name.unclear="Unclear",
 #'     name.low="Low", studies, name.missing, table = FALSE)
 #'
 #' @param data A \code{data.frame} containing a column for each risk of bias criterion, where
-#' rows represent each individual studies. The risk of bias assessment for each criterion for each
+#' rows represent each individual studies. The risk of bias assessment for each criterion in each
 #' study must be coded as a character string. Up to four codes can be used, referring to low risk of bias,
 #' unclear risk of bias, high risk of bias, or missing information. The string used to specify the categories
 #' must be specified in \code{name.high}, \code{name.unclear}, \code{name.low} and/or \code{name.missing},

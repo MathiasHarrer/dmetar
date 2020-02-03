@@ -38,12 +38,20 @@
 <script src="../pkgdown.js"></script>
 
 
+<!-- docsearch -->
+<script src="../docsearch.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous" />
+<link href="../docsearch.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
 
+
+  <link href="../extra.css" rel="stylesheet">
+  
 <meta property="og:title" content="Pool the results of two treatment arms — pool.groups" />
 
 <meta property="og:description" content="This function allows to pool the mean, standard deviation and sample size of two experimental groups
-of a study. Results of two treatment arms may be pooled to mitigate the unit-of-analysis problem
-and avoid &quot;double-counting&quot; in meta-analyses in which studies with more than two experimental groups
+of a study. Results of two treatment arms may be pooled to mitigate the risk of a unit-of-analysis error
+and to avoid &quot;double-counting&quot; in meta-analyses in which studies with more than two experimental groups
 are included." />
 
 <meta property="og:image" content="http://dmetar.protectlab.org/logo.png" />
@@ -96,6 +104,12 @@ are included." />
 <li>
   <a href="https://protectlab.org/en">Protect Lab</a>
 </li>
+<li>
+  <a href="https://twitter.com/MathiasHarrer">
+    <span class="fa fa-twitter"></span>
+     
+  </a>
+</li>
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
@@ -106,6 +120,12 @@ are included." />
   </a>
 </li>
       </ul>
+      
+      <form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
+        <div class="form-group">
+          <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
+        </div>
+      </form>
       
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
@@ -126,8 +146,8 @@ are included." />
     <div class="ref-description">
     
     <p>This function allows to pool the mean, standard deviation and sample size of two experimental groups
-of a study. Results of two treatment arms may be pooled to mitigate the unit-of-analysis problem
-and avoid "double-counting" in meta-analyses in which studies with more than two experimental groups
+of a study. Results of two treatment arms may be pooled to mitigate the risk of a unit-of-analysis error
+and to avoid "double-counting" in meta-analyses in which studies with more than two experimental groups
 are included.</p>
     
     </div>
@@ -165,7 +185,7 @@ are included.</p>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Returns a data.frame containing the following columns:</p><ul>
+    <p>Returns a <code>data.frame</code> containing the following columns:</p><ul>
 <li><p><code>Mpooled</code>: The pooled mean of both groups</p></li>
 <li><p><code>SDpooled</code>: The pooled standard deviation of both groups</p></li>
 <li><p><code>Npooled</code>: The pooled number of participants of both groups</p></li>
@@ -181,19 +201,19 @@ between the intervention groups and control within a study into one meta-analysi
 Yet, researchers should abstain from this practice, as this would mean that the
 control group is used twice for the meta-analysis, thus “double-counting” the
 participants in the control group. This results in a <strong>unit-of-analysis error</strong>, as
-the effect size are correlated, and thus not independent, but are treated as if they
+the effect sizes are correlated, and thus not independent, but are treated as if they
 would stem from independent samples.</p>
 <p>One way to deal with this is to synthesize the results of the intervention arms to
 obtain one single comparison to the control group. Despite its practical limitations
 (sometimes, this would mean synthesizing the results from extremely different types
-of interventions), this procedure does get rid of the unit-of-analysis error problem.</p>
-<p>To synthesize the pooled effect size data (pooled Mean, Standard Deviation and \(N\)), the
+of interventions), this procedure does avoid the unit-of-analysis error problem.</p>
+<p>To synthesize the pooled effect size data (pooled mean, standard deviation and \(N\)), the
 following formulae are used:</p>
 <p>$$N_{pooled}=N_1+N_2$$
 $$M_{pooled}=\frac{N_1M_1+N_2M_2}{N_1+N_2}$$
 $$SD_{pooled} = \sqrt{\frac{(N_1-1)SD^{2}_{1}+ (N_2-1)SD^{2}_{2}+\frac{N_1N_2}{N_1+N_2}(M^{2}_1+M^{2}_2-2M_1M_2)} {N_1+N_2-1}}$$</p>
-<p><strong>What should i do when an study has more than two intervention groups?</strong></p>
-<p>If a study has more than one two intervention groups you want to synthesize
+<p><strong>What should I do when a study has more than two intervention groups?</strong></p>
+<p>If a study has more than two intervention groups you want to synthesize
 (e.g. four arms, with three distinct intervention arms), you can pool the effect
 size data for the first two interventions, and then synthesize the pooled data you
 calculated with the data from the third group.</p>
@@ -249,6 +269,23 @@ calculated with the data from the third group.</p>
    </div>
 
   
+<script src="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.js" integrity="sha256-GKvGqXDznoRYHCwKXGnuchvKSwmx9SRMrZOTh2g4Sb0=" crossorigin="anonymous"></script>
+<script>
+  docsearch({
+    
+    
+    apiKey: '358a758fa720ccb381dab79f60a2b3a4',
+    indexName: 'dmetar',
+    inputSelector: 'input#search-input.form-control',
+    transformData: function(hits) {
+      return hits.map(function (hit) {
+        hit.url = updateHitURL(hit);
+        return hit;
+      });
+    }
+  });
+</script>
+
 
 
   </body>

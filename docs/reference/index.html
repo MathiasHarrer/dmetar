@@ -38,7 +38,15 @@
 <script src="../pkgdown.js"></script>
 
 
+<!-- docsearch -->
+<script src="../docsearch.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous" />
+<link href="../docsearch.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
 
+
+  <link href="../extra.css" rel="stylesheet">
+  
 <meta property="og:title" content="Function reference" />
 
 <meta property="og:image" content="http://dmetar.protectlab.org/logo.png" />
@@ -91,6 +99,12 @@
 <li>
   <a href="https://protectlab.org/en">Protect Lab</a>
 </li>
+<li>
+  <a href="https://twitter.com/MathiasHarrer">
+    <span class="fa fa-twitter"></span>
+     
+  </a>
+</li>
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
@@ -101,6 +115,12 @@
   </a>
 </li>
       </ul>
+      
+      <form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
+        <div class="form-group">
+          <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
+        </div>
+      </form>
       
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
@@ -174,7 +194,7 @@
         <td>
           <p><code><a href="InfluenceAnalysis.html">InfluenceAnalysis()</a></code> </p>
         </td>
-        <td><p>Influence Diagnostics Plot</p></td>
+        <td><p>Influence Diagnostics</p></td>
       </tr><tr>
         
         <td>
@@ -186,7 +206,7 @@
         <td>
           <p><code><a href="pcurve.html">pcurve()</a></code> </p>
         </td>
-        <td><p>Perform a <em>P</em>-curve analysis</p></td>
+        <td><p>Perform a <em>p</em>-curve analysis</p></td>
       </tr>
     </tbody><tbody>
       <tr>
@@ -220,7 +240,7 @@
         <td>
           <p><code><a href="multimodel.inference.html">multimodel.inference()</a></code> </p>
         </td>
-        <td><p>Perform multimodel inference on a meta-regression model</p></td>
+        <td><p>Perform multimodel inference with a meta-regression model</p></td>
       </tr><tr>
         
         <td>
@@ -240,12 +260,12 @@
         <td>
           <p><code><a href="mlm.variance.distribution.html">mlm.variance.distribution()</a></code> </p>
         </td>
-        <td><p>Calculate \(I^2\) and the variance distribution for multilevel meta-analysis models</p></td>
+        <td><p>Calculate \(I\)-squared and the variance distribution for multilevel meta-analysis models</p></td>
       </tr>
     </tbody><tbody>
       <tr>
         <th colspan="2">
-          <h2 id="section-network-meta-analysis" class="hasAnchor"><a href="#section-network-meta-analysis" class="anchor"></a>Network meta-analysis</h2>
+          <h2 id="section-network-meta-analysis" class="hasAnchor"><a href="#section-network-meta-analysis" class="anchor"></a>Network Meta-Analysis</h2>
           <p class="section-desc"></p>
         </th>
       </tr>
@@ -300,7 +320,7 @@
         <td>
           <p><code><a href="NetDataGemtc.html">NetDataGemtc</a></code> </p>
         </td>
-        <td><p>Toy Dataset for Network Meta-Analysis using the gemtc package</p></td>
+        <td><p>Toy Dataset for Network Meta-Analyses using the gemtc package</p></td>
       </tr><tr>
         
         <td>
@@ -340,7 +360,7 @@
       <li><a href="#section-power-analysis">Power analysis</a></li>
       <li><a href="#section-meta-regression-subgroups">Meta-regression &amp; Subgroups</a></li>
       <li><a href="#section-multilevel-meta-analysis">Multilevel Meta-Analysis</a></li>
-      <li><a href="#section-network-meta-analysis">Network meta-analysis</a></li>
+      <li><a href="#section-network-meta-analysis">Network Meta-Analysis</a></li>
       <li><a href="#section-risk-of-bias">Risk of bias</a></li>
       <li><a href="#section-data-sets">Data sets</a></li>
       <li><a href="#section-package">Package</a></li>
@@ -362,6 +382,23 @@
    </div>
 
   
+<script src="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.js" integrity="sha256-GKvGqXDznoRYHCwKXGnuchvKSwmx9SRMrZOTh2g4Sb0=" crossorigin="anonymous"></script>
+<script>
+  docsearch({
+    
+    
+    apiKey: '358a758fa720ccb381dab79f60a2b3a4',
+    indexName: 'dmetar',
+    inputSelector: 'input#search-input.form-control',
+    transformData: function(hits) {
+      return hits.map(function (hit) {
+        hit.url = updateHitURL(hit);
+        return hit;
+      });
+    }
+  });
+</script>
+
 
 
   </body>

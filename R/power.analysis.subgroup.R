@@ -35,11 +35,16 @@
 #'
 #' @author Mathias Harrer & David Daniel Ebert
 #'
-#' @return  Returns the estimated power of the subgroup contrast, expressed as a value between 0 and 1 (i.e., 0\%-100\%).
-#'
-#' An additional plot is generated, showing the effect size difference (x), power (y), estimated power (red point) and
+#' @return  Returns a \code{list} with five elements:
+#' \itemize{
+#' \item \code{Power}: The estimated power of the subgroup contrast, expressed as a value between 0 and 1 (i.e., 0\%-100\%).
+#' \item \code{Plot}: A plot showing the effect size difference (x), power (y), estimated power (red point) and
 #' estimated power for changing effect size differences (blue line). A dashed line at 80\% power is also provided as a
 #' visual threshold for sufficient power.
+#' \item \code{Data}: A \code{data.frame} containing the data used to generate the plot in \code{Plot}.
+#' \item \code{Test}: The type of test used for the power calculations (\code{"one.tailed"} or \code{"two.tailed"}).
+#' \item \code{Gamma}: The analyzed effect size difference calculated from the inputs.
+#' }
 #'
 #' @export power.analysis.subgroup
 #'
@@ -52,10 +57,15 @@
 #' power.analysis.subgroup(TE1=0.30, TE2=0.66, seTE1=0.13, seTE2=0.14)
 #'
 #' # Example 2: using variance and one-tailed test
-#' power.analysis.subgroup(TE1=-0.91, TE2=-1.22, var1 = 0.0023, var2 = 0.0078,
+#' pasg = power.analysis.subgroup(TE1=-0.91, TE2=-1.22, var1 = 0.0023, var2 = 0.0078,
 #'     two.tailed = FALSE)
+#' summary(pasg)
+#'
+#' # Only show plot
+#' plot(pasg)
 
-power.analysis.subgroup = function(TE1, TE2, seTE1, seTE2, sd1, sd2, var1, var2, two.tailed = TRUE) {
+power.analysis.subgroup = function(TE1, TE2, seTE1, seTE2,
+                                   sd1, sd2, var1, var2, two.tailed = TRUE) {
     gamma = abs(TE1 - TE2)
 
     if (missing(var1)) {
@@ -113,15 +123,20 @@ power.analysis.subgroup = function(TE1, TE2, seTE1, seTE2, sd1, sd2, var1, var2,
         plot = ggplot(data = plotdat, aes(x = gammas, y = powervec)) + geom_line(color = "blue", size = 2) +
             geom_point(aes(x = gamma, y = twotail), color = "red", size = 5) + theme_minimal() + geom_hline(yintercept = 0.8,
             color = "black", linetype = "dashed") + ylab("Power") + xlab("Effect size difference")
-        plot(plot)
 
-        if (!is.na(plotdat[plotdat$powervec >= 0.8, ][1, 1])) {
-            cat("Minimum effect size difference needed for sufficient power: ", plotdat[plotdat$powervec >=
-                0.8, ][1, 1], " (input: ", gamma, ")", "\n", sep = "")
-        }
+        returnlist = list(Power = twotail,
+                          Plot = plot,
+                          Data = data.frame(Power = plotdat$powervec,
+                                            EffectSizeDiff = plotdat$gammas),
+                          Test = "two.tailed",
+                          Gamma = gamma)
 
-        cat("Power for subgroup difference test (two-tailed): \n")
-        return(twotail)
+        class(returnlist) = "power.analysis.subgroup"
+
+        invisible(returnlist)
+
+        returnlist
+
 
     } else {
 
@@ -147,15 +162,19 @@ power.analysis.subgroup = function(TE1, TE2, seTE1, seTE2, sd1, sd2, var1, var2,
         plot = ggplot(data = plotdat, aes(x = gammas, y = powervec)) + geom_line(color = "blue", size = 2) +
             geom_point(aes(x = gamma, y = onetail), color = "red", size = 5) + theme_minimal() + geom_hline(yintercept = 0.8,
             color = "black", linetype = "dashed") + ylab("Power") + xlab("Effect size difference")
-        plot(plot)
 
-        if (!is.na(plotdat[plotdat$powervec >= 0.8, ][1, 1])) {
-            cat("Minimum effect size difference needed for sufficient power: ", plotdat[plotdat$powervec >=
-                0.8, ][1, 1], " (input: ", gamma, ")", "\n", sep = "")
-        }
+        returnlist = list(Power = onetail,
+                          Plot = plot,
+                          Data = data.frame(Power = plotdat$powervec,
+                                            EffectSizeDiff = plotdat$gammas),
+                          Test = "one.tailed",
+                          Gamma = gamma)
 
-        cat("Power for subgroup difference test (one-tailed): \n")
-        return(onetail)
+        class(returnlist) = "power.analysis.subgroup"
+
+        invisible(returnlist)
+
+        returnlist
 
     }
 

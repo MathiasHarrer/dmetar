@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Toy Dataset for Network Meta-Analysis using the gemtc package — NetDataGemtc • dmetar</title>
+<title>Toy Dataset for Network Meta-Analyses using the gemtc package — NetDataGemtc • dmetar</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -38,8 +38,16 @@
 <script src="../pkgdown.js"></script>
 
 
+<!-- docsearch -->
+<script src="../docsearch.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous" />
+<link href="../docsearch.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
 
-<meta property="og:title" content="Toy Dataset for Network Meta-Analysis using the gemtc package — NetDataGemtc" />
+
+  <link href="../extra.css" rel="stylesheet">
+  
+<meta property="og:title" content="Toy Dataset for Network Meta-Analyses using the gemtc package — NetDataGemtc" />
 
 <meta property="og:description" content="This is a toy dataset containing simulated effect size data of a fictitious
 network meta-analysis examining the effect of psychotherapies. Effect size
@@ -98,6 +106,12 @@ argument of the mtc.network function." />
 <li>
   <a href="https://protectlab.org/en">Protect Lab</a>
 </li>
+<li>
+  <a href="https://twitter.com/MathiasHarrer">
+    <span class="fa fa-twitter"></span>
+     
+  </a>
+</li>
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
@@ -108,6 +122,12 @@ argument of the mtc.network function." />
   </a>
 </li>
       </ul>
+      
+      <form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
+        <div class="form-group">
+          <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
+        </div>
+      </form>
       
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
@@ -120,7 +140,7 @@ argument of the mtc.network function." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Toy Dataset for Network Meta-Analysis using the gemtc package</h1>
+    <h1>Toy Dataset for Network Meta-Analyses using the gemtc package</h1>
     <small class="dont-index">Source: <a href='https://github.com/MathiasHarrer/dmetar/blob/master/R/NetDataGemtc.R'><code>R/NetDataGemtc.R</code></a></small>
     <div class="hidden name"><code>NetDataGemtc.Rd</code></div>
     </div>
@@ -129,7 +149,7 @@ argument of the mtc.network function." />
     
     <p>This is a toy dataset containing simulated effect size data of a fictitious
 network meta-analysis examining the effect of psychotherapies. Effect size
-data is provided as the standardized mean difference (SMD) between the intervention
+data is provided as the standardized mean difference (<em>SMD</em>) between the intervention
 and control group and its corresponding standard error for each study at post.
 The dataframe layout is optimized for out-of-the-box usage using the <code>data.re</code>
 argument of the <code><a href='https://rdrr.io/pkg/gemtc/man/mtc.network.html'>mtc.network</a></code> function.</p>
@@ -141,15 +161,15 @@ argument of the <code><a href='https://rdrr.io/pkg/gemtc/man/mtc.network.html'>m
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
     <p>A data.frame with 4 columns.</p><dl class='dl-horizontal'>
-<dt>study</dt><dd><p>Character. The name of the included study.</p></dd>
-<dt>treatment</dt><dd><p>Character. The name of the treatment under study. Includes psychotherapies for
+<dt>study</dt><dd><p><code>character</code>. The name of the included study.</p></dd>
+<dt>treatment</dt><dd><p><code>character</code>. The name of the treatment under study. Includes psychotherapies for
 the treatment of depression, "CBT" (Cognitive Behavioral Therapy), "PDT" (Psychodynamic Therapy),
 "IPT" (Interpersonal Therapy), "PST" (Problem-solving Therapy) and "SUP" (Supportive Counseling),
 and comparison conditions, "TAU" (Treatment as usual), "Placebo" (Placebo), and "WLC" (Waitlist control).
 Each treatment condition in a study is displayed in its own row of the dataframe.</p></dd>
-<dt>diff</dt><dd><p>Numeric. The standardized mean difference of the comparison. The row in each study in which
+<dt>diff</dt><dd><p><code>numeric</code>. The standardized mean difference of the comparison. The row in each study in which
 this variable is <code>NA</code> represents the comparison condition for the effect size displayed above.</p></dd>
-<dt>std.err</dt><dd><p>Numeric. The standard error of the comparison. The row in each study in which
+<dt>std.err</dt><dd><p><code>numeric</code>. The standard error of the comparison. The row in each study in which
 this variable is <code>NA</code> represents the comparison condition for the standard error of
 the effect size displayed above.</p></dd>
 </dl>
@@ -188,6 +208,23 @@ the effect size displayed above.</p></dd>
    </div>
 
   
+<script src="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.js" integrity="sha256-GKvGqXDznoRYHCwKXGnuchvKSwmx9SRMrZOTh2g4Sb0=" crossorigin="anonymous"></script>
+<script>
+  docsearch({
+    
+    
+    apiKey: '358a758fa720ccb381dab79f60a2b3a4',
+    indexName: 'dmetar',
+    inputSelector: 'input#search-input.form-control',
+    transformData: function(hits) {
+      return hits.map(function (hit) {
+        hit.url = updateHitURL(hit);
+        return hit;
+      });
+    }
+  });
+</script>
+
 
 
   </body>

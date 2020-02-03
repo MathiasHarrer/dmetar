@@ -40,7 +40,7 @@ by \href{https://www.ncbi.nlm.nih.gov/pubmed/21824904}{Altman and Bland (2011)}.
 }
 \details{
 This function calculates the standard error, standard deviation and 95\% confidence
-interval of an effect size given the effect size and exact \eqn{p}-value. The function can be used for
+interval of an effect size given the effect size and exact \eqn{p}-value. The function can be used for:
 \itemize{
 \item effect sizes based on \strong{differences} (e.g., mean differences) by setting \code{effect.size.type}
 to \code{"difference"}, or

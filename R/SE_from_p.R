@@ -21,7 +21,7 @@
 #' corrected for small sample bias (Hedges' \eqn{g}). \code{FALSE} by default.
 #'
 #' @details This function calculates the standard error, standard deviation and 95\% confidence
-#' interval of an effect size given the effect size and exact \eqn{p}-value. The function can be used for
+#' interval of an effect size given the effect size and exact \eqn{p}-value. The function can be used for:
 #' \itemize{
 #' \item effect sizes based on \strong{differences} (e.g., mean differences) by setting \code{effect.size.type}
 #' to \code{"difference"}, or

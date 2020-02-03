@@ -7,7 +7,7 @@
 #' @usage direct.evidence.plot(x, random=FALSE, comparison.label.size=2,
 #' numeric.label.size=3, subplot.ratio=c(5, 1.3, 1.3))
 #'
-#' @param x An object of class 'netmeta' containing the results of a network meta-analysis
+#' @param x An object of class \code{netmeta} containing the results of a network meta-analysis
 #' using the \code{\link[netmeta]{netmeta}} function.
 #' @param random Logical. If set to \code{TRUE}, results for the random-effects model are displayed.
 #' If set to \code{FALSE}, results for the fixed-effect model are displayed. \code{FALSE} by default.
@@ -22,15 +22,15 @@
 #' The function generates a plot containing three subplots displaying relevant characteristics
 #' to evaluate the reliability of effect size estimates within a network meta-analysis model.
 #' \itemize{
-#' \item \strong{Direct evidence proportion}. This bar chart displays the proportion of direct
+#' \item \strong{Direct Evidence Proportion}. This bar chart displays the proportion of direct
 #' evidence (orange) contained in each network estimate. It is of note that both direct and indirect
 #' evidence may contribute to the violation of the assumption of consistency underlying network
 #' meta-analysis models. Nevertheless, this plot allows to distinguish comparison estimates
 #'  for which direct evidence was used, and to what extent, and comparisons which had to be inferred
 #'  by indirect evidence alone.
 #' \item \strong{Minimal Parallelism}. This bar chart displays the minimum number of independent paths
-#' contributing to the effect estimate on aggregated level. Large values of parallelism can be
-#' as supporting the robustness of the estimate.
+#' contributing to the effect estimate on an aggregated level. Large values of parallelism can be
+#' interpreted as supporting the robustness of the estimate.
 #' \item \strong{Mean Path Length}. This bar chart displays the mean path length, which characterizes
 #' the degree of indirectness of an estimate. Higher mean path lengths indicate less reliable
 #' estimates, given that more similarity assumptions have to be made when serially combining
@@ -50,14 +50,14 @@
 #' @author Mathias Harrer & David Daniel Ebert
 #'
 #' @import ggplot2 netmeta reshape2 forcats magrittr
-#' @importFrom gridExtra grid.arrange
+#' @importFrom gridExtra grid.arrange arrangeGrob
 #' @importFrom scales percent
 #' @importFrom graphics abline axis lines mtext par plot points rect segments text
 #' @importFrom stats as.formula hat influence ks.test optimize pbinom pchisq pf pnorm pt punif qchisq qf qnorm qt reformulate reorder setNames uniroot
 #'
 #' @return
 #' \itemize{
-#' \item \code{data}: A data.frame containing columns for the proportion of direct and indirect
+#' \item \code{data}: A \code{data.frame} containing columns for the proportion of direct and indirect
 #' evidence of each comparison (\code{proportion.direct} and \code{proportion.indirect}), the
 #' mean path length (\code{meanpath}) and the minimal parallelism (\code{minpar})
 #' for each comparison.
@@ -81,6 +81,7 @@
 #' # Generate the plot
 #' dep = direct.evidence.plot(nma, random=FALSE, comparison.label.size = 1,
 #' numeric.label.size=1, subplot.ratio=c(3,1,1))
+#' dep
 
 
 
@@ -175,10 +176,16 @@ direct.evidence.plot = function(x, random = FALSE, comparison.label.size = 2, nu
         plot_title = "Direct evidence proportion for each network estimate (random-effects model)"
     }
 
-    grid = grid.arrange(PlotDirectEvidence, PlotMinimalParallelism_s, PlotMeanPathLength_s, ncol = 3, widths = spr,
+    grid = arrangeGrob(PlotDirectEvidence, PlotMinimalParallelism_s, PlotMeanPathLength_s, ncol = 3, widths = spr,
         heights = c(4), top = plot_title)
 
-    return(list(data = data, plot = grid))
+    returnlist = list(data = data, plot = grid)
+
+    class(returnlist) = "direct.evidence.plot"
+
+    invisible(returnlist)
+
+    returnlist
 
 }
 

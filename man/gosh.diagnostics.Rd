@@ -13,38 +13,38 @@ gosh.diagnostics(data, km = TRUE, db = TRUE, gmm = TRUE, km.centers =
 \code{\link[metafor]{gosh}} function.}
 
 \item{km}{Logical. Should the \emph{k}-Means algorithm be used to identify
-patterns in the GOSH plot matrix? TRUE by default.}
+patterns in the GOSH plot matrix? \code{TRUE} by default.}
 
 \item{db}{Logical. Should the DBSCAN algorithm be used to identify patterns
-in the GOSH plot matrix? TRUE by default.}
+in the GOSH plot matrix? \code{TRUE} by default.}
 
 \item{gmm}{Logical. Should a bivariate Gaussian Mixture Model be used to
-identify patterns in the GOSH plot matrix? TRUE by default.}
+identify patterns in the GOSH plot matrix? \code{TRUE} by default.}
 
 \item{km.centers}{Number of clusters to assume for the \emph{k}-Means
-algorithm. Default is 3.}
+algorithm. Default is \code{3}.}
 
 \item{db.eps}{The distance radius \eqn{\epsilon} used to determine clusters
-(DBSCAN). Default is 0.15.}
+(DBSCAN). Default is \code{0.15}.}
 
 \item{db.min.pts}{The minimum number of points \eqn{minPts} required within
-\eqn{\epsilon} used to determine clusters. Default is 20.}
+\eqn{\epsilon} used to determine clusters. Default is \code{20}.}
 
 \item{gmm.diag}{Logical. Should the covariance matrix of the components be
-restricted to diagonal matrices? Default is TRUE.}
+restricted to diagonal matrices? Default is \code{TRUE}.}
 
 \item{gmm.clusters}{Number of clusters to assume for the Gaussian Mixture
-Model. Default is 2.}
+Model. Default is \code{2}.}
 
 \item{gmm.tolerance}{Relative change threshold of log-likelihood used to stop
 the Expectation-Maximization algorithm for the Gaussian Mixture Model.
-Default is 1e-16.}
+Default is \code{1e-16}.}
 
 \item{gmm.itermax}{Maximum number of iterations for the
 Expectation-Maximization algorithm used in the Gaussian Mixture Model to
-reach convergence. Default is 10000.}
+reach convergence. Default is \code{10000}.}
 
-\item{seed}{Seed used for reproducibility. Default seed is 123.}
+\item{seed}{Seed used for reproducibility. Default seed is \code{123}.}
 }
 \description{
 This function uses three unsupervised learning learning algorithms
@@ -81,10 +81,10 @@ display of study heterogeneity) plots.
   used (as other heterogeneity metrics produced for the GOSH plot data using
   the \code{\link[metafor]{gosh}} function are linear combinations of
   \eqn{I^2}). To this data, three clustering algorithms are applied.
-  \itemize{ \item The first algorithm is \emph{k}-means clustering using the
+  \itemize{ \item The first algorithm is \emph{k}-Means clustering using the
   algorithm by Hartigan & Wong (1979) and \eqn{m_k = 3} cluster centers by
   default. The functions uses the \code{\link[stats]{kmeans}} implementation
-  to perform \emph{k}-Means clustering. \item As \eqn{k}-means does not
+  to perform \emph{k}-Means clustering. \item As \emph{k}-Means does not
   perform well in the presence of distinct arbitrary subclusters and noise,
   the function also applies \strong{DBSCAN} (\emph{density reachability and
   connectivity clustering}; Schubert et al., 2017). The hyperparameters

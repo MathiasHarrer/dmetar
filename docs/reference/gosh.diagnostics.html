@@ -38,7 +38,15 @@
 <script src="../pkgdown.js"></script>
 
 
+<!-- docsearch -->
+<script src="../docsearch.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous" />
+<link href="../docsearch.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
 
+
+  <link href="../extra.css" rel="stylesheet">
+  
 <meta property="og:title" content="Identify studies contributing to heterogeneity patterns found in GOSH plots — gosh.diagnostics" />
 
 <meta property="og:description" content="This function uses three unsupervised learning learning algorithms
@@ -96,6 +104,12 @@ display of study heterogeneity) plots." />
 <li>
   <a href="https://protectlab.org/en">Protect Lab</a>
 </li>
+<li>
+  <a href="https://twitter.com/MathiasHarrer">
+    <span class="fa fa-twitter"></span>
+     
+  </a>
+</li>
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
@@ -106,6 +120,12 @@ display of study heterogeneity) plots." />
   </a>
 </li>
       </ul>
+      
+      <form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
+        <div class="form-group">
+          <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
+        </div>
+      </form>
       
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
@@ -147,58 +167,58 @@ display of study heterogeneity) plots.</p>
     <tr>
       <th>km</th>
       <td><p>Logical. Should the <em>k</em>-Means algorithm be used to identify
-patterns in the GOSH plot matrix? TRUE by default.</p></td>
+patterns in the GOSH plot matrix? <code>TRUE</code> by default.</p></td>
     </tr>
     <tr>
       <th>db</th>
       <td><p>Logical. Should the DBSCAN algorithm be used to identify patterns
-in the GOSH plot matrix? TRUE by default.</p></td>
+in the GOSH plot matrix? <code>TRUE</code> by default.</p></td>
     </tr>
     <tr>
       <th>gmm</th>
       <td><p>Logical. Should a bivariate Gaussian Mixture Model be used to
-identify patterns in the GOSH plot matrix? TRUE by default.</p></td>
+identify patterns in the GOSH plot matrix? <code>TRUE</code> by default.</p></td>
     </tr>
     <tr>
       <th>km.centers</th>
       <td><p>Number of clusters to assume for the <em>k</em>-Means
-algorithm. Default is 3.</p></td>
+algorithm. Default is <code>3</code>.</p></td>
     </tr>
     <tr>
       <th>db.eps</th>
       <td><p>The distance radius \(\epsilon\) used to determine clusters
-(DBSCAN). Default is 0.15.</p></td>
+(DBSCAN). Default is <code>0.15</code>.</p></td>
     </tr>
     <tr>
       <th>db.min.pts</th>
       <td><p>The minimum number of points \(minPts\) required within
-\(\epsilon\) used to determine clusters. Default is 20.</p></td>
+\(\epsilon\) used to determine clusters. Default is <code>20</code>.</p></td>
     </tr>
     <tr>
       <th>gmm.diag</th>
       <td><p>Logical. Should the covariance matrix of the components be
-restricted to diagonal matrices? Default is TRUE.</p></td>
+restricted to diagonal matrices? Default is <code>TRUE</code>.</p></td>
     </tr>
     <tr>
       <th>gmm.clusters</th>
       <td><p>Number of clusters to assume for the Gaussian Mixture
-Model. Default is 2.</p></td>
+Model. Default is <code>2</code>.</p></td>
     </tr>
     <tr>
       <th>gmm.tolerance</th>
       <td><p>Relative change threshold of log-likelihood used to stop
 the Expectation-Maximization algorithm for the Gaussian Mixture Model.
-Default is 1e-16.</p></td>
+Default is <code>1e-16</code>.</p></td>
     </tr>
     <tr>
       <th>gmm.itermax</th>
       <td><p>Maximum number of iterations for the
 Expectation-Maximization algorithm used in the Gaussian Mixture Model to
-reach convergence. Default is 10000.</p></td>
+reach convergence. Default is <code>10000</code>.</p></td>
     </tr>
     <tr>
       <th>seed</th>
-      <td><p>Seed used for reproducibility. Default seed is 123.</p></td>
+      <td><p>Seed used for reproducibility. Default seed is <code>123</code>.</p></td>
     </tr>
     </table>
     
@@ -228,11 +248,11 @@ reach convergence. Default is 10000.</p></td>
   used (as other heterogeneity metrics produced for the GOSH plot data using
   the <code><a href='https://rdrr.io/pkg/metafor/man/gosh.html'>gosh</a></code> function are linear combinations of
   \(I^2\)). To this data, three clustering algorithms are applied.</p><ul>
-<li><p>The first algorithm is <em>k</em>-means clustering using the
+<li><p>The first algorithm is <em>k</em>-Means clustering using the
   algorithm by Hartigan &amp; Wong (1979) and \(m_k = 3\) cluster centers by
   default. The functions uses the <code><a href='https://rdrr.io/r/stats/kmeans.html'>kmeans</a></code> implementation
   to perform <em>k</em>-Means clustering.</p></li>
-<li><p>As \(k\)-means does not
+<li><p>As <em>k</em>-Means does not
   perform well in the presence of distinct arbitrary subclusters and noise,
   the function also applies <strong>DBSCAN</strong> (<em>density reachability and
   connectivity clustering</em>; Schubert et al., 2017). The hyperparameters
@@ -331,6 +351,23 @@ Why and How You Should (Still) Use DBSCAN. <em>ACM Transactions on Database Syst
    </div>
 
   
+<script src="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.js" integrity="sha256-GKvGqXDznoRYHCwKXGnuchvKSwmx9SRMrZOTh2g4Sb0=" crossorigin="anonymous"></script>
+<script>
+  docsearch({
+    
+    
+    apiKey: '358a758fa720ccb381dab79f60a2b3a4',
+    indexName: 'dmetar',
+    inputSelector: 'input#search-input.form-control',
+    transformData: function(hits) {
+      return hits.map(function (hit) {
+        hit.url = updateHitURL(hit);
+        return hit;
+      });
+    }
+  });
+</script>
+
 
 
   </body>

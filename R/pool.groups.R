@@ -1,8 +1,8 @@
 #' Pool the results of two treatment arms
 #'
 #' This function allows to pool the mean, standard deviation and sample size of two experimental groups
-#' of a study. Results of two treatment arms may be pooled to mitigate the unit-of-analysis problem
-#' and avoid "double-counting" in meta-analyses in which studies with more than two experimental groups
+#' of a study. Results of two treatment arms may be pooled to mitigate the risk of a unit-of-analysis error
+#' and to avoid "double-counting" in meta-analyses in which studies with more than two experimental groups
 #' are included.
 #'
 #' @usage pool.groups(n1, n2, m1, m2, sd1, sd2)
@@ -21,24 +21,24 @@
 #' Yet, researchers should abstain from this practice, as this would mean that the
 #' control group is used twice for the meta-analysis, thus “double-counting” the
 #' participants in the control group. This results in a \strong{unit-of-analysis error}, as
-#' the effect size are correlated, and thus not independent, but are treated as if they
+#' the effect sizes are correlated, and thus not independent, but are treated as if they
 #' would stem from independent samples.
 #'
 #' One way to deal with this is to synthesize the results of the intervention arms to
 #' obtain one single comparison to the control group. Despite its practical limitations
 #' (sometimes, this would mean synthesizing the results from extremely different types
-#' of interventions), this procedure does get rid of the unit-of-analysis error problem.
+#' of interventions), this procedure does avoid the unit-of-analysis error problem.
 #'
-#' To synthesize the pooled effect size data (pooled Mean, Standard Deviation and \eqn{N}), the
+#' To synthesize the pooled effect size data (pooled mean, standard deviation and \eqn{N}), the
 #' following formulae are used:
 #'
 #'\deqn{N_{pooled}=N_1+N_2}
 #'\deqn{M_{pooled}=\frac{N_1M_1+N_2M_2}{N_1+N_2}}
 #'\deqn{SD_{pooled} = \sqrt{\frac{(N_1-1)SD^{2}_{1}+ (N_2-1)SD^{2}_{2}+\frac{N_1N_2}{N_1+N_2}(M^{2}_1+M^{2}_2-2M_1M_2)} {N_1+N_2-1}}}
 #'
-#' \strong{What should i do when an study has more than two intervention groups?}
+#' \strong{What should I do when a study has more than two intervention groups?}
 #'
-#' If a study has more than one two intervention groups you want to synthesize
+#' If a study has more than two intervention groups you want to synthesize
 #' (e.g. four arms, with three distinct intervention arms), you can pool the effect
 #' size data for the first two interventions, and then synthesize the pooled data you
 #' calculated with the data from the third group.
@@ -48,7 +48,7 @@
 #'
 #' @author Mathias Harrer & David Daniel Ebert
 #'
-#' @return Returns a data.frame containing the following columns:
+#' @return Returns a \code{data.frame} containing the following columns:
 #' \itemize{
 #' \item \code{Mpooled}: The pooled mean of both groups
 #' \item \code{SDpooled}: The pooled standard deviation of both groups

@@ -38,12 +38,20 @@
 <script src="../pkgdown.js"></script>
 
 
+<!-- docsearch -->
+<script src="../docsearch.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous" />
+<link href="../docsearch.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
 
+
+  <link href="../extra.css" rel="stylesheet">
+  
 <meta property="og:title" content="Create a RevMan-style risk of bias summary chart — rob.summary" />
 
 <meta property="og:description" content="This function generates summary plots for study quality assessments using the
 Cochrance Risk of Bias Tool.
-Summary plots follow the style of RevMan RoB summary charts." />
+Summary plots follow the style of RevMan Risk of Bias (RoB) summary charts." />
 
 <meta property="og:image" content="http://dmetar.protectlab.org/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -95,6 +103,12 @@ Summary plots follow the style of RevMan RoB summary charts." />
 <li>
   <a href="https://protectlab.org/en">Protect Lab</a>
 </li>
+<li>
+  <a href="https://twitter.com/MathiasHarrer">
+    <span class="fa fa-twitter"></span>
+     
+  </a>
+</li>
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
@@ -105,6 +119,12 @@ Summary plots follow the style of RevMan RoB summary charts." />
   </a>
 </li>
       </ul>
+      
+      <form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
+        <div class="form-group">
+          <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
+        </div>
+      </form>
       
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
@@ -126,7 +146,7 @@ Summary plots follow the style of RevMan RoB summary charts." />
     
     <p>This function generates summary plots for study quality assessments using the
 <a href='https://bit.ly/2KGQtfG'>Cochrance Risk of Bias Tool</a>.
-Summary plots follow the style of <a href='https://bit.ly/30eJK29'>RevMan</a> RoB summary charts.</p>
+Summary plots follow the style of <a href='https://bit.ly/30eJK29'>RevMan</a> Risk of Bias (RoB) summary charts.</p>
     
     </div>
 
@@ -139,7 +159,7 @@ Summary plots follow the style of <a href='https://bit.ly/30eJK29'>RevMan</a> Ro
     <tr>
       <th>data</th>
       <td><p>A <code>data.frame</code> containing a column for each risk of bias criterion, where
-rows represent each individual studies. The risk of bias assessment for each criterion for each
+rows represent each individual studies. The risk of bias assessment for each criterion in each
 study must be coded as a character string. Up to four codes can be used, referring to low risk of bias,
 unclear risk of bias, high risk of bias, or missing information. The string used to specify the categories
 must be specified in <code>name.high</code>, <code>name.unclear</code>, <code>name.low</code> and/or <code>name.missing</code>,
@@ -254,6 +274,23 @@ symbols (e.g. <code>"Allocation_Concealment"</code> to return "Allocation Concea
    </div>
 
   
+<script src="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.js" integrity="sha256-GKvGqXDznoRYHCwKXGnuchvKSwmx9SRMrZOTh2g4Sb0=" crossorigin="anonymous"></script>
+<script>
+  docsearch({
+    
+    
+    apiKey: '358a758fa720ccb381dab79f60a2b3a4',
+    indexName: 'dmetar',
+    inputSelector: 'input#search-input.form-control',
+    transformData: function(hits) {
+      return hits.map(function (hit) {
+        hit.url = updateHitURL(hit);
+        return hit;
+      });
+    }
+  });
+</script>
+
 
 
   </body>

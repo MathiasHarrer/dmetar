@@ -1,14 +1,11 @@
 url: http://dmetar.protectlab.org
 
-
 template:
   params:
     bootswatch: flatly
-
-home:
-  links:
-  - text: Online guide
-    href: https://bookdown.org/MathiasHarrer/Doing_Meta_Analysis_in_R/
+    docsearch:
+      api_key: 358a758fa720ccb381dab79f60a2b3a4
+      index_name: dmetar
 
 navbar:
   type: default
@@ -21,6 +18,8 @@ navbar:
     href: https://bookdown.org/MathiasHarrer/Doing_Meta_Analysis_in_R/
   - text: Protect Lab
     href: https://protectlab.org/en
+  - icon: fa-twitter
+    href: https://twitter.com/MathiasHarrer
 
 reference:
   - title: Effect size calculation
@@ -51,7 +50,7 @@ reference:
     contents:
     - mlm.variance.distribution
 
-  - title: Network meta-analysis
+  - title: Network Meta-Analysis
     contents:
     - direct.evidence.plot
     - sucra
@@ -71,6 +70,7 @@ reference:
   - title: Package
     contents:
     - dmetar
+
 
 
 
