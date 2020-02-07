@@ -375,7 +375,7 @@ multimodel.inference = function(TE, seTE, data, predictors, method = "REML", tes
 
         # Multimodel Inference
         if (eval.criterion == "AICc") {
-            res = suppressMessages(suppressWarnings(dredge(full, trace = 2, rank = "AICc")))
+            res = suppressMessages(suppressWarnings(MuMIn::dredge(full, trace = 2, rank = "AICc")))
         }
 
         if (eval.criterion == "AIC") {
