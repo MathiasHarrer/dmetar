@@ -60,7 +60,7 @@ mlm.variance.distribution = function(x){
 
 
   # Get variance diagonal and calculate total variance
-  n = m$k.all
+  n = m$k.eff
   vector.inv.var = 1/(diag(m$V))
   sum.inv.var = sum(vector.inv.var)
   sum.sq.inv.var = (sum.inv.var)^2
