@@ -224,6 +224,7 @@ can be passed to the <code>forest</code> function for additional styling.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Example 1: Hedges' g as effect size, precalculated effect sizes</span>
+<span class='fu'><a href='https://rdrr.io/r/base/message.html'>suppressPackageStartupMessages</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>dmetar</span>))
 <span class='fu'><a href='https://rdrr.io/r/base/message.html'>suppressPackageStartupMessages</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>meta</span>))
 <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='st'>"ThirdWave"</span>)
 <span class='no'>ThirdWave</span> <span class='kw'>=</span> <span class='no'>ThirdWave</span>[<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>,<span class='fl'>2</span>,<span class='fl'>3</span>,<span class='fl'>5</span>,<span class='fl'>9</span>,<span class='fl'>18</span>),]
@@ -253,10 +254,6 @@ can be passed to the <code>forest</code> function for additional styling.</p>
 #&gt; 
 #&gt; - Total number of studies included in subgroup analysis:  6
 #&gt; - Tau estimator used for within-group pooling:  PM</div><div class='input'>
-<span class='co'># Generate Forest Plot</span>
-<span class='co'># Additional arguments of the meta::forest.meta can be supplied</span>
-<span class='fu'><a href='https://rdrr.io/pkg/meta/man/forest.html'>forest</a></span>(<span class='no'>sgame1</span>, <span class='kw'>col.diamond</span> <span class='kw'>=</span> <span class='st'>"darkgreen"</span>)</div><div class='output co'>#&gt; <span class='error'>Error in forest.default(sgame1, col.diamond = "darkgreen"): Must specify either 'vi', 'sei', or ('ci.lb', 'ci.ub') pairs.</span></div><div class='input'>
-
 <span class='co'># Example 2: Hedges' g as effect size, raw effect data</span>
 <span class='fu'><a href='https://rdrr.io/r/base/message.html'>suppressPackageStartupMessages</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>meta</span>))
 <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>amlodipine</span>)
@@ -285,8 +282,7 @@ can be passed to the <code>forest</code> function for additional styling.</p>
 #&gt; Between groups 0.7073791  1 0.4003153
 #&gt; 
 #&gt; - Total number of studies included in subgroup analysis:  8
-#&gt; - Tau estimator used for within-group pooling:  DL</div><div class='input'><span class='fu'><a href='https://rdrr.io/pkg/meta/man/forest.html'>forest</a></span>(<span class='no'>sgame2</span>)</div><div class='output co'>#&gt; <span class='error'>Error in forest.default(sgame2): Must specify either 'vi', 'sei', or ('ci.lb', 'ci.ub') pairs.</span></div><div class='input'>
-
+#&gt; - Tau estimator used for within-group pooling:  DL</div><div class='input'>
 <span class='co'># Example 3: Risk ratio as effect size, binary outcome data, exlcude one level</span>
 <span class='fu'><a href='https://rdrr.io/r/base/message.html'>suppressPackageStartupMessages</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>meta</span>))
 <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>Olkin95</span>)
@@ -348,7 +344,15 @@ can be passed to the <code>forest</code> function for additional styling.</p>
 #&gt; Between groups 0.1317782  1 0.7165954
 #&gt; 
 #&gt; - Total number of studies included in subgroup analysis:  7
-#&gt; - Tau estimator used for within-group pooling:  DL</div><div class='input'><span class='fu'><a href='https://rdrr.io/pkg/meta/man/forest.html'>forest</a></span>(<span class='no'>sgame4</span>)</div><div class='output co'>#&gt; <span class='error'>Error in forest.default(sgame4): Must specify either 'vi', 'sei', or ('ci.lb', 'ci.ub') pairs.</span></div></pre>
+#&gt; - Tau estimator used for within-group pooling:  DL</div><div class='input'>
+</div><span class='co'># NOT RUN {</span>
+<span class='co'># Generate Forest Plot</span>
+<span class='co'># Additional arguments of the meta::forest.meta can be supplied</span>
+<span class='fu'><a href='https://rdrr.io/pkg/meta/man/forest.html'>forest</a></span>(<span class='no'>sgame1</span>, <span class='kw'>col.diamond</span> <span class='kw'>=</span> <span class='st'>"darkgreen"</span>)
+<span class='fu'><a href='https://rdrr.io/pkg/meta/man/forest.html'>forest</a></span>(<span class='no'>sgame2</span>)
+<span class='fu'><a href='https://rdrr.io/pkg/meta/man/forest.html'>forest</a></span>(<span class='no'>sgame3</span>)
+<span class='fu'><a href='https://rdrr.io/pkg/meta/man/forest.html'>forest</a></span>(<span class='no'>sgame4</span>)
+<span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

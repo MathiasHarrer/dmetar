@@ -65,6 +65,7 @@ can be passed to the \code{forest} function for additional styling.
 }
 \examples{
 # Example 1: Hedges' g as effect size, precalculated effect sizes
+suppressPackageStartupMessages(library(dmetar))
 suppressPackageStartupMessages(library(meta))
 data("ThirdWave")
 ThirdWave = ThirdWave[c(1,2,3,5,9,18),]
@@ -80,11 +81,6 @@ m1 <- metagen(TE = TE,
 sgame1 = subgroup.analysis.mixed.effects(x = m1, subgroups = ThirdWave$TypeControlGroup)
 summary(sgame1)
 
-# Generate Forest Plot
-# Additional arguments of the meta::forest.meta can be supplied
-forest(sgame1, col.diamond = "darkgreen")
-
-
 # Example 2: Hedges' g as effect size, raw effect data
 suppressPackageStartupMessages(library(meta))
 data(amlodipine)
@@ -99,8 +95,6 @@ m2 <- metacont(n.amlo, mean.amlo, sqrt(var.amlo),
 
 sgame2 = subgroup.analysis.mixed.effects(x = m2, subgroups = amlodipine$subgroup)
 summary(sgame2)
-forest(sgame2)
-
 
 # Example 3: Risk ratio as effect size, binary outcome data, exlcude one level
 suppressPackageStartupMessages(library(meta))
@@ -132,7 +126,15 @@ m4 <- metainc(d.smokers, py.smokers,
 
 sgame4 = subgroup.analysis.mixed.effects(x = m4, subgroups = smoking$subgroup)
 summary(sgame4)
+
+\dontrun{
+# Generate Forest Plot
+# Additional arguments of the meta::forest.meta can be supplied
+forest(sgame1, col.diamond = "darkgreen")
+forest(sgame2)
+forest(sgame3)
 forest(sgame4)
+}
 }
 \references{
 Harrer, M., Cuijpers, P., Furukawa, T.A, & Ebert, D. D. (2019).
