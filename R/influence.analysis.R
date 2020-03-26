@@ -93,6 +93,8 @@
 #' @seealso \code{\link[metafor]{influence.rma.uni}}, \code{\link[meta]{metainf}}, \code{\link[meta]{baujat}}
 #'
 #' @examples
+#'
+#' \dontrun{
 #' # Load 'ThirdWave' data
 #' data(ThirdWave)
 #'
@@ -119,7 +121,7 @@
 #' plot(inf.an, "ES")
 #'
 #' # For forest plot sorted by I-squared
-#' plot(inf.an, "I2")
+#' plot(inf.an, "I2")}
 
 
 ### Influence Analysis function for fixed-effect-model meta-analyses

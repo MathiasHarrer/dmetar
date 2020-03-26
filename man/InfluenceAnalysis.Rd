@@ -86,6 +86,8 @@ by \eqn{I^2} to determine the study for which exclusion results in the greatest 
 }
 }
 \examples{
+
+\dontrun{
 # Load 'ThirdWave' data
 data(ThirdWave)
 
@@ -112,7 +114,7 @@ plot(inf.an, "influence")
 plot(inf.an, "ES")
 
 # For forest plot sorted by I-squared
-plot(inf.an, "I2")
+plot(inf.an, "I2")}
 }
 \references{
 Harrer, M., Cuijpers, P., Furukawa, T.A, & Ebert, D. D. (2019).

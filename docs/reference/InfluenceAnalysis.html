@@ -256,7 +256,9 @@ by \(I^2\) to determine the study for which exclusion results in the greatest re
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># Load 'ThirdWave' data</span>
+    <pre class="examples"><div class='input'>
+</div><span class='co'># NOT RUN {</span>
+<span class='co'># Load 'ThirdWave' data</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>ThirdWave</span>)
 
 <span class='co'># Create 'meta' meta-analysis object</span>
@@ -264,104 +266,26 @@ by \(I^2\) to determine the study for which exclusion results in the greatest re
 <span class='no'>meta</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/meta/man/metagen.html'>metagen</a></span>(<span class='no'>TE</span>, <span class='no'>seTE</span>, <span class='kw'>studlab</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span>(<span class='no'>ThirdWave</span>$<span class='no'>Author</span>), <span class='kw'>data</span><span class='kw'>=</span><span class='no'>ThirdWave</span>)
 
 <span class='co'># Run influence analysis; specify to return separate plots when plotted</span>
-<span class='no'>inf.an</span> <span class='kw'>=</span> <span class='fu'>InfluenceAnalysis</span>(<span class='no'>meta</span>, <span class='kw'>return.separate.plots</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; [===========================================================================] DONE </div><div class='input'>
+<span class='no'>inf.an</span> <span class='kw'>=</span> <span class='fu'>InfluenceAnalysis</span>(<span class='no'>meta</span>, <span class='kw'>return.separate.plots</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+
 <span class='co'># Show results in console</span>
-<span class='no'>inf.an</span></div><div class='output co'>#&gt; Leave-One-Out Analysis (Sorted by I2) 
-#&gt;  ----------------------------------- 
-#&gt;                                 Effect  LLCI  ULCI    I2
-#&gt; Omitting DanitzOrsillo           0.453 0.356 0.551 0.481
-#&gt; Omitting Shapiro et al.          0.456 0.358 0.553 0.546
-#&gt; Omitting de Vibe et al.          0.544 0.437 0.650 0.576
-#&gt; Omitting Kang et al.             0.463 0.366 0.561 0.598
-#&gt; Omitting Kuhlmann et al.         0.506 0.406 0.606 0.614
-#&gt; Omitting Hintz et al.            0.499 0.398 0.600 0.636
-#&gt; Omitting Gallego et al.          0.468 0.369 0.567 0.638
-#&gt; Omitting Call et al.             0.472 0.374 0.570 0.642
-#&gt; Omitting Frogeli et al.          0.470 0.371 0.570 0.644
-#&gt; Omitting Cavanagh et al.         0.489 0.389 0.589 0.645
-#&gt; Omitting Song &amp; Lindquist        0.474 0.375 0.573 0.646
-#&gt; Omitting Frazier et al.          0.488 0.386 0.591 0.647
-#&gt; Omitting Lever Taylor et al.     0.485 0.386 0.584 0.647
-#&gt; Omitting Warnecke et al.         0.476 0.377 0.574 0.647
-#&gt; Omitting Hazlett-Stevens &amp; Oren  0.478 0.378 0.577 0.648
-#&gt; Omitting Phang et al.            0.478 0.379 0.577 0.648
-#&gt; Omitting Rasanen et al.          0.483 0.384 0.581 0.648
-#&gt; Omitting Ratanasiripong          0.480 0.382 0.577 0.648
-#&gt; 
-#&gt; 
-#&gt; Influence Diagnostics 
-#&gt;  ------------------- 
-#&gt;                                 rstudent dffits cook.d cov.r QE.del   hat
-#&gt; Omitting Call et al.               0.893  0.172  0.029 1.037 44.706 0.036
-#&gt; Omitting Cavanagh et al.          -0.661 -0.171  0.029 1.067 45.066 0.063
-#&gt; Omitting DanitzOrsillo             3.832  0.552  0.305 1.021 30.819 0.020
-#&gt; Omitting de Vibe et al.           -2.786 -1.283  1.645 1.212 37.742 0.175
-#&gt; Omitting Frazier et al.           -0.431 -0.156  0.024 1.131 45.317 0.116
-#&gt; Omitting Frogeli et al.            0.788  0.205  0.042 1.067 44.882 0.063
-#&gt; Omitting Gallego et al.            1.115  0.251  0.063 1.051 44.260 0.048
-#&gt; Omitting Hazlett-Stevens &amp; Oren    0.235  0.057  0.003 1.058 45.447 0.055
-#&gt; Omitting Hintz et al.             -1.223 -0.375  0.141 1.094 44.006 0.086
-#&gt; Omitting Kang et al.               2.382  0.352  0.124 1.022 39.829 0.021
-#&gt; Omitting Kuhlmann et al.          -2.001 -0.523  0.274 1.068 41.500 0.064
-#&gt; Omitting Lever Taylor et al.      -0.409 -0.089  0.008 1.048 45.336 0.046
-#&gt; Omitting Phang et al.              0.252  0.052  0.003 1.042 45.439 0.041
-#&gt; Omitting Rasanen et al.           -0.215 -0.042  0.002 1.038 45.456 0.036
-#&gt; Omitting Ratanasiripong            0.100  0.014  0.000 1.020 45.493 0.020
-#&gt; Omitting Shapiro et al.            3.209  0.508  0.258 1.025 35.207 0.024
-#&gt; Omitting Song &amp; Lindquist          0.597  0.133  0.018 1.050 45.146 0.047
-#&gt; Omitting Warnecke et al.           0.490  0.099  0.010 1.041 45.263 0.039
-#&gt;                                 weight infl
-#&gt; Omitting Call et al.             3.567     
-#&gt; Omitting Cavanagh et al.         6.293     
-#&gt; Omitting DanitzOrsillo           2.032     
-#&gt; Omitting de Vibe et al.         17.490    *
-#&gt; Omitting Frazier et al.         11.571     
-#&gt; Omitting Frogeli et al.          6.317     
-#&gt; Omitting Gallego et al.          4.808     
-#&gt; Omitting Hazlett-Stevens &amp; Oren  5.478     
-#&gt; Omitting Hintz et al.            8.598     
-#&gt; Omitting Kang et al.             2.134     
-#&gt; Omitting Kuhlmann et al.         6.399     
-#&gt; Omitting Lever Taylor et al.     4.557     
-#&gt; Omitting Phang et al.            4.065     
-#&gt; Omitting Rasanen et al.          3.647     
-#&gt; Omitting Ratanasiripong          1.967     
-#&gt; Omitting Shapiro et al.          2.441     
-#&gt; Omitting Song &amp; Lindquist        4.722     
-#&gt; Omitting Warnecke et al.         3.914     
-#&gt; 
-#&gt; 
-#&gt; Baujat Diagnostics (sorted by Heterogeneity Contribution) 
-#&gt;  ------------------------------------------------------- 
-#&gt;                                 HetContrib InfluenceEffectSize
-#&gt; Omitting DanitzOrsillo              14.385               0.298
-#&gt; Omitting Shapiro et al.             10.044               0.251
-#&gt; Omitting de Vibe et al.              6.403               1.357
-#&gt; Omitting Kang et al.                 5.552               0.121
-#&gt; Omitting Kuhlmann et al.             3.746               0.256
-#&gt; Omitting Hintz et al.                1.368               0.129
-#&gt; Omitting Gallego et al.              1.183               0.060
-#&gt; Omitting Call et al.                 0.768               0.028
-#&gt; Omitting Frogeli et al.              0.582               0.039
-#&gt; Omitting Cavanagh et al.             0.409               0.027
-#&gt; Omitting Song &amp; Lindquist            0.339               0.017
-#&gt; Omitting Warnecke et al.             0.230               0.009
-#&gt; Omitting Frazier et al.              0.164               0.021
-#&gt; Omitting Lever Taylor et al.         0.159               0.008
-#&gt; Omitting Phang et al.                0.061               0.003
-#&gt; Omitting Hazlett-Stevens &amp; Oren      0.052               0.003
-#&gt; Omitting Rasanen et al.              0.044               0.002
-#&gt; Omitting Ratanasiripong              0.010               0.000</div><div class='input'>
+<span class='no'>inf.an</span>
+
 <span class='co'># Generate all plots</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>inf.an</span>)</div><div class='img'><img src='InfluenceAnalysis-1.png' alt='' width='700' height='433' /></div><div class='img'><img src='InfluenceAnalysis-2.png' alt='' width='700' height='433' /></div><div class='img'><img src='InfluenceAnalysis-3.png' alt='' width='700' height='433' /></div><div class='img'><img src='InfluenceAnalysis-4.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>inf.an</span>)
+
 <span class='co'># For baujat plot</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>inf.an</span>, <span class='st'>"baujat"</span>)</div><div class='img'><img src='InfluenceAnalysis-5.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>inf.an</span>, <span class='st'>"baujat"</span>)
+
 <span class='co'># For influence diagnostics plot</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>inf.an</span>, <span class='st'>"influence"</span>)</div><div class='img'><img src='InfluenceAnalysis-6.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>inf.an</span>, <span class='st'>"influence"</span>)
+
 <span class='co'># For forest plot sorted by effect size</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>inf.an</span>, <span class='st'>"ES"</span>)</div><div class='img'><img src='InfluenceAnalysis-7.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>inf.an</span>, <span class='st'>"ES"</span>)
+
 <span class='co'># For forest plot sorted by I-squared</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>inf.an</span>, <span class='st'>"I2"</span>)</div><div class='img'><img src='InfluenceAnalysis-8.png' alt='' width='700' height='433' /></div></pre>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>inf.an</span>, <span class='st'>"I2"</span>)
+<span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

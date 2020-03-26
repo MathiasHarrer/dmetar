@@ -127,8 +127,10 @@
 #' @examples
 #' # Example: load gosh data (created with metafor's 'gosh' function),
 #' # then use function
+#' \dontrun{
 #' data("m.gosh")
 #' gosh.diagnostics(m.gosh)
+#' }
 
 
 

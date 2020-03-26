@@ -114,8 +114,10 @@ display of study heterogeneity) plots.
 \examples{
 # Example: load gosh data (created with metafor's 'gosh' function),
 # then use function
+\dontrun{
 data("m.gosh")
 gosh.diagnostics(m.gosh)
+}
 }
 \references{
 Leisch, F. (2004). \emph{Flexmix: A general framework for finite

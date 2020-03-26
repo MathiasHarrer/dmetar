@@ -121,183 +121,6 @@
 multimodel.inference = function(TE, seTE, data, predictors, method = "REML", test = "knha", eval.criterion = "AICc",
     interaction = FALSE, seed = 123) {
 
-    # Define MuMIn link
-    MetaforMuMIn = function() {
-
-        coefTable.rma = function(model, ...) {
-
-            makeCoefTable = function (x, se, df = NA_real_, coefNames = names(x))
-            {
-              # Unexported function from the MuMIn package, see MuMIn:::.makeCoefTable
-              if (n <- length(x)) {
-                xdefined <- !is.na(x)
-                ndef <- sum(xdefined)
-                if (ndef < n) {
-                  if (length(se) == ndef) {
-                    y <- rep(NA_real_, n)
-                    y[xdefined] <- se
-                    se <- y
-                  }
-                  if (length(df) == ndef) {
-                    y <- rep(NA_real_, n)
-                    y[xdefined] <- df
-                    df <- y
-                  }
-                }
-              }
-              if (n && n != length(se))
-                stop("length(x) is not equal to length(se)")
-              ret <- matrix(NA_real_, ncol = 3L, nrow = length(x), dimnames = list(coefNames,
-                                                                                   c("Estimate", "Std. Error", "df")))
-              if (n)
-                ret[, ] <- cbind(x, se, rep(if (is.null(df)) NA_real_ else df,
-                                            length.out = n), deparse.level = 0L)
-              class(ret) <- c("coefTable", "matrix")
-              ret
-            }
-
-            makeCoefTable(model$b, model$se, coefNames = rownames(model$b))
-        }
-
-        expr.split = function (x, split = ":", paren.open = c("(", "[", "{"), paren.close = c(")",
-                                                                                              "]", "}"), quotes = c("\"", "'", "`"), esc = "\\", prepare = NULL)
-        {
-          x0 <- x
-          if (is.function(prepare))
-            x <- prepare(x)
-          m <- length(x)
-          n <- nchar(x)
-          res <- vector("list", m)
-          for (k in 1L:m) {
-            pos <- integer(0L)
-            inquote <- ch <- ""
-            inparen <- integer(3L)
-            for (i in seq.int(n[k])) {
-              chprv <- ch
-              ch <- substr(x[k], i, i)
-              if (inquote != "") {
-                if (chprv == esc && ch == esc)
-                  ch <- " "
-                else if (chprv != esc && ch == inquote)
-                  inquote <- ""
-              }
-              else {
-                inparen[j] <- inparen[j <- (inparen != 0L) &
-                                        (ch == paren.close)] - 1L
-                if (ch %in% quotes)
-                  inquote <- ch
-                else if (any(j <- (ch == paren.open)))
-                  inparen[j] <- inparen[j] + 1L
-                else if (all(inparen == 0L) && ch == split)
-                  pos <- c(pos, i)
-              }
-            }
-            res[[k]] <- substring(x0[k], c(1L, pos + 1L), c(pos -
-                                                              1L, n[k]))
-          }
-          res
-        }
-
-
-        fixCoefNames = function (x, peel = TRUE)
-        {
-          if (!length(x))
-            return(x)
-          ox <- x
-          ia <- grep(":", x, fixed = TRUE)
-          if (!length(ia))
-            return(structure(x, order = rep.int(1L, length(x))))
-          x <- ret <- x[ia]
-          if (peel) {
-            if (all(substr(x, 1L, pos <- regexpr("_", x, fixed = TRUE)) %in%
-                    c("count_", "zero_"))) {
-              ret <- substr(ret, pos + 1L, 256L)
-              k <- TRUE
-              suffix <- ""
-            }
-            else {
-              k <- grepl("^\\w+\\(.+\\)$", x, perl = TRUE)
-              fname <- substring(x[k], 1L, attr(regexpr("^\\w+(?=\\()",
-                                                        x[k], perl = TRUE), "match.length"))
-              k[k] <- !vapply(fname, exists, FALSE, mode = "function",
-                              envir = .GlobalEnv)
-              if (any(k)) {
-                pos <- vapply(x[k], function(z) {
-                  parens <- lapply(lapply(c("(", ")"), function(s) gregexpr(s,
-                                                                            z, fixed = TRUE)[[1L]]), function(y) y[y >
-                                                                                                                     0L])
-                  parseq <- unlist(parens, use.names = FALSE)
-                  p <- cumsum(rep(c(1L, -1L), sapply(parens,
-                                                     length))[order(parseq)])
-                  if (any(p[-length(p)] == 0L))
-                    -1L
-                  else parseq[1L]
-                }, 1L, USE.NAMES = FALSE)
-                k[k] <- pos != -1L
-                pos <- pos[pos != -1]
-                if (any(k))
-                  ret[k] <- substring(x[k], pos + 1L, nchar(x[k]) -
-                                        1L)
-              }
-              suffix <- ")"
-            }
-          }
-          else k <- FALSE
-          spl <- expr.split(ret, ":", prepare = function(x) gsub("((?<=:):|:(?=:))",
-                                                                 "_", x, perl = TRUE))
-          ret <- vapply(lapply(spl, base::sort), paste0, "", collapse = ":")
-          if (peel && any(k))
-            ret[k] <- paste0(substring(x[k], 1L, pos), ret[k], suffix)
-          ox[ia] <- ret
-          ord <- rep.int(1, length(ox))
-          ord[ia] <- sapply(spl, length)
-          structure(ox, order = ord)
-        }
-
-        .getCoefNames = function (formula, data, contrasts, envir = parent.frame())
-        {
-          colnames(eval(call("model.matrix.default", object = formula,
-                             data = data, contrasts.arg = contrasts), envir = envir))
-        }
-
-        makeArgs.default = function (obj, termNames, opt, ...)
-        {
-          #Unexported function from the MuMIn package, see MuMIn:::makeArgs.default
-          reportProblems <- character(0L)
-          termNames[termNames %in% opt$interceptLabel] <- "1"
-          f <- reformulate(c(if (!opt$intercept) "0" else if (!length(termNames)) "1",
-                             termNames), response = opt$response)
-          environment(f) <- opt$gmFormulaEnv
-          ret <- list(formula = f)
-          if (!is.null(opt$gmCall$start)) {
-            coefNames <- fixCoefNames(.getCoefNames(f, opt$gmDataHead,
-                                                    opt$gmCall$contrasts, envir = opt$gmEnv))
-            idx <- match(coefNames, opt$gmCoefNames)
-            if (anyNA(idx))
-              reportProblems <- append(reportProblems, "cannot subset 'start' argument. Coefficients in the model do not exist in 'global.model'")
-            else ret$start <- substitute(start[idx], list(start = opt$gmCall$start,
-                                                          idx = idx))
-          }
-          attr(ret, "problems") <- reportProblems
-          ret
-        }
-
-        makeArgs.rma = function(obj, termNames, comb, opt, ...) {
-            ret <- makeArgs.default(obj, termNames, comb, opt)
-            names(ret)[1L] <- "mods"
-            ret
-        }
-
-
-        assign("coefTable.rma", coefTable.rma, envir = .GlobalEnv)
-        assign("makeArgs.rma", makeArgs.rma, envir = .GlobalEnv)
-
-        return(invisible())
-
-    }
-
-    MetaforMuMIn()
-
 
         # Set supplied seed
         seed = seed
@@ -375,15 +198,15 @@ multimodel.inference = function(TE, seTE, data, predictors, method = "REML", tes
 
         # Multimodel Inference
         if (eval.criterion == "AICc") {
-            res = suppressMessages(suppressWarnings(MuMIn::dredge(full, trace = 2, rank = "AICc")))
+            res = suppressMessages(suppressWarnings(dredge2(full, trace = 2, rank = "AICc")))
         }
 
         if (eval.criterion == "AIC") {
-            res = suppressMessages(suppressWarnings(MuMIn::dredge(full, trace = 2, rank = "AIC")))
+            res = suppressMessages(suppressWarnings(dredge2(full, trace = 2, rank = "AIC")))
         }
 
         if (eval.criterion == "BIC") {
-            res = suppressMessages(suppressWarnings(MuMIn::dredge(full, trace = 2, rank = "BIC")))
+            res = suppressMessages(suppressWarnings(dredge2(full, trace = 2, rank = "BIC")))
         }
 
         # Save results for all models: all.models, top5.models

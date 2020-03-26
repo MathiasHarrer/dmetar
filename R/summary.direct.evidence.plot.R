@@ -35,7 +35,6 @@ summary.direct.evidence.plot = function(object, ...){
   colnames(x$data)[1:2] = c("Direct", "Indirect")
   print(x$data[order(x$data$Indirect),])
 
-
   grid::grid.newpage()
   grid.draw(x$plot)
 

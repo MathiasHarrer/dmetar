@@ -298,25 +298,12 @@ Why and How You Should (Still) Use DBSCAN. <em>ACM Transactions on Database Syst
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># Example: load gosh data (created with metafor's 'gosh' function),</span>
-<span class='co'># then use function</span>
+    <pre class="examples"><div class='input'># Example: load gosh data (created with metafor's 'gosh' function),
+# then use function
+</div><span class='co'># NOT RUN {</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='st'>"m.gosh"</span>)
-<span class='fu'>gosh.diagnostics</span>(<span class='no'>m.gosh</span>)</div><div class='output co'>#&gt;   
-#&gt;  Perform Clustering... 
-#&gt; [==============================================================================================] DONE  </div><div class='img'><img src='gosh.diagnostics-1.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; 
-#&gt;  Number of k-means clusters used: 3 </div><div class='img'><img src='gosh.diagnostics-2.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; 
-#&gt;  Number of DBSCAN clusters detected: 2 </div><div class='img'><img src='gosh.diagnostics-3.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; 
-#&gt;  Number of GMM clusters detected: 2 
-#&gt; 
-#&gt;  Identification of potential outliers 
-#&gt;  --------------------------------- </div><div class='img'><img src='gosh.diagnostics-4.png' alt='' width='700' height='433' /></div><div class='img'><img src='gosh.diagnostics-5.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt;   
-#&gt;  Studies identified as potential outliers: 
-#&gt; 
-#&gt;  - K-means: 3 
-#&gt; 
-#&gt;  - DBSCAN: 3 4 
-#&gt; 
-#&gt;  - Gaussian Mixture Model: 3 </div></pre>
+<span class='fu'>gosh.diagnostics</span>(<span class='no'>m.gosh</span>)
+<span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
