@@ -245,8 +245,9 @@ problems of stepwise regression methods, it should be noted that this method sho
 seen as exploratory, and may be used when there is no prior knowledge on how predictors are
 related to effect sizes in the research field under study.</p>
 <p>The <code>multimodel.inference</code> function calls the <code><a href='https://rdrr.io/pkg/metafor/man/rma.uni.html'>rma.uni</a></code> function internally,
-results of which are then fed forward to the <code><a href='https://rdrr.io/pkg/MuMIn/man/dredge.html'>dredge</a></code> function internally for multimodel inference.
-Parts of the computations in this function are based on a vignette by Wolfgang Viechtbauer, which can be found
+results of which are then fed forward to an adapted version of the <code><a href='https://rdrr.io/pkg/MuMIn/man/dredge.html'>dredge</a></code> function
+internally for multimodel inference.
+Parts of the computations in this function are adapted from a vignette by Wolfgang Viechtbauer, which can be found
 <a href='http://www.metafor-project.org/doku.php/tips:model_selection_with_glmulti_and_mumin'>here</a>.</p>
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>

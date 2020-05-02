@@ -49,8 +49,9 @@
 #' related to effect sizes in the research field under study.
 #'
 #' The \code{multimodel.inference} function calls the \code{\link[metafor]{rma.uni}} function internally,
-#' results of which are then fed forward to the \code{\link[MuMIn]{dredge}} function internally for multimodel inference.
-#' Parts of the computations in this function are based on a vignette by Wolfgang Viechtbauer, which can be found
+#' results of which are then fed forward to an adapted version of the \code{\link[MuMIn]{dredge}} function
+#' internally for multimodel inference.
+#' Parts of the computations in this function are adapted from a vignette by Wolfgang Viechtbauer, which can be found
 #' \href{http://www.metafor-project.org/doku.php/tips:model_selection_with_glmulti_and_mumin}{here}.
 #'
 #'

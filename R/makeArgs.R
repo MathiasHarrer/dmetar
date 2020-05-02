@@ -27,13 +27,16 @@ coefTable.rma = function(model, ...) {
 }
 
 #' @importFrom stats nobs formula terms
-# Copies dredge code from MuMIn
-# Adapted from MuMIn::dredge under GPL-2 License
+
 dredge2 = function(global.model, beta = c("none", "sd", "partial.sd"),
                    evaluate = TRUE, rank = "AICc", fixed = NULL, m.lim = NULL,
                    m.min, m.max, subset, trace = FALSE, varying, extra, ct.args = NULL,
                    ...)
 {
+
+  # Uses function code from MuMIn
+  # Uses code adapted from MuMIn (GPLv2 License)
+  # Copyright (C) 2019 Kamil Bartón
 
   # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
   asChar <- utils::getFromNamespace("asChar", "MuMIn")
