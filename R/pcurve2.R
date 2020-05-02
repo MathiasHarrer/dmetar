@@ -326,7 +326,7 @@ pcurve = function(x, effect.estimation = FALSE, N, dmin = 0, dmax = 1){
   khalf=sum(p<.025,na.rm=TRUE)    #half p-curve studies
 
   if (ksig <= 2){
-    stop("Two or less effect sizes were detected, so p-curve analysis cannot be conducted.")
+    stop("Two or less significant (p<0.05) effect sizes were detected, so p-curve analysis cannot be conducted.")
   }
 
 
