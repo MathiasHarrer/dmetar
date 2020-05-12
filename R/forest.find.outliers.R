@@ -20,9 +20,12 @@
 #'
 #'
 #' @importFrom stats as.formula hat influence ks.test optimize pbinom pchisq pf pnorm pt punif qchisq qf qnorm qt reformulate reorder setNames uniroot
+#' @importFrom meta forest.meta
+#' @importFrom metafor forest.rma
 #'
-#' @export
 #' @method forest find.outliers
+#' @export
+#' @export forest.find.outliers
 
 forest.find.outliers = function(x, ...){
 

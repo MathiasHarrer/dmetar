@@ -24,8 +24,10 @@
 #' @importFrom meta forest.meta
 #' @importFrom stats as.formula hat influence ks.test optimize pbinom pchisq pf pnorm pt punif qchisq qf qnorm qt reformulate reorder setNames uniroot
 #'
-#' @export
 #' @method forest subgroup.analysis.mixed.effects
+#' @export
+#' @export forest.subgroup.analysis.mixed.effects
+
 
 
 forest.subgroup.analysis.mixed.effects = function(x, ...){
