@@ -51,7 +51,6 @@
 #' @author Mathias Harrer & David Daniel Ebert
 #'
 #' @import ggplot2
-#' @importFrom forcats fct_reorder
 #'
 #' @export sucra
 #'

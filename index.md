@@ -1,4 +1,12 @@
 
+
+[![DOI](https://zenodo.org/badge/152492192.svg)](https://zenodo.org/badge/latestdoi/152492192)
+[![Maintenance](https://img.shields.io/badge/maintenance-yes-blue.svg)](https://img.shields.io/maintenance/yes/2020)
+[![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
+[![GitHub last commit](https://img.shields.io/github/last-commit/MathiasHarrer/dmetar)](https://img.shields.io/github/last-commit/MathiasHarrer/dmetar)
+[![R CMD Check](https://img.shields.io/badge/R%20CMD%20Check-passing-success)](https://img.shields.io/badge/R%20CMD%20Check-passing-success)
+
+
 <br></br> <br></br>
 <img src="man/figures/logo.png" align="left" alt="" width="100" />
 <br></br> <br></br> <br></br> <br></br>
@@ -7,13 +15,7 @@
 
 **Doing Meta-Analysis in R**
 
-![](docs/front.png)
-
-![Twitter Follow](https://img.shields.io/twitter/follow/MathiasHarrer?label=%40MathiasHarrer&style=social)
-![Twitter Follow](https://img.shields.io/twitter/follow/pimcuijpers?style=social)
-![Twitter Follow](https://img.shields.io/twitter/follow/Toshi_FRKW?style=social)
-![Twitter Follow](https://img.shields.io/twitter/follow/DDEbert?style=social)
-
+![](man/figures/front.png)
 
 <br></br>
 

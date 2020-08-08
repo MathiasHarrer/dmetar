@@ -4,7 +4,8 @@
 \name{MVRegressionData}
 \alias{MVRegressionData}
 \title{Toy Dataset for Multivariate Meta-Regression}
-\format{A data.frame with 6 columns.
+\format{
+A data.frame with 6 columns.
 \describe{
 \item{yi}{Numeric. The calculated standardized mean difference at post-test between the intervention and control group}
 \item{sei}{Numeric. The standard error of the standardized mean difference}
@@ -13,7 +14,8 @@
 \item{quality}{Numeric. The methodological quality of the study, rated from 0-10 (low to high).}
 \item{pubyear}{Numeric. The z-standardized year of publication.}
 \item{continent}{Numeric. The continent the study was conducted in.}
-}}
+}
+}
 \source{
 Simulated data.
 }

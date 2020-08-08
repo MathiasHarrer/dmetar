@@ -37,7 +37,7 @@
 #'
 #' @author Mathias Harrer & David Daniel Ebert
 #'
-#' @import esc
+#' @importFrom stats qnorm
 #'
 #' @return A dataframe containing the following columns:
 #' \itemize{
@@ -62,6 +62,10 @@
 
 
 se.from.p = function(effect.size, p, N, effect.size.type = "difference", calculate.g = FALSE) {
+
+    # Define helper funcs
+    sssbc = function(totaln){return(1 - (3/(4 * totaln - 9)))}
+    hedges_g = function(d, totaln){mapply(function(.x, .y) .x * sssbc(.y), d, totaln)}
 
     # Set params
     ES = effect.size
@@ -96,8 +100,8 @@ se.from.p = function(effect.size, p, N, effect.size.type = "difference", calcula
             z = -0.862 + sqrt(0.743 - 2.404 * log(p))
             SE = ES/z
             SD = SE * sqrt(N)
-            LLCI = ES - 1.96 * SE
-            ULCI = ES + 1.96 * SE
+            LLCI = ES - qnorm(0.975) * SE
+            ULCI = ES + qnorm(0.975) * SE
             data = data.frame(ES, SE, SD, LLCI, ULCI)
             colnames(data) = c("Hedges.g", "StandardError", "StandardDeviation", "LLCI", "ULCI")
 
@@ -106,8 +110,8 @@ se.from.p = function(effect.size, p, N, effect.size.type = "difference", calcula
             z = -0.862 + sqrt(0.743 - 2.404 * log(p))
             SE = ES/z
             SD = SE * sqrt(N)
-            LLCI = ES - 1.96 * SE
-            ULCI = ES + 1.96 * SE
+            LLCI = ES - qnorm(0.975) * SE
+            ULCI = ES + qnorm(0.975) * SE
             data = data.frame(ES, SE, SD, LLCI, ULCI)
             colnames(data) = c("EffectSize", "StandardError", "StandardDeviation", "LLCI", "ULCI")
         }
@@ -126,8 +130,8 @@ se.from.p = function(effect.size, p, N, effect.size.type = "difference", calcula
             ES = log(ES)
             SE = abs(ES/z)
             SD = SE * sqrt(N)
-            LLCI = ES - 1.96 * SE
-            ULCI = ES + 1.96 * SE
+            LLCI = ES - qnorm(0.975) * SE
+            ULCI = ES + qnorm(0.975) * SE
 
             # Exponentiate to get original scale
             expES = exp(ES)

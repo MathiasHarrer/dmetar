@@ -2,7 +2,7 @@
 #'
 #' Print, summary and plot S3 methods for objects of class \code{direct.evidence.plot}, \code{find.outliers},
 #' \code{influence.analysis}, \code{multimodel.inference}, \code{pcurve}, \code{power.analysis},
-#' \code{subgroup.analysis.mixed.effects}, and \code{sucra}.
+#' \code{subgroup.analysis.mixed.effects}, \code{direct.evidence.plot}, \code{gosh.diagnostics} and \code{sucra}.
 #'
 #'
 #'

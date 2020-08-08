@@ -72,8 +72,8 @@ power.analysis.subgroup = function(TE1, TE2, seTE1, seTE2,
 
         if (missing(sd1)) {
 
-            var1 = (((TE1 - 1.96 * seTE1) - TE1)/-1.96)^2
-            var2 = (((TE2 - 1.96 * seTE2) - TE2)/-1.96)^2
+            var1 = (((TE1 - qnorm(0.975) * seTE1) - TE1)/-qnorm(0.975))^2
+            var2 = (((TE2 - qnorm(0.975) * seTE2) - TE2)/-qnorm(0.975))^2
             varg = var1 + var2
 
         } else {
@@ -91,8 +91,8 @@ power.analysis.subgroup = function(TE1, TE2, seTE1, seTE2,
     }
 
     # Define c_a
-    ca_1tail = 1.64
-    ca_2tail = 1.96
+    ca_1tail = qnorm(0.95)
+    ca_2tail = qnorm(0.975)
 
     # Calculate
     onetail = (1 - pnorm(ca_1tail - (gamma/sqrt(varg))))

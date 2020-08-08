@@ -39,7 +39,6 @@
 #' @author Mathias Harrer & David Daniel Ebert
 #'
 #' @import ggplot2
-#' @importFrom tidyr gather
 #'
 #' @export rob.summary
 #'
@@ -50,7 +49,7 @@
 #' # Example 1: No missing information, only produce summary plot
 #' data = data.frame(
 #'        "study" = c("Higgins et al., 2011", "Borenstein et al., 2008", "Holm, 1971",
-#'                    "Zajonc et al., 2005", "Cuijpers, 2014"),
+#'                    "Zajonc et al., 2005", "Viechtbauer, 2014"),
 #'        "Allocation_concealment" = c("Low", "High", "High", "Unclear", "High"),
 #'        "Randomization" = c("Low", "High", "Unclear", "Low", "High"),
 #'        "Sequence_generation" = c("Low", "High", "Unclear", "Unclear", "High"),
@@ -139,9 +138,15 @@ rob.summary = function(data,
         stop("'studies' vector is not of equal length as the data.")
       }
 
+      if (length(unique(studies)) != length(studies)){
+        stop("'studies' cannot contain duplicate study labels.")
+      }
+
       robby = rob
-      robby$study = studies
-      robby = gather(robby, condition, measurement, -study)
+      robby = data.frame(study = studies,
+                 condition = rep(colnames(robby), each = length(studies)),
+                 measurement = unlist(robby))
+      rownames(robby) = NULL
       robby$condition = gsub("_"," ", robby$condition)
       robby$condition = gsub("-"," ", robby$condition)
       robby$condition = gsub("\\."," ", robby$condition)
@@ -149,7 +154,12 @@ rob.summary = function(data,
       robby[robby$measurement=="Unclear", "measurement"] = "?"
       robby[robby$measurement=="High", "measurement"] = "-"
 
-      rob.table = ggplot(data = robby, aes(y = condition, x = study)) +
+      # Order factor
+      robby$study = factor(robby$study,
+                           levels = unique(studies)[rev(order(unique(robby$study)))])
+
+
+      rob.table = ggplot(data = robby, aes(y = study, x = condition)) +
         geom_tile(color="black", fill="white", size = 0.8) +
         geom_point(aes(color=as.factor(measurement)), size=20) +
         geom_text(aes(label = measurement), size = 8) +
@@ -172,7 +182,9 @@ rob.summary = function(data,
     }
 
     # Make long format, clean the factors
-    rob.long = gather(rob, condition, measurement, factor_key = TRUE)
+    rob.long = data.frame(condition = rep(colnames(rob), each = nrow(rob)),
+                          measurement = unlist(rob))
+    rownames(rob.long) = NULL
     rob.long$condition = gsub("_"," ",rob.long$condition)
     rob.long$condition = gsub("-"," ",rob.long$condition)
     rob.long$condition = gsub("\\."," ",rob.long$condition)
@@ -267,8 +279,10 @@ rob.summary = function(data,
       }
 
       robby = rob
-      robby$study = studies
-      robby = gather(robby, condition, measurement, -study)
+      robby = data.frame(study = as.factor(studies),
+                         condition = rep(colnames(robby), each = length(studies)),
+                         measurement = unlist(robby))
+      rownames(robby) = NULL
       robby$condition = gsub("_"," ", robby$condition)
       robby$condition = gsub("-"," ", robby$condition)
       robby$condition = gsub("\\."," ", robby$condition)
@@ -277,7 +291,11 @@ rob.summary = function(data,
       robby[robby$measurement=="High", "measurement"] = "-"
       robby[robby$measurement=="Missing", "measurement"] = " "
 
-      rob.table = ggplot(data = robby, aes(y = condition, x = study)) +
+      # Order factor
+      robby$study = factor(robby$study,
+                           levels = unique(studies)[rev(order(unique(robby$study)))])
+
+      rob.table = ggplot(data = robby, aes(y = study, x = condition)) +
         geom_tile(color="black", fill="white", size = 0.8) +
         geom_point(aes(color=as.factor(measurement)), size=20) +
         geom_text(aes(label = measurement), size = 8) +
@@ -302,7 +320,9 @@ rob.summary = function(data,
 
 
     # Make long format, clean the factors
-    rob.long = gather(rob, condition, measurement, factor_key = TRUE)
+    rob.long = data.frame(condition = rep(colnames(rob), each = nrow(rob)),
+                          measurement = unlist(rob))
+    rownames(rob.long) = NULL
     rob.long$condition = gsub("_"," ",rob.long$condition)
     rob.long$condition = gsub("-"," ",rob.long$condition)
     rob.long$condition = gsub("\\."," ",rob.long$condition)

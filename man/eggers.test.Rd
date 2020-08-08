@@ -11,12 +11,15 @@ eggers.test(x)
 \code{metacont}, \code{metacor}, \code{metainc}, or \code{metaprop} function.}
 }
 \value{
-Returns a data.frame containing the following columns:
+Returns a list containing the following elements:
 \itemize{
-\item \code{Intercept}: The intercept (bias).
-\item \code{ConfidenceInterval}: The 95\% confidence interval of the intercept.
+\item \code{intercept}: The intercept (bias).
+\item \code{llci}: The lower bound of the 95\% intercept confidence interval.
+\item \code{ulci}: The upper bound of the 95\% intercept confidence interval.
 \item \code{t}: The t-statistic for the intercept test.
 \item \code{p}: The \eqn{p}-value for Egger's test.
+\item \code{meta.obj}: The meta-analysis object of class \code{meta} originally provided
+to the function.
 }
 }
 \description{
@@ -38,7 +41,15 @@ m = metagen(TE, seTE, studlab = paste(Author),
     data = ThirdWave, comb.random = FALSE, hakn=TRUE)
 
 # Plug result into 'eggers.test' function
-eggers.test(m)
+res.et <- eggers.test(m)
+
+# Inspect the results
+summary(res.et)
+
+# Generate a funnel plot. This calls the 'funnel' function
+# in 'meta' internally; additional parameters of this function can also
+# be provided (see '?meta::funnel').
+plot(res.et, bg = "lightblue")
 }
 \references{
 Harrer, M., Cuijpers, P., Furukawa, T.A, & Ebert, D. D. (2019).

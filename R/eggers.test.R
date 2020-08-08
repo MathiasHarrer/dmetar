@@ -32,12 +32,15 @@
 #' @importFrom graphics abline axis lines mtext par plot points rect segments text
 #' @importFrom stats as.formula hat influence ks.test optimize pbinom pchisq pf pnorm pt punif qchisq qf qnorm qt reformulate reorder setNames uniroot
 #'
-#' @return Returns a data.frame containing the following columns:
+#' @return Returns a list containing the following elements:
 #' \itemize{
-#' \item \code{Intercept}: The intercept (bias).
-#' \item \code{ConfidenceInterval}: The 95\% confidence interval of the intercept.
+#' \item \code{intercept}: The intercept (bias).
+#' \item \code{llci}: The lower bound of the 95\% intercept confidence interval.
+#' \item \code{ulci}: The upper bound of the 95\% intercept confidence interval.
 #' \item \code{t}: The t-statistic for the intercept test.
 #' \item \code{p}: The \eqn{p}-value for Egger's test.
+#' \item \code{meta.obj}: The meta-analysis object of class \code{meta} originally provided
+#' to the function.
 #' }
 #'
 #' @export eggers.test
@@ -52,7 +55,15 @@
 #'     data = ThirdWave, comb.random = FALSE, hakn=TRUE)
 #'
 #' # Plug result into 'eggers.test' function
-#' eggers.test(m)
+#' res.et <- eggers.test(m)
+#'
+#' # Inspect the results
+#' summary(res.et)
+#'
+#' # Generate a funnel plot. This calls the 'funnel' function
+#' # in 'meta' internally; additional parameters of this function can also
+#' # be provided (see '?meta::funnel').
+#' plot(res.et, bg = "lightblue")
 
 
 eggers.test = function(x) {
@@ -62,7 +73,8 @@ eggers.test = function(x) {
 
     if (x$k < 10) {
 
-        warning(paste("Your meta-analysis contains k =", x$k, "studies. Egger's test may lack the statistical power to detect bias when the number of studies is small (i.e., k<10)."))
+        warning(paste("Your meta-analysis contains k =",
+                      x$k, "studies. Egger's test may lack the statistical power to detect bias when the number of studies is small (i.e., k<10)."))
 
     }
 
@@ -72,28 +84,31 @@ eggers.test = function(x) {
         eggers = meta::metabias(x, k.min = 3, method = "linreg")
 
         # Get Intercept
-        intercept = as.numeric(eggers$estimate[1]) %>% round(digits = 3)
+        intercept = as.numeric(eggers$estimate[1])
 
         # Get SE
         se = as.numeric(eggers$estimate[2])
 
         # Calculate 95CI
-        LLCI = intercept - 1.96 * se %>% round(digits = 1)
-        ULCI = intercept + 1.96 * se %>% round(digits = 1)
-        CI = paste(LLCI, "-", ULCI, sep = "")
+        llci = intercept - qnorm(0.975) * se
+        ulci = intercept + qnorm(0.975) * se
 
         # Get t
-        t = as.numeric(eggers$statistic) %>% round(digits = 3)
+        t = as.numeric(eggers$statistic)
 
         # Get df
         df = as.numeric(eggers$parameters)
 
         # Get p
-        p = as.numeric(eggers$p.value) %>% round(digits = 5)
+        p = as.numeric(eggers$p.value)
 
         # Make df
-        df = data.frame(Intercept = intercept, ConfidenceInterval = CI, t = t, p = p)
-        row.names(df) = "Egger's test"
+        returnlist = list(intercept = intercept,
+                          llci = llci,
+                          ulci = ulci,
+                          t = t,
+                          p = p,
+                          meta.obj = x)
 
     } else {
 
@@ -101,7 +116,9 @@ eggers.test = function(x) {
 
     }
 
-    return(df)
+    class(returnlist) = "eggers.test"
+
+    return(returnlist)
 
 }
 

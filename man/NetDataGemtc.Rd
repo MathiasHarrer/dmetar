@@ -4,7 +4,8 @@
 \name{NetDataGemtc}
 \alias{NetDataGemtc}
 \title{Toy Dataset for Network Meta-Analyses using the gemtc package}
-\format{A data.frame with 4 columns.
+\format{
+A data.frame with 4 columns.
 \describe{
 \item{study}{\code{character}. The name of the included study.}
 \item{treatment}{\code{character}. The name of the treatment under study. Includes psychotherapies for
@@ -17,7 +18,8 @@ this variable is \code{NA} represents the comparison condition for the effect si
 \item{std.err}{\code{numeric}. The standard error of the comparison. The row in each study in which
 this variable is \code{NA} represents the comparison condition for the standard error of
 the effect size displayed above.}
-}}
+}
+}
 \source{
 Simulated data.
 }

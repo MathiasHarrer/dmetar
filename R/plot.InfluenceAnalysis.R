@@ -19,7 +19,6 @@
 #'
 #' @importFrom grid grid.newpage grid.draw
 #' @importFrom gridExtra grid.arrange
-#' @importFrom forcats fct_reorder
 #' @importFrom stats as.formula hat influence ks.test optimize pbinom pchisq pf pnorm pt punif qchisq qf qnorm qt reformulate reorder setNames uniroot
 #'
 #' @export

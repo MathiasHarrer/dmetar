@@ -9,21 +9,20 @@ Authors@R: c(
     person("David Daniel", "Ebert", email = "david.daniel.ebert@gmail.com", role = "aut", comment = c(ORCID = "0000-0001-6820-0146")))
 Description: This package serves as the companion R package for the guide 'Doing Meta-Analysis in R' by 
     Mathias Harrer, Pim Cuijpers, Toshi Furukawa and David Daniel Ebert. The package contains 
-    complementary functions to facilitate the conduction of meta-analyses using the meta, metafor, 
-    netmeta and gemtc packages.
+    complementary functions to facilitate the conduction of meta-analyses using the {meta}, {metafor}, 
+    netmeta and {gemtc} packages.
 URL: https://github.com/MathiasHarrer/dmetar
 Depends: R (>= 3.5)
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 6.1.1
+RoxygenNote: 7.1.1
 Imports: 
-    ggplot2 (>= 3.2.0), esc (>= 0.4.1), forcats (>= 0.3.0), gridExtra (>= 2.3), netmeta (>= 1.0.1), 
-    reshape2 (>= 1.4.3), meta (>= 4.9.4),  metafor (>= 2.1.0), ggrepel (>= 0.8.0), dplyr (>= 0.8.0.1), 
-    grid (>= 3.5.2), tidyr (>= 0.8.3), poibin (>= 1.3), stringr (>= 1.4.0), 
-    MuMIn (>= 1.43.6), magrittr (>= 1.5), scales (>= 1.0.0), igraph (>= 1.2.2), graphics (>= 3.5.2),
-    stats (>= 3.5.2), flexmix (>= 2.3.15), cluster (>= 2.0.7.1), factoextra (>= 1.0.5), fpc (>= 2.1.11.1),
-    cowplot (>= 0.9.4), mvtnorm (>= 1.0.8), robvis (>= 0.3.0), utils (>= 3.5.2)
+    ggplot2 (>= 3.2.0), stringr (>= 1.4.0), gridExtra (>= 2.3), 
+    netmeta (>= 1.0.1), meta (>= 4.9.4), metafor (>= 2.1.0), 
+    ggrepel (>= 0.8.0), grid (>= 3.5.2), poibin (>= 1.3), MuMIn (>= 1.43.6), 
+    scales (>= 1.0.0), graphics (>= 3.5.2), stats (>= 3.5.2), 
+    fpc (>= 2.1.11.1), mclust (>= 5.4.6), utils (>= 3.5.2)
 Suggests: 
-    testthat, knitr, rmarkdown, devtools
+    gemtc, robvis, rmarkdown, knitr, devtools, testthat
 VignetteBuilder: knitr

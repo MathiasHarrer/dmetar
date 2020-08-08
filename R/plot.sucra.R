@@ -26,8 +26,10 @@ plot.sucra = function(x, ...){
   class(x) = "data.frame"
   res = x
   res$Treatment = rownames(res)
+  res$Treatment = factor(res$Treatment,
+                         levels = res$Treatment[rev(order(res$SUCRA))])
 
-  ggplot2::ggplot(res, aes(x=forcats::fct_reorder(Treatment, -SUCRA), y=SUCRA)) +
+  ggplot2::ggplot(res, aes(x=Treatment, y=SUCRA)) +
     geom_bar(stat="identity") +
     theme_minimal() +
     theme(axis.text.x = element_text(angle=45, color="black"),

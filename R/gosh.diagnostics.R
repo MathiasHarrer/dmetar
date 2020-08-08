@@ -5,9 +5,24 @@
 #' contributing to the heterogeneity-effect size patterns found in GOSH (graphic
 #' display of study heterogeneity) plots.
 #'
-#' @usage gosh.diagnostics(data, km = TRUE, db = TRUE, gmm = TRUE, km.centers =
-#'   3, db.eps = 0.15, db.min.pts = 20, gmm.diag = TRUE, gmm.clusters = 2,
-#'   gmm.tolerance = 1e-16, gmm.itermax = 10000, seed = 123)
+#' @usage gosh.diagnostics(data, km = TRUE, db = TRUE, gmm = TRUE,
+#'                  km.params = list(centers = 3,
+#'                                   iter.max = 10, nstart = 1,
+#'                                   algorithm = c("Hartigan-Wong",
+#'                                   "Lloyd", "Forgy","MacQueen"),
+#'                                   trace = FALSE),
+#'                  db.params = list(eps = 0.15, MinPts = 5,
+#'                                   method = c("hybrid", "raw", "dist")),
+#'                  gmm.params = list(G = NULL, modelNames = NULL,
+#'                                    prior = NULL, control = emControl(),
+#'                                    initialization = list(hcPairs = NULL,
+#'                                    subset = NULL,
+#'                                    noise = NULL),
+#'                                    Vinv = NULL,
+#'                                    warn = mclust.options("warn"),
+#'                                    x = NULL, verbose = FALSE),
+#'                  seed = 123,
+#'                  verbose = TRUE)
 #'
 #' @param data An object of class \code{gosh.rma} created through the
 #'   \code{\link[metafor]{gosh}} function.
@@ -17,23 +32,14 @@
 #'   in the GOSH plot matrix? \code{TRUE} by default.
 #' @param gmm Logical. Should a bivariate Gaussian Mixture Model be used to
 #'   identify patterns in the GOSH plot matrix? \code{TRUE} by default.
-#' @param km.centers Number of clusters to assume for the \emph{k}-Means
-#'   algorithm. Default is \code{3}.
-#' @param db.eps The distance radius \eqn{\epsilon} used to determine clusters
-#'   (DBSCAN). Default is \code{0.15}.
-#' @param db.min.pts The minimum number of points \eqn{minPts} required within
-#'   \eqn{\epsilon} used to determine clusters. Default is \code{20}.
-#' @param gmm.diag Logical. Should the covariance matrix of the components be
-#'   restricted to diagonal matrices? Default is \code{TRUE}.
-#' @param gmm.clusters Number of clusters to assume for the Gaussian Mixture
-#'   Model. Default is \code{2}.
-#' @param gmm.tolerance Relative change threshold of log-likelihood used to stop
-#'   the Expectation-Maximization algorithm for the Gaussian Mixture Model.
-#'   Default is \code{1e-16}.
-#' @param gmm.itermax Maximum number of iterations for the
-#'   Expectation-Maximization algorithm used in the Gaussian Mixture Model to
-#'   reach convergence. Default is \code{10000}.
+#' @param km.params A list containing the parameters for the \emph{k}-Means algorithm
+#' as implemented in \code{kmeans}. Run \code{?kmeans} for further details.
+#' @param db.params A list containing the parameters for the DBSCAN algorithm
+#' as implemented in \code{\link[fpc]{dbscan}}. Run \code{?fpc::dbscan} for further details.
+#' @param gmm.params A list containing the parameters for the Gaussian Mixture Models
+#' as implemented in \code{\link[mclust]{mclustBIC}}. Run \code{?mclust::mclustBIC} for further details.
 #' @param seed Seed used for reproducibility. Default seed is \code{123}.
+#' @param verbose Logical. Should a progress bar be printed in the console during clustering?
 #'
 #' @details
 #'
@@ -76,12 +82,11 @@
 #'   a reasonable amount of granularity while not producing too many
 #'   subclusters. The function uses the \code{\link[fpc]{dbscan}} implementation
 #'   to perform the DBSCAN clustering. \item Lastly, as a clustering approach
-#'   using a probabilistic model, Gaussian Mixture Models (GMM; Leisch, 2004)
+#'   using a probabilistic model, Gaussian Mixture Models (GMM; Fraley & Raftery, 2002)
 #'   are integrated in the function using an internal call to the
-#'   \code{\link[flexmix]{flexmix}} implementation. The GMM implemented here use
-#'   the Expectation-Maximization algorithm for clustering, hyperparameters of
-#'   which can be tuned using the \code{gmm.tolerance} and \code{gmm.itermax}
-#'   parameters. }
+#'   \code{\link[mclust]{mclustBIC}} implementation. Clustering hyperparameters can
+#'   be tuned by providing a list of parameters of the \code{mclustBIC}
+#'   function in the \code{mclust} package.}
 #'
 #'   To assess which studies predominantly contribute to a detected cluster,
 #'   the function calculates the cluster imbalance of a specific study using the
@@ -96,8 +101,9 @@
 #'   is redrawn highlighting these specific studies.
 #'
 #' @references
-#' Leisch, F. (2004). \emph{Flexmix: A general framework for finite
-#'   mixture models and latent glass regression in R}.
+#' Fraley C. and Raftery A. E. (2002) Model-based clustering, discriminant analysis
+#' and density estimation, \emph{Journal of the American Statistical Association},
+#' 97/458, pp. 611-631.
 #'
 #' Hartigan, J. A., & Wong, M. A. (1979). Algorithm as 136: A K-Means Clustering Algorithm.
 #' \emph{Journal of the Royal Statistical Society. Series C (Applied Statistics), 28} (1). 100–108.
@@ -111,13 +117,11 @@
 #'
 #' @author Mathias Harrer & David Daniel Ebert
 #'
-#' @import dplyr cluster mvtnorm
-#' @importFrom factoextra fviz_cluster
+#' @import grid gridExtra ggplot2
 #' @importFrom fpc dbscan
-#' @importFrom cowplot plot_grid
-#' @importFrom reshape2 melt
-#' @importFrom stats kmeans cooks.distance lm
-#' @importFrom flexmix flexmix FLXMCmvnorm
+#' @importFrom stats kmeans cooks.distance lm complete.cases
+#' @importFrom mclust mclustBIC Mclust emControl mclust.options
+#' @importFrom grDevices rainbow
 #'
 #'
 #' @export gosh.diagnostics
@@ -129,7 +133,16 @@
 #' # then use function
 #' \dontrun{
 #' data("m.gosh")
-#' gosh.diagnostics(m.gosh)
+#' res <- gosh.diagnostics(m.gosh)
+#'
+#' # Look at results
+#' summary(res)
+#'
+#' # Plot detected clusters
+#' plot(res, which = "cluster")
+#'
+#' # Plot outliers
+#' plot(res, which = "outlier")
 #' }
 
 
@@ -138,17 +151,25 @@ gosh.diagnostics = function(data,
                             km = TRUE,
                             db = TRUE,
                             gmm = TRUE,
-                            km.centers = 3,
-                            db.eps = 0.15, db.min.pts = 20,
-                            gmm.diag = TRUE, gmm.clusters = 2, gmm.tolerance = 1e-16, gmm.itermax = 10000,
-                            seed = 123) {
+                            km.params = list(centers = 3,
+                                             iter.max = 10, nstart = 1,
+                                             algorithm = c("Hartigan-Wong", "Lloyd", "Forgy","MacQueen"),
+                                             trace = FALSE),
+                            db.params = list(eps = 0.15, MinPts = 5,
+                                             method = c("hybrid", "raw", "dist")),
+                            gmm.params = list(G = NULL, modelNames = NULL,
+                                              prior = NULL, control = emControl(),
+                                              initialization = list(hcPairs = NULL,
+                                                                    subset = NULL,
+                                                                    noise = NULL),
+                                              Vinv = NULL, warn = mclust.options("warn"),
+                                              x = NULL, verbose = FALSE),
+                            seed = 123,
+                            verbose = TRUE) {
 
     # Redefine Variables
     data = data
-    km.centers = km.centers
-    eps = db.eps; rm(db.eps)
     sav = data
-    min.pts = db.min.pts; rm(db.min.pts)
     do.km = km; rm(km)
     do.db = db; rm(db)
     do.gmm = gmm; rm(gmm)
@@ -166,24 +187,30 @@ gosh.diagnostics = function(data,
 
 
     # Start loading bar
-    cat(" ", "\n", "Perform Clustering...", "\n")
+    if (verbose == TRUE){
+      cat(" ", "\n", "Perform Clustering...", "\n")
 
-    cat("[===========")
+      cat(" |")
+    }
+
 
 
     # Create full dataset from gosh output
-    dat.full = sav$res
-    dat.full = cbind(dat.full, sav$incl)
+    dat.full = sav$res[complete.cases(sav$res),]
+    dat.full = cbind(dat.full, sav$incl[complete.cases(sav$res),])
 
-    cat("=========")
+
 
     # Create dataset for k-Means
-    dat.km = data.frame(scale(dat.full$I2, center = TRUE, scale = TRUE), scale(dat.full$estimate, center = TRUE,
-        scale = TRUE))
+    dat.km = data.frame(scale(dat.full$I2, center = TRUE, scale = TRUE),
+                        scale(dat.full$estimate, center = TRUE,
+                              scale = TRUE))
     colnames(dat.km) = c("I2", "estimate")
 
-    # Create dataset for DBSCAN DBSCAN can become too computationally intensive for very large GOSH data.  For
-    # N_gosh > 10.000, N = 10.000 data points are therefore randomly sampled.
+    # Create dataset for DBSCAN
+    # DBSCAN can become too computationally intensive
+    # for very large GOSH data.  For N_gosh > 10.000, N = 10.000 data points are
+    # therefore randomly sampled.
 
     if (nrow(dat.full) < 10000) {
         dat.db.full = dat.full
@@ -191,14 +218,19 @@ gosh.diagnostics = function(data,
         dat.db.full = dat.full[sample(1:nrow(dat.full), 10000), ]  #Sample 10.000 rows
     }
 
-    dat.db = data.frame(scale(dat.db.full$I2, center = TRUE, scale = TRUE), scale(dat.db.full$estimate, center = TRUE,
-        scale = TRUE))
+    dat.db = data.frame(scale(dat.db.full$I2, center = TRUE, scale = TRUE),
+                        scale(dat.db.full$estimate, center = TRUE, scale = TRUE))
     colnames(dat.db) = c("I2", "estimate")
 
-    cat("=========")
+    if (verbose == TRUE){
+      cat("==========")
+    }
+
 
     # K-Means
-    km = kmeans(dat.km, centers = km.centers)  # Kmeans
+    km.params$x = dat.km
+    do.call(stats::kmeans, km.params)
+    km = do.call(stats::kmeans, km.params)
 
     # Only use 5000 rows for plotting to increase speed
     if (length(as.numeric(km$cluster)) > 5000){
@@ -211,14 +243,22 @@ gosh.diagnostics = function(data,
       dat.km.plot = dat.km
     }
 
-    km.clusterplot = fviz_cluster(km.plot, data = dat.km.plot, stand = FALSE, ellipse = FALSE, show.clust.cent = FALSE,
-        geom = "point", ggtheme = theme_minimal(), shape = 16, ylab = "Effect Size (z-score)", xlab = "I-squared (z-score)",
-        main = "K-means Algorithm", pointsize = 0.5) + coord_flip()
+    levels.km = unique(km.plot$cluster)[order(unique(km.plot$cluster))]
+    dat.km.plot$cluster = factor(km.plot$cluster, levels = levels.km)
 
-    cat("=========")
+    km.clusterplot = ggplot(data = dat.km.plot,
+                            aes(x = estimate, y = I2, color = cluster)) +
+      geom_point(cex = 0.5, alpha = 0.8) +
+      ylab(expression(italic(I)^2~(z-score))) +
+      xlab("Effect Size (z-score)") +
+      theme_minimal() +
+      ggtitle("K-means Algorithm") +
+      labs(color = "Cluster")
+
 
     # DBSCAN
-    db = fpc::dbscan(dat.db, eps = eps, MinPts = min.pts)
+    db.params$data = dat.db
+    db = do.call(fpc::dbscan, db.params)
 
     # Only use 5000 rows for plotting to increase speed
     if (length(as.numeric(db$cluster)) > 5000){
@@ -231,54 +271,76 @@ gosh.diagnostics = function(data,
       dat.db.plot = dat.db
     }
 
-    db.clusterplot = fviz_cluster(db.plot, data = dat.db.plot, stand = FALSE, ellipse = FALSE, show.clust.cent = FALSE,
-        shape = 16, geom = "point", ggtheme = theme_minimal(), ylab = "Effect Size (z-score)", xlab = "I-squared (z-score)",
-        main = "DBSCAN Algorithm (black dots are outliers)") + coord_flip()
+    if (verbose == TRUE){
+      cat("==========")
+    }
 
-    cat("=========")
+    levels.db = unique(db.plot$cluster)[order(unique(db.plot$cluster))]
+    dat.db.plot$cluster = factor(db.plot$cluster, levels = levels.db)
+    levels(dat.db.plot$cluster)[levels(dat.db.plot$cluster) == "0"] = "Outlier"
+    color.db = rainbow(nlevels(dat.db.plot$cluster))
+    color.db[1] = "#000000"
+
+    db.clusterplot = ggplot(data = dat.db.plot,
+                            aes(x = estimate, y = I2, color = cluster)) +
+      geom_point(cex = 0.5, alpha = 0.7) +
+      ylab(expression(italic(I)^2~(z-score))) +
+      xlab("Effect Size (z-score)") +
+      theme_minimal() +
+      ggtitle("DBSCAN Algorithm (black dots are outliers)") +
+      scale_color_manual(values = color.db) +
+      labs(color = "Cluster")
+
 
 
     # GMM
     # Use same data as used for DBSCAN
     dat.gmm.full = dat.db.full
     dat.gmm = dat.db
-    gmm = flexmix::flexmix(cbind(I2, estimate) ~ 1,
-                           k = gmm.clusters,
-                           data = dat.gmm,
-                           model = FLXMCmvnorm(diagonal = gmm.diag),
-                           control = list(tolerance = gmm.tolerance,
-                                          iter.max = gmm.itermax))
 
+    gmm.params$data = dat.gmm
+
+    # Search for optimal solution
+    gmm.bic = do.call(mclust::mclustBIC, gmm.params)
+    gmm = mclust::Mclust(data = dat.gmm, x = gmm.bic)
 
 
     # Only use 5000 rows for plotting to increase speed
-    if (length(as.numeric(gmm@cluster)) > 5000){
-      gmm.plot.mask = sample(1:length(as.numeric(gmm@cluster)), 5000)
+    if (length(as.numeric(gmm$classification)) > 5000){
+      gmm.plot.mask = sample(1:length(as.numeric(gmm$classification)), 5000)
       dat.gmm.plot = dat.gmm[gmm.plot.mask,]
       dat.gmm.plot$cluster = gmm@cluster[gmm.plot.mask]
     } else {
       dat.gmm.plot = dat.gmm
-      dat.gmm.plot$cluster = gmm@cluster
+      dat.gmm.plot$cluster = gmm$classification
     }
 
-    gmm.clusterplot = ggplot(data = dat.gmm.plot, aes(x = estimate,
-                                                      y = I2,
-                                                      color = as.factor(cluster))) +
-      geom_point(alpha=0.6) +
-      theme_minimal() +
-      xlab("Effect Size (z-score)") +
-      ylab("I-squared (z-score)") +
-      ggtitle("Gaussian Mixture Model") +
-      guides(color=guide_legend(title="Cluster"))
+    if (verbose == TRUE){
+      cat("==========")
+    }
 
-    cat("=========")
+    levels.gmm = unique(dat.gmm.plot$cluster)[order(unique(dat.gmm.plot$cluster))]
+    dat.gmm.plot$cluster = factor(dat.gmm.plot$cluster, levels = levels.gmm)
+
+    gmm.clusterplot = ggplot(data = dat.gmm.plot,
+                            aes(x = estimate, y = I2, color = cluster)) +
+      geom_point(cex = 0.5, alpha = 0.8) +
+      ylab(expression(italic(I)^2~(z-score))) +
+      xlab("Effect Size (z-score)") +
+      theme_minimal() +
+      ggtitle("Gaussian Mixture Model") +
+      labs(color = "Cluster")
+
+    if (verbose == TRUE){
+      cat("==========")
+    }
 
 
     # Add to dfs
     dat.km.full = dat.full
     dat.km.full$cluster = km$cluster
     dat.db.full$cluster = db$cluster
-    dat.gmm.full$cluster = gmm@cluster
+    dat.gmm.full$cluster = gmm$classification
 
 
     ####################################################
@@ -295,32 +357,30 @@ gosh.diagnostics = function(data,
     n.cluster.tots = data.frame(unlist(as.matrix(n.cluster.tots)))
     colnames(n.cluster.tots) = c("n.tots")
 
-    cat("=========")
+    if (verbose == TRUE){
+      cat("==========")
+    }
 
 
     # Loop for the cluster-wise n of studies
-
     n = sapply(split(dat.km.full.total, dat.km.full$cluster), function(x) apply(x, 2, sum))
 
 
     # Calculate Percentages
-
-    deltas = as.data.frame(apply(n, 2, function(x) (x/n.cluster.tots$n.tots) - mean(x/n.cluster.tots$n.tots)))
+    deltas = as.data.frame(apply(n, 2,
+                                 function(x) (x/n.cluster.tots$n.tots) - mean(x/n.cluster.tots$n.tots)))
 
     # Generate the plot
-
+    Cluster = factor(rep(1:n.levels.km, each = nrow(deltas)))
     Study = rep(1:nrow(deltas), n.levels.km)
-    delta.df = suppressMessages(reshape2::melt(deltas))
-    delta.df[, 3] = Study
-    delta.df$variable = as.factor(delta.df$variable)
-    colnames(delta.df) = c("Cluster", "Delta_Percentage", "Study")
-
-    cat("=========")
+    Delta_Percentage = unlist(deltas)
+    delta.df = data.frame(Cluster, Delta_Percentage, Study)
 
     km.plot = ggplot(data = delta.df, aes(x = Study, y = Delta_Percentage, group = Cluster)) + geom_line(aes(color = Cluster)) +
         geom_point(aes(color = Cluster)) + scale_x_continuous(name = "Study", breaks = seq(0, nrow(deltas),
         1)) + scale_y_continuous(name = "Delta Percentage") + theme(axis.text = element_text(size = 5)) +
-        ggtitle("Cluster imbalance (K-Means algorithm)") + geom_hline(yintercept = 0, linetype = "dashed")
+        ggtitle("Cluster imbalance (K-Means algorithm)") + geom_hline(yintercept = 0, linetype = "dashed") +
+      theme_minimal()
 
 
     ####################################################
@@ -347,7 +407,8 @@ gosh.diagnostics = function(data,
         theme(axis.text = element_text(size = 5)) +
         ggtitle("Cluster imbalance (Cook's Distance)") +
         geom_hline(yintercept = outlier.cd.km, linetype = "dashed") +
-        geom_hline(yintercept = 0, linetype = "dashed")
+        geom_hline(yintercept = 0, linetype = "dashed") +
+        theme_minimal()
 
 
     } else {
@@ -360,10 +421,14 @@ gosh.diagnostics = function(data,
         theme(axis.text = element_text(size = 5)) +
         ggtitle("Cluster imbalance (Cook's Distance)") +
         geom_hline(yintercept = outlier.cd.km, linetype = "dashed") +
-        geom_hline(yintercept = 0, linetype = "dashed")
+        geom_hline(yintercept = 0, linetype = "dashed") +
+        theme_minimal()
 
     }
 
+    if (verbose == TRUE){
+      cat("==========")
+    }
 
     ####################################################
     # Extract the Percentages###########################
@@ -392,18 +457,22 @@ gosh.diagnostics = function(data,
 
     # Generate the plot
 
+    Cluster = factor(rep(colnames(deltas), each = nrow(deltas)))
     Study = rep(1:nrow(deltas), n.levels.db)
-    delta.df = suppressMessages(reshape2::melt(deltas))
-    delta.df[, 3] = Study
-    delta.df$variable = as.factor(delta.df$variable)
-    colnames(delta.df) = c("Cluster", "Delta_Percentage", "Study")
-    delta.df = filter(delta.df, !Cluster == 0)  #Zero Class (Outliers are removed)
+    Delta_Percentage = unlist(deltas)
+    delta.df = data.frame(Cluster, Delta_Percentage, Study)
+    delta.df = delta.df[delta.df$Cluster != 0,] #Zero Class (Outliers are removed)
 
     db.plot = ggplot(data = delta.df, aes(x = Study, y = Delta_Percentage, group = Cluster)) + geom_line(aes(color = Cluster)) +
         geom_point(aes(color = Cluster)) + scale_x_continuous(name = "Study", breaks = seq(0, nrow(deltas),
         1)) + scale_y_continuous(name = "Delta Percentage") + theme(axis.text = element_text(size = 5)) +
-        ggtitle("Cluster imbalance (Density-Based Clustering)") + geom_hline(yintercept = 0, linetype = "dashed")
+        ggtitle("Cluster imbalance (Density-Based Clustering)") + geom_hline(yintercept = 0, linetype = "dashed") +
+      theme_minimal()
 
+
+    if (verbose == TRUE){
+      cat("==========")
+    }
 
     ####################################################
     # Cook's Distance Plot###########################
@@ -429,7 +498,8 @@ gosh.diagnostics = function(data,
         theme(axis.text = element_text(size = 5)) +
         ggtitle("Cluster imbalance (Cook's Distance)") +
         geom_hline(yintercept = outlier.cd.db, linetype = "dashed") +
-        geom_hline(yintercept = 0, linetype = "dashed")
+        geom_hline(yintercept = 0, linetype = "dashed") +
+        theme_minimal()
 
 
     } else {
@@ -442,8 +512,13 @@ gosh.diagnostics = function(data,
         theme(axis.text = element_text(size = 5)) +
         ggtitle("Cluster imbalance (Cook's Distance)") +
         geom_hline(yintercept = outlier.cd.db, linetype = "dashed") +
-        geom_hline(yintercept = 0, linetype = "dashed")
+        geom_hline(yintercept = 0, linetype = "dashed") +
+        theme_minimal()
 
+    }
+
+    if (verbose == TRUE){
+      cat("==========")
     }
 
     ####################################################
@@ -460,8 +535,6 @@ gosh.diagnostics = function(data,
     n.cluster.tots = data.frame(unlist(as.matrix(n.cluster.tots)))
     colnames(n.cluster.tots) = c("n.tots")
 
-    cat("=========")
-
 
     # Loop for the cluster-wise n of studies
 
@@ -474,18 +547,17 @@ gosh.diagnostics = function(data,
 
     # Generate the plot
 
+    Cluster = factor(rep(colnames(deltas), each = nrow(deltas)))
     Study = rep(1:nrow(deltas), n.levels.gmm)
-    delta.df = suppressMessages(reshape2::melt(deltas))
-    delta.df[, 3] = Study
-    delta.df$variable = as.factor(delta.df$variable)
-    colnames(delta.df) = c("Cluster", "Delta_Percentage", "Study")
+    Delta_Percentage = unlist(deltas)
+    delta.df = data.frame(Cluster, Delta_Percentage, Study)
 
-    cat("===========] DONE ", "\n")
 
     gmm.plot = ggplot(data = delta.df, aes(x = Study, y = Delta_Percentage, group = Cluster)) + geom_line(aes(color = Cluster)) +
       geom_point(aes(color = Cluster)) + scale_x_continuous(name = "Study", breaks = seq(0, nrow(deltas),
                                                                                          1)) + scale_y_continuous(name = "Delta Percentage") + theme(axis.text = element_text(size = 5)) +
-      ggtitle("Cluster imbalance (GMM)") + geom_hline(yintercept = 0, linetype = "dashed")
+      ggtitle("Cluster imbalance (GMM)") + geom_hline(yintercept = 0, linetype = "dashed") +
+      theme_minimal()
 
 
     ####################################################
@@ -512,7 +584,8 @@ gosh.diagnostics = function(data,
         theme(axis.text = element_text(size = 5)) +
         ggtitle("Cluster imbalance (Cook's Distance)") +
         geom_hline(yintercept = outlier.cd.gmm, linetype = "dashed") +
-        geom_hline(yintercept = 0, linetype = "dashed")
+        geom_hline(yintercept = 0, linetype = "dashed") +
+        theme_minimal()
 
 
     } else {
@@ -525,27 +598,34 @@ gosh.diagnostics = function(data,
         theme(axis.text = element_text(size = 5)) +
         ggtitle("Cluster imbalance (Cook's Distance)") +
         geom_hline(yintercept = outlier.cd.gmm, linetype = "dashed") +
-        geom_hline(yintercept = 0, linetype = "dashed")
+        geom_hline(yintercept = 0, linetype = "dashed") +
+        theme_minimal()
 
     }
+
 
     #######################
     # Generate Output Plot#
     #######################
 
+    returnlist = list()
+
     if (do.km == TRUE){
-      print(plot_grid(km.clusterplot, plot_grid(km.plot, km.cd.plot, nrow=2), nrow=1))
-      cat("\n","Number of k-means clusters used:", n.levels.km, "\n")
+      returnlist$km.clusters = n.levels.km
+      km.sideplots = gridExtra::arrangeGrob(km.plot, km.cd.plot, nrow=2)
+      returnlist$km.plot = gridExtra::arrangeGrob(km.clusterplot, km.sideplots, ncol = 2)
     }
 
     if (do.db == TRUE){
-      print(plot_grid(db.clusterplot, plot_grid(db.plot, db.cd.plot, nrow=2), nrow=1))
-      cat("\n","Number of DBSCAN clusters detected:", n.levels.db-1, "\n")
+      returnlist$db.clusters = n.levels.db-1
+      db.sideplots = gridExtra::arrangeGrob(db.plot, db.cd.plot, nrow=2)
+      returnlist$db.plot = gridExtra::arrangeGrob(db.clusterplot, db.sideplots, ncol = 2)
     }
 
     if (do.gmm == TRUE){
-      print(plot_grid(gmm.clusterplot, plot_grid(gmm.plot, gmm.cd.plot, nrow=2), nrow=1))
-      cat("\n","Number of GMM clusters detected:", n.levels.gmm, "\n")
+      returnlist$gmm.clusters = n.levels.gmm
+      gmm.sideplots = gridExtra::arrangeGrob(gmm.plot, gmm.cd.plot, nrow=2)
+      returnlist$gmm.plot = gridExtra::arrangeGrob(gmm.clusterplot, gmm.sideplots, ncol = 2)
     }
 
     ############################################
@@ -570,7 +650,6 @@ gosh.diagnostics = function(data,
     outlier.studies.all = unique(c(outlier.studies.km, outlier.studies.db, outlier.studies.gmm))
     outlier.studies.all.mask = outlier.studies.all + 6 # Add 6 to use as mask
 
-    cat("\n", "Identification of potential outliers", "\n", "---------------------------------", "\n")
 
     # Get plotting dataset and only choose outlier studies as mask, use db data
     if (length(as.numeric(db$cluster)) > 5000){
@@ -649,46 +728,40 @@ gosh.diagnostics = function(data,
           scale_fill_manual(values = c("lightgrey", "#00BFC4")) +
           coord_flip()
 
-        print(plot_grid(density.db.upper,
+        returnlist[[paste0("plot.study", outlier.studies.all[i], ".removed")]] =
+        gridExtra::arrangeGrob(density.db.upper,
                         blankPlot,
                         outlier.plot,
                         density.db.right,
                         nrow = 2,
-                        rel_heights = c(1,5),
-                        rel_widths = c(4,1),
-                        labels = c(paste("Study ", outlier.studies.all[i]),
-                                   "", "", "")))
+                        ncol = 2,
+                        heights = c(1,5),
+                        widths = c(4,1),
+                        top = paste("Study ", outlier.studies.all[i]))
 
       }
-
-      cat(" ", "\n", "Studies identified as potential outliers:", "\n")
-
-      if (do.km == TRUE){
-        cat("\n", "- K-means:", outlier.studies.km, "\n")
-      }
-      if (do.db == TRUE){
-        cat("\n", "- DBSCAN:", outlier.studies.db, "\n")
-      }
-      if (do.gmm == TRUE){
-        cat("\n", "- Gaussian Mixture Model:", outlier.studies.gmm, "\n")
-      }
-
-    } else {
-
-      cat("\n", "No potential outliers detected.")
 
     }
 
-    invisible(list(km.clusters = n.levels.km,
-                   db.clusters = n.levels.db-1,
-                   gmm.clusters = n.levels.gmm,
-                   k = ncol(dat.db.full)-7,
-                   outliers.km = outlier.studies.km,
-                   outliers.dbscan = outlier.studies.db,
-                   outliers.gmm = outlier.studies.gmm,
-                   km.plot = plot_grid(km.clusterplot, plot_grid(km.plot, km.cd.plot, nrow=2), nrow=1),
-                   dbscan.plot = plot_grid(db.clusterplot, plot_grid(db.plot, db.cd.plot, nrow=2), nrow=1),
-                   gmm.plot = plot_grid(gmm.clusterplot, plot_grid(gmm.plot, gmm.cd.plot, nrow=2), nrow=1)))
+
+      if (do.km == TRUE){
+        returnlist$outlier.studies.km = outlier.studies.km
+      }
+      if (do.db == TRUE){
+        returnlist$outlier.studies.db = outlier.studies.db
+      }
+      if (do.gmm == TRUE){
+        returnlist$outlier.studies.gmm = outlier.studies.gmm
+      }
+
+    if (verbose == TRUE){
+      cat("==========| DONE \n")
+      cat("\n")
+    }
+
+    class(returnlist) = c("gosh.diagnostics", "list")
+
+    return(returnlist)
 
 }
 

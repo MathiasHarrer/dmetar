@@ -9,14 +9,14 @@
 \arguments{
 \item{x}{An object of class \code{direct.evidence.plot}, \code{find.outliers},
 \code{influence.analysis}, \code{multimodel.inference}, \code{pcurve}, \code{power.analysis},
-\code{subgroup.analysis.mixed.effects}, or \code{sucra}.}
+\code{subgroup.analysis.mixed.effects}, \code{eggers.test}, or \code{sucra}.}
 
 \item{...}{Additional arguments.}
 }
 \description{
 Print, summary and plot S3 methods for objects of class \code{direct.evidence.plot}, \code{find.outliers},
 \code{influence.analysis}, \code{multimodel.inference}, \code{pcurve}, \code{power.analysis},
-\code{subgroup.analysis.mixed.effects}, and \code{sucra}.
+\code{subgroup.analysis.mixed.effects}, \code{eggers.test}, and \code{sucra}.
 }
 \details{
 A total of four package-specific S3 methods are provided in \code{dmetar}: S3 methods for \code{print},

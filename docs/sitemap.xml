@@ -61,7 +61,13 @@
     <loc>http://dmetar.protectlab.org/reference/plot.direct.evidence.plot.html</loc>
   </url>
   <url>
+    <loc>http://dmetar.protectlab.org/reference/plot.eggers.test.html</loc>
+  </url>
+  <url>
     <loc>http://dmetar.protectlab.org/reference/plot.find.outliers.html</loc>
+  </url>
+  <url>
+    <loc>http://dmetar.protectlab.org/reference/plot.gosh.diagnostics.html</loc>
   </url>
   <url>
     <loc>http://dmetar.protectlab.org/reference/plot.multimodel.inference.html</loc>
@@ -94,7 +100,13 @@
     <loc>http://dmetar.protectlab.org/reference/print.direct.evidence.plot.html</loc>
   </url>
   <url>
+    <loc>http://dmetar.protectlab.org/reference/print.eggers.test.html</loc>
+  </url>
+  <url>
     <loc>http://dmetar.protectlab.org/reference/print.find.outliers.html</loc>
+  </url>
+  <url>
+    <loc>http://dmetar.protectlab.org/reference/print.gosh.diagnostics.html</loc>
   </url>
   <url>
     <loc>http://dmetar.protectlab.org/reference/print.multimodel.inference.html</loc>
@@ -133,7 +145,13 @@
     <loc>http://dmetar.protectlab.org/reference/summary.direct.evidence.plot.html</loc>
   </url>
   <url>
+    <loc>http://dmetar.protectlab.org/reference/summary.eggers.test.html</loc>
+  </url>
+  <url>
     <loc>http://dmetar.protectlab.org/reference/summary.find.outliers.html</loc>
+  </url>
+  <url>
+    <loc>http://dmetar.protectlab.org/reference/summary.gosh.diagnostics.html</loc>
   </url>
   <url>
     <loc>http://dmetar.protectlab.org/reference/summary.multimodel.inference.html</loc>

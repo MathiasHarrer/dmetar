@@ -4,9 +4,24 @@
 \alias{gosh.diagnostics}
 \title{Identify studies contributing to heterogeneity patterns found in GOSH plots}
 \usage{
-gosh.diagnostics(data, km = TRUE, db = TRUE, gmm = TRUE, km.centers =
-  3, db.eps = 0.15, db.min.pts = 20, gmm.diag = TRUE, gmm.clusters = 2,
-  gmm.tolerance = 1e-16, gmm.itermax = 10000, seed = 123)
+gosh.diagnostics(data, km = TRUE, db = TRUE, gmm = TRUE,
+                 km.params = list(centers = 3,
+                                  iter.max = 10, nstart = 1,
+                                  algorithm = c("Hartigan-Wong",
+                                  "Lloyd", "Forgy","MacQueen"),
+                                  trace = FALSE),
+                 db.params = list(eps = 0.15, MinPts = 5,
+                                  method = c("hybrid", "raw", "dist")),
+                 gmm.params = list(G = NULL, modelNames = NULL,
+                                   prior = NULL, control = emControl(),
+                                   initialization = list(hcPairs = NULL,
+                                   subset = NULL,
+                                   noise = NULL),
+                                   Vinv = NULL,
+                                   warn = mclust.options("warn"),
+                                   x = NULL, verbose = FALSE),
+                 seed = 123,
+                 verbose = TRUE)
 }
 \arguments{
 \item{data}{An object of class \code{gosh.rma} created through the
@@ -21,30 +36,18 @@ in the GOSH plot matrix? \code{TRUE} by default.}
 \item{gmm}{Logical. Should a bivariate Gaussian Mixture Model be used to
 identify patterns in the GOSH plot matrix? \code{TRUE} by default.}
 
-\item{km.centers}{Number of clusters to assume for the \emph{k}-Means
-algorithm. Default is \code{3}.}
+\item{km.params}{A list containing the parameters for the \emph{k}-Means algorithm
+as implemented in \code{kmeans}. Run \code{?kmeans} for further details.}
 
-\item{db.eps}{The distance radius \eqn{\epsilon} used to determine clusters
-(DBSCAN). Default is \code{0.15}.}
+\item{db.params}{A list containing the parameters for the DBSCAN algorithm
+as implemented in \code{\link[fpc]{dbscan}}. Run \code{?fpc::dbscan} for further details.}
 
-\item{db.min.pts}{The minimum number of points \eqn{minPts} required within
-\eqn{\epsilon} used to determine clusters. Default is \code{20}.}
-
-\item{gmm.diag}{Logical. Should the covariance matrix of the components be
-restricted to diagonal matrices? Default is \code{TRUE}.}
-
-\item{gmm.clusters}{Number of clusters to assume for the Gaussian Mixture
-Model. Default is \code{2}.}
-
-\item{gmm.tolerance}{Relative change threshold of log-likelihood used to stop
-the Expectation-Maximization algorithm for the Gaussian Mixture Model.
-Default is \code{1e-16}.}
-
-\item{gmm.itermax}{Maximum number of iterations for the
-Expectation-Maximization algorithm used in the Gaussian Mixture Model to
-reach convergence. Default is \code{10000}.}
+\item{gmm.params}{A list containing the parameters for the Gaussian Mixture Models
+as implemented in \code{\link[mclust]{mclustBIC}}. Run \code{?mclust::mclustBIC} for further details.}
 
 \item{seed}{Seed used for reproducibility. Default seed is \code{123}.}
+
+\item{verbose}{Logical. Should a progress bar be printed in the console during clustering?}
 }
 \description{
 This function uses three unsupervised learning learning algorithms
@@ -92,12 +95,11 @@ display of study heterogeneity) plots.
   a reasonable amount of granularity while not producing too many
   subclusters. The function uses the \code{\link[fpc]{dbscan}} implementation
   to perform the DBSCAN clustering. \item Lastly, as a clustering approach
-  using a probabilistic model, Gaussian Mixture Models (GMM; Leisch, 2004)
+  using a probabilistic model, Gaussian Mixture Models (GMM; Fraley & Raftery, 2002)
   are integrated in the function using an internal call to the
-  \code{\link[flexmix]{flexmix}} implementation. The GMM implemented here use
-  the Expectation-Maximization algorithm for clustering, hyperparameters of
-  which can be tuned using the \code{gmm.tolerance} and \code{gmm.itermax}
-  parameters. }
+  \code{\link[mclust]{mclustBIC}} implementation. Clustering hyperparameters can
+  be tuned by providing a list of parameters of the \code{mclustBIC}
+  function in the \code{mclust} package.}
 
   To assess which studies predominantly contribute to a detected cluster,
   the function calculates the cluster imbalance of a specific study using the
@@ -116,12 +118,22 @@ display of study heterogeneity) plots.
 # then use function
 \dontrun{
 data("m.gosh")
-gosh.diagnostics(m.gosh)
+res <- gosh.diagnostics(m.gosh)
+
+# Look at results
+summary(res)
+
+# Plot detected clusters
+plot(res, which = "cluster")
+
+# Plot outliers
+plot(res, which = "outlier")
 }
 }
 \references{
-Leisch, F. (2004). \emph{Flexmix: A general framework for finite
-  mixture models and latent glass regression in R}.
+Fraley C. and Raftery A. E. (2002) Model-based clustering, discriminant analysis
+and density estimation, \emph{Journal of the American Statistical Association},
+97/458, pp. 611-631.
 
 Hartigan, J. A., & Wong, M. A. (1979). Algorithm as 136: A K-Means Clustering Algorithm.
 \emph{Journal of the Royal Statistical Society. Series C (Applied Statistics), 28} (1). 100–108.

@@ -4,7 +4,8 @@
 \name{ThirdWave}
 \alias{ThirdWave}
 \title{'Third-Wave' cognitive behavioral interventions for perceived stress in college students dataset}
-\format{A \code{data.frame} with 8 columns.
+\format{
+A \code{data.frame} with 8 columns.
 \describe{
 \item{Author}{\code{character}. The study label containing the author(s) of the study.}
 \item{TE}{\code{numeric}. The calculated standardized mean difference at post-test between the intervention and control group.}
@@ -14,7 +15,8 @@
 \item{InterventionDuration}{\code{character}. The dichotomized duration of the intervention.}
 \item{InterventionType}{\code{character}. The type of third-wave intervention rationale used.}
 \item{ModeOfDelivery}{\code{character}. The mode of delivery used for the intervention.}
-}}
+}
+}
 \source{
 Slightly changed dataset of a meta-analysis on third-wave CBT interventions for
 perceived stress in college students.

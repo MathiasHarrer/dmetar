@@ -20,7 +20,7 @@ output: github_document
 
 **Doing Meta-Analysis in R**
 
-![](docs/front.png)
+![](man/figures/front.png)
 
 
 <br></br>

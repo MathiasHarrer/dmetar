@@ -81,8 +81,8 @@
 #' the function into the \code{plot} function. It is also possible to only produce one specific plot by
 #' specifying the name of the plot as a \code{character} in the second argument of the \code{plot} call (see Examples).
 #'
-#' @import ggplot2 ggrepel forcats dplyr grid
-#' @importFrom  gridExtra grid.arrange arrangeGrob
+#' @import ggplot2 ggrepel grid
+#' @importFrom gridExtra grid.arrange arrangeGrob
 #' @importFrom metafor rma.uni influence.rma.uni
 #' @importFrom meta metainf
 #' @importFrom graphics abline axis lines mtext par plot points rect segments text
@@ -126,8 +126,10 @@
 
 ### Influence Analysis function for fixed-effect-model meta-analyses
 
-InfluenceAnalysis = function(x, random = FALSE, subplot.heights = c(30, 18), subplot.widths = c(30, 30),
-    forest.lims = "default", return.separate.plots = FALSE, text.scale = 1) {
+InfluenceAnalysis = function(x, random = FALSE, subplot.heights = c(30, 18),
+                             subplot.widths = c(30, 30),
+                             forest.lims = "default", return.separate.plots = FALSE,
+                             text.scale = 1) {
 
     # Validate
     x = x
@@ -334,9 +336,11 @@ InfluenceAnalysis = function(x, random = FALSE, subplot.heights = c(30, 18), sub
 
         # Sort
         sortdat.es = sortdat2[order(sortdat2$mean), ]
-        sortdat.es = sortdat.es %>% mutate(studlab = forcats::fct_reorder(studlab, -mean))
+        sortdat.es$studlab = factor(sortdat.es$studlab,
+                                    levels = sortdat.es$studlab[order(-sortdat.es$mean)])
         sortdat.i2 = sortdat2[order(sortdat2$i2), ]
-        sortdat.i2 = sortdat.i2 %>% mutate(studlab = forcats::fct_reorder(studlab, -i2))
+        sortdat.i2$studlab = factor(sortdat.i2$studlab,
+                                    levels = sortdat.i2$studlab[order(-sortdat.i2$i2)])
 
         # Generate Forest Plots
         if (forest.lims[1] == "default") {
@@ -426,9 +430,11 @@ InfluenceAnalysis = function(x, random = FALSE, subplot.heights = c(30, 18), sub
 
       # Sort
       sortdat.es = sortdat2[order(sortdat2$mean), ]
-      sortdat.es = sortdat.es %>% mutate(studlab = forcats::fct_reorder(studlab, -mean))
+      sortdat.es$studlab = factor(sortdat.es$studlab,
+                                  levels = sortdat.es$studlab[order(-sortdat.es$mean)])
       sortdat.i2 = sortdat2[order(sortdat2$i2), ]
-      sortdat.i2 = sortdat.i2 %>% mutate(studlab = forcats::fct_reorder(studlab, -i2))
+      sortdat.i2$studlab = factor(sortdat.i2$studlab,
+                                  levels = sortdat.i2$studlab[order(-sortdat.i2$i2)])
 
       # Backtransform
       backtransformer = function(x, sm, n){
@@ -752,9 +758,11 @@ InfluenceAnalysis = function(x, random = FALSE, subplot.heights = c(30, 18), sub
 
         # Sort
         sortdat.es = sortdat2[order(sortdat2$mean), ]
-        sortdat.es = sortdat.es %>% mutate(studlab = forcats::fct_reorder(studlab, -mean))
+        sortdat.es$studlab = factor(sortdat.es$studlab,
+                                    levels = sortdat.es$studlab[order(-sortdat.es$mean)])
         sortdat.i2 = sortdat2[order(sortdat2$i2), ]
-        sortdat.i2 = sortdat.i2 %>% mutate(studlab = forcats::fct_reorder(studlab, -i2))
+        sortdat.i2$studlab = factor(sortdat.i2$studlab,
+                                    levels = sortdat.i2$studlab[order(-sortdat.i2$i2)])
 
         # Generate Forest Plots
         if (forest.lims[1] == "default") {
@@ -861,11 +869,11 @@ InfluenceAnalysis = function(x, random = FALSE, subplot.heights = c(30, 18), sub
     if (x$sm %in% c("RR", "OR", "IRR")) {colnames(return.data)[1:2] = c("Author", effect)}
     else {colnames(return.data)[1:2] = c("Author", "effect")}
 
-    returnlist = list(BaujatPlot = BaujatPlot,
+    returnlist = suppressWarnings(suppressMessages(list(BaujatPlot = BaujatPlot,
                       InfluenceCharacteristics = rma.influence.plot,
                       ForestEffectSize = forest.es,
                       ForestI2 = forest.i2,
-                      Data = return.data) %>% suppressMessages() %>% suppressWarnings()
+                      Data = return.data)))
 
     if (return.separate.plots == T){class(returnlist) = c("InfluenceAnalysis", "rsp")}
     if (return.separate.plots == F){class(returnlist) = c("InfluenceAnalysis", "rsp.null")}
