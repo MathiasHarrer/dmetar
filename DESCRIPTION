@@ -12,7 +12,7 @@ Description: This package serves as the companion R package for the guide 'Doing
     complementary functions to facilitate the conduction of meta-analyses using the {meta}, {metafor}, 
     netmeta and {gemtc} packages.
 URL: https://github.com/MathiasHarrer/dmetar
-Depends: R (>= 3.5)
+Depends: R (>= 3.6)
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
