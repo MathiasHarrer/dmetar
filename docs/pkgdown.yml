@@ -4,7 +4,7 @@ pkgdown_sha: ~
 articles:
   dmetar: dmetar.html
   dmetar_vignette: dmetar_vignette.html
-last_built: 2020-08-10T10:17Z
+last_built: 2020-10-08T11:40Z
 urls:
   reference: http://dmetar.protectlab.org/reference
   article: http://dmetar.protectlab.org/articles

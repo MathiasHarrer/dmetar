@@ -53,7 +53,7 @@
 #'Furukawa, T. A., & Leucht, S. (2011). How to obtain NNT from Cohen's d: comparison of two methods. \emph{PloS one, 6}(4), e19070.
 #'
 #' Kraemer H.C., Kupfer D.J. (2006) Size of treatment effects and their importance
-#' to clinical research and practice. {Biol. Psychiatry 59}: 990–996.
+#' to clinical research and practice. \emph{Biol. Psychiatry 59}: 990–996.
 #'
 #' @author Mathias Harrer & David Daniel Ebert
 #'

@@ -4,6 +4,21 @@
     <loc>http://dmetar.protectlab.org/index.html</loc>
   </url>
   <url>
+    <loc>http://dmetar.protectlab.org/reference/BdiScores.html</loc>
+  </url>
+  <url>
+    <loc>http://dmetar.protectlab.org/reference/Chernobyl.html</loc>
+  </url>
+  <url>
+    <loc>http://dmetar.protectlab.org/reference/DepressionMortality.html</loc>
+  </url>
+  <url>
+    <loc>http://dmetar.protectlab.org/reference/EatingDisorderPrevention.html</loc>
+  </url>
+  <url>
+    <loc>http://dmetar.protectlab.org/reference/HealthWellbeing.html</loc>
+  </url>
+  <url>
     <loc>http://dmetar.protectlab.org/reference/InfluenceAnalysis.html</loc>
   </url>
   <url>
@@ -17,6 +32,12 @@
   </url>
   <url>
     <loc>http://dmetar.protectlab.org/reference/NetDataNetmeta.html</loc>
+  </url>
+  <url>
+    <loc>http://dmetar.protectlab.org/reference/OpioidMisuse.html</loc>
+  </url>
+  <url>
+    <loc>http://dmetar.protectlab.org/reference/SuicidePrevention.html</loc>
   </url>
   <url>
     <loc>http://dmetar.protectlab.org/reference/ThirdWave.html</loc>

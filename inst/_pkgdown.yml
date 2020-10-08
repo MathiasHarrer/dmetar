@@ -62,6 +62,12 @@ reference:
   - title: Data sets
     contents:
     - ThirdWave
+    - SuicidePrevention
+    - OpioidMisuse
+    - HealthWellbeing
+    - DepressionMortality
+    - Chernobyl
+    - BdiScores
     - MVRegressionData
     - NetDataGemtc
     - NetDataNetmeta
