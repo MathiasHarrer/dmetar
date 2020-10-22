@@ -145,6 +145,9 @@ InfluenceAnalysis = function(x, random = FALSE, subplot.heights = c(30, 18),
     seTE = x$seTE
     random = random
 
+    # Make unique studlabs
+    x$studlab = make.unique(x$studlab)
+
     if (random %in% c(TRUE, FALSE)) {
 
 
@@ -354,7 +357,7 @@ InfluenceAnalysis = function(x, random = FALSE, subplot.heights = c(30, 18),
           if (max(sortdat.es$upper) <= 1){
             max = 1.2
           } else {
-            max = round(max(sortdat.es$upper) + 0.5, 0)
+            max = round(max(sortdat.es$upper) + 6, 0)
           }
 
         } else {
@@ -364,7 +367,7 @@ InfluenceAnalysis = function(x, random = FALSE, subplot.heights = c(30, 18),
           } else {
             min = forest.lims[1]
           }
-            max = forest.lims[2]
+            max = forest.lims[2] + 4
         }
 
         if (method.meta == "fixed"){
@@ -381,29 +384,46 @@ InfluenceAnalysis = function(x, random = FALSE, subplot.heights = c(30, 18),
         cat("===============")
         ########################################
 
-        forest.es = ggplot(sortdat.es, aes(x = studlab, y = mean, ymin = lower, ymax = upper)) + geom_pointrange() +
-            geom_text(aes(label = paste(format(round(mean, 2), nsmall = 2), " [", format(round(lower, 2),
-                nsmall = 2), ";", format(round(upper, 2), nsmall = 2), "] ", "; I2=", format(round(i2, 2),
-                nsmall = 2), sep = ""), y = Inf), hjust = "inward", size = 2 * text.scale) + geom_hline(yintercept = 1,
+        title.es = with(sortdat.es, {
+          paste0("hat(theta)['*']~'='~", paste0("'", format(round(mean, 2)), "'"),
+                 "~'['*", paste0("'", format(round(lower, 2), nsmall = 2), "'"), "*'-'*",
+                 paste0("'", format(round(upper, 2), nsmall = 2), "'"), "*']'*';'~italic(I)^2~'='~",
+                 paste0("'", format(round(i2, 2),nsmall = 2), "'"), "*'%'")})
+
+        title.i2 = with(sortdat.i2,{
+          paste0("italic(I)^2~'='~",
+                 paste0("'", format(round(i2, 2),nsmall = 2), "'"), "*'%'", "*';'~",
+                 "hat(theta)['*']~'='~", paste0("'", format(round(mean, 2)), "'"),
+                 "~'['*", paste0("'", format(round(lower, 2), nsmall = 2), "'"), "*'-'*",
+                 paste0("'", format(round(upper, 2), nsmall = 2), "'"), "*']'")})
+
+        forest.es = ggplot(sortdat.es, aes(x = studlab, y = mean, ymin = lower, ymax = upper)) +
+            geom_text(aes(label = title.es, y = Inf), parse = T, hjust = "inward", size = 3 * text.scale) + geom_hline(yintercept = 1,
             color = "blue") + ylab(paste(effect, " (", as.character(lastline$studlab), ")", sep = "")) + ggtitle("Sorted by Effect Size") +
             coord_flip() + theme_minimal() + theme(axis.title.y = element_blank(), axis.title.x = element_text(color = "black",
             size = 12, face = "bold"), axis.text.y = element_text(color = "black", size = 9 * text.scale),
             plot.title = element_text(face = "bold", hjust = 0.5), axis.line.x = element_line(color = "black"),
             axis.ticks.x = element_line(color = "black"), axis.text.x = element_text(color = "black", size = 9 *
                 text.scale)) + scale_y_continuous(trans = "log2", limits = c(min, max)) +
-          geom_rect(aes(ymin=plot.sum.lower, ymax=plot.sum.upper, xmin=0, xmax=Inf), alpha=0.08, fill="lightgreen", color=NA) + geom_hline(yintercept = plot.sum.effect, color = "darkgreen", linetype="dotted", size=0.5) + geom_pointrange()
+          geom_rect(aes(ymin=plot.sum.lower, ymax=plot.sum.upper, xmin=0, xmax=Inf), alpha=0.08, fill="lightgreen", color=NA) +
+          geom_hline(yintercept = plot.sum.effect, color = "darkgreen", linetype="dotted", size=0.5) +
+          geom_point(shape = 15, size = 4.5, color = "grey") +
+          geom_linerange(size = 0.9) +
+          geom_pointrange(shape = 3, size = 0.3)
 
-        forest.i2 = ggplot(sortdat.i2, aes(x = studlab, y = mean, ymin = lower, ymax = upper)) + geom_pointrange() +
-            geom_text(aes(label = paste("I2=", format(round(i2, 2), nsmall = 2), "; ", format(round(mean,
-                2), nsmall = 2), " [", format(round(lower, 2), nsmall = 2), ";", format(round(upper, 2), nsmall = 2),
-                "] ", sep = ""), y = Inf), hjust = "inward", size = 2 * text.scale) + geom_hline(yintercept = 1,
-            color = "blue") + ylab(paste(effect, " (", as.character(lastline$studlab), ")", sep = "")) + ggtitle("Sorted by I-squared") +
+        forest.i2 = ggplot(sortdat.i2, aes(x = studlab, y = mean, ymin = lower, ymax = upper)) +
+            geom_text(aes(label = title.i2, y = Inf), parse = T, hjust = "inward", size = 3 * text.scale) + geom_hline(yintercept = 1,
+            color = "blue") + ylab(paste(effect, " (", as.character(lastline$studlab), ")", sep = "")) + ggtitle(expression(Sorted~by~italic(I)^2)) +
             coord_flip() + theme_minimal() + theme(axis.title.y = element_blank(), axis.title.x = element_text(color = "black",
             size = 12, face = "bold"), axis.text.y = element_text(color = "black", size = 9 * text.scale),
             plot.title = element_text(face = "bold", hjust = 0.5), axis.line.x = element_line(color = "black"),
             axis.ticks.x = element_line(color = "black"), axis.text.x = element_text(color = "black", size = 9 *
                 text.scale)) + scale_y_continuous(trans = "log2", limits = c(min, max)) +
-          geom_rect(aes(ymin=plot.sum.lower, ymax=plot.sum.upper, xmin=0, xmax=Inf), alpha=0.08, fill="lightgreen", color=NA) + geom_hline(yintercept = plot.sum.effect, color = "darkgreen", linetype="dotted", size=0.5) + geom_pointrange()
+          geom_rect(aes(ymin=plot.sum.lower, ymax=plot.sum.upper, xmin=0, xmax=Inf), alpha=0.08, fill="lightgreen", color=NA) +
+          geom_hline(yintercept = plot.sum.effect, color = "darkgreen", linetype="dotted", size=0.5) +
+          geom_point(shape = 15, size = 4.5, color = "grey") +
+          geom_linerange(size = 0.9) +
+          geom_pointrange(shape = 3, size = 0.3)
 
 
     } else if (class(x)[1] %in% c("metacor", "metaprop", "metarate")) {
@@ -710,30 +730,47 @@ InfluenceAnalysis = function(x, random = FALSE, subplot.heights = c(30, 18),
       cat("===============")
       ########################################
 
-      forest.es = ggplot(sortdat.es, aes(x = studlab, y = mean, ymin = lower, ymax = upper)) + geom_pointrange() +
-        geom_text(aes(label = paste(format(round(mean, 2), nsmall = 2), " [", format(round(lower, 2),
-                                                                                     nsmall = 2), ";", format(round(upper, 2), nsmall = 2), "] ", "; I2=", format(round(i2, 2),
-                                                                                                                                                                  nsmall = 2), sep = ""), y = Inf), hjust = "inward", size = 2 * text.scale) + geom_hline(yintercept = 0,
-                                                                                                                                                                                                                                                          color = "blue") + ylab(paste(ggtitl, " (", as.character(lastline$studlab), ")", sep = "")) + ggtitle(paste("Sorted by",ggtitl)) +
-        coord_flip() + theme_minimal() + theme(axis.title.y = element_blank(), axis.title.x = element_text(color = "black",
-                                                                                                           size = 12, face = "bold"), axis.text.y = element_text(color = "black", size = 9 * text.scale),
-                                               plot.title = element_text(face = "bold", hjust = 0.5), axis.line.x = element_line(color = "black"),
-                                               axis.ticks.x = element_line(color = "black"), axis.text.x = element_text(color = "black", size = 9 *
-                                                                                                                          text.scale)) + scale_y_continuous(limits = c(min, max)) +
-        geom_rect(aes(ymin=plot.sum.lower, ymax=plot.sum.upper, xmin=0, xmax=Inf), alpha=0.08, fill="lightgreen", color=NA) + geom_hline(yintercept = plot.sum.effect, color = "darkgreen", linetype="dotted", size=0.5) + geom_pointrange()
+      title.es = with(sortdat.es, {
+        paste0("hat(theta)['*']~'='~", paste0("'", format(round(mean, 2)), "'"),
+               "~'['*", paste0("'", format(round(lower, 2), nsmall = 2), "'"), "*'-'*",
+               paste0("'", format(round(upper, 2), nsmall = 2), "'"), "*']'*';'~italic(I)^2~'='~",
+               paste0("'", format(round(i2, 2),nsmall = 2), "'"), "*'%'")})
 
-      forest.i2 = ggplot(sortdat.i2, aes(x = studlab, y = mean, ymin = lower, ymax = upper)) + geom_pointrange() +
-        geom_text(aes(label = paste("I2=", format(round(i2, 2), nsmall = 2), "; ", format(round(mean,
-                                                                                                2), nsmall = 2), " [", format(round(lower, 2), nsmall = 2), ";", format(round(upper, 2), nsmall = 2),
-                                    "] ", sep = ""), y = Inf), hjust = "inward", size = 2 * text.scale) + geom_hline(yintercept = 0,
-                                                                                                                     color = "blue") + ylab(paste(ggtitl, " (", as.character(lastline$studlab), ")", sep = "")) + ggtitle("Sorted by I-squared") +
-        coord_flip() + theme_minimal() + theme(axis.title.y = element_blank(), axis.title.x = element_text(color = "black",
-                                                                                                           size = 12, face = "bold"), axis.text.y = element_text(color = "black", size = 9 * text.scale),
-                                               plot.title = element_text(face = "bold", hjust = 0.5), axis.line.x = element_line(color = "black"),
-                                               axis.ticks.x = element_line(color = "black"), axis.text.x = element_text(color = "black", size = 9 *
-                                                                                                                          text.scale)) + scale_y_continuous(limits = c(min, max)) +
-        geom_rect(aes(ymin=plot.sum.lower, ymax=plot.sum.upper, xmin=0, xmax=Inf), alpha=0.08, fill="lightgreen", color=NA) + geom_hline(yintercept = plot.sum.effect, color = "darkgreen", linetype="dotted", size=0.5) + geom_pointrange()
+      title.i2 = with(sortdat.i2,{
+        paste0("italic(I)^2~'='~",
+               paste0("'", format(round(i2, 2),nsmall = 2), "'"), "*'%'", "*';'~",
+               "hat(theta)['*']~'='~", paste0("'", format(round(mean, 2)), "'"),
+               "~'['*", paste0("'", format(round(lower, 2), nsmall = 2), "'"), "*'-'*",
+               paste0("'", format(round(upper, 2), nsmall = 2), "'"), "*']'")})
 
+
+      forest.es = ggplot(sortdat.es, aes(x = studlab, y = mean, ymin = lower, ymax = upper)) +
+        geom_text(aes(label = title.es, y = Inf), parse = T, hjust = "inward", size = 3 * text.scale) +
+        geom_hline(yintercept = 0, color = "blue") + ylab(paste(ggtitl, " (", as.character(lastline$studlab), ")", sep = "")) +
+        ggtitle(paste("Sorted by", ggtitl)) +
+        coord_flip() +
+        theme_minimal() +
+        theme(axis.title.y = element_blank(), axis.title.x = element_text(color = "black", size = 12, face = "bold"), axis.text.y = element_text(color = "black", size = 9 * text.scale), plot.title = element_text(face = "bold", hjust = 0.5), axis.line.x = element_line(color = "black"), axis.ticks.x = element_line(color = "black"), axis.text.x = element_text(color = "black", size = 9 * text.scale)) +
+        scale_y_continuous(limits = c(min, max)) +
+        geom_rect(aes(ymin=plot.sum.lower, ymax=plot.sum.upper, xmin=0, xmax=Inf), alpha=0.08, fill="lightgreen", color=NA) +
+        geom_hline(yintercept = plot.sum.effect, color = "darkgreen", linetype="dotted", size=0.5) +
+        geom_point(shape = 15, size = 4.5, color = "grey") +
+        geom_linerange(size = 0.9) +
+        geom_pointrange(shape = 3, size = 0.3)
+
+      forest.i2 = ggplot(sortdat.i2, aes(x = studlab, y = mean, ymin = lower, ymax = upper)) +
+        geom_text(aes(label = title.i2, y = Inf), parse = T, hjust = "inward", size = 3 * text.scale) +
+        geom_hline(yintercept = 0, color = "blue") + ylab(paste(ggtitl, " (", as.character(lastline$studlab), ")", sep = "")) +
+        ggtitle(expression(Sorted~by~italic(I)^2)) +
+        coord_flip() +
+        theme_minimal() +
+        theme(axis.title.y = element_blank(), axis.title.x = element_text(color = "black", size = 12, face = "bold"), axis.text.y = element_text(color = "black", size = 9 * text.scale), plot.title = element_text(face = "bold", hjust = 0.5), axis.line.x = element_line(color = "black"), axis.ticks.x = element_line(color = "black"), axis.text.x = element_text(color = "black", size = 9 * text.scale)) +
+        scale_y_continuous(limits = c(min, max)) +
+        geom_rect(aes(ymin=plot.sum.lower, ymax=plot.sum.upper, xmin=0, xmax=Inf), alpha=0.08, fill="lightgreen", color=NA) +
+        geom_hline(yintercept = plot.sum.effect, color = "darkgreen", linetype="dotted", size=0.5) +
+        geom_point(shape = 15, size = 4.5, color = "grey") +
+        geom_linerange(size = 0.9) +
+        geom_pointrange(shape = 3, size = 0.3)
 
 
 
@@ -787,31 +824,46 @@ InfluenceAnalysis = function(x, random = FALSE, subplot.heights = c(30, 18),
         cat("===============")
         ########################################
 
-        forest.es = ggplot(sortdat.es, aes(x = studlab, y = mean, ymin = lower, ymax = upper)) + geom_pointrange() +
-            geom_text(aes(label = paste(format(round(mean, 2), nsmall = 2), " [", format(round(lower, 2),
-                nsmall = 2), ";", format(round(upper, 2), nsmall = 2), "] ", "; I2=", format(round(i2, 2),
-                nsmall = 2), sep = ""), y = Inf), hjust = "inward", size = 2 * text.scale) + geom_hline(yintercept = 0,
+        title.es = with(sortdat.es, {
+                         paste0("hat(theta)['*']~'='~", paste0("'", format(round(mean, 2)), "'"),
+                                "~'['*", paste0("'", format(round(lower, 2), nsmall = 2), "'"), "*'-'*",
+                                paste0("'", format(round(upper, 2), nsmall = 2), "'"), "*']'*';'~italic(I)^2~'='~",
+                                paste0("'", format(round(i2, 2),nsmall = 2), "'"), "*'%'")})
+
+        title.i2 = with(sortdat.i2,{
+                          paste0("italic(I)^2~'='~",
+                                 paste0("'", format(round(i2, 2),nsmall = 2), "'"), "*'%'", "*';'~",
+                                 "hat(theta)['*']~'='~", paste0("'", format(round(mean, 2)), "'"),
+                                 "~'['*", paste0("'", format(round(lower, 2), nsmall = 2), "'"), "*'-'*",
+                                 paste0("'", format(round(upper, 2), nsmall = 2), "'"), "*']'")})
+
+        forest.es = ggplot(sortdat.es, aes(x = studlab, y = mean, ymin = lower, ymax = upper)) +
+            geom_text(aes(label = title.es, y = Inf), parse = T, hjust = "inward", size = 3 * text.scale) + geom_hline(yintercept = 0,
             color = "blue") + ylim(min, max) + ylab(paste("Effect Size (", as.character(lastline$studlab),
             ")", sep = "")) + ggtitle("Sorted by Effect Size") + coord_flip() + theme_minimal() + theme(axis.title.y = element_blank(),
             axis.title.x = element_text(color = "black", size = 12, face = "bold"), axis.text.y = element_text(color = "black",
                 size = 9 * text.scale), plot.title = element_text(face = "bold", hjust = 0.5), axis.line.x = element_line(color = "black"),
             axis.ticks.x = element_line(color = "black"), axis.text.x = element_text(color = "black", size = 9 *
                 text.scale)) +
-          geom_rect(aes(ymin=plot.sum.lower, ymax=plot.sum.upper, xmin=0, xmax=Inf), alpha=0.08, fill="lightgreen", color=NA) + geom_hline(yintercept = plot.sum.effect, color = "darkgreen", linetype="dotted", size=0.5) + geom_pointrange()
+          geom_rect(aes(ymin=plot.sum.lower, ymax=plot.sum.upper, xmin=0, xmax=Inf), alpha=0.08, fill="lightgreen", color=NA) +
+          geom_hline(yintercept = plot.sum.effect, color = "darkgreen", linetype="dotted", size=0.5) +
+          geom_point(shape = 15, size = 4.5, color = "grey") +
+          geom_linerange(size = 0.9) +
+          geom_pointrange(shape = 3, size = 0.3)
 
-        forest.i2 = ggplot(sortdat.i2, aes(x = studlab, y = mean, ymin = lower, ymax = upper)) + geom_pointrange() +
-            geom_text(aes(label = paste("I2=", format(round(i2, 2), nsmall = 2), "; ", format(round(mean,
-                2), nsmall = 2), " [", format(round(lower, 2), nsmall = 2), ";", format(round(upper, 2), nsmall = 2),
-                "] ", sep = ""), y = Inf), hjust = "inward", size = 2) + geom_hline(yintercept = 0, color = "blue") +
-            ylim(min, max) + ylab(paste("Effect Size (", as.character(lastline$studlab), ")", sep = "")) +
-            ggtitle("Sorted by I-squared") + coord_flip() + theme_minimal() + theme(axis.title.y = element_blank(),
-            axis.title.x = element_text(color = "black", size = 12, face = "bold"), axis.text.y = element_text(color = "black",
-                size = 9 * text.scale), plot.title = element_text(face = "bold", hjust = 0.5), axis.line.x = element_line(color = "black"),
-            axis.ticks.x = element_line(color = "black"), axis.text.x = element_text(color = "black", size = 9 *
-                text.scale)) +
-          geom_rect(aes(ymin=plot.sum.lower, ymax=plot.sum.upper, xmin=0, xmax=Inf), alpha=0.08, fill="lightgreen", color=NA) + geom_hline(yintercept = plot.sum.effect, color = "darkgreen", linetype="dotted", size=0.5) + geom_pointrange()
-
-
+        forest.i2 = ggplot(sortdat.i2, aes(x = studlab, y = mean, ymin = lower, ymax = upper)) +
+          geom_text(aes(label = title.i2, y = Inf), parse = T, hjust = "inward", size = 3 * text.scale) + geom_hline(yintercept = 0,
+          color = "blue") + ylim(min, max) + ylab(paste("Effect Size (", as.character(lastline$studlab), ")", sep = "")) +
+          ggtitle(expression(Sorted~by~italic(I)^2)) + coord_flip() + theme_minimal() + theme(axis.title.y = element_blank(),
+          axis.title.x = element_text(color = "black", size = 12, face = "bold"),
+          axis.text.y = element_text(color = "black",size = 9 * text.scale), plot.title = element_text(face = "bold", hjust = 0.5),
+          axis.line.x = element_line(color = "black"),
+          axis.ticks.x = element_line(color = "black"), axis.text.x = element_text(color = "black", size = 9 * text.scale)) +
+          geom_rect(aes(ymin=plot.sum.lower, ymax=plot.sum.upper, xmin=0, xmax=Inf), alpha=0.08, fill="lightgreen", color=NA) +
+          geom_hline(yintercept = plot.sum.effect, color = "darkgreen", linetype="dotted", size=0.5) +
+          geom_point(shape = 15, size = 4.5, color = "grey") +
+          geom_linerange(size = 0.9) +
+          geom_pointrange(shape = 3, size = 0.3)
     }
 
 
