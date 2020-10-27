@@ -120,7 +120,7 @@
 #' @import grid gridExtra ggplot2
 #' @importFrom fpc dbscan
 #' @importFrom stats kmeans cooks.distance lm complete.cases
-#' @importFrom mclust mclustBIC Mclust emControl mclust.options
+#' @importFrom mclust mclustBIC Mclust emControl mclust.options predict.Mclust
 #' @importFrom grDevices rainbow
 #'
 #'
@@ -309,10 +309,10 @@ gosh.diagnostics = function(data,
     if (length(as.numeric(gmm$classification)) > 5000){
       gmm.plot.mask = sample(1:length(as.numeric(gmm$classification)), 5000)
       dat.gmm.plot = dat.gmm[gmm.plot.mask,]
-      dat.gmm.plot$cluster = gmm@cluster[gmm.plot.mask]
+      dat.gmm.plot$cluster = predict.Mclust(gmm)$classification[gmm.plot.mask]
     } else {
       dat.gmm.plot = dat.gmm
-      dat.gmm.plot$cluster = gmm$classification
+      dat.gmm.plot$cluster = predict.Mclust(gmm)$classification
     }
 
     if (verbose == TRUE){
