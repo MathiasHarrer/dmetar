@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Ionizing Radiation from Chernobyl and Mutation Rates in Humans dataset — Chernobyl • dmetar</title>
+<title>Differential Effects of Cognitive Behavioral Therapy Delivery Formats in Depressive Patients dataset — TherapyFormats • dmetar</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -54,9 +54,9 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Ionizing Radiation from Chernobyl and Mutation Rates in Humans dataset — Chernobyl" />
-<meta property="og:description" content="This is a dataset containing correlations between exposure to ionized radiation due to the 1986 Chernobyl reactor disaster and
-mutation rates in humans." />
+<meta property="og:title" content="Differential Effects of Cognitive Behavioral Therapy Delivery Formats in Depressive Patients dataset — TherapyFormats" />
+<meta property="og:description" content="This data set contains simulated effect sizes of randomized controlled trials evaluating the (relative) effectiveness of
+cognitive behavioral therapy for depression, using different delivery formats." />
 <meta property="og:image" content="http://dmetar.protectlab.org/logo.png" />
 
 
@@ -135,47 +135,51 @@ mutation rates in humans." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Ionizing Radiation from Chernobyl and Mutation Rates in Humans dataset</h1>
+    <h1>Differential Effects of Cognitive Behavioral Therapy Delivery Formats in Depressive Patients dataset</h1>
     
-    <div class="hidden name"><code>Chernobyl.Rd</code></div>
+    <div class="hidden name"><code>TherapyFormats.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>This is a dataset containing correlations between exposure to ionized radiation due to the 1986 Chernobyl reactor disaster and
-mutation rates in humans.</p>
+    <p>This data set contains simulated effect sizes of randomized controlled trials evaluating the (relative) effectiveness of
+cognitive behavioral therapy for depression, using different delivery formats.</p>
     </div>
 
-    <pre class="usage"><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='st'>"Chernobyl"</span>)</pre>
+    <pre class="usage"><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='st'>"TherapyFormats"</span>)</pre>
 
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>A <code>data.frame</code> with 8 columns.</p><dl'>
-<dt>author</dt><dd><p><code>character</code>. The study label containing the author and year of the study.</p></dd>
-<dt>cor</dt><dd><p><code>numeric</code>. Untransformed Pearson correlation between radiation exposure and mutation rates.</p></dd>
-<dt>n</dt><dd><p><code>numeric</code>. Sample size.</p></dd>
-<dt>z</dt><dd><p><code>numeric</code>. Fisher-\(z\) transformed correlations.</p></dd>
-<dt>se.z</dt><dd><p><code>numeric</code>. Standard error of the Fisher-\(z\) transformed correlations.</p></dd>
-<dt>var.z</dt><dd><p><code>numeric</code>. Variance of the Fisher-\(z\) transformed correlations.</p></dd>
-<dt>radiation</dt><dd><p><code>character</code>. Overall amount of exposure in the study sample.</p></dd>
-<dt>es.id</dt><dd><p><code>character</code>. Variable representing study membership.</p></dd>
+    <p>A <code>data.frame</code> with 7 columns.</p><dl'>
+<dt>author</dt><dd><p><code>character</code>. The study label containing the first author and year of the study.</p></dd>
+<dt>TE</dt><dd><p><code>numeric</code>. The effect size of the treatment comparison. Negative values indicate results favoring <code>treat1</code>.</p></dd>
+<dt>seTE</dt><dd><p><code>numeric</code>. The standard error of the effect size.</p></dd>
+<dt>treat1</dt><dd><p><code>character</code>. Name of the first treatment (short label).</p></dd>
+<dt>treat2</dt><dd><p><code>character</code>. Name of the second treatment (short label).</p></dd>
+<dt>treat2</dt><dd><p><code>character</code>. Name of the first treatment (full name).</p></dd>
+<dt>treat2</dt><dd><p><code>character</code>. Name of the second treatment (full name).</p></dd>
 
 </dl>
 
     <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
 
-    <p>Møller, A. P., &amp; Mousseau, T. A. (2015). Strong Effects of Ionizing Radiation from Chernobyl on Mutation Rates. <em>Scientific Reports</em>, 5, 8363.</p>
+    <p>Cuijpers, P., Noma, H., Karyotaki, E., Cipriani, A., &amp; Furukawa, T. A. (2019).
+Effectiveness and Acceptability of Cognitive Behavior Therapy Delivery Formats in Adults with Depression: A Network Meta-analysis.
+<em>JAMA Psychiatry, 76</em>(7), 700-707.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>This data set is based on studies assessing mutations in humans exposed to radioactive fallout of the Chernobyl reactor
-incident, as identified in Møller &amp; Mousseau (2015). Several studies report more than one estimate of the association between
-radiation exposure and mutation rate, which generates a nested data structure (effect sizes are nested in studies). A variable
-<code>es.id</code> was added to the data set, coding the clustered data structure. The dataset contains the untransformed
-correlation (<code>cor</code>) and sample size, as well as the Fisher-\(z\) transformed correlation, along with their standard error
-and variance. The \(z\) and variance value may be used in three-level meta-analysis models implemented via the <code><a href='https://rdrr.io/pkg/metafor/man/rma.mv.html'>rma.mv</a></code> function
-in the <code>metafor</code> package.</p>
-<p>Please note that the values in this dataset are not exactly identical to the ones in Møller &amp; Mousseau (2015), and results may therefore
-differ to the ones the reported in the paper.</p>
+    <p>This simulated data set is based on pooled results of a network
+meta-analysis examining the effects of different cognitive behavioral therapy
+(CBT) delivery formats in adults with depression (Cuijpers et al., 2019). Using
+network meta-analysis techniques on this data set will yield roughly similar,
+although not identical results to the ones reported in the original study.</p>
+<p>For the simulation, pooled effects within designs as reported in Cuijpers et al. along with the estimated
+between-study heterogeneity variance were assumed as true population parameters.
+Based on these "true" population parameters, simulations
+were generated assuming a (random-effects) bayesian hierarchical model, using a
+non-central chi-squared distribution for the simulation of study-specific sampling errors.
+The number of effect size draws was chosen to (approximately)
+mimic the number of comparisons in the original analysis.</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

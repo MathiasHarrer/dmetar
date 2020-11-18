@@ -1,17 +1,14 @@
 Package: dmetar
-Title: Companion R Package For The Guide 'Doing Meta-Analysis in R'
+Title: Companion R Package for the Guide 'Doing Meta-Analysis in R'
 Author: Mathias Harrer, Pim Cuijpers, Toshi Furukawa, David Daniel Ebert
 Version: 0.0.9000
 Authors@R: c(
-    person("Mathias", "Harrer", email = "mathias.harrer@fau.de", role = "cre", comment = c(ORCID = "0000-0001-7016-2687")),
+    person("Mathias", "Harrer", email = "mathias.h.harrer@gmail.com", role = "cre", comment = c(ORCID = "0000-0001-7016-2687")),
     person("Pim", "Cuijpers", email = "p.cuijpers@vu.nl", role = "aut", comment = c(ORCID = "0000-0001-5497-2743")),
     person("Toshi", "Furukawa", email = "furukawa@kuhp.kyoto-u.ac.jp", role = "aut", comment = c(ORCID = "0000-0003-2159-3776")),
     person("David Daniel", "Ebert", email = "david.daniel.ebert@gmail.com", role = "aut", comment = c(ORCID = "0000-0001-6820-0146")))
-Description: This package serves as the companion R package for the guide 'Doing Meta-Analysis in R' by 
-    Mathias Harrer, Pim Cuijpers, Toshi Furukawa and David Daniel Ebert. The package contains 
-    complementary functions to facilitate the conduction of meta-analyses using the {meta}, 
-    {metafor}, {netmeta} and {gemtc} packages.
-URL: https://github.com/MathiasHarrer/dmetar
+Description: Serves as the companion R package for the open-source guide 'Doing Meta Analysis in R'. Aimed at beginners, the package contains complementary functions to facilitate performing meta-analysis using the 'meta', 'metafor', 'netmeta' and 'gemtc' packages.
+URL: https://dmetar.protectlab.org
 Depends: R (>= 3.6)
 License: MIT + file LICENSE
 Encoding: UTF-8

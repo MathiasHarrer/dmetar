@@ -17,7 +17,7 @@ using the \pkg{meta}, \pkg{metafor}, \pkg{netmeta} and \pkg{gemtc} packages.
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://github.com/MathiasHarrer/dmetar}
+  \item \url{https://dmetar.protectlab.org}
 }
 
 }

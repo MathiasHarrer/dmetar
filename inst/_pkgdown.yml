@@ -61,17 +61,21 @@ reference:
 
   - title: Data sets
     contents:
-    - ThirdWave
-    - SuicidePrevention
-    - OpioidMisuse
-    - HealthWellbeing
-    - DepressionMortality
-    - Chernobyl
     - BdiScores
+    - Chernobyl
+    - DepressionMortality
+    - EatingDisorderPrevention
+    - HealthWellbeing
+    - m.gosh
     - MVRegressionData
     - NetDataGemtc
     - NetDataNetmeta
-    - m.gosh
+    - OpioidMisuse
+    - SuicidePrevention
+    - TherapyFormats
+    - TherapyFormatsGeMTC
+    - ThirdWave
+
 
   - title: Package
     contents:
