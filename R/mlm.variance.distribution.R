@@ -58,6 +58,10 @@ mlm.variance.distribution = function(x){
     stop("The model you provided does not seem to be a three-level model. This function can only be used for three-level models.")
   }
 
+  # Check for right specification (nested model)
+  if (sum(grepl("/", as.character(m$random[[1]]))) < 1){
+    stop("Model must contain nested random effects. Did you use the '~ 1 | cluster/effect-within-cluster' notation in 'random'? See ?metafor::rma.mv for more details.")
+  }
 
   # Get variance diagonal and calculate total variance
   n = m$k.eff
@@ -72,8 +76,8 @@ mlm.variance.distribution = function(x){
 
   # Calculate variance proportions
   level1=((est.samp.var)/(m$sigma2[1]+m$sigma2[2]+est.samp.var)*100)
-  level2=((m$sigma2[1])/(m$sigma2[1]+m$sigma2[2]+est.samp.var)*100)
-  level3=((m$sigma2[2])/(m$sigma2[1]+m$sigma2[2]+est.samp.var)*100)
+  level2=((m$sigma2[2])/(m$sigma2[1]+m$sigma2[2]+est.samp.var)*100)
+  level3=((m$sigma2[1])/(m$sigma2[1]+m$sigma2[2]+est.samp.var)*100)
 
   # Prepare df for return
   Level=c("Level 1", "Level 2", "Level 3")
