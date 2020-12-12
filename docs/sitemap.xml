@@ -97,6 +97,9 @@
     <loc>http://dmetar.protectlab.org/reference/plot.gosh.diagnostics.html</loc>
   </url>
   <url>
+    <loc>http://dmetar.protectlab.org/reference/plot.mlm.variance.distribution.html</loc>
+  </url>
+  <url>
     <loc>http://dmetar.protectlab.org/reference/plot.multimodel.inference.html</loc>
   </url>
   <url>
@@ -134,6 +137,9 @@
   </url>
   <url>
     <loc>http://dmetar.protectlab.org/reference/print.gosh.diagnostics.html</loc>
+  </url>
+  <url>
+    <loc>http://dmetar.protectlab.org/reference/print.mlm.variance.distribution.html</loc>
   </url>
   <url>
     <loc>http://dmetar.protectlab.org/reference/print.multimodel.inference.html</loc>
@@ -179,6 +185,9 @@
   </url>
   <url>
     <loc>http://dmetar.protectlab.org/reference/summary.gosh.diagnostics.html</loc>
+  </url>
+  <url>
+    <loc>http://dmetar.protectlab.org/reference/summary.mlm.variance.distribution.html</loc>
   </url>
   <url>
     <loc>http://dmetar.protectlab.org/reference/summary.multimodel.inference.html</loc>

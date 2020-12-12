@@ -70,6 +70,7 @@
 #' \code{\link[netmeta]{netmeta}}, \code{\link[netmeta]{netmeasures}}
 #'
 #' @examples
+#' \dontrun{
 #' # Load Senn2013 data from netmeta
 #' suppressPackageStartupMessages(library(netmeta))
 #' data(Senn2013)
@@ -81,7 +82,7 @@
 #' # Generate the plot
 #' dep = direct.evidence.plot(nma, random=FALSE, comparison.label.size = 1,
 #' numeric.label.size=1, subplot.ratio=c(3,1,1))
-#' dep
+#' dep}
 
 
 

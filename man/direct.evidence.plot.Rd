@@ -60,6 +60,7 @@ line in the plot.
 }
 }
 \examples{
+\dontrun{
 # Load Senn2013 data from netmeta
 suppressPackageStartupMessages(library(netmeta))
 data(Senn2013)
@@ -71,7 +72,7 @@ nma = netmeta(TE, seTE, treat1, treat2, studlab,
 # Generate the plot
 dep = direct.evidence.plot(nma, random=FALSE, comparison.label.size = 1,
 numeric.label.size=1, subplot.ratio=c(3,1,1))
-dep
+dep}
 }
 \references{
 Harrer, M., Cuijpers, P., Furukawa, T.A, & Ebert, D. D. (2019).

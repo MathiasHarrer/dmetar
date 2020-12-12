@@ -2,7 +2,8 @@
 % Please edit documentation in R/mlm.variance.distribution.R
 \name{mlm.variance.distribution}
 \alias{mlm.variance.distribution}
-\title{Calculate \eqn{I}-squared and the variance distribution for multilevel meta-analysis models}
+\alias{var.comp}
+\title{Calculate I-squared values and variance distribution for multilevel meta-analysis models}
 \usage{
 mlm.variance.distribution(x)
 }
@@ -10,8 +11,7 @@ mlm.variance.distribution(x)
 \item{x}{An object of class \code{rma.mv}. Must be a multilevel model with two random effects (three-level meta-analysis model).}
 }
 \value{
-Returns a plot summarizing the variance distribution and \eqn{I^2} values,
-as well as a data frame for the results.
+Returns a data frame containing the results. A plot summarizing the variance distribution and \eqn{I^2} values can be generated using \code{plot}.
 }
 \description{
 This function calculates values of \eqn{I^2} and the variance distribution for multilevel meta-analysis
@@ -33,6 +33,17 @@ m = rma.mv(yi, vi, random = ~ 1 | district/school, data=dat.konstantopoulos2011)
 
 # Calculate Variance Distribution
 mlm.variance.distribution(m)
+
+# Use alias 'var.comp' and 'Chernobyl' data set
+data("Chernobyl")
+m2 = rma.mv(yi = z, V = var.z, data = Chernobyl, random = ~ 1 | author/es.id)
+res = var.comp(m2)
+
+# Print results
+res
+
+# Generate plot
+plot(res)
 }
 \references{
 Harrer, M., Cuijpers, P., Furukawa, T.A, & Ebert, D. D. (2019).

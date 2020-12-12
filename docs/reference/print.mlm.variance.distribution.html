@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Calculate I-squared values and variance distribution for multilevel meta-analysis models — mlm.variance.distribution • dmetar</title>
+<title>Print, summary and plot methods for objects created using 'dmetar' functions — print.mlm.variance.distribution • dmetar</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -54,9 +54,10 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Calculate I-squared values and variance distribution for multilevel meta-analysis models — mlm.variance.distribution" />
-<meta property="og:description" content="This function calculates values of \(I^2\) and the variance distribution for multilevel meta-analysis
-models fitted with rma.mv." />
+<meta property="og:title" content="Print, summary and plot methods for objects created using 'dmetar' functions — print.mlm.variance.distribution" />
+<meta property="og:description" content="Print, summary and plot S3 methods for objects of class direct.evidence.plot, find.outliers,
+influence.analysis, multimodel.inference, pcurve, power.analysis,
+subgroup.analysis.mixed.effects, mlm.variance.distribution, and sucra." />
 <meta property="og:image" content="http://dmetar.protectlab.org/logo.png" />
 
 
@@ -135,69 +136,38 @@ models fitted with rma.mv." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Calculate I-squared values and variance distribution for multilevel meta-analysis models</h1>
+    <h1>Print, summary and plot methods for objects created using 'dmetar' functions</h1>
     
-    <div class="hidden name"><code>mlm.variance.distribution.Rd</code></div>
+    <div class="hidden name"><code>print.mlm.variance.distribution.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>This function calculates values of \(I^2\) and the variance distribution for multilevel meta-analysis
-models fitted with <code><a href='https://rdrr.io/pkg/metafor/man/rma.mv.html'>rma.mv</a></code>.</p>
+    <p>Print, summary and plot S3 methods for objects of class <code>direct.evidence.plot</code>, <code>find.outliers</code>,
+<code>influence.analysis</code>, <code>multimodel.inference</code>, <code>pcurve</code>, <code>power.analysis</code>,
+<code>subgroup.analysis.mixed.effects</code>, <code>mlm.variance.distribution</code>, and <code>sucra</code>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>mlm.variance.distribution</span>(<span class='no'>x</span>)</pre>
+    <pre class="usage"><span class='co'># S3 method for mlm.variance.distribution</span>
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>x</span>, <span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>An object of class <code>rma.mv</code>. Must be a multilevel model with two random effects (three-level meta-analysis model).</p></td>
+      <td><p>An object of class <code>mlm.variance.distribution</code>.</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Additional arguments.</p></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>Returns a data frame containing the results. A plot summarizing the variance distribution and \(I^2\) values can be generated using <code>plot</code>.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>This function estimates the distribution of variance in a three-level meta-analysis
-model (fitted with the <code><a href='https://rdrr.io/pkg/metafor/man/rma.mv.html'>rma.mv</a></code> function). The share of variance attributable to
-sampling error, within and between-cluster heterogeneity is calculated,
-and an estimate of \(I^2\) (total and for Level 2 and Level 3) is provided. The function uses the formula by
-Cheung (2014) to estimate the variance proportions attributable to each model component and to derive the \(I^2\) estimates.</p>
-    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
+    <p>A total of four package-specific S3 methods are provided in <code>dmetar</code>: S3 methods for <code>print</code>,
+<code>summary</code>, <code>plot</code> and <code>forest</code>. Outputs from <code>print</code> and <code>summary</code> are always identical.</p>
 
-    <p>Harrer, M., Cuijpers, P., Furukawa, T.A, &amp; Ebert, D. D. (2019).
-<em>Doing Meta-Analysis in R: A Hands-on Guide</em>. DOI: 10.5281/zenodo.2551803. <a href='https://bookdown.org/MathiasHarrer/Doing_Meta_Analysis_in_R/mlma.html'>Chapter 12</a>.</p>
-<p>Cheung, M. W. L. (2014). Modeling dependent effect sizes with three-level meta-analyses: a structural equation modeling approach. <em>Psychological Methods, 19</em>(2), 211.</p>
-
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># Use dat.konstantopoulos2011 from the "metafor" package</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>metafor</span>)
-
-<span class='co'># Build Multilevel Model (Three Levels)</span>
-<span class='no'>m</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/metafor/man/rma.mv.html'>rma.mv</a></span>(<span class='no'>yi</span>, <span class='no'>vi</span>, <span class='kw'>random</span> <span class='kw'>=</span> ~ <span class='fl'>1</span> <span class='kw'>|</span> <span class='no'>district</span>/<span class='no'>school</span>, <span class='kw'>data</span><span class='kw'>=</span><span class='no'>dat.konstantopoulos2011</span>)
-
-<span class='co'># Calculate Variance Distribution</span>
-<span class='fu'>mlm.variance.distribution</span>(<span class='no'>m</span>)</div><div class='output co'>#&gt;         % of total variance    I2
-#&gt; Level 1            4.812686   ---
-#&gt; Level 2           31.862476 31.86
-#&gt; Level 3           63.324838 63.32
-#&gt; Total I2: 95.19% </div><div class='input'>
-<span class='co'># Use alias 'var.comp' and 'Chernobyl' data set</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='st'>"Chernobyl"</span>)
-<span class='no'>m2</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/metafor/man/rma.mv.html'>rma.mv</a></span>(<span class='kw'>yi</span> <span class='kw'>=</span> <span class='no'>z</span>, <span class='kw'>V</span> <span class='kw'>=</span> <span class='no'>var.z</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>Chernobyl</span>, <span class='kw'>random</span> <span class='kw'>=</span> ~ <span class='fl'>1</span> <span class='kw'>|</span> <span class='no'>author</span>/<span class='no'>es.id</span>)
-<span class='no'>res</span> <span class='kw'>=</span> <span class='fu'>var.comp</span>(<span class='no'>m2</span>)
-
-<span class='co'># Print results</span>
-<span class='no'>res</span></div><div class='output co'>#&gt;         % of total variance    I2
-#&gt; Level 1            1.254966   ---
-#&gt; Level 2           39.525499 39.53
-#&gt; Level 3           59.219534 59.22
-#&gt; Total I2: 98.75% </div><div class='input'>
-<span class='co'># Generate plot</span>
-<span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>res</span>)</div><div class='img'><img src='mlm.variance.distribution-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

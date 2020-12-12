@@ -1,4 +1,4 @@
-#' Calculate \eqn{I}-squared and the variance distribution for multilevel meta-analysis models
+#' Calculate I-squared values and variance distribution for multilevel meta-analysis models
 #'
 #' This function calculates values of \eqn{I^2} and the variance distribution for multilevel meta-analysis
 #' models fitted with \code{\link[metafor]{rma.mv}}.
@@ -24,13 +24,15 @@
 #'
 #' @author Mathias Harrer & David Daniel Ebert
 #'
+#' @aliases var.comp
+#'
 #' @import ggplot2
 #' @importFrom stats model.matrix
 #'
-#' @return Returns a plot summarizing the variance distribution and \eqn{I^2} values,
-#' as well as a data frame for the results.
+#' @return Returns a data frame containing the results. A plot summarizing the variance distribution and \eqn{I^2} values can be generated using \code{plot}.
 #'
 #' @export mlm.variance.distribution
+#' @export var.comp
 #'
 #' @examples
 #' # Use dat.konstantopoulos2011 from the "metafor" package
@@ -41,10 +43,21 @@
 #'
 #' # Calculate Variance Distribution
 #' mlm.variance.distribution(m)
+#'
+#' # Use alias 'var.comp' and 'Chernobyl' data set
+#' data("Chernobyl")
+#' m2 = rma.mv(yi = z, V = var.z, data = Chernobyl, random = ~ 1 | author/es.id)
+#' res = var.comp(m2)
+#'
+#' # Print results
+#' res
+#'
+#' # Generate plot
+#' plot(res)
 
 
 
-mlm.variance.distribution = function(x){
+mlm.variance.distribution = var.comp = function(x){
 
   m = x
 
@@ -157,10 +170,15 @@ mlm.variance.distribution = function(x){
     annotate("text", x = 2, y = (df[5,2]/2)/100,
              label = bquote(italic(I)[Level3]^2*":"~.(round(df[5,2],2))*"%"), size = 3)
 
-  print(df.res)
-  cat("Total I2: ", round(totalI2, 2), "% \n", sep="")
-  suppressWarnings(print(g))
-  invisible(df.res)
+  returnlist = list(results = df.res,
+                    totalI2 = totalI2,
+                    plot = g)
+  class(returnlist) = c("mlm.variance.distribution", "list")
+
+  invisible(returnlist)
+
+  returnlist
+
 }
 
 

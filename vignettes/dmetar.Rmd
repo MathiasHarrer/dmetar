@@ -117,7 +117,7 @@ data("NetDataNetmeta")
 
 The `dmetar` package contains two functions for *a priori* [power analyses](https://bookdown.org/MathiasHarrer/Doing_Meta_Analysis_in_R/power-analysis.html) of a meta-analysis: [`power.analysis`](https://dmetar.protectlab.org/reference/power.analysis.html) and [`power.analysis.subgroups`](https://dmetar.protectlab.org&/reference/power.analysis.subgroup.html). Let us assume that researchers expect to have approximately 18 studies in their meta-analysis, with moderate between-group heterogeneity and about 50 participants per arm and study. Will there be sufficient power to detect an assumed minimally important difference of $d=0.18$? The `power.analysis` function can be used to answer this question.
 
-```{r, fig.align='center'}
+```{r, fig.align='center', fig.width=5, fig.height=3, fig.align='center'}
 power.analysis(d = 0.18, k = 18, n1 = 50, n2 = 50, heterogeneity = "moderate")
 ```
 
@@ -275,8 +275,8 @@ Influence Analysis can be helpful to detect studies which:
 
 The [`InfluenceAnalysis`](https://dmetar.protectlab.org/reference/InfluenceAnalysis.html) is a wrapper around several influence analysis function included in the `meta` and `metafor` package. It provides four types of influence diagnostics in one single plot. The function works for meta-analysis objects created by `meta` functions, which can then be directly used as input for the function:
 
-```{r, fig.width=10, fig.height=8}
-infan = InfluenceAnalysis(meta)
+```{r, fig.width=11, fig.height=9}
+infan <- InfluenceAnalysis(meta)
 plot(infan)
 ```
 
@@ -286,7 +286,7 @@ Additionally, the [`gosh.diagnostics`](https://dmetar.protectlab.org/reference/g
 
 ```{r, eval = T}
 data("m.gosh")
-res <- gosh.diagnostics(m.gosh)
+res <- gosh.diagnostics(m.gosh, verbose = FALSE)
 
 summary(res)
 plot(res)
