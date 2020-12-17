@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Print, summary and plot methods for objects created using 'dmetar' functions — summary.mlm.variance.distribution • dmetar</title>
+<title>Factor Structure of Sleep Complaints data set — SleepProblems • dmetar</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -54,10 +54,8 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Print, summary and plot methods for objects created using 'dmetar' functions — summary.mlm.variance.distribution" />
-<meta property="og:description" content="Print, summary and plot S3 methods for objects of class direct.evidence.plot, find.outliers,
-influence.analysis, multimodel.inference, pcurve, power.analysis,
-subgroup.analysis.mixed.effects, mlm.variance.distribution, and sucra." />
+<meta property="og:title" content="Factor Structure of Sleep Complaints data set — SleepProblems" />
+<meta property="og:description" content="This is a fictitious data set containing correlation matrices of five sleep-related variables." />
 <meta property="og:image" content="http://dmetar.protectlab.org/logo.png" />
 
 
@@ -136,37 +134,35 @@ subgroup.analysis.mixed.effects, mlm.variance.distribution, and sucra." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Print, summary and plot methods for objects created using 'dmetar' functions</h1>
+    <h1>Factor Structure of Sleep Complaints data set</h1>
     
-    <div class="hidden name"><code>summary.mlm.variance.distribution.Rd</code></div>
+    <div class="hidden name"><code>SleepProblems.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Print, summary and plot S3 methods for objects of class <code>direct.evidence.plot</code>, <code>find.outliers</code>,
-<code>influence.analysis</code>, <code>multimodel.inference</code>, <code>pcurve</code>, <code>power.analysis</code>,
-<code>subgroup.analysis.mixed.effects</code>, <code>mlm.variance.distribution</code>, and <code>sucra</code>.</p>
+    <p>This is a fictitious data set containing correlation matrices of five sleep-related variables.</p>
     </div>
 
-    <pre class="usage"><span class='co'># S3 method for mlm.variance.distribution</span>
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>object</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='st'>"SleepProblems"</span>)</pre>
 
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>object</th>
-      <td><p>An object of class <code>mlm.variance.distribution</code>.</p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>Additional arguments.</p></td>
-    </tr>
-    </table>
 
+    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
+
+    <p>A <code>list</code> with 2 elements.</p><dl'>
+<dt>data</dt><dd><p><code>list</code>. Contains correlation matrices of k=11 studies. Each correlation matrix
+has the same structure, and contains the variables "sleep quality", "sleep latency", "sleep efficiency", "daytime dysfunction" and "hypersomnia".</p></dd>
+<dt>n</dt><dd><p><code>numeric</code>. Sample size of each study.</p></dd>
+
+</dl>
+
+    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
+
+    <p>Fictitious data set. Data were simulated using the <code><a href='https://rdrr.io/pkg/lavaan/man/simulateData.html'>simulateData</a></code> function in <code>lavaan</code>.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>A total of four package-specific S3 methods are provided in <code>dmetar</code>: S3 methods for <code>print</code>,
-<code>summary</code>, <code>plot</code> and <code>forest</code>. Outputs from <code>print</code> and <code>summary</code> are always identical.</p>
+    <p>This simulated data set can by used to fit a meta-analytic structural equation model using <code><a href='https://rdrr.io/pkg/metaSEM/man/tssem1.html'>tssem1</a></code>. It is assumed that
+"sleep quality", "sleep latency" and "sleep efficiency" load on the latent factor "insomnia", while "daytime dysfunction" and "hypersomnia" measure the
+latent factor "lassitude".</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

@@ -224,7 +224,8 @@ characterizing mixed treatment comparisons. <em>Statistics in Medicine, 32</em>,
     <div class='dont-index'><p><code><a href='https://rdrr.io/pkg/netmeta/man/netmeta.html'>netmeta</a></code>, <code><a href='https://rdrr.io/pkg/netmeta/man/netmeasures.html'>netmeasures</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># Load Senn2013 data from netmeta</span>
+    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='co'># Load Senn2013 data from netmeta</span>
 <span class='fu'><a href='https://rdrr.io/r/base/message.html'>suppressPackageStartupMessages</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>netmeta</span>))
 <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>Senn2013</span>)
 
@@ -235,54 +236,7 @@ characterizing mixed treatment comparisons. <em>Statistics in Medicine, 32</em>,
 <span class='co'># Generate the plot</span>
 <span class='no'>dep</span> <span class='kw'>=</span> <span class='fu'>direct.evidence.plot</span>(<span class='no'>nma</span>, <span class='kw'>random</span><span class='kw'>=</span><span class='fl'>FALSE</span>, <span class='kw'>comparison.label.size</span> <span class='kw'>=</span> <span class='fl'>1</span>,
 <span class='kw'>numeric.label.size</span><span class='kw'>=</span><span class='fl'>1</span>, <span class='kw'>subplot.ratio</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>3</span>,<span class='fl'>1</span>,<span class='fl'>1</span>))
-<span class='no'>dep</span></div><div class='output co'>#&gt; Direct Evidence Proportion for each Network Estimate 
-#&gt;  ------------------------------------------------- 
-#&gt;           Direct Indirect meanpath   minpar
-#&gt; benf:plac 1.0000   0.0000 1.000000 1.000000
-#&gt; migl:plac 1.0000   0.0000 1.000000 1.000000
-#&gt; plac:sita 1.0000   0.0000 1.000000 1.000000
-#&gt; plac:vild 1.0000   0.0000 1.000000 1.000000
-#&gt; plac:rosi 0.8317   0.1683 1.232039 1.202321
-#&gt; metf:piog 0.6760   0.3240 1.406080 1.479374
-#&gt; acar:plac 0.6283   0.3717 1.821171 1.741244
-#&gt; metf:plac 0.5827   0.4173 1.575341 1.793512
-#&gt; metf:sulf 0.5592   0.4408 1.827966 1.788188
-#&gt; acar:sulf 0.5331   0.4669 1.924880 1.875690
-#&gt; rosi:sulf 0.4106   0.5894 2.126199 2.305411
-#&gt; piog:plac 0.3578   0.6422 1.831364 2.038564
-#&gt; piog:rosi 0.1995   0.8005 2.175930 1.703670
-#&gt; metf:rosi 0.1750   0.8250 1.965334 1.657166
-#&gt; acar:metf 0.1025   0.8975 2.161838 1.921063
-#&gt; acar:benf 0.0000   1.0000 2.821171 1.000000
-#&gt; acar:migl 0.0000   1.0000 2.821171 1.000000
-#&gt; acar:piog 0.0000   1.0000 2.636489 1.843204
-#&gt; acar:rosi 0.0000   1.0000 2.287610 1.543073
-#&gt; acar:sita 0.0000   1.0000 2.821171 1.000000
-#&gt; acar:vild 0.0000   1.0000 2.821171 1.000000
-#&gt; benf:metf 0.0000   1.0000 2.575341 1.000000
-#&gt; benf:migl 0.0000   1.0000 2.000000 1.000000
-#&gt; benf:piog 0.0000   1.0000 2.831364 1.000000
-#&gt; benf:rosi 0.0000   1.0000 2.232039 1.000000
-#&gt; benf:sita 0.0000   1.0000 2.000000 1.000000
-#&gt; benf:sulf 0.0000   1.0000 3.138291 1.000000
-#&gt; benf:vild 0.0000   1.0000 2.000000 1.000000
-#&gt; metf:migl 0.0000   1.0000 2.575341 1.000000
-#&gt; metf:sita 0.0000   1.0000 2.575341 1.000000
-#&gt; metf:vild 0.0000   1.0000 2.575341 1.000000
-#&gt; migl:piog 0.0000   1.0000 2.831364 1.000000
-#&gt; migl:rosi 0.0000   1.0000 2.232039 1.000000
-#&gt; migl:sita 0.0000   1.0000 2.000000 1.000000
-#&gt; migl:sulf 0.0000   1.0000 3.138291 1.000000
-#&gt; migl:vild 0.0000   1.0000 2.000000 1.000000
-#&gt; piog:sita 0.0000   1.0000 2.831364 1.000000
-#&gt; piog:sulf 0.0000   1.0000 2.372372 1.712385
-#&gt; piog:vild 0.0000   1.0000 2.831364 1.000000
-#&gt; plac:sulf 0.0000   1.0000 2.138291 2.215596
-#&gt; rosi:sita 0.0000   1.0000 2.232039 1.000000
-#&gt; rosi:vild 0.0000   1.0000 2.232039 1.000000
-#&gt; sita:sulf 0.0000   1.0000 3.138291 1.000000
-#&gt; sita:vild 0.0000   1.0000 2.000000 1.000000
-#&gt; sulf:vild 0.0000   1.0000 3.138291 1.000000</div><div class='img'><img src='direct.evidence.plot-1.png' alt='' width='700' height='433' /></div></pre>
+<span class='no'>dep</span>}</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
