@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Print, summary and plot methods for objects created using 'dmetar' functions — forest.find.outliers • dmetar</title>
+<title>Print, summary and plot methods for objects created using 'dmetar' functions — print.NNT • dmetar</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -54,10 +54,10 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Print, summary and plot methods for objects created using 'dmetar' functions — forest.find.outliers" />
+<meta property="og:title" content="Print, summary and plot methods for objects created using 'dmetar' functions — print.NNT" />
 <meta property="og:description" content="Print, summary and plot S3 methods for objects of class direct.evidence.plot, find.outliers,
 influence.analysis, multimodel.inference, pcurve, power.analysis,
-subgroup.analysis.mixed.effects, and sucra." />
+subgroup.analysis.mixed.effects, eggers.test, NNT, and sucra." />
 <meta property="og:image" content="http://dmetar.protectlab.org/logo.png" />
 
 
@@ -138,40 +138,37 @@ subgroup.analysis.mixed.effects, and sucra." />
     <div class="page-header">
     <h1>Print, summary and plot methods for objects created using 'dmetar' functions</h1>
     
-    <div class="hidden name"><code>forest.find.outliers.Rd</code></div>
+    <div class="hidden name"><code>print.NNT.Rd</code></div>
     </div>
 
     <div class="ref-description">
     <p>Print, summary and plot S3 methods for objects of class <code>direct.evidence.plot</code>, <code>find.outliers</code>,
 <code>influence.analysis</code>, <code>multimodel.inference</code>, <code>pcurve</code>, <code>power.analysis</code>,
-<code>subgroup.analysis.mixed.effects</code>, and <code>sucra</code>.</p>
+<code>subgroup.analysis.mixed.effects</code>, <code>eggers.test</code>, <code>NNT</code>, and <code>sucra</code>.</p>
     </div>
 
-    <pre class="usage"><span class='co'># S3 method for find.outliers</span>
-<span class='fu'>forest</span>(<span class='no'>x</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='co'># S3 method for NNT</span>
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>x</span>, <span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>An object of class <code>find.outliers</code>.</p></td>
+      <td><p>An object of class <code>direct.evidence.plot</code>, <code>find.outliers</code>,
+<code>influence.analysis</code>, <code>multimodel.inference</code>, <code>pcurve</code>, <code>power.analysis</code>,
+<code>subgroup.analysis.mixed.effects</code>, <code>eggers.test</code>, <code>NNT</code>, or <code>sucra</code>.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Other arguments of the <code>meta.forest</code> or <code>metafor</code>'s code<a href='https://rdrr.io/pkg/metafor/man/forest.html'>forest</a>
-function. Can be used for styling the generated forest plot.</p></td>
+      <td><p>Additional arguments.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>A total of four package-specific S3 methods are provided in <code>dmetar</code>: S3 methods for <code>print</code>,
-<code>summary</code>, <code>plot</code> and <code>forest</code>. Outputs from <code>print</code> and <code>summary</code> are always identical.
-When both <code>plot</code> and <code>forest</code> are available for a class, outputs of both functions are identical (i.e., a forest
-plot is returned). The <code>forest</code>/<code>plot</code> function allows additional arguments of the <code>meta.forest</code> or
-<code>metafor</code>'s code<a href='https://rdrr.io/pkg/metafor/man/forest.html'>forest</a> function (depending on the class of the meta-analysis object on which prior
-calculations are based on). These can be used for further styling of the forest plot.</p>
+<code>summary</code>, <code>plot</code> and <code>forest</code>. Outputs from <code>print</code> and <code>summary</code> are always identical.</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

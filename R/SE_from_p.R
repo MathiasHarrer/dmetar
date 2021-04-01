@@ -82,12 +82,20 @@ se.from.p = function(effect.size, p, N, effect.size.type = "difference", calcula
         stop("'p' is not of type numeric().")
     }
 
+    if (sum(p < 0 | p > 1) > 0){
+        stop("values of 'p' must range between 0 and 1.")
+    }
+
     if (is.numeric(N) == FALSE) {
         stop("'N' is not of type numeric().")
     }
 
     if (ES.type %in% c("difference", "ratio") == FALSE) {
         stop("'effect.size.type' must be either 'difference' or 'ratio'.")
+    }
+
+    if (ES.type == "ratio" & sum(ES < 0) > 0) {
+        stop("when 'effect.size.type' is 'ratio', values of 'effect.size' must be equal to or greater than 0.")
     }
 
     # Difference vs. Ratio
@@ -102,7 +110,7 @@ se.from.p = function(effect.size, p, N, effect.size.type = "difference", calcula
             SD = SE * sqrt(N)
             LLCI = ES - qnorm(0.975) * SE
             ULCI = ES + qnorm(0.975) * SE
-            data = data.frame(ES, SE, SD, LLCI, ULCI)
+            data = data.frame(ES, abs(SE), abs(SD), LLCI, ULCI)
             colnames(data) = c("Hedges.g", "StandardError", "StandardDeviation", "LLCI", "ULCI")
 
         } else {
@@ -112,7 +120,7 @@ se.from.p = function(effect.size, p, N, effect.size.type = "difference", calcula
             SD = SE * sqrt(N)
             LLCI = ES - qnorm(0.975) * SE
             ULCI = ES + qnorm(0.975) * SE
-            data = data.frame(ES, SE, SD, LLCI, ULCI)
+            data = data.frame(ES, abs(SE), abs(SD), LLCI, ULCI)
             colnames(data) = c("EffectSize", "StandardError", "StandardDeviation", "LLCI", "ULCI")
         }
 
@@ -138,7 +146,7 @@ se.from.p = function(effect.size, p, N, effect.size.type = "difference", calcula
             expLLCI = exp(LLCI)
             expULCI = exp(ULCI)
 
-            data = data.frame(ES, SE, SD, LLCI, ULCI, expES, expLLCI, expULCI)
+            data = data.frame(ES, abs(SE), abs(SD), LLCI, ULCI, expES, expLLCI, expULCI)
             colnames(data) = c("logEffectSize", "logStandardError", "logStandardDeviation", "logLLCI", "logULCI", "EffectSize",
                 "LLCI", "ULCI")
         }

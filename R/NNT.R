@@ -76,22 +76,28 @@
 #' NNT(event.e = 10, event.c = 20, n.e = 200, n.c = 200)
 
 
-NNT = function (d, CER, event.e, n.e, event.c, n.c, names, method)
+NNT = function (d, CER = NULL, event.e = NULL, n.e = NULL, event.c = NULL,
+                n.c = NULL, names = NULL, method = NULL)
 {
+    if (!missing(CER) & is.numeric(CER)){
+        if (sum(CER < 0 | CER > 1) > 0){
+            stop("'CER' range must be between 0 and 1.")
+        }
+    }
     if (missing(event.e)) {
         if (missing(CER)) {
             NNT = 1/((2 * pnorm(d/sqrt(2)) - 1))
-            cat("Kraemer & Kupfer's method used. \n")
+            class(NNT) = c("NNT", "kk", "numeric")
         }
         else {
             if (missing(method)) {
                 NNT = 1/(pnorm(d + qnorm(CER)) - CER)
-                cat("Furukawa's method used. \n")
+                class(NNT) = c("NNT", "fl", "numeric")
             }
             else {
                 if (method == "KraemerKupfer") {
                     NNT = 1/((2 * pnorm(d/sqrt(2)) - 1))
-                    cat("Kraemer & Kupfer's method used. \n")
+                    class(NNT) = c("NNT", "kk", "numeric")
                 }
                 else {
                 }
@@ -101,7 +107,7 @@ NNT = function (d, CER, event.e, n.e, event.c, n.c, names, method)
                     }
                     else {
                         NNT = 1/(pnorm(d + qnorm(CER)) - CER)
-                        cat("Furukawa's method used. \n")
+                        class(NNT) = c("NNT", "fl", "numeric")
                     }
                 }
                 else {
@@ -114,26 +120,26 @@ NNT = function (d, CER, event.e, n.e, event.c, n.c, names, method)
             EER = event.e/n.e
             CER = event.c/n.c
             NNT = abs(1/(EER - CER))
+            class(NNT) = c("NNT", "raw", "numeric")
             if (missing(method)) {
             }
             else {
                 if (method %in% c("KraemerKupfer", "Furukawa")) {
-                    cat("NNTs were calculated from raw data, so neither Kraemer & Kupfer nor Furukawa method was used.")
+                    class(NNT) = c("NNT", "unspecified", "numeric")
                 }
                 else {
                 }
             }
         }
     }
-    if (sum(NNT < 0) > 0) {
-        cat("Negative NNT values refer to the number needed to harm (NNT) \n")
-    }
     if (missing(names)) {
         return(NNT)
     }
     else {
         data = data.frame(Name = names, NNT = NNT)
-        return(data)
+        class(data) = c(class(NNT)[1:2], "data.frame")
+        class(data$NNT) = "numeric"
+        NNT = data
         return(NNT)
     }
 }

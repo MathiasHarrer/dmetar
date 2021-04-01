@@ -388,11 +388,11 @@ InfluenceAnalysis = function(x, random = FALSE, subplot.heights = c(30, 18),
           paste0("hat(theta)['*']~'='~", paste0("'", format(round(mean, 2)), "'"),
                  "~'['*", paste0("'", format(round(lower, 2), nsmall = 2), "'"), "*'-'*",
                  paste0("'", format(round(upper, 2), nsmall = 2), "'"), "*']'*';'~italic(I)^2~'='~",
-                 paste0("'", format(round(i2, 2),nsmall = 2), "'"), "*'%'")})
+                 paste0("'", format(round(i2, 2)*100,nsmall = 0), "'"), "*'%'")})
 
         title.i2 = with(sortdat.i2,{
           paste0("italic(I)^2~'='~",
-                 paste0("'", format(round(i2, 2),nsmall = 2), "'"), "*'%'", "*';'~",
+                 paste0("'", format(round(i2, 2)*100,nsmall = 0), "'"), "*'%'", "*';'~",
                  "hat(theta)['*']~'='~", paste0("'", format(round(mean, 2)), "'"),
                  "~'['*", paste0("'", format(round(lower, 2), nsmall = 2), "'"), "*'-'*",
                  paste0("'", format(round(upper, 2), nsmall = 2), "'"), "*']'")})
@@ -734,11 +734,11 @@ InfluenceAnalysis = function(x, random = FALSE, subplot.heights = c(30, 18),
         paste0("hat(theta)['*']~'='~", paste0("'", format(round(mean, 2)), "'"),
                "~'['*", paste0("'", format(round(lower, 2), nsmall = 2), "'"), "*'-'*",
                paste0("'", format(round(upper, 2), nsmall = 2), "'"), "*']'*';'~italic(I)^2~'='~",
-               paste0("'", format(round(i2, 2),nsmall = 2), "'"), "*'%'")})
+               paste0("'", format(round(i2, 2)*100,nsmall = 0), "'"), "*'%'")})
 
       title.i2 = with(sortdat.i2,{
         paste0("italic(I)^2~'='~",
-               paste0("'", format(round(i2, 2),nsmall = 2), "'"), "*'%'", "*';'~",
+               paste0("'", format(round(i2, 2)*100,nsmall = 0), "'"), "*'%'", "*';'~",
                "hat(theta)['*']~'='~", paste0("'", format(round(mean, 2)), "'"),
                "~'['*", paste0("'", format(round(lower, 2), nsmall = 2), "'"), "*'-'*",
                paste0("'", format(round(upper, 2), nsmall = 2), "'"), "*']'")})
@@ -828,11 +828,11 @@ InfluenceAnalysis = function(x, random = FALSE, subplot.heights = c(30, 18),
                          paste0("hat(theta)['*']~'='~", paste0("'", format(round(mean, 2)), "'"),
                                 "~'['*", paste0("'", format(round(lower, 2), nsmall = 2), "'"), "*'-'*",
                                 paste0("'", format(round(upper, 2), nsmall = 2), "'"), "*']'*';'~italic(I)^2~'='~",
-                                paste0("'", format(round(i2, 2),nsmall = 2), "'"), "*'%'")})
+                                paste0("'", format(round(i2, 2)*100,nsmall = 0), "'"), "*'%'")})
 
         title.i2 = with(sortdat.i2,{
                           paste0("italic(I)^2~'='~",
-                                 paste0("'", format(round(i2, 2),nsmall = 2), "'"), "*'%'", "*';'~",
+                                 paste0("'", format(round(i2, 2)*100,nsmall = 0), "'"), "*'%'", "*';'~",
                                  "hat(theta)['*']~'='~", paste0("'", format(round(mean, 2)), "'"),
                                  "~'['*", paste0("'", format(round(lower, 2), nsmall = 2), "'"), "*'-'*",
                                  paste0("'", format(round(upper, 2), nsmall = 2), "'"), "*']'")})

@@ -61,7 +61,7 @@
 </li>
 <li>
   <a href="https://twitter.com/MathiasHarrer">
-    <span class="fa fa-twitter"></span>
+    <span class="fas fa-twitter"></span>
      
   </a>
 </li>
@@ -88,7 +88,7 @@
       <h1 data-toc-skip>dmetar Vignette</h1>
                         <h4 class="author">Mathias Harrer &amp; David Daniel Ebert</h4>
             
-            <h4 class="date">2020-12-17</h4>
+            <h4 class="date">2021-04-01</h4>
       
       
       <div class="hidden name"><code>dmetar_vignette.Rmd</code></div>
@@ -124,12 +124,13 @@
 }
 <span class="kw pkg">devtools</span><span class="kw ns">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span>(<span class="st">"MathiasHarrer/dmetar"</span>)</pre></body></html></div>
 <p>The package can then be loaded as usual using the <code>library()</code> function.</p>
-<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">dmetar</span>)</pre></body></html></div>
+<pre><code>#&gt; Error in get(genname, envir = envir) : object 'testthat_print' not found</code></pre>
+<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">dmetar</span>)</pre></body></html></div>
 <div id="installation-errors" class="section level3">
 <h3 class="hasAnchor">
 <a href="#installation-errors" class="anchor"></a>Installation Errors</h3>
 <p>The <code>dmetar</code> package requires that <em>R</em> Version 3.6.3 or greater is installed and used in RStudio. You can check your current <em>R</em> version by running:</p>
-<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/Version.html">R.Version</a></span>()$<span class="no">version.string</span></pre></body></html></div>
+<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/Version.html">R.Version</a></span>()$<span class="no">version.string</span></pre></body></html></div>
 <p>If you have an <em>R</em> version below 3.6.3 installed, installing <code>dmetar</code> will likely cause an error because the dependency <code>metafor</code> was not found. This means that you have to update <em>R</em>. A tutorial on how to update <em>R</em> on your system can be found <a href="https://www.linkedin.com/pulse/3-methods-update-r-rstudio-windows-mac-woratana-ngarmtrakulchol/">here</a>.</p>
 <p><br></p>
 <p><br></p>
@@ -139,7 +140,7 @@
 <h2 class="hasAnchor">
 <a href="#functionality" class="anchor"></a>Functionality</h2>
 <p>The <code>dmetar</code> package provides tools for different stages of the meta-analysis process. Functions cover topics such as power analysis, effect size calculation, small-study effects, publication bias, meta-regression, subgroup analysis, risk of bias assessment, and network meta-analyses. Many <code>dmetar</code> functions heavily interact with functions from the <code>meta</code> package to improve the work flow when conducting meta-analysis. Therefore, the <code>meta</code> package should be installed and loaded into from the library first.</p>
-<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">meta</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">meta</span>)</pre></body></html></div>
 <p><br></p>
 <p><br></p>
 </div>
@@ -147,7 +148,7 @@
 <h2 class="hasAnchor">
 <a href="#datasets" class="anchor"></a>Datasets</h2>
 <p>To show some of the core functionality of the <code>dmetar</code> package, we will use three datasets which come shipped with the package: <code>ThirdWave</code>, <code>MVRegressionData</code> and <code>NetDataNetmeta</code>.</p>
-<div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="st">"ThirdWave"</span>)
+<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="st">"ThirdWave"</span>)
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="st">"MVRegressionData"</span>)
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="st">"NetDataNetmeta"</span>)</pre></body></html></div>
 <p><br></p>
@@ -157,7 +158,7 @@
 <h2 class="hasAnchor">
 <a href="#power-analysis" class="anchor"></a>Power Analysis</h2>
 <p>The <code>dmetar</code> package contains two functions for <em>a priori</em> <a href="https://bookdown.org/MathiasHarrer/Doing_Meta_Analysis_in_R/power-analysis.html">power analyses</a> of a meta-analysis: <a href="www.dmetar.protectlab.org/reference/power.analysis.html"><code>power.analysis</code></a> and <a href="www.dmetar.protectlab.org&amp;/reference/power.analysis.subgroup.html"><code>power.analysis.subgroups</code></a>. Let us assume that researchers expect to have approximately 18 studies in their meta-analysis, with moderate between-group heterogeneity and about 50 participants per arm and study. Will there be sufficient power to detect an assumed minimally important difference of <span class="math inline">\(d=0.18\)</span>? The <code>power.analysis</code> function can be used to answer this question.</p>
-<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="fu"><a href="../reference/power.analysis.html">power.analysis</a></span>(<span class="kw">d</span> <span class="kw">=</span> <span class="fl">.18</span>, <span class="kw">k</span> <span class="kw">=</span> <span class="fl">18</span>, <span class="kw">n1</span> <span class="kw">=</span> <span class="fl">50</span>, <span class="kw">n2</span> <span class="kw">=</span> <span class="fl">50</span>, <span class="kw">heterogeneity</span> <span class="kw">=</span> <span class="st">"moderate"</span>)
+<div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="fu"><a href="../reference/power.analysis.html">power.analysis</a></span>(<span class="kw">d</span> <span class="kw">=</span> <span class="fl">.18</span>, <span class="kw">k</span> <span class="kw">=</span> <span class="fl">18</span>, <span class="kw">n1</span> <span class="kw">=</span> <span class="fl">50</span>, <span class="kw">n2</span> <span class="kw">=</span> <span class="fl">50</span>, <span class="kw">heterogeneity</span> <span class="kw">=</span> <span class="st">"moderate"</span>)
 <span class="co">#&gt; Random-effects model used (moderate heterogeneity assumed).</span></pre></body></html></div>
 <p><img src="dmetar_vignette_files/figure-html/unnamed-chunk-8-1.png" width="700" style="display: block; margin: auto;"></p>
 <pre><code>#&gt; Power: 83.86%</code></pre>
@@ -169,15 +170,15 @@
 <a href="#effect-size-calculation" class="anchor"></a>Effect Size Calculation</h2>
 <p>The <code>dmetar</code> package includes several functions to calculate effect sizes needed for meta-analyses: <a href="www.dmetar.protectlab.org/reference/NNT.html"><code>NNT</code></a>, <a href="www.dmetar.protectlab.org/reference/se.from.p.html"><code>se.from.p</code></a> and <a href="www.dmetar.protectlab.org/reference/pool.groups.html"><code>pool.groups</code></a>.</p>
 <p>Using the <code>NNT</code> function, we can calculate the number needed to treat <span class="math inline">\(NNT\)</span> for the first effect size in <code>ThirdWave</code> (<span class="math inline">\(g\)</span>=0.71). In this example, we use Furukawa’s method (Furukawa &amp; Leucht, 2011), assuming a control group event ratio (<code>CER</code>) of 0.2</p>
-<div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="fu"><a href="../reference/NNT.html">NNT</a></span>(<span class="fl">0.71</span>, <span class="kw">CER</span> <span class="kw">=</span> <span class="fl">0.2</span>)
-<span class="co">#&gt; Furukawa's method used.</span>
+<div class="sourceCode" id="cb9"><html><body><pre class="r"><span class="fu"><a href="../reference/NNT.html">NNT</a></span>(<span class="fl">0.71</span>, <span class="kw">CER</span> <span class="kw">=</span> <span class="fl">0.2</span>)
+<span class="co">#&gt; Furukawa &amp; Leucht method used. </span>
 <span class="co">#&gt; [1] 4.038088</span></pre></body></html></div>
 <p>We can also pool together two groups of a study into one group using the <code>pool.groups</code> function once we have obtained the <span class="math inline">\(n\)</span>, mean and SD of each arm. This can be helpful if we want to avoid a <a href="https://handbook-5-1.cochrane.org/chapter_9/9_3_1_unit_of_analysis_issues.htm">unit-of-analysis error</a>. Here is an example:</p>
-<div class="sourceCode" id="cb9"><html><body><pre class="r"><span class="fu"><a href="../reference/pool.groups.html">pool.groups</a></span>(<span class="kw">n1</span> <span class="kw">=</span> <span class="fl">50</span>, <span class="kw">n2</span> <span class="kw">=</span> <span class="fl">65</span>, <span class="kw">m1</span> <span class="kw">=</span> <span class="fl">12.3</span>, <span class="kw">m2</span> <span class="kw">=</span> <span class="fl">14.8</span>, <span class="kw">sd1</span> <span class="kw">=</span> <span class="fl">2.45</span>, <span class="kw">sd2</span> <span class="kw">=</span> <span class="fl">2.89</span>)
+<div class="sourceCode" id="cb10"><html><body><pre class="r"><span class="fu"><a href="../reference/pool.groups.html">pool.groups</a></span>(<span class="kw">n1</span> <span class="kw">=</span> <span class="fl">50</span>, <span class="kw">n2</span> <span class="kw">=</span> <span class="fl">65</span>, <span class="kw">m1</span> <span class="kw">=</span> <span class="fl">12.3</span>, <span class="kw">m2</span> <span class="kw">=</span> <span class="fl">14.8</span>, <span class="kw">sd1</span> <span class="kw">=</span> <span class="fl">2.45</span>, <span class="kw">sd2</span> <span class="kw">=</span> <span class="fl">2.89</span>)
 <span class="co">#&gt;    Mpooled SDpooled Npooled</span>
 <span class="co">#&gt; 1 13.71304 2.969564     115</span></pre></body></html></div>
 <p>When extracting effect size data, studies sometimes only report an effect size of interest, and its <span class="math inline">\(p\)</span>-value. To pool effect sizes using functions such as the <a href="https://www.rdocumentation.org/packages/meta/versions/4.9-6/topics/metagen"><code>metagen</code></a> function, however, we need some dispersion measure (e.g., <span class="math inline">\(SE\)</span>, <span class="math inline">\(SD\)</span> or the variance). The <code>se.from.p</code> function can be used to calculate the standard error (<span class="math inline">\(SE\)</span>), which can the be used directly for pooling using, for example, the <code>metagen</code> function. Here is an example assuming an effect of <span class="math inline">\(d=0.38\)</span>, a <span class="math inline">\(p\)</span>-value of <span class="math inline">\(0.0456\)</span> and a total <span class="math inline">\(N\)</span> of <span class="math inline">\(83\)</span>:</p>
-<div class="sourceCode" id="cb10"><html><body><pre class="r"><span class="fu"><a href="../reference/se.from.p.html">se.from.p</a></span>(<span class="kw">effect.size</span> <span class="kw">=</span> <span class="fl">0.38</span>, <span class="kw">p</span> <span class="kw">=</span> <span class="fl">0.0456</span>, <span class="kw">N</span> <span class="kw">=</span> <span class="fl">83</span>)
+<div class="sourceCode" id="cb11"><html><body><pre class="r"><span class="fu"><a href="../reference/se.from.p.html">se.from.p</a></span>(<span class="kw">effect.size</span> <span class="kw">=</span> <span class="fl">0.38</span>, <span class="kw">p</span> <span class="kw">=</span> <span class="fl">0.0456</span>, <span class="kw">N</span> <span class="kw">=</span> <span class="fl">83</span>)
 <span class="co">#&gt;   EffectSize StandardError StandardDeviation        LLCI      ULCI</span>
 <span class="co">#&gt; 1       0.38     0.1904138          1.734752 0.006795843 0.7532042</span></pre></body></html></div>
 <p><br></p>
@@ -188,7 +189,7 @@
 <a href="#risk-of-bias" class="anchor"></a>Risk of Bias</h2>
 <p>In biomedical literature, it is common to assess the Risk of Bias of included studies using the <a href="https://handbook-5-1.cochrane.org/chapter_8/8_assessing_risk_of_bias_in_included_studies.htm"><strong>Cochrane Risk of Bias Tool</strong></a>. Such Risk of Bias assessments can be directly performed in <a href="https://community.cochrane.org/help/tools-and-software/revman-5">RevMan</a>, but this comes with certain drawbacks: RevMan graphics are usually of lower quality, and journals often require high-resolution charts and plots; using RevMan along with <em>R</em> to perform a meta-analysis also means that two programs have to be used, which may consume unnecessary extra time; lastly, using RevMan to generate Risk of Bias summary plots also reduces the reproducibility of your meta-analysis if you decide to make all your other <em>R</em> analyses fully reproducible using tools such as <a href="https://rmarkdown.rstudio.com/"><strong>RMarkdown</strong></a>.</p>
 <p>The <a href="www.dmetar.protectlab.org/reference/rob.summary.html"><code>rob.summary</code></a> function allows you to generate RevMan-style Risk of Bias charts based on <code>ggplot2</code> graphics directly in <em>R</em> from a <em>R</em> data frame. Here is an example:</p>
-<div class="sourceCode" id="cb11"><html><body><pre class="r"><span class="fu"><a href="../reference/rob.summary.html">rob.summary</a></span>(<span class="no">data</span>, <span class="kw">studies</span> <span class="kw">=</span> <span class="no">studies</span>, <span class="kw">table</span> <span class="kw">=</span> <span class="fl">TRUE</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb12"><html><body><pre class="r"><span class="fu"><a href="../reference/rob.summary.html">rob.summary</a></span>(<span class="no">data</span>, <span class="kw">studies</span> <span class="kw">=</span> <span class="no">studies</span>, <span class="kw">table</span> <span class="kw">=</span> <span class="fl">TRUE</span>)</pre></body></html></div>
 <p><img src="fig/rob_chart.png" align="left" alt="" width="700"></p>
 <p><img src="fig/rob_table.png" width="70%" style="display: block; margin: auto;"></p>
 <p><br></p>
@@ -201,13 +202,13 @@
 <p><br></p>
 <p><strong>Mixed-Effects Subgroup Analysis</strong></p>
 <p>The first function, <code>subgroup.analysis.mixed.effects</code> performs a subgroup analysis using a mixed-effects model (fixed-effects plural model; Borenstein &amp; Higgins, 2013), in which subgroup effect sizes are pooled using a random-effects model, and subgroup differences are assessed using a fixed-effect model. The function was built as an additional tool for meta-analyses generated by <code>meta</code> functions. In this example, we therefore perform a meta-analysis using the <code>metagen</code> function first.</p>
-<div class="sourceCode" id="cb12"><html><body><pre class="r"><span class="no">meta</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/meta/man/metagen.html">metagen</a></span>(<span class="no">TE</span>, <span class="no">seTE</span>,
+<div class="sourceCode" id="cb13"><html><body><pre class="r"><span class="no">meta</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/meta/man/metagen.html">metagen</a></span>(<span class="no">TE</span>, <span class="no">seTE</span>,
                 <span class="kw">data</span> <span class="kw">=</span> <span class="no">ThirdWave</span>,
                 <span class="kw">studlab</span> <span class="kw">=</span> <span class="no">ThirdWave</span>$<span class="no">Author</span>,
                 <span class="kw">comb.fixed</span> <span class="kw">=</span> <span class="fl">FALSE</span>,
                 <span class="kw">method.tau</span> <span class="kw">=</span> <span class="st">"PM"</span>)</pre></body></html></div>
 <p>We can then use this <code>meta</code> object called <code>meta</code> as input for the function, and only have to specify the subgroups coded in the original data set we want to consider. Then, we can generate a forest plot by plugging the results of the function into <code>forest</code>.</p>
-<div class="sourceCode" id="cb13"><html><body><pre class="r"><span class="no">sgame</span> <span class="kw">=</span> <span class="fu"><a href="../reference/subgroup.analysis.mixed.effects.html">subgroup.analysis.mixed.effects</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">meta</span>, <span class="kw">subgroups</span> <span class="kw">=</span> <span class="no">ThirdWave</span>$<span class="no">TypeControlGroup</span>)
+<div class="sourceCode" id="cb14"><html><body><pre class="r"><span class="no">sgame</span> <span class="kw">=</span> <span class="fu"><a href="../reference/subgroup.analysis.mixed.effects.html">subgroup.analysis.mixed.effects</a></span>(<span class="kw">x</span> <span class="kw">=</span> <span class="no">meta</span>, <span class="kw">subgroups</span> <span class="kw">=</span> <span class="no">ThirdWave</span>$<span class="no">TypeControlGroup</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(<span class="no">sgame</span>)
 <span class="fu"><a href="https://rdrr.io/pkg/meta/man/forest.meta.html">forest</a></span>(<span class="no">sgame</span>)</pre></body></html></div>
 <pre><code>#&gt; Subgroup Results:
@@ -233,7 +234,7 @@
 <p><strong>Multimodel Inference</strong></p>
 <p>The <code>multimodel.inference</code> function, on the other hand, can be used to perform <a href="www.dmetar.protectlab.org/reference/multimodel.inference.html#details"><strong>Multimodel Inference</strong></a> for a meta-regression model.</p>
 <p>Here is an example using the <code>MVRegressionData</code> dataset, using <code>pubyear</code>, <code>quality</code>, <code>reputation</code> and <code>continent</code> as predictors:</p>
-<div class="sourceCode" id="cb15"><html><body><pre class="r">multimodel.inference(TE = 'yi', seTE = 'sei', data = MVRegressionData,
+<div class="sourceCode" id="cb16"><html><body><pre class="r">multimodel.inference(TE = 'yi', seTE = 'sei', data = MVRegressionData,
                            predictors = c('pubyear', 'quality',
                                           'reputation', 'continent'))
 #&gt; 
@@ -328,7 +329,7 @@
 <a href="#outlier-detection" class="anchor"></a>Outlier Detection</h2>
 <p>To obtain a more robust estimate of the pooled effect size, especially when the between-study heterogeneity of a meta-analysis is high, it can be helpful to search for <strong>outliers</strong> and recalculate the effects when excluding them.</p>
 <p>The <code>find.outliers</code> function automatically searches for outliers (defined as studies for which the 95%CI is outside the 95%CI of the pooled effect) in your meta-analysis and recalculates the results without these outliers. The function works for meta-analysis objects created with functions of the <code>meta</code> package as well as the <code>rma.uni</code> function in <code>metafor</code>.</p>
-<div class="sourceCode" id="cb16"><html><body><pre class="r"><span class="no">meta</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/meta/man/metagen.html">metagen</a></span>(<span class="no">TE</span>, <span class="no">seTE</span>,
+<div class="sourceCode" id="cb17"><html><body><pre class="r"><span class="no">meta</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/meta/man/metagen.html">metagen</a></span>(<span class="no">TE</span>, <span class="no">seTE</span>,
                 <span class="kw">data</span> <span class="kw">=</span> <span class="no">ThirdWave</span>,
                 <span class="kw">studlab</span> <span class="kw">=</span> <span class="no">ThirdWave</span>$<span class="no">Author</span>,
                 <span class="kw">method.tau</span> <span class="kw">=</span> <span class="st">"SJ"</span>,
@@ -392,13 +393,13 @@
 <li>have a large impact on the pooled effect size of a meta-analysis, meaning that the overall effect size may change considerably when this one study is removed.</li>
 </ul>
 <p>The <a href="www.dmetar.protectlab.org/reference/InfluenceAnalysis.html"><code>InfluenceAnalysis</code></a> is a wrapper around several influence analysis function included in the <code>meta</code> and <code>metafor</code> package. It provides four types of influence diagnostics in one single plot. The function works for meta-analysis objects created by <code>meta</code> functions, which can then be directly used as input for the function:</p>
-<div class="sourceCode" id="cb17"><html><body><pre class="r"><span class="no">infan</span> <span class="kw">=</span> <span class="fu"><a href="../reference/InfluenceAnalysis.html">InfluenceAnalysis</a></span>(<span class="no">meta</span>)
+<div class="sourceCode" id="cb18"><html><body><pre class="r"><span class="no">infan</span> <span class="kw">=</span> <span class="fu"><a href="../reference/InfluenceAnalysis.html">InfluenceAnalysis</a></span>(<span class="no">meta</span>)
 <span class="co">#&gt; [===========================================================================] DONE</span>
 <span class="fu"><a href="https://rdrr.io/r/base/plot.html">plot</a></span>(<span class="no">infan</span>)</pre></body></html></div>
 <p><img src="dmetar_vignette_files/figure-html/unnamed-chunk-20-1.png" width="960"></p>
 <p><br></p>
 <p>Additionally, the <a href="https://dmetar.protectlab.org/reference/gosh.diagnostics.html"><code>gosh.diagnostics</code></a> can be used to analyze influence patterns using objects generated by <code>metafor</code>s <code>gosh</code> function. The <code>gosh.diagnostics</code> function uses unsupervised learning algorithms to determine effect size-heterogeneity patterns in the meta-analysis data. We can use <code>dmetars</code> in-built <code>m.gosh</code> data set, which has been generated using <code>metafor</code>s <code>gosh</code> function as an example:</p>
-<div class="sourceCode" id="cb18"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="st">"m.gosh"</span>)
+<div class="sourceCode" id="cb19"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="st">"m.gosh"</span>)
 <span class="no">res</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/gosh.diagnostics.html">gosh.diagnostics</a></span>(<span class="no">m.gosh</span>)
 <span class="co">#&gt;   </span>
 <span class="co">#&gt;  Perform Clustering... </span>
@@ -429,7 +430,7 @@
 <p>The package contains two functions to assess the potential presence of publication bias in a meta-analysis: <a href="www.dmetar.protectlab.org/reference/eggers.test.html"><code>eggers.test</code></a> and <a href="www.dmetar.protectlab.org/reference/eggers.test.html"><code>pcurve</code></a>. Both methods are optimized for conducting meta-analyses using the <code>meta</code> package, and only have to be provided with a <code>meta</code> meta-analysis results object.</p>
 <p><br></p>
 <p><strong>Here is an example output for</strong> <code>eggers.test</code><strong>:</strong></p>
-<div class="sourceCode" id="cb19"><html><body><pre class="r"><span class="fu"><a href="../reference/eggers.test.html">eggers.test</a></span>(<span class="no">meta</span>)
+<div class="sourceCode" id="cb20"><html><body><pre class="r"><span class="fu"><a href="../reference/eggers.test.html">eggers.test</a></span>(<span class="no">meta</span>)
 <span class="co">#&gt; Eggers' test of the intercept </span>
 <span class="co">#&gt; ============================= </span>
 <span class="co">#&gt; </span>
@@ -439,7 +440,7 @@
 <span class="co">#&gt; Eggers' test indicates the presence of funnel plot asymmetry.</span></pre></body></html></div>
 <p><br></p>
 <p><strong>And here for</strong> <code>pcurve</code><strong>:</strong></p>
-<div class="sourceCode" id="cb20"><html><body><pre class="r"><span class="fu"><a href="../reference/pcurve.html">pcurve</a></span>(<span class="no">meta</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb21"><html><body><pre class="r"><span class="fu"><a href="../reference/pcurve.html">pcurve</a></span>(<span class="no">meta</span>)</pre></body></html></div>
 <p><img src="dmetar_vignette_files/figure-html/unnamed-chunk-23-1.png" width="576" style="display: block; margin: auto;"></p>
 <pre><code>#&gt; P-curve analysis 
 #&gt;  ----------------------- 
@@ -467,7 +468,7 @@
 <a href="#network-meta-analysis" class="anchor"></a>Network Meta-Analysis</h2>
 <p>The package contains two utility functions for network meta-analysis using the <code>gemtc</code> (Van Valkenhoef &amp; Kuiper, 2016) and <code>netmeta</code> (Rücker, Krahn, König, Efthimiou &amp; Schwarzer, 2019) packages.</p>
 <p>The first one, <a href="www.dmetar.protectlab.org/reference/direct.evidence.plot.html"><code>direct.evidence.plot</code></a> creates a plot for the direct evidence proportion of comparisons included in a network meta-analysis model and displays diagnostics proposed by König, Krahn and Binder (2013). It only requires a network meta-analysis object created by the <code>netmeta</code> function as input. We will use <code>dmetar</code>s in-built <code>NetDataNetmeta</code> dataset for this example:</p>
-<div class="sourceCode" id="cb22"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">netmeta</span>)
+<div class="sourceCode" id="cb23"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">netmeta</span>)
 
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="st">"NetDataNetmeta"</span>)
 
@@ -479,7 +480,7 @@
 <p><img src="fig/directevidence.png" width="500" style="display: block; margin: auto;"></p>
 <p><br></p>
 <p>The second, <a href="www.dmetar.protectlab.org/reference/sucra.html"><code>sucra</code></a>, calculates the <span class="math inline">\(SUCRA\)</span> for each treatment when provided with a <code>mtc.rank.probability</code> network meta-analysis results object, or a matrix containing rank probabilities. In this example, we will use <code>dmetar</code>s in-built <code>NetDataGemtc</code> data set.</p>
-<div class="sourceCode" id="cb23"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">gemtc</span>)
+<div class="sourceCode" id="cb24"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">gemtc</span>)
 
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="st">"NetDataGemtc"</span>)
 

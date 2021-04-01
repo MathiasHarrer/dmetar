@@ -83,6 +83,10 @@ pool.groups = function(n1, n2, m1, m2, sd1, sd2) {
         stop("'n2' must by of type numeric().")
     }
 
+    if (n1 < 1 | n2 < 1) {
+        stop("'n1' and 'n2' must both the greater than 0.")
+    }
+
     if (is.numeric(m1) == FALSE) {
         stop("'m1' must by of type numeric().")
     }

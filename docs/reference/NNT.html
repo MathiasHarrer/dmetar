@@ -109,7 +109,7 @@ effect sizes (such as Cohen's \(d\) or Hedges' \(g\))." />
 </li>
 <li>
   <a href="https://twitter.com/MathiasHarrer">
-    <span class="fa fa-twitter"></span>
+    <span class="fas fa-twitter"></span>
      
   </a>
 </li>
@@ -227,13 +227,15 @@ to clinical research and practice. <em>Biol. Psychiatry 59</em>: 990–996.</p>
     <pre class="examples"><div class='input'>
 <span class='co'># Example 1: Convert Cohen's d using the Kraemer &amp; Kupfer method</span>
 <span class='no'>d</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(-<span class='fl'>0.123</span>, <span class='fl'>0.234</span>, <span class='fl'>0.123</span>, <span class='fl'>1.234</span>, <span class='fl'>0.12</span>)
-<span class='fu'>NNT</span>(<span class='no'>d</span>)</div><div class='output co'>#&gt; Kraemer &amp; Kupfer's method used. 
-#&gt; Negative NNT values refer to the number needed to harm (NNT) </div><div class='output co'>#&gt; [1] -14.428364   7.609168  14.428364   1.620477  14.788175</div><div class='input'>
+<span class='fu'>NNT</span>(<span class='no'>d</span>)</div><div class='output co'>#&gt; Kraemer &amp; Kupfer method used. 
+#&gt; Negative NNT values refer to the number needed to harm (NNH) 
+#&gt; [1] -14.428364   7.609168  14.428364   1.620477  14.788175</div><div class='input'>
 <span class='co'># Example 2: Convert Cohen's d using the Furukawa method</span>
 <span class='no'>d</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(-<span class='fl'>0.123</span>, <span class='fl'>0.234</span>, <span class='fl'>0.123</span>, <span class='fl'>1.234</span>, <span class='fl'>0.12</span>)
 <span class='no'>CER</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0.42</span>, <span class='fl'>0.35</span>, <span class='fl'>0.26</span>, <span class='fl'>0.21</span>, <span class='fl'>0.23</span>)
-<span class='fu'>NNT</span>(<span class='no'>d</span>, <span class='no'>CER</span>)</div><div class='output co'>#&gt; Furukawa's method used. 
-#&gt; Negative NNT values refer to the number needed to harm (NNT) </div><div class='output co'>#&gt; [1] -21.110785  11.128241  24.147924   2.195288  26.309816</div><div class='input'>
+<span class='fu'>NNT</span>(<span class='no'>d</span>, <span class='no'>CER</span>)</div><div class='output co'>#&gt; Furukawa &amp; Leucht method used. 
+#&gt; Negative NNT values refer to the number needed to harm (NNH) 
+#&gt; [1] -21.110785  11.128241  24.147924   2.195288  26.309816</div><div class='input'>
 <span class='co'># Example 3: Convert event data</span>
 <span class='fu'>NNT</span>(<span class='kw'>event.e</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>event.c</span> <span class='kw'>=</span> <span class='fl'>20</span>, <span class='kw'>n.e</span> <span class='kw'>=</span> <span class='fl'>200</span>, <span class='kw'>n.c</span> <span class='kw'>=</span> <span class='fl'>200</span>)</div><div class='output co'>#&gt; [1] 20</div></pre>
   </div>
