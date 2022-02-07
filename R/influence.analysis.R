@@ -134,7 +134,7 @@ InfluenceAnalysis = function(x, random = FALSE, subplot.heights = c(30, 18),
     # Validate
     x = x
     if (class(x)[1] %in% c("meta", "metabin", "metagen", "metacont", "metacor", "metainc", "metaprop", "metarate")) {
-
+      x <- update(x, subset = !(is.na(x$TE) | is.na(x$seTE)))
     } else {
 
         stop("Object 'x' must be of class 'meta', 'metabin', 'metagen', 'metacont', 'metacor', 'metainc', or 'metaprop'")
