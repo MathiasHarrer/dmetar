@@ -130,9 +130,8 @@ find.outliers = spot.outliers.random = spot.outliers.fixed = function(x, ...){
     token = "meta"
 
     # Control for objects with NAs in study data
-    if (sum(is.na(x$TE)) > 0 | sum(is.na(x$seTE)) > 0){
-
-      stop("The provided 'meta' object cannot contain NA's in any of the study data.")
+    if (anyNA(x$TE) | anyNA(x$seTE)){
+      warning("Studies with NAs not considered in outlier analysis.")
 
     }
 
@@ -143,14 +142,22 @@ find.outliers = spot.outliers.random = spot.outliers.fixed = function(x, ...){
       upper = x$TE + 1.96*x$seTE
 
       # Generate mask with outliers (fixed/random)
-      mask.fixed = upper < x$lower.fixed | lower > x$upper.fixed
-      mask.random = upper < x$lower.random | lower > x$upper.random
+      mask.fixed =
+        (!is.na(upper) & upper < x$lower.fixed) |
+        (!is.na(lower) & lower > x$upper.fixed)
+      mask.random =
+        (!is.na(upper) & upper < x$lower.random) |
+        (!is.na(lower) & lower > x$upper.random)
 
     } else {
 
       # Generate mask with outliers (fixed/random)
-      mask.fixed = x$upper < x$lower.fixed | x$lower > x$upper.fixed
-      mask.random = x$upper < x$lower.random | x$lower > x$upper.random
+      mask.fixed =
+        (!is.na(x$upper) & x$upper < x$lower.fixed) |
+        (!is.na(x$lower) & x$lower > x$upper.fixed)
+      mask.random =
+        (!is.na(x$upper) & x$upper < x$lower.random) |
+        (!is.na(x$lower) & x$lower > x$upper.random)
 
     }
 
