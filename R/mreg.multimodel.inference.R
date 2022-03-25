@@ -219,7 +219,7 @@ multimodel.inference = function(TE, seTE, data, predictors, method = "REML", tes
         multimodel.coef = multimodel.coef$coefmat.full
 
         # Create importance table and save: predictor.importance
-        predictor.importance = data.frame(model = names(importance(res)), importance = as.numeric(importance(res)))
+        predictor.importance = data.frame(model = names(sw(res)), importance = as.numeric(sw(res)))
 
         # Print graph
         ggpredictor = ggplot(predictor.importance, aes(x = reorder(model, importance), y = importance)) +
