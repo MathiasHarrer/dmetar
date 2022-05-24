@@ -4,7 +4,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="Serves as the companion R package for the open-source guide Doing Meta Analysis in R. Aimed at beginners, the package contains complementary functions to facilitate performing meta-analysis using the meta, metafor, netmeta and gemtc packages.">
 <title>Companion R Package for the Guide Doing Meta-Analysis in R • dmetar</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
@@ -12,181 +13,183 @@
 <link rel="apple-touch-icon" type="image/png" sizes="120x120" href="apple-touch-icon-120x120.png">
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="apple-touch-icon-76x76.png">
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="apple-touch-icon-60x60.png">
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="bootstrap-toc.css">
-<script src="bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="deps/bootstrap-5.1.0/bootstrap.min.css" rel="stylesheet">
+<script src="deps/bootstrap-5.1.0/bootstrap.bundle.min.js"></script><link href="deps/_Fira%20Sans-0.4.1/font.css" rel="stylesheet">
+<link href="deps/_Fira%20Code-0.4.1/font.css" rel="stylesheet">
+<!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
-<script src="pkgdown.js"></script><!-- docsearch --><script src="docsearch.js"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.3/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous">
-<link href="docsearch.css" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script><link href="extra.css" rel="stylesheet">
+<!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="pkgdown.js"></script><link href="extra.css" rel="stylesheet">
 <meta property="og:title" content="Companion R Package for the Guide Doing Meta-Analysis in R">
 <meta property="og:description" content="Serves as the companion R package for the open-source guide Doing Meta Analysis in R. Aimed at beginners, the package contains complementary functions to facilitate performing meta-analysis using the meta, metafor, netmeta and gemtc packages.">
 <meta property="og:image" content="http://dmetar.protectlab.org/logo.png">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]-->
+<![endif]--><link rel="stylesheet" href="../costum.css">
+<link rel="stylesheet" href="costum.css">
 </head>
-<body data-spy="scroll" data-target="#toc">
-    <div class="container template-home">
-      <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <span class="navbar-brand">
-        <a class="navbar-link" href="index.html">dmetar</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.9000</span>
-      </span>
-    </div>
+<body>
+    <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
+    
 
-    <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
-<li>
-  <a href="articles/dmetar.html">Get Started</a>
+    <nav class="navbar fixed-top navbar-default navbar-expand-lg bg-primary"><div class="container">
+    
+    <a class="navbar-brand me-2" href="index.html">dmetar</a>
+
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.9000</small>
+
+    
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div id="navbar" class="collapse navbar-collapse ms-3">
+      <ul class="navbar-nav me-auto">
+<li class="nav-item">
+  <a class="nav-link" href="articles/dmetar.html">Get Started</a>
 </li>
-<li>
-  <a href="reference/index.html">Documentation</a>
+<li class="nav-item">
+  <a class="nav-link" href="reference/index.html">Documentation</a>
 </li>
-<li>
-  <a href="https://bookdown.org/MathiasHarrer/Doing_Meta_Analysis_in_R/">Book</a>
+<li class="nav-item">
+  <a class="external-link nav-link" href="https://bookdown.org/MathiasHarrer/Doing_Meta_Analysis_in_R/">Book</a>
 </li>
-<li>
-  <a href="https://protectlab.org/en">Protect Lab</a>
+<li class="nav-item">
+  <a class="external-link nav-link" href="https://protectlab.org/en">Protect Lab</a>
 </li>
-<li>
-  <a href="https://twitter.com/MathiasHarrer">
-    <span class="fas fa-twitter"></span>
+<li class="nav-item">
+  <a class="external-link nav-link" href="https://twitter.com/MathiasHarrer">
+    <span class="fa fa-twitter"></span>
      
   </a>
 </li>
       </ul>
-<ul class="nav navbar-nav navbar-right"></ul>
-<form class="navbar-form navbar-right hidden-xs hidden-sm" role="search">
-        <div class="form-group">
-          <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
+<form class="form-inline my-2 my-lg-0" role="search">
+        <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="search.json" id="search-input" placeholder="Search for" autocomplete="off">
+</form>
+
+      <ul class="navbar-nav"></ul>
 </div>
-      </form>
-      
-    </div>
-<!--/.nav-collapse -->
+
+    
   </div>
-<!--/.container -->
-</div>
-<!--/.navbar -->
-
-      
-
-      </header><div class="row">
-  <div class="contents col-md-9">
-
-
+</nav><div class="container template-home">
+<div class="row">
+  <main id="main" class="col-md-9">
 <p><br><br><img src="reference/figures/logo.png" align="left" alt="" width="100"><br><br><br><br></p>
-<div id="dmetar" class="section level2">
-<h2 class="hasAnchor">
-<a href="#dmetar" class="anchor"></a>dmetar</h2>
+<div class="section level2">
+<h2 id="dmetar">dmetar<a class="anchor" aria-label="anchor" href="#dmetar"></a>
+</h2>
 <p><strong>Doing Meta-Analysis in R</strong></p>
 <p><img src="reference/figures/front.png"></p>
 <p><br></p>
-<p>The <strong>dmetar</strong> package serves as the companion R package for the guide <a href="https://bookdown.org/MathiasHarrer/Doing_Meta_Analysis_in_R/"><strong>Doing Meta-Analysis in R</strong></a> by Mathias Harrer, Pim Cuijpers, Toshi Furukawa and David Daniel Ebert. The package contains utility functions to facilitate the conduction of meta-analyses using the <strong>meta</strong>, <strong>metafor</strong>, <strong>netmeta</strong> and <strong>gemtc</strong> packages.</p>
+<p>The <strong>dmetar</strong> package serves as the companion R package
+for the guide <a href="https://bookdown.org/MathiasHarrer/Doing_Meta_Analysis_in_R/" class="external-link"><strong>Doing
+Meta-Analysis in R</strong></a> by Mathias Harrer, Pim Cuijpers, Toshi
+Furukawa and David Daniel Ebert. The package contains utility functions
+to facilitate the conduction of meta-analyses using the
+<strong>meta</strong>, <strong>metafor</strong>,
+<strong>netmeta</strong> and <strong>gemtc</strong> packages.</p>
 <p><br></p>
 </div>
-<div id="installation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#installation" class="anchor"></a>Installation</h2>
-<p>The latest development version can be installed from <strong>GitHub</strong> using <a href="https://devtools.r-lib.org/"><strong>devtools</strong></a>.</p>
-<div class="sourceCode" id="cb1"><pre class="r"><span class="kw">if</span> (!<span class="fu"><a href="https://rdrr.io/r/base/library.html">require</a></span>(<span class="st">"devtools"</span>)) {
-  <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"devtools"</span>)
-}
-<span class="kw pkg">devtools</span><span class="kw ns">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span>(<span class="st">"MathiasHarrer/dmetar"</span>)</pre></div>
+<div class="section level2">
+<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h2>
+<p>The latest development version can be installed from
+<strong>GitHub</strong> using <a href="https://devtools.r-lib.org/" class="external-link"><strong>devtools</strong></a>.</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="st"><a href="https://devtools.r-lib.org/" class="external-link">"devtools"</a></span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
+  <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"devtools"</span><span class="op">)</span>
+<span class="op">}</span>
+<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/remote-reexports.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"MathiasHarrer/dmetar"</span><span class="op">)</span></code></pre></div>
 <p><br></p>
 </div>
-<div id="learning-more" class="section level2">
-<h2 class="hasAnchor">
-<a href="#learning-more" class="anchor"></a>Learning More</h2>
-<p>The <strong>dmetar</strong> package was developed for the online guide <strong>Doing Meta-Analysis in R</strong> by Mathias Harrer, Pim Cuijpers, Toshi Furukawa and David Daniel Ebert. This guide gives an introduction on how meta-analyses can be conducted in R, with a focus on biomedical and psychological research.</p>
-<p>The guide was designed to serve as a low-threshold entry point for researchers who want to learn about meta-analysis using R. <strong>No prior knowledge of R or RStudio is required</strong>. The guide provides a more detailed overview of <strong>dmetar</strong> functions and how they can be used in combination with go-to meta-analysis packages such as <strong>metafor</strong> or <strong>meta</strong>.</p>
-<p><a href="https://bookdown.org/MathiasHarrer/Doing_Meta_Analysis_in_R/"><strong>View the Guide</strong></a></p>
+<div class="section level2">
+<h2 id="learning-more">Learning More<a class="anchor" aria-label="anchor" href="#learning-more"></a>
+</h2>
+<p>The <strong>dmetar</strong> package was developed for the online
+guide <strong>Doing Meta-Analysis in R</strong> by Mathias Harrer, Pim
+Cuijpers, Toshi Furukawa and David Daniel Ebert. This guide gives an
+introduction on how meta-analyses can be conducted in R, with a focus on
+biomedical and psychological research.</p>
+<p>The guide was designed to serve as a low-threshold entry point for
+researchers who want to learn about meta-analysis using R. <strong>No
+prior knowledge of R or RStudio is required</strong>. The guide provides
+a more detailed overview of <strong>dmetar</strong> functions and how
+they can be used in combination with go-to meta-analysis packages such
+as <strong>metafor</strong> or <strong>meta</strong>.</p>
+<p><a href="https://bookdown.org/MathiasHarrer/Doing_Meta_Analysis_in_R/" class="external-link"><strong>View
+the Guide</strong></a></p>
 <p><br></p>
 </div>
-<div id="questions--bugs" class="section level2">
-<h2 class="hasAnchor">
-<a href="#questions--bugs" class="anchor"></a>Questions &amp; Bugs</h2>
-<p>For questions concerning the <strong>dmetar</strong> package, or to report bugs, please contact <strong>Mathias</strong> (<a href="mailto:mathias.harrer@fau.de" class="email">mathias.harrer@fau.de</a>).</p>
+<div class="section level2">
+<h2 id="questions--bugs">Questions &amp; Bugs<a class="anchor" aria-label="anchor" href="#questions--bugs"></a>
+</h2>
+<p>For questions concerning the <strong>dmetar</strong> package, or to
+report bugs, please contact <strong>Mathias</strong> (<a href="mailto:mathias.harrer@fau.de" class="email">mathias.harrer@fau.de</a>).</p>
 </div>
 
-  </div>
-
-  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
-    <div class="license">
-<h2>License</h2>
+  </main><aside class="col-md-3"><div class="license">
+<h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
 <li>
-<a href="https://opensource.org/licenses/mit-license.php">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a>
+<a href="https://opensource.org/licenses/mit-license.php" class="external-link">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a>
 </li>
 </ul>
 </div>
+
+
 <div class="citation">
-<h2>Citation</h2>
+<h2 data-toc-skip>Citation</h2>
 <ul class="list-unstyled">
-<li><a href="authors.html">Citing dmetar</a></li>
+<li><a href="authors.html#citation">Citing dmetar</a></li>
 </ul>
 </div>
+
 <div class="developers">
-<h2>Developers</h2>
+<h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
-<li>Mathias Harrer <br><small class="roles"> Maintainer </small> <a href="https://orcid.org/0000-0001-7016-2687" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
-<li>Pim Cuijpers <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0001-5497-2743" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
-<li>Toshi Furukawa <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0003-2159-3776" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
-<li>David Daniel Ebert <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0001-6820-0146" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li>Mathias Harrer <br><small class="roles"> Maintainer </small> <a href="https://orcid.org/0000-0001-7016-2687" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li>Pim Cuijpers <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0001-5497-2743" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li>Toshi Furukawa <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0003-2159-3776" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li>David Daniel Ebert <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0001-6820-0146" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
 </ul>
 </div>
 
-  <div class="dev-status">
-<h2>Dev status</h2>
+<div class="dev-status">
+<h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://zenodo.org/badge/latestdoi/152492192"><img src="https://zenodo.org/badge/152492192.svg" alt="DOI"></a></li>
-<li><a href="https://img.shields.io/maintenance/yes/2020"><img src="https://img.shields.io/badge/maintenance-yes-blue.svg" alt="Maintenance"></a></li>
-<li><a href="https://www.tidyverse.org/lifecycle/#maturing"><img src="https://img.shields.io/badge/lifecycle-maturing-blue.svg" alt="lifecycle"></a></li>
-<li><a href="https://img.shields.io/github/last-commit/MathiasHarrer/dmetar"><img src="https://img.shields.io/github/last-commit/MathiasHarrer/dmetar" alt="GitHub last commit"></a></li>
-<li><a href="https://img.shields.io/badge/R%20CMD%20Check-passing-success"><img src="https://img.shields.io/badge/R%20CMD%20Check-passing-success" alt="R CMD Check"></a></li>
+<li><a href="https://zenodo.org/badge/latestdoi/152492192" class="external-link"><img src="https://zenodo.org/badge/152492192.svg" alt="DOI"></a></li>
+<li><a href="https://img.shields.io/maintenance/yes/2020" class="external-link"><img src="https://img.shields.io/badge/maintenance-yes-blue.svg" alt="Maintenance"></a></li>
+<li><a href="https://www.tidyverse.org/lifecycle/#maturing" class="external-link"><img src="https://img.shields.io/badge/lifecycle-maturing-blue.svg" alt="lifecycle"></a></li>
+<li><a href="https://img.shields.io/github/last-commit/MathiasHarrer/dmetar" class="external-link"><img src="https://img.shields.io/github/last-commit/MathiasHarrer/dmetar" alt="GitHub last commit"></a></li>
+<li><a href="https://img.shields.io/badge/R%20CMD%20Check-passing-success" class="external-link"><img src="https://img.shields.io/badge/R%20CMD%20Check-passing-success" alt="R CMD Check"></a></li>
 </ul>
 </div>
-</div>
-</div>
 
-
-      <footer><div class="copyright">
-  <p>Developed by Mathias Harrer, Pim Cuijpers, Toshi Furukawa, David Daniel Ebert.</p>
+  </aside>
 </div>
 
-<div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+
+    <footer><div class="pkgdown-footer-left">
+  <p></p>
+<p>Developed by Mathias Harrer, Pim Cuijpers, Toshi Furukawa, David
+Daniel Ebert.</p>
 </div>
 
-      </footer>
+<div class="pkgdown-footer-right">
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
+2.0.2.</p>
+</div>
+
+    </footer>
 </div>
 
   
-<script src="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.js" integrity="sha256-GKvGqXDznoRYHCwKXGnuchvKSwmx9SRMrZOTh2g4Sb0=" crossorigin="anonymous"></script><script>
-  docsearch({
-    
-    
-    apiKey: '358a758fa720ccb381dab79f60a2b3a4',
-    indexName: 'dmetar',
-    inputSelector: 'input#search-input.form-control',
-    transformData: function(hits) {
-      return hits.map(function (hit) {
-        hit.url = updateHitURL(hit);
-        return hit;
-      });
-    }
-  });
-</script>
-</body>
+
+  
+
+  </body>
 </html>

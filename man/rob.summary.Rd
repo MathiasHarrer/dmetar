@@ -48,8 +48,8 @@ symbols (e.g. \code{"Allocation_Concealment"} to return "Allocation Concealment"
 \examples{
 # Example 1: No missing information, only produce summary plot
 data = data.frame(
-       "study" = c("Higgins et al., 2011", "Borenstein et al., 2008", "Holm, 1971",
-                   "Zajonc et al., 2005", "Viechtbauer, 2014"),
+       "study" = c("Jones et al., 2011", "Smith et al., 2008", "Holm, 1971",
+                   "Zajonc et al., 2005", "Grenell, 2014"),
        "Allocation_concealment" = c("Low", "High", "High", "Unclear", "High"),
        "Randomization" = c("Low", "High", "Unclear", "Low", "High"),
        "Sequence_generation" = c("Low", "High", "Unclear", "Unclear", "High"),

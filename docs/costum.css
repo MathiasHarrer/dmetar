@@ -1,0 +1,15 @@
+.navbar-brand {
+  color: white !important;
+}
+
+aside {
+  margin-top: 100px !important;
+}
+
+main {
+  margin-top: 100px !important;
+}
+
+.text-muted {
+  color: lightgray !important;
+}

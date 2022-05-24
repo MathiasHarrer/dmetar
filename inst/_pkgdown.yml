@@ -1,6 +1,16 @@
 url: http://dmetar.protectlab.org
 
 template:
+  bootstrap: 5
+  includes:
+    in_header: <link rel="stylesheet" href="../costum.css"><link rel="stylesheet" href="costum.css">
+  bslib:
+      base_font: {google: "Fira Sans"}
+      heading_font: {google: "Fira Sans"}
+      code_font: {google: "Fira Code"}
+      primary: "#3382b2"
+      bg: "#fffefa"
+      fg: "black"
   params:
     bootswatch: flatly
     docsearch:

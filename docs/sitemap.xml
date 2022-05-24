@@ -1,7 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://dmetar.protectlab.org/404.html</loc>
+  </url>
+  <url>
+    <loc>http://dmetar.protectlab.org/LICENSE-text.html</loc>
+  </url>
+  <url>
+    <loc>http://dmetar.protectlab.org/articles/dmetar.html</loc>
+  </url>
+  <url>
+    <loc>http://dmetar.protectlab.org/articles/dmetar_vignette.html</loc>
+  </url>
+  <url>
+    <loc>http://dmetar.protectlab.org/articles/index.html</loc>
+  </url>
+  <url>
+    <loc>http://dmetar.protectlab.org/authors.html</loc>
+  </url>
+  <url>
     <loc>http://dmetar.protectlab.org/index.html</loc>
+  </url>
+  <url>
+    <loc>http://dmetar.protectlab.org/index.knit.html</loc>
+  </url>
+  <url>
+    <loc>http://dmetar.protectlab.org/index.utf8.html</loc>
   </url>
   <url>
     <loc>http://dmetar.protectlab.org/reference/BdiScores.html</loc>
@@ -37,6 +61,9 @@
     <loc>http://dmetar.protectlab.org/reference/OpioidMisuse.html</loc>
   </url>
   <url>
+    <loc>http://dmetar.protectlab.org/reference/SE_from_p.html</loc>
+  </url>
+  <url>
     <loc>http://dmetar.protectlab.org/reference/SleepProblems.html</loc>
   </url>
   <url>
@@ -55,10 +82,16 @@
     <loc>http://dmetar.protectlab.org/reference/direct.evidence.plot.html</loc>
   </url>
   <url>
+    <loc>http://dmetar.protectlab.org/reference/direct_evidence_plot.html</loc>
+  </url>
+  <url>
     <loc>http://dmetar.protectlab.org/reference/dmetar.html</loc>
   </url>
   <url>
     <loc>http://dmetar.protectlab.org/reference/eggers.test.html</loc>
+  </url>
+  <url>
+    <loc>http://dmetar.protectlab.org/reference/eggers_test.html</loc>
   </url>
   <url>
     <loc>http://dmetar.protectlab.org/reference/find.outliers.html</loc>
@@ -71,6 +104,12 @@
   </url>
   <url>
     <loc>http://dmetar.protectlab.org/reference/gosh.diagnostics.html</loc>
+  </url>
+  <url>
+    <loc>http://dmetar.protectlab.org/reference/index.html</loc>
+  </url>
+  <url>
+    <loc>http://dmetar.protectlab.org/reference/influence.analysis.html</loc>
   </url>
   <url>
     <loc>http://dmetar.protectlab.org/reference/m.gosh.html</loc>
@@ -121,6 +160,9 @@
     <loc>http://dmetar.protectlab.org/reference/pool.groups.html</loc>
   </url>
   <url>
+    <loc>http://dmetar.protectlab.org/reference/pool_groups.html</loc>
+  </url>
+  <url>
     <loc>http://dmetar.protectlab.org/reference/power.analysis.html</loc>
   </url>
   <url>
@@ -134,6 +176,9 @@
   </url>
   <url>
     <loc>http://dmetar.protectlab.org/reference/print.direct.evidence.plot.html</loc>
+  </url>
+  <url>
+    <loc>http://dmetar.protectlab.org/reference/print.dmetar.html</loc>
   </url>
   <url>
     <loc>http://dmetar.protectlab.org/reference/print.eggers.test.html</loc>
@@ -209,11 +254,5 @@
   </url>
   <url>
     <loc>http://dmetar.protectlab.org/reference/summary.subgroup.analysis.mixed.effects.html</loc>
-  </url>
-  <url>
-    <loc>http://dmetar.protectlab.org/articles/dmetar.html</loc>
-  </url>
-  <url>
-    <loc>http://dmetar.protectlab.org/articles/dmetar_vignette.html</loc>
   </url>
 </urlset>
