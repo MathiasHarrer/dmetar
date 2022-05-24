@@ -72,300 +72,201 @@
 #'     name.missing = "miss", studies = data2$study, table = TRUE)
 
 
-rob.summary = function(data,
-                       name.high="High",
-                       name.unclear="Unclear",
-                       name.low="Low",
-                       studies,
-                       name.missing,
-                       table = FALSE){
+rob.summary = function (data, name.high = "High", name.unclear = "Unclear",
+                        name.low = "Low", studies, name.missing, table = FALSE) {
 
-  # Class Checks
-  if (class(data) != "data.frame"){
+
+  if (class(data) != "data.frame") {
     stop("'data' must be of class 'data.frame'.")
   }
-
-
-  if (missing(name.missing)){
-
-    # Only select columns with RoB data
-
+  if (missing(name.missing)) {
     colnames.rob = character()
-
-    for (i in 1:ncol(data)){
-
-      vect = as.character(data[,i])
-
-      for (j in 1:length(data[,i])){
-
-        if (vect[j] %in% c(name.high, name.unclear, name.low)){
-
+    for (i in 1:ncol(data)) {
+      vect = as.character(data[, i])
+      for (j in 1:length(data[, i])) {
+        if (vect[j] %in% c(name.high, name.unclear, name.low)) {
           colnames.rob[i] = TRUE
-
-        } else {
-
+        }
+        else {
           colnames.rob[i] = FALSE
           message(cat("Column '", colnames(data)[i],
                       "' removed from plot because it did not contain the specified RoB ratings (only). \n",
-                      sep=""))
+                      sep = ""))
           break
-
         }
       }
     }
-
-    # Use mask: rob data
-    rob = data[ , as.logical(colnames.rob)]
-
-    # Relevel for plot
-    for (i in 1:ncol(rob)){
-
-      rob[,i] = as.character(rob[,i])
-      rob[rob[,i]==name.high,i] = "High"
-      rob[rob[,i]==name.unclear,i] = "Unclear"
-      rob[rob[,i]==name.low,i] = "Low"
-
+    rob = data[, as.logical(colnames.rob)]
+    for (i in 1:ncol(rob)) {
+      rob[, i] = as.character(rob[, i])
+      rob[rob[, i] == name.high, i] = "High"
+      rob[rob[, i] == name.unclear, i] = "Unclear"
+      rob[rob[, i] == name.low, i] = "Low"
     }
-
-    # Make table
-    if (table == TRUE){
-
-      if (missing(studies)){
+    if (table == TRUE) {
+      if (missing(studies)) {
         stop("'studies' has to be specified when 'table = TRUE'.")
       }
-
-      if (length(as.vector(studies)) != nrow(data)){
+      if (length(as.vector(studies)) != nrow(data)) {
         stop("'studies' vector is not of equal length as the data.")
       }
-
-      if (length(unique(studies)) != length(studies)){
+      if (length(unique(studies)) != length(studies)) {
         stop("'studies' cannot contain duplicate study labels.")
       }
-
       robby = rob
-      robby = data.frame(study = studies,
-                 condition = rep(colnames(robby), each = length(studies)),
-                 measurement = unlist(robby))
+      robby = data.frame(study = studies, condition = rep(colnames(robby),
+                                                          each = length(studies)), measurement = unlist(robby))
       rownames(robby) = NULL
-      robby$condition = gsub("_"," ", robby$condition)
-      robby$condition = gsub("-"," ", robby$condition)
-      robby$condition = gsub("\\."," ", robby$condition)
-      robby[robby$measurement=="Low", "measurement"] = "+"
-      robby[robby$measurement=="Unclear", "measurement"] = "?"
-      robby[robby$measurement=="High", "measurement"] = "-"
-
-      # Order factor
-      robby$study = factor(robby$study,
-                           levels = unique(studies)[rev(order(unique(robby$study)))])
-
-
+      robby$condition = gsub("_", " ", robby$condition)
+      robby$condition = gsub("-", " ", robby$condition)
+      robby$condition = gsub("\\.", " ", robby$condition)
+      robby[robby$measurement == "Low", "measurement"] = "+"
+      robby[robby$measurement == "Unclear", "measurement"] = "?"
+      robby[robby$measurement == "High", "measurement"] = "-"
+      robby$study = factor(robby$study, levels = unique(studies)[rev(order(unique(robby$study)))])
       rob.table = ggplot(data = robby, aes(y = study, x = condition)) +
-        geom_tile(color="black", fill="white", size = 0.8) +
-        geom_point(aes(color=as.factor(measurement)), size=20) +
-        geom_text(aes(label = measurement), size = 8) +
-        scale_x_discrete(position = "top") +
-        scale_color_manual(values = c("?" = "#E2DF07",
-                                      "-" = "#BF0000",
-                                      "+" = "#02C100")) +
-        theme_minimal() +
-        coord_equal() +
-        theme(axis.title.x = element_blank(),
-              axis.title.y = element_blank(),
-              axis.ticks.y = element_blank(),
-              axis.text.y = element_text(size = 15, color = "black"),
-              axis.text.x = element_text(size = 13, color = "black", angle = 90, hjust=0),
-              legend.position = "none",
-              panel.grid.major = element_blank(),
-              panel.grid.minor = element_blank(),
-              panel.background = element_blank())
-
+        geom_tile(color = "black", fill = "white", size = 0.8) +
+        geom_point(aes(color = as.factor(measurement)),
+                   size = 20) + geom_text(aes(label = measurement),
+                                          size = 8) + scale_x_discrete(position = "top") +
+        scale_color_manual(values = c(`?` = "#E2DF07",
+                                      `-` = "#BF0000", `+` = "#02C100")) + theme_minimal() +
+        coord_equal() + theme(axis.title.x = element_blank(),
+                              axis.title.y = element_blank(), axis.ticks.y = element_blank(),
+                              axis.text.y = element_text(size = 15, color = "black"),
+                              axis.text.x = element_text(size = 13, color = "black",
+                                                         angle = 90, hjust = 0), legend.position = "none",
+                              panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+                              panel.background = element_blank())
     }
-
-    # Make long format, clean the factors
-    rob.long = data.frame(condition = rep(colnames(rob), each = nrow(rob)),
-                          measurement = unlist(rob))
+    rob.long = data.frame(condition = rep(colnames(rob),
+                                          each = nrow(rob)), measurement = unlist(rob))
     rownames(rob.long) = NULL
-    rob.long$condition = gsub("_"," ",rob.long$condition)
-    rob.long$condition = gsub("-"," ",rob.long$condition)
-    rob.long$condition = gsub("\\."," ",rob.long$condition)
+    rob.long$condition = gsub("_", " ", rob.long$condition)
+    rob.long$condition = gsub("-", " ", rob.long$condition)
+    rob.long$condition = gsub("\\.", " ", rob.long$condition)
     rob.long$measurement = as.factor(rob.long$measurement)
-    rob.long$measurement = factor(rob.long$measurement, levels(rob.long$measurement)[c(1, 3, 2)])
-
-    # Make plot
+    rob.long$measurement = factor(rob.long$measurement,
+                                  levels(rob.long$measurement)[c(1, 3, 2)])
     rob.plot = ggplot(data = rob.long) +
-      geom_bar(mapping = aes(x = condition, fill = measurement), width = 0.7,
-               position = "fill", color = "black") +
+      geom_bar(mapping = aes(x = condition, fill = measurement),
+               width = 0.7, position = "fill", color = "black") +
       coord_flip(ylim = c(0, 1)) +
       guides(fill = guide_legend(reverse = TRUE)) +
       scale_fill_manual("Risk of Bias",
                         labels = c("    High risk of bias          ",
                                    "    Unclear risk of bias       ",
                                    "    Low risk of bias  "),
-                        values = c(Unclear = "#E2DF07", High = "#BF0000", Low = "#02C100")) +
+                        values = c(High = "#BF0000",
+                                   Unclear = "#E2DF07",
+                                   Low = "#02C100")) +
       scale_y_continuous(labels = scales::percent) +
-      theme(axis.title.x = element_blank(),
-            axis.title.y = element_blank(),
-            axis.ticks.y = element_blank(),
-            axis.text.y = element_text(size = 18, color = "black"),
-            axis.line.x = element_line(colour = "black", size = 0.5, linetype = "solid"),
-            legend.position = "bottom",
-            panel.grid.major = element_blank(),
-            panel.grid.minor = element_blank(),
-            panel.background = element_blank(),
-            legend.background = element_rect(linetype = "solid", colour = "black"),
-            legend.title = element_blank(),
-            legend.key.size = unit(0.75, "cm"),
-            legend.text = element_text(size = 14))
-
+      theme(axis.title.x = element_blank(), axis.title.y = element_blank(),
+            axis.ticks.y = element_blank(), axis.text.y = element_text(size = 18,
+                                                                       color = "black"), axis.line.x = element_line(colour = "black",
+                                                                                                                    size = 0.5, linetype = "solid"), legend.position = "bottom",
+            panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+            panel.background = element_blank(), legend.background = element_rect(linetype = "solid",
+                                                                                 colour = "black"), legend.title = element_blank(),
+            legend.key.size = unit(0.75, "cm"), legend.text = element_text(size = 14))
     plot(rob.plot)
-
-    if (table == TRUE){
+    if (table == TRUE) {
       plot(rob.table)
     }
-
-  } else {
-
-    # Only select columns with RoB data
+  }
+  else {
     data = as.data.frame(data)
-
     colnames.rob = character()
-
-    for (i in 1:ncol(data)){
-
-      vect = as.character(data[,i])
-
-      for (j in 1:length(data[,i])){
-
-        if (vect[j] %in% c(name.high, name.unclear, name.low, name.missing)){
-
+    for (i in 1:ncol(data)) {
+      vect = as.character(data[, i])
+      for (j in 1:length(data[, i])) {
+        if (vect[j] %in% c(name.high, name.unclear, name.low,
+                           name.missing)) {
           colnames.rob[i] = TRUE
-
-        } else {
-
+        }
+        else {
           colnames.rob[i] = FALSE
           message(cat("Column '", colnames(data)[i],
                       "' removed from plot because it did not contain the specified RoB ratings (only). \n",
-                      sep=""))
+                      sep = ""))
           break
-
         }
       }
     }
-
-    # Use mask: rob data
-    rob = data[ , as.logical(colnames.rob)]
-
-    # Relevel for plot
-    for (i in 1:ncol(rob)){
-
-      rob[,i] = as.character(rob[,i])
-      rob[rob[,i]==name.high,i] = "High"
-      rob[rob[,i]==name.unclear,i] = "Unclear"
-      rob[rob[,i]==name.low,i] = "Low"
-      rob[rob[,i]==name.missing,i] = "Missing"
-
+    rob = data[, as.logical(colnames.rob)]
+    for (i in 1:ncol(rob)) {
+      rob[, i] = as.character(rob[, i])
+      rob[rob[, i] == name.high, i] = "High"
+      rob[rob[, i] == name.unclear, i] = "Unclear"
+      rob[rob[, i] == name.low, i] = "Low"
+      rob[rob[, i] == name.missing, i] = "Missing"
     }
-
-    # Make Table
-
-    if (table == TRUE){
-
-      if (missing(studies)){
+    if (table == TRUE) {
+      if (missing(studies)) {
         stop("'studies' has to be specified when 'table = TRUE'.")
       }
-
-      if (length(as.vector(studies)) != nrow(data)){
+      if (length(as.vector(studies)) != nrow(data)) {
         stop("'studies' vector is not of equal length as the data.")
       }
-
       robby = rob
-      robby = data.frame(study = as.factor(studies),
-                         condition = rep(colnames(robby), each = length(studies)),
-                         measurement = unlist(robby))
+      robby = data.frame(study = as.factor(studies), condition = rep(colnames(robby),
+                                                                     each = length(studies)), measurement = unlist(robby))
       rownames(robby) = NULL
-      robby$condition = gsub("_"," ", robby$condition)
-      robby$condition = gsub("-"," ", robby$condition)
-      robby$condition = gsub("\\."," ", robby$condition)
-      robby[robby$measurement=="Low", "measurement"] = "+"
-      robby[robby$measurement=="Unclear", "measurement"] = "?"
-      robby[robby$measurement=="High", "measurement"] = "-"
-      robby[robby$measurement=="Missing", "measurement"] = " "
-
-      # Order factor
-      robby$study = factor(robby$study,
-                           levels = unique(studies)[rev(order(unique(robby$study)))])
-
+      robby$condition = gsub("_", " ", robby$condition)
+      robby$condition = gsub("-", " ", robby$condition)
+      robby$condition = gsub("\\.", " ", robby$condition)
+      robby[robby$measurement == "Low", "measurement"] = "+"
+      robby[robby$measurement == "Unclear", "measurement"] = "?"
+      robby[robby$measurement == "High", "measurement"] = "-"
+      robby[robby$measurement == "Missing", "measurement"] = " "
+      robby$study = factor(robby$study, levels = unique(studies)[rev(order(unique(robby$study)))])
       rob.table = ggplot(data = robby, aes(y = study, x = condition)) +
-        geom_tile(color="black", fill="white", size = 0.8) +
-        geom_point(aes(color=as.factor(measurement)), size=20) +
-        geom_text(aes(label = measurement), size = 8) +
-        scale_x_discrete(position = "top") +
-        scale_color_manual(values = c("?" = "#E2DF07",
-                                      "-" = "#BF0000",
-                                      "+" = "#02C100",
-                                      " " = "white")) +
-        theme_minimal() +
-        coord_equal() +
-        theme(axis.title.x = element_blank(),
-              axis.title.y = element_blank(),
-              axis.ticks.y = element_blank(),
-              axis.text.y = element_text(size = 15, color = "black"),
-              axis.text.x = element_text(size = 13, color = "black", angle = 90, hjust=0),
-              legend.position = "none",
-              panel.grid.major = element_blank(),
-              panel.grid.minor = element_blank(),
-              panel.background = element_blank())
-
+        geom_tile(color = "black", fill = "white", size = 0.8) +
+        geom_point(aes(color = as.factor(measurement)),
+                   size = 20) + geom_text(aes(label = measurement),
+                                          size = 8) + scale_x_discrete(position = "top") +
+        scale_color_manual(values = c(`?` = "#E2DF07",
+                                      `-` = "#BF0000", `+` = "#02C100", ` ` = "white")) +
+        theme_minimal() + coord_equal() + theme(axis.title.x = element_blank(),
+                                                axis.title.y = element_blank(), axis.ticks.y = element_blank(),
+                                                axis.text.y = element_text(size = 15, color = "black"),
+                                                axis.text.x = element_text(size = 13, color = "black",
+                                                                           angle = 90, hjust = 0), legend.position = "none",
+                                                panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+                                                panel.background = element_blank())
     }
-
-
-    # Make long format, clean the factors
-    rob.long = data.frame(condition = rep(colnames(rob), each = nrow(rob)),
-                          measurement = unlist(rob))
+    rob.long = data.frame(condition = rep(colnames(rob),
+                                          each = nrow(rob)), measurement = unlist(rob))
     rownames(rob.long) = NULL
-    rob.long$condition = gsub("_"," ",rob.long$condition)
-    rob.long$condition = gsub("-"," ",rob.long$condition)
-    rob.long$condition = gsub("\\."," ",rob.long$condition)
+    rob.long$condition = gsub("_", " ", rob.long$condition)
+    rob.long$condition = gsub("-", " ", rob.long$condition)
+    rob.long$condition = gsub("\\.", " ", rob.long$condition)
     rob.long$measurement = as.factor(rob.long$measurement)
-    rob.long$measurement = factor(rob.long$measurement, levels(rob.long$measurement)[c(3,1,4,2)])
-
-    rob.plot = ggplot(data = rob.long) +
-      geom_bar(mapping = aes(x = condition, fill = measurement), width = 0.7,
-               position = "fill", color = "black") +
-      coord_flip(ylim = c(0, 1)) +
-      guides(fill = guide_legend(reverse = TRUE)) +
-      scale_fill_manual("Risk of Bias",
-                        labels = c("  Missing information  ",
-                                   "  High risk of bias   ",
-                                   "  Unclear risk of bias  ",
-                                   "  Low risk of bias  "),
-                        values = c(Unclear = "#E2DF07",
+    rob.long$measurement = factor(rob.long$measurement, levels(rob.long$measurement)[c(3,
+                                                                                       1, 4, 2)])
+    rob.plot = ggplot(data = rob.long) + geom_bar(mapping = aes(x = condition,
+                                                                fill = measurement), width = 0.7, position = "fill",
+                                                  color = "black") + coord_flip(ylim = c(0, 1)) + guides(fill = guide_legend(reverse = TRUE)) +
+      scale_fill_manual("Risk of Bias", labels = c("  Missing information  ",
+                                                   "  High risk of bias   ",
+                                                   "  Unclear risk of bias  ",
+                                                   "  Low risk of bias  "),
+                        values = c(Missing = "white",
                                    High = "#BF0000",
-                                   Low = "#02C100",
-                                   Missing = "white")) +
-      scale_y_continuous(labels = scales::percent) +
-      theme(axis.title.x = element_blank(),
-            axis.title.y = element_blank(),
-            axis.ticks.y = element_blank(),
-            axis.text.y = element_text(size = 18, color = "black"),
-            axis.line.x = element_line(colour = "black", size = 0.5, linetype = "solid"),
-            legend.position = "bottom",
-            panel.grid.major = element_blank(),
-            panel.grid.minor = element_blank(),
-            panel.background = element_blank(),
-            legend.background = element_rect(linetype = "solid", colour = "black"),
-            legend.title = element_blank(),
-            legend.key.size = unit(0.75, "cm"),
-            legend.text = element_text(size = 14))
-
+                                   Unclear = "#E2DF07",
+                                   Low = "#02C100")) +
+      scale_y_continuous(labels = scales::percent) + theme(axis.title.x = element_blank(),
+                                                           axis.title.y = element_blank(), axis.ticks.y = element_blank(),
+                                                           axis.text.y = element_text(size = 18, color = "black"),
+                                                           axis.line.x = element_line(colour = "black", size = 0.5,
+                                                                                      linetype = "solid"), legend.position = "bottom",
+                                                           panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+                                                           panel.background = element_blank(), legend.background = element_rect(linetype = "solid",
+                                                                                                                                colour = "black"), legend.title = element_blank(),
+                                                           legend.key.size = unit(0.75, "cm"), legend.text = element_text(size = 14))
     plot(rob.plot)
-
-    if (table == TRUE){
+    if (table == TRUE) {
       plot(rob.table)
     }
-
   }
-
 }
-
-
