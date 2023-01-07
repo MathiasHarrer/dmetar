@@ -120,8 +120,7 @@ the <code>forest</code> function.</p>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># Pool with meta</span></span>
 <span class="r-in"><span class="va">m1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/meta/man/metagen.html" class="external-link">metagen</a></span><span class="op">(</span><span class="va">TE</span>, <span class="va">seTE</span>, data <span class="op">=</span> <span class="va">ThirdWave</span>,</span>
-<span class="r-in">              studlab <span class="op">=</span> <span class="va">ThirdWave</span><span class="op">$</span><span class="va">Author</span>, comb.fixed <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Use argument 'fixed' instead of 'comb.fixed' (deprecated).</span>
+<span class="r-in">              studlab <span class="op">=</span> <span class="va">ThirdWave</span><span class="op">$</span><span class="va">Author</span>, common <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># Pool with metafor</span></span>
 <span class="r-in"><span class="va">m2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://wviechtb.github.io/metafor/reference/rma.uni.html" class="external-link">rma</a></span><span class="op">(</span>yi <span class="op">=</span> <span class="va">TE</span>, sei <span class="op">=</span> <span class="va">seTE</span>, data <span class="op">=</span> <span class="va">ThirdWave</span>,</span>
@@ -155,7 +154,7 @@ the <code>forest</code> function.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Details on meta-analytical method:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> - Inverse variance method</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> - Restricted maximum-likelihood estimator for tau^2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> - Q-profile method for confidence interval of tau^2 and tau</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> - Q-Profile method for confidence interval of tau^2 and tau</span>
 <span class="r-in"><span class="fu"><a href="https://wviechtb.github.io/metafor/reference/print.rma.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">fo2</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Identified outliers (PM) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ------------------------- </span>
@@ -176,7 +175,7 @@ the <code>forest</code> function.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Model Results:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> estimate      se    zval    pval   ci.lb   ci.ub     ​ </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> estimate      se    zval    pval   ci.lb   ci.ub      </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   0.4514  0.0596  7.5781  &lt;.0001  0.3347  0.5682  *** </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ---</span>

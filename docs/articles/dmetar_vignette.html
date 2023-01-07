@@ -85,7 +85,7 @@
                         <h4 data-toc-skip class="author">Mathias Harrer
 &amp; David Daniel Ebert</h4>
             
-            <h4 data-toc-skip class="date">2022-05-24</h4>
+            <h4 data-toc-skip class="date">2023-01-07</h4>
       
       
       <div class="d-none name"><code>dmetar_vignette.Rmd</code></div>
@@ -308,8 +308,7 @@ the <code>metagen</code> function first.</p>
                 data <span class="op">=</span> <span class="va">ThirdWave</span>, 
                 studlab <span class="op">=</span> <span class="va">ThirdWave</span><span class="op">$</span><span class="va">Author</span>, 
                 comb.fixed <span class="op">=</span> <span class="cn">FALSE</span>, 
-                method.tau <span class="op">=</span> <span class="st">"PM"</span><span class="op">)</span>
-<span class="co">#&gt; Warning: Use argument 'fixed' instead of 'comb.fixed' (deprecated).</span></code></pre></div>
+                method.tau <span class="op">=</span> <span class="st">"PM"</span><span class="op">)</span></code></pre></div>
 <p>We can then use this <code>meta</code> object called
 <code>meta</code> as input for the function, and only have to specify
 the subgroups coded in the original data set we want to consider. Then,
@@ -319,12 +318,7 @@ into <code>forest</code>.</p>
 <code class="sourceCode R"><span class="va">sgame</span> <span class="op">=</span> <span class="fu"><a href="../reference/subgroup.analysis.mixed.effects.html">subgroup.analysis.mixed.effects</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">meta</span>, subgroups <span class="op">=</span> <span class="va">ThirdWave</span><span class="op">$</span><span class="va">TypeControlGroup</span><span class="op">)</span>
 <span class="fu"><a href="https://wviechtb.github.io/metafor/reference/print.rma.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">sgame</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/pkg/meta/man/forest.meta.html" class="external-link">forest</a></span><span class="op">(</span><span class="va">sgame</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">#&gt; Warning: Use argument 'fixed' instead of 'comb.fixed' (deprecated).</span>
-<span class="co">#&gt; Warning: Use argument 'random' instead of 'comb.random' (deprecated).</span>
-<span class="co">#&gt; Warning: Use argument 'subgroup' instead of 'byvar' (deprecated).</span>
-<span class="co">#&gt; Warning: Use argument 'fixed' instead of 'comb.fixed' (deprecated).</span>
-<span class="co">#&gt; Warning: Use argument 'subgroup' instead of 'byvar' (deprecated).</span>
-<span class="co">#&gt; Subgroup Results:</span>
+<pre><code><span class="co">#&gt; Subgroup Results:</span>
 <span class="co">#&gt; --------------</span>
 <span class="co">#&gt;                  k        TE      seTE  LLCI  ULCI            p         Q   I2</span>
 <span class="co">#&gt; information only 3 0.4015895 0.1003796 0.205 0.598 6.315313e-05  1.144426 0.00</span>
@@ -460,7 +454,6 @@ created with functions of the <code>meta</code> package as well as the
                 studlab <span class="op">=</span> <span class="va">ThirdWave</span><span class="op">$</span><span class="va">Author</span>,
                 method.tau <span class="op">=</span> <span class="st">"SJ"</span>,
                 comb.fixed <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-<span class="co">#&gt; Warning: Use argument 'fixed' instead of 'comb.fixed' (deprecated).</span>
 
 <span class="fu"><a href="../reference/find.outliers.html">find.outliers</a></span><span class="op">(</span><span class="va">meta</span><span class="op">)</span>
 <span class="co">#&gt; Identified outliers (random-effects model) </span>
@@ -485,7 +478,7 @@ created with functions of the <code>meta</code> package as well as the
 <span class="co">#&gt; Details on meta-analytical method:</span>
 <span class="co">#&gt; - Inverse variance method</span>
 <span class="co">#&gt; - Sidik-Jonkman estimator for tau^2</span>
-<span class="co">#&gt; - Q-profile method for confidence interval of tau^2 and tau</span>
+<span class="co">#&gt; - Q-Profile method for confidence interval of tau^2 and tau</span>
 <span class="fu"><a href="https://rdrr.io/pkg/meta/man/forest.meta.html" class="external-link">forest</a></span><span class="op">(</span><span class="fu"><a href="../reference/find.outliers.html">find.outliers</a></span><span class="op">(</span><span class="va">meta</span><span class="op">)</span>, col.study <span class="op">=</span> <span class="st">"blue"</span><span class="op">)</span></code></pre></div>
 <p><img src="dmetar_vignette_files/figure-html/unnamed-chunk-19-1.png" width="700"></p>
 <p><br></p>

@@ -4,7 +4,7 @@
 #' in a selection of clinical trials examining the effects of psychotherapy and antidepressants
 #' in patients with Major Depression.
 #'
-#' @format A \code{data.frame} with 6 columns.
+#' @format A \code{data.frame} with six columns.
 #' \describe{
 #' \item{author}{\code{character}. The study label containing the first author and year of the study.}
 #' \item{n}{\code{numeric}. The sample size of each study.}

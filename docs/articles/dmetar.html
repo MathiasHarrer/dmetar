@@ -307,18 +307,12 @@ the <code>metagen</code> function first.</p>
                 studlab <span class="op">=</span> <span class="va">ThirdWave</span><span class="op">$</span><span class="va">Author</span>, 
                 comb.fixed <span class="op">=</span> <span class="cn">FALSE</span>, 
                 method.tau <span class="op">=</span> <span class="st">"PM"</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## Warning: Use argument 'fixed' instead of 'comb.fixed' (deprecated).</span></code></pre>
 <p>We can then use this <code>meta</code> object called
 <code>meta</code> as input for the function, and only have to specify
 the subgroups coded in the original data set we want to consider.</p>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/subgroup.analysis.mixed.effects.html">subgroup.analysis.mixed.effects</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">meta</span>, 
                                 subgroups <span class="op">=</span> <span class="va">ThirdWave</span><span class="op">$</span><span class="va">TypeControlGroup</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## Warning: Use argument 'fixed' instead of 'comb.fixed' (deprecated).</span></code></pre>
-<pre><code><span class="co">## Warning: Use argument 'random' instead of 'comb.random' (deprecated).</span></code></pre>
-<pre><code><span class="co">## Warning: Use argument 'subgroup' instead of 'byvar' (deprecated).</span></code></pre>
-<pre><code><span class="co">## Warning: Use argument 'fixed' instead of 'comb.fixed' (deprecated).</span></code></pre>
-<pre><code><span class="co">## Warning: Use argument 'subgroup' instead of 'byvar' (deprecated).</span></code></pre>
 <pre><code><span class="co">## Subgroup Results:</span>
 <span class="co">## --------------</span>
 <span class="co">##                  k        TE      seTE  LLCI  ULCI            p         Q   I2</span>
@@ -346,7 +340,7 @@ Inference</strong></a> for a meta-regression model.</p>
 <p>Here is an example using the <code>MVRegressionData</code> dataset,
 using <code>pubyear</code>, <code>quality</code>,
 <code>reputation</code> and <code>continent</code> as predictors:</p>
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://www.metafor-project.org" class="external-link">metafor</a></span><span class="op">)</span>
 <span class="fu"><a href="../reference/multimodel.inference.html">multimodel.inference</a></span><span class="op">(</span>TE <span class="op">=</span> <span class="st">'yi'</span>, seTE <span class="op">=</span> <span class="st">'sei'</span>, data <span class="op">=</span> <span class="va">MVRegressionData</span>,
                            predictors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'pubyear'</span>, <span class="st">'quality'</span>,
@@ -451,15 +445,14 @@ the pooled effect) in your meta-analysis and recalculates the results
 without these outliers. The function works for meta-analysis objects
 created with functions of the <code>meta</code> package as well as the
 <code>rma.uni</code> function in <code>metafor</code>.</p>
-<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">meta</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/meta/man/metagen.html" class="external-link">metagen</a></span><span class="op">(</span><span class="va">TE</span>, <span class="va">seTE</span>, 
                 data <span class="op">=</span> <span class="va">ThirdWave</span>, 
                 studlab <span class="op">=</span> <span class="va">ThirdWave</span><span class="op">$</span><span class="va">Author</span>,
                 method.tau <span class="op">=</span> <span class="st">"SJ"</span>,
-                comb.fixed <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## Warning: Use argument 'fixed' instead of 'comb.fixed' (deprecated).</span></code></pre>
-<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/find.outliers.html">find.outliers</a></span><span class="op">(</span><span class="va">meta</span><span class="op">)</span></code></pre></div>
+                comb.fixed <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
+
+<span class="fu"><a href="../reference/find.outliers.html">find.outliers</a></span><span class="op">(</span><span class="va">meta</span><span class="op">)</span></code></pre></div>
 <pre><code><span class="co">## Identified outliers (random-effects model) </span>
 <span class="co">## ------------------------------------------ </span>
 <span class="co">## "DanitzOrsillo", "Shapiro et al." </span>
@@ -482,8 +475,8 @@ created with functions of the <code>meta</code> package as well as the
 <span class="co">## Details on meta-analytical method:</span>
 <span class="co">## - Inverse variance method</span>
 <span class="co">## - Sidik-Jonkman estimator for tau^2</span>
-<span class="co">## - Q-profile method for confidence interval of tau^2 and tau</span></code></pre>
-<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
+<span class="co">## - Q-Profile method for confidence interval of tau^2 and tau</span></code></pre>
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://wviechtb.github.io/metafor/reference/forest.html" class="external-link">forest</a></span><span class="op">(</span><span class="fu"><a href="../reference/find.outliers.html">find.outliers</a></span><span class="op">(</span><span class="va">meta</span><span class="op">)</span>, col.study <span class="op">=</span> <span class="st">"blue"</span><span class="op">)</span></code></pre></div>
 <p><img src="dmetar_files/figure-html/unnamed-chunk-20-1.png" width="700"></p>
 <p><br></p>
@@ -507,10 +500,10 @@ is a wrapper around several influence analysis function included in the
 types of influence diagnostics in one single plot. The function works
 for meta-analysis objects created by <code>meta</code> functions, which
 can then be directly used as input for the function:</p>
-<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">infan</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/InfluenceAnalysis.html">InfluenceAnalysis</a></span><span class="op">(</span><span class="va">meta</span><span class="op">)</span></code></pre></div>
 <pre><code><span class="co">## [===========================================================================] DONE</span></code></pre>
-<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">infan</span><span class="op">)</span></code></pre></div>
 <p><img src="dmetar_files/figure-html/unnamed-chunk-21-1.png" width="1056"></p>
 <p><br></p>
@@ -522,7 +515,7 @@ algorithms to determine effect size-heterogeneity patterns in the
 meta-analysis data. We can use <code>dmetars</code> in-built
 <code>m.gosh</code> data set, which has been generated using
 <code>metafor</code>s <code>gosh</code> function as an example:</p>
-<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"m.gosh"</span><span class="op">)</span>
 <span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/gosh.diagnostics.html">gosh.diagnostics</a></span><span class="op">(</span><span class="va">m.gosh</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
 
@@ -540,7 +533,7 @@ meta-analysis data. We can use <code>dmetars</code> in-built
 <span class="co">##  - K-means: Study 3, Study 4</span>
 <span class="co">##  - DBSCAN: Study 3, Study 4</span>
 <span class="co">##  - Gaussian Mixture Model: Study 3, Study 4</span></code></pre>
-<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">res</span><span class="op">)</span></code></pre></div>
 <p><img src="dmetar_files/figure-html/unnamed-chunk-22-1.png" width="700"><img src="dmetar_files/figure-html/unnamed-chunk-22-2.png" width="700"><img src="dmetar_files/figure-html/unnamed-chunk-22-3.png" width="700"><img src="dmetar_files/figure-html/unnamed-chunk-22-4.png" width="700"><img src="dmetar_files/figure-html/unnamed-chunk-22-5.png" width="700"></p>
 <p><br></p>
@@ -558,7 +551,7 @@ Both methods are optimized for conducting meta-analyses using the
 <p><br></p>
 <p><strong>Here is an example output for</strong>
 <code>eggers.test</code><strong>:</strong></p>
-<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/eggers.test.html">eggers.test</a></span><span class="op">(</span><span class="va">meta</span><span class="op">)</span></code></pre></div>
 <pre><code><span class="co">## Eggers' test of the intercept </span>
 <span class="co">## ============================= </span>
@@ -570,7 +563,7 @@ Both methods are optimized for conducting meta-analyses using the
 <p><br></p>
 <p><strong>And here for</strong>
 <code>pcurve</code><strong>:</strong></p>
-<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/pcurve.html">pcurve</a></span><span class="op">(</span><span class="va">meta</span><span class="op">)</span></code></pre></div>
 <p><img src="dmetar_files/figure-html/unnamed-chunk-24-1.png" width="576" style="display: block; margin: auto;"></p>
 <pre><code><span class="co">## P-curve analysis </span>
@@ -608,7 +601,7 @@ proposed by König, Krahn and Binder (2013). It only requires a network
 meta-analysis object created by the <code>netmeta</code> function as
 input. We will use <code>dmetar</code>s in-built
 <code>NetDataNetmeta</code> dataset for this example:</p>
-<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/guido-s/netmeta" class="external-link">netmeta</a></span><span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"NetDataNetmeta"</span><span class="op">)</span>
@@ -626,7 +619,7 @@ treatment when provided with a <code>mtc.rank.probability</code> network
 meta-analysis results object, or a matrix containing rank probabilities.
 In this example, we will use <code>dmetar</code>s in-built
 <code>NetDataGemtc</code> data set.</p>
-<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/gertvv/gemtc" class="external-link">gemtc</a></span><span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"NetDataGemtc"</span><span class="op">)</span>
