@@ -64,7 +64,7 @@
 #'
 #' # Pool with meta
 #' m1 <- metagen(TE, seTE, data = ThirdWave,
-#'               studlab = ThirdWave$Author, comb.fixed = FALSE)
+#'               studlab = ThirdWave$Author, common = FALSE)
 #'
 #' # Pool with metafor
 #' m2 <- rma(yi = TE, sei = seTE, data = ThirdWave,
@@ -169,7 +169,7 @@ find.outliers = spot.outliers.random = spot.outliers.fixed = function(x, ...){
     out.study.fixed = x$studlab[mask.fixed]
     out.study.random = x$studlab[mask.random]
 
-    if (x$comb.fixed == TRUE & x$comb.random == FALSE){
+    if (x$common == TRUE & x$random == FALSE){
 
       if (length(out.study.fixed) < 1){
 
@@ -184,7 +184,7 @@ find.outliers = spot.outliers.random = spot.outliers.fixed = function(x, ...){
 
     }
 
-    if (x$comb.fixed == FALSE & x$comb.random == TRUE){
+    if (x$common == FALSE & x$random == TRUE){
 
       if (length(out.study.random) < 1){
 
@@ -199,7 +199,7 @@ find.outliers = spot.outliers.random = spot.outliers.fixed = function(x, ...){
 
     }
 
-    if (x$comb.fixed == TRUE & x$comb.random == TRUE){
+    if (x$common == TRUE & x$random == TRUE){
 
       if (length(out.study.fixed) < 1 & length(out.study.random) < 1){
 

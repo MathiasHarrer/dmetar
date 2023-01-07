@@ -38,7 +38,7 @@ is therefore printed when the number of studies in the \code{meta} object is \eq
 suppressPackageStartupMessages(library(meta))
 data(ThirdWave)
 m = metagen(TE, seTE, studlab = paste(Author),
-    data = ThirdWave, comb.random = FALSE, hakn=TRUE)
+    data = ThirdWave, random = TRUE, hakn=TRUE)
 
 # Plug result into 'eggers.test' function
 res.et <- eggers.test(m)

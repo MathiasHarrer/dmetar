@@ -61,7 +61,7 @@ suppressPackageStartupMessages(library(dmetar))
 
 # Pool with meta
 m1 <- metagen(TE, seTE, data = ThirdWave,
-              studlab = ThirdWave$Author, comb.fixed = FALSE)
+              studlab = ThirdWave$Author, common = FALSE)
 
 # Pool with metafor
 m2 <- rma(yi = TE, sei = seTE, data = ThirdWave,
