@@ -7,7 +7,7 @@
 
 
 <br></br> <br></br>
-<img src="man/figures/logo.png" align="left" alt="" width="100" />
+<img src="man/figures/logo.png"  align="left" alt="" width="100" />
 <br></br> <br></br> <br></br> <br></br>
 
 ## dmetar
@@ -30,14 +30,13 @@ packages.
 
 ## Installation
 
-The latest development version can be installed from **GitHub** using
-[**devtools**](https://devtools.r-lib.org/).
+The latest development version can be installed from **GitHub** using [**remotes**](https://remotes.r-lib.org/).
 
 ``` r
-if (!require("devtools")) {
-  install.packages("devtools")
+if (!require("remotes")) {
+  install.packages("remotes")
 }
-devtools::install_github("MathiasHarrer/dmetar")
+remotes::install_github("MathiasHarrer/dmetar")
 ```
 
 <br></br>
