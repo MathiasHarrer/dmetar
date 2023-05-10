@@ -53,7 +53,7 @@ print.gosh.diagnostics = function(x, ...){
 
   if(!is.null(x[["outlier.studies.gmm"]])){
     if(length(x$outlier.studies.gmm) > 0){
-      cat("\n", "- Gaussian Mixture Model:", paste("Study", x$outlier.studies.db, collapse = ", "))
+      cat("\n", "- Gaussian Mixture Model:", paste("Study", x$outlier.studies.gmm, collapse = ", "))
     } else {
       cat("\n", "- Gaussian Mixture Model:", "No outliers detected.")
     }
