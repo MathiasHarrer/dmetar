@@ -1,11 +1,3 @@
-
-[![DOI](https://zenodo.org/badge/152492192.svg)](https://zenodo.org/badge/latestdoi/152492192)
-[![Maintenance](https://img.shields.io/badge/maintenance-yes-blue.svg)](https://img.shields.io/maintenance/yes/2020)
-[![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
-[![GitHub last commit](https://img.shields.io/github/last-commit/MathiasHarrer/dmetar)](https://img.shields.io/github/last-commit/MathiasHarrer/dmetar)
-[![R CMD Check](https://img.shields.io/badge/R%20CMD%20Check-passing-success)](https://img.shields.io/badge/R%20CMD%20Check-passing-success)
-
-
 <br></br> <br></br>
 <img src="man/figures/logo.png"  align="left" alt="" width="100" />
 <br></br> <br></br> <br></br> <br></br>
@@ -15,6 +7,18 @@
 **Doing Meta-Analysis in R**
 
 ![](man/figures/front.png)
+
+
+[![DOI](https://zenodo.org/badge/152492192.svg)](https://zenodo.org/badge/latestdoi/152492192)
+[![Maintenance](https://img.shields.io/badge/maintenance-yes-blue.svg)](https://img.shields.io/maintenance/yes/2020)
+[![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
+[![GitHub last commit](https://img.shields.io/github/last-commit/MathiasHarrer/dmetar)](https://img.shields.io/github/last-commit/MathiasHarrer/dmetar)
+[![R CMD Check](https://img.shields.io/badge/R%20CMD%20Check-passing-success)](https://img.shields.io/badge/R%20CMD%20Check-passing-success)
+
+```
+**NOTE:** This is a read-only repository. For questions concerning the **dmetar** package, or to report bugs,
+please contact us via [mail](https://github.com/MathiasHarrer/dmetar/tree/master#questions--bugs).
+```
 
 <br></br>
 
