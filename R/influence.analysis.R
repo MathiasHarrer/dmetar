@@ -103,7 +103,8 @@
 #' meta = metagen(TE, seTE, studlab = paste(ThirdWave$Author), data=ThirdWave)
 #'
 #' # Run influence analysis; specify to return separate plots when plotted
-#' inf.an = InfluenceAnalysis(meta, return.separate.plots = TRUE)
+#' inf.an = InfluenceAnalysis(meta, random = TRUE,
+#'                            return.separate.plots = TRUE)
 #'
 #' # Show results in console
 #' inf.an
@@ -136,7 +137,6 @@ InfluenceAnalysis = function(x, random = FALSE, subplot.heights = c(30, 18),
     if (class(x)[1] %in% c("meta", "metabin", "metagen", "metacont", "metacor", "metainc", "metaprop", "metarate")) {
       x <- update(x, subset = !(is.na(x$TE) | is.na(x$seTE)))
     } else {
-
         stop("Object 'x' must be of class 'meta', 'metabin', 'metagen', 'metacont', 'metacor', 'metainc', or 'metaprop'")
     }
 
@@ -146,13 +146,10 @@ InfluenceAnalysis = function(x, random = FALSE, subplot.heights = c(30, 18),
     random = random
 
     # Make unique studlabs
-    x$studlab = make.unique(x$studlab)
+    x$studlab = make.unique(as.character(x$studlab))
 
     if (random %in% c(TRUE, FALSE)) {
-
-
     } else {
-
         stop("'random' must be set to either TRUE or FALSE.")
     }
 
@@ -165,34 +162,26 @@ InfluenceAnalysis = function(x, random = FALSE, subplot.heights = c(30, 18),
     }
 
     return.seperate.plots = return.separate.plots
-
     if (return.seperate.plots %in% c(TRUE, FALSE)) {
-
-
     } else {
-
         stop("'return.separate.plots' must be set to either TRUE or FALSE.")
     }
 
 
     heights = subplot.heights
     if (class(heights[1]) == "numeric" & class(heights[2]) == "numeric") {
-
     } else {
         stop("'subplot.heights' must be two concatenated numerics.")
     }
 
-
     widths = subplot.widths
     if (class(widths[1]) == "numeric" & class(widths[2]) == "numeric") {
-
     } else {
         stop("'widths' must be two concatenated numerics.")
     }
 
     text.scale = text.scale
     if (text.scale > 0) {
-
     } else {
         stop("'text.scale' must be a single number greater 0.")
     }
@@ -227,87 +216,64 @@ InfluenceAnalysis = function(x, random = FALSE, subplot.heights = c(30, 18),
     rownames(cheungviechtdata) = NULL
 
     if (length(unique(cheungviechtdata$study)) < length(cheungviechtdata$study)) {
-
         i = 3
-
         while (length(unique(cheungviechtdata$study)) < length(cheungviechtdata$study)) {
-
             i = i + 1
             cheungviechtdata$study = substr(rownames(as.data.frame(metafor.inf$inf)), 1, i)
-
         }
-
-
     }
-
-    # If study labels are only numeric: reset level indexing
-    if (sum(grepl("[A-Za-z]", levels(as.factor(cheungviechtdata$study)), perl = T)) == 0){
-
-      cheungviechtdata$study = factor(cheungviechtdata$study, levels = sort(as.numeric(levels(cheungviechtdata$study))))
-
-    }
-
 
 
     ########################################
     cat("===============")
     ########################################
 
-    scalefun = function(x) sprintf("%.1f", x)
-
     cheungviechtdata = as.data.frame(cheungviechtdata)
+    within(cheungviechtdata,
+           {study = factor(study, levels = study)}) -> cheungviechtdata
 
     # Generate plots
     rstudent.plot = ggplot2::ggplot(cheungviechtdata, aes(y = rstudent, x = study, color = is.infl, group = 1)) +
         geom_line(color = "black") + geom_point(size = 2) + scale_color_manual(values = c("blue", "red")) +
         theme_minimal() + theme(axis.title.x = element_blank(), legend.position = "none", axis.text.x = element_text(angle = 45,
-        size = 5), axis.title.y = element_text(size = 7), axis.text.y = element_text(size = 5)) + ylab("Stand. Residual") +
-        scale_y_continuous(labels = scalefun)
+        size = 5), axis.title.y = element_text(size = 7), axis.text.y = element_text(size = 5)) + ylab("Stand. Residual")
 
     dffits.thresh = 3 * sqrt(metafor.inf$p/(metafor.inf$k - metafor.inf$p))
     dffits.plot = ggplot2::ggplot(cheungviechtdata, aes(y = dffits, x = study, color = is.infl, group = 1)) +
         geom_line(color = "black") + geom_point(size = 2) + scale_color_manual(values = c("blue", "red")) +
         theme_minimal() + theme(axis.title.x = element_blank(), legend.position = "none", axis.text.x = element_text(angle = 45,
-        size = 5), axis.title.y = element_text(size = 7), axis.text.y = element_text(size = 5)) + ylab("DFFITS") +
-        scale_y_continuous(labels = scalefun)
-    # geom_hline(yintercept = dffits.thresh, linetype='dashed', color='black')
+        size = 5), axis.title.y = element_text(size = 7), axis.text.y = element_text(size = 5)) + ylab("DFFITS")
 
     cook.d.plot = ggplot2::ggplot(cheungviechtdata, aes(y = cook.d, x = study, color = is.infl, group = 1)) +
         geom_line(color = "black") + geom_point(size = 2) + scale_color_manual(values = c("blue", "red")) +
         theme_minimal() + theme(axis.title.x = element_blank(), legend.position = "none", axis.text.x = element_text(angle = 45,
-        size = 5), axis.title.y = element_text(size = 7), axis.text.y = element_text(size = 5)) + ylab("Cook's Distance") +
-        scale_y_continuous(labels = scalefun)
+        size = 5), axis.title.y = element_text(size = 7), axis.text.y = element_text(size = 5)) + ylab("Cook's Distance")
 
     cov.r.plot = ggplot2::ggplot(cheungviechtdata, aes(y = cov.r, x = study, color = is.infl, group = 1)) +
         geom_line(color = "black") + geom_point(size = 2) + scale_color_manual(values = c("blue", "red")) +
         theme_minimal() + theme(axis.title.x = element_blank(), legend.position = "none", axis.text.x = element_text(angle = 45,
-        size = 5), axis.title.y = element_text(size = 7), axis.text.y = element_text(size = 5)) + ylab("Covariance Ratio") +
-        scale_y_continuous(labels = scalefun)
+        size = 5), axis.title.y = element_text(size = 7), axis.text.y = element_text(size = 5)) + ylab("Covariance Ratio")
 
     tau2.del.plot = ggplot2::ggplot(cheungviechtdata, aes(y = tau2.del, x = study, color = is.infl, group = 1)) +
         geom_line(color = "black") + geom_point(size = 2) + scale_color_manual(values = c("blue", "red")) +
         theme_minimal() + theme(axis.title.x = element_blank(), legend.position = "none", axis.text.x = element_text(angle = 45,
-        size = 5), axis.title.y = element_text(size = 7), axis.text.y = element_text(size = 5)) + ylab("tau-squared (L-0-0)") +
-        scale_y_continuous(labels = scalefun)
+        size = 5), axis.title.y = element_text(size = 7), axis.text.y = element_text(size = 5)) + ylab("tau-squared (L-0-0)")
 
     QE.del.plot = ggplot2::ggplot(cheungviechtdata, aes(y = QE.del, x = study, color = is.infl, group = 1)) +
         geom_line(color = "black") + geom_point(size = 2) + scale_color_manual(values = c("blue", "red")) +
         theme_minimal() + theme(axis.title.x = element_blank(), legend.position = "none", axis.text.x = element_text(angle = 45,
-        size = 5), axis.title.y = element_text(size = 7), axis.text.y = element_text(size = 5)) + ylab("Q (L-0-0)") +
-        scale_y_continuous(labels = scalefun)
+        size = 5), axis.title.y = element_text(size = 7), axis.text.y = element_text(size = 5)) + ylab("Q (L-0-0)")
 
     hat.thresh = 3 * (metafor.inf$p/metafor.inf$k)
     hat.plot = ggplot2::ggplot(cheungviechtdata, aes(y = hat, x = study, color = is.infl, group = 1)) + geom_line(color = "black") +
         geom_point(size = 2) + scale_color_manual(values = c("blue", "red")) + theme_minimal() + theme(axis.title.x = element_blank(),
         legend.position = "none", axis.text.x = element_text(angle = 45, size = 5), axis.title.y = element_text(size = 7),
-        axis.text.y = element_text(size = 5)) + ylab("hat") + scale_y_continuous(labels = scalefun)
-    # geom_hline(yintercept = hat.thresh, linetype='dashed', color='black')
+        axis.text.y = element_text(size = 5)) + ylab("hat")
 
     weight.plot = ggplot2::ggplot(cheungviechtdata, aes(y = weight, x = study, color = is.infl, group = 1)) +
         geom_line(color = "black") + geom_point(size = 2) + scale_color_manual(values = c("blue", "red")) +
         theme_minimal() + theme(axis.title.x = element_blank(), legend.position = "none", axis.text.x = element_text(angle = 45,
-        size = 5), axis.title.y = element_text(size = 7), axis.text.y = element_text(size = 5)) + ylab("weight") +
-        scale_y_continuous(labels = scalefun)
+        size = 5), axis.title.y = element_text(size = 7), axis.text.y = element_text(size = 5)) + ylab("weight")
 
     rma.influence.plot = arrangeGrob(rstudent.plot, dffits.plot, cook.d.plot, cov.r.plot, tau2.del.plot, QE.del.plot,
         hat.plot, weight.plot, ncol = 2)

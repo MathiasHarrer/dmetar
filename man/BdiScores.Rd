@@ -5,7 +5,7 @@
 \alias{BdiScores}
 \title{BDI-II and HAM-D Scores in Clinical Depression Trials}
 \format{
-A \code{data.frame} with 6 columns.
+A \code{data.frame} with six columns.
 \describe{
 \item{author}{\code{character}. The study label containing the first author and year of the study.}
 \item{n}{\code{numeric}. The sample size of each study.}

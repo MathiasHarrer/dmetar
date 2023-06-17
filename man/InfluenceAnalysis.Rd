@@ -96,7 +96,8 @@ suppressPackageStartupMessages(library(meta))
 meta = metagen(TE, seTE, studlab = paste(ThirdWave$Author), data=ThirdWave)
 
 # Run influence analysis; specify to return separate plots when plotted
-inf.an = InfluenceAnalysis(meta, return.separate.plots = TRUE)
+inf.an = InfluenceAnalysis(meta, random = TRUE,
+                           return.separate.plots = TRUE)
 
 # Show results in console
 inf.an
