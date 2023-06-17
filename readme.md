@@ -1,6 +1,4 @@
-<br></br> <br></br>
 <img src="man/figures/logo.png"  align="left" alt="" width="100" />
-<br></br> <br></br> <br></br> <br></br>
 
 ## dmetar
 
@@ -15,12 +13,10 @@
 [![GitHub last commit](https://img.shields.io/github/last-commit/MathiasHarrer/dmetar)](https://img.shields.io/github/last-commit/MathiasHarrer/dmetar)
 [![R CMD Check](https://img.shields.io/badge/R%20CMD%20Check-passing-success)](https://img.shields.io/badge/R%20CMD%20Check-passing-success)
 
-```
-**NOTE:** This is a read-only repository. For questions concerning the **dmetar** package, or to report bugs,
-please contact us via [mail](https://github.com/MathiasHarrer/dmetar/tree/master#questions--bugs).
-```
 
-<br></br>
+> **NOTE:** This is a read-only repository. For questions concerning the **dmetar** package, or to report bugs,
+please contact us via [mail](https://github.com/MathiasHarrer/dmetar/tree/master#questions--bugs).
+
 
 The **dmetar** package serves as the companion R package for the guide
 [**Doing Meta-Analysis in
@@ -30,7 +26,7 @@ package contains utility functions to facilitate the conduction of
 meta-analyses using the **meta**, **metafor**, **netmeta** and **gemtc**
 packages.
 
-<br></br>
+
 
 ## Installation
 
@@ -43,7 +39,7 @@ if (!require("remotes")) {
 remotes::install_github("MathiasHarrer/dmetar")
 ```
 
-<br></br>
+
 
 ## Learning More
 
@@ -63,7 +59,7 @@ combination with go-to meta-analysis packages such as **metafor** or
 [**View the
 Guide**](https://bookdown.org/MathiasHarrer/Doing_Meta_Analysis_in_R/)
 
-<br></br>
+
 
 ## Questions & Bugs
 
