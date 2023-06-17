@@ -8,6 +8,7 @@ output: github_document
 [![GitHub last commit](https://img.shields.io/github/last-commit/MathiasHarrer/dmetar)](https://img.shields.io/github/last-commit/MathiasHarrer/dmetar)
 
 
+
 <br></br>
 <br></br>
 <img src="man/figures/logo.png" align="left" alt="" width="100" />
@@ -33,7 +34,7 @@ The **dmetar** package serves as the companion R package for the guide [**Doing 
 
 The latest development version can be installed from **GitHub** using [**remotes**](https://remotes.r-lib.org/).
 
-```{r, eval=FALSE}
+```r
 if (!require("remotes")) {
   install.packages("remotes")
 }
@@ -54,7 +55,7 @@ The guide was designed to serve as a low-threshold entry point for researchers w
 
 ## Questions & Bugs
 
-For questions concerning the **dmetar** package, or to report bugs, please contact **Mathias** (mathias.harrer@fau.de). 
+For questions concerning the **dmetar** package, or to report bugs, please contact **Mathias** (mathias.harrer@tum.de). 
 
 
 

@@ -14,17 +14,8 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-<img src="fig/banner.jpg" align="left" alt="" width="680" />
 
-<br></br>
 
-<br></br>
-
-<br></br>
-
-<br></br>
-
-<br></br>
 
 <br></br>
 
@@ -34,7 +25,7 @@ The `dmetar` package serves as the companion *R* package for the online guide [*
 
 In this vignette, we provide a rough overview of the core functionalities of the package. An in-depth introduction into the package and how its functions can be applied to "real-world" meta-analyses can be found in the online version of the guide. To get detailed documentation of specific functions, you can consult the `dmetar` [reference page](https://dmetar.protectlab.org/reference/index.html).
 
-Currently, the `dmetar` package is still under development (version 0.0.9000). This means that, despite intense testing, we cannot guarantee that functions will work as intended under all circumstances and for all environments used. To report a bug, or ask a question, please contact **Mathias** (mathias.harrer@fau.de) or **David** (d.d.ebert@vu.nl)
+Currently, the `dmetar` package is still under development (version 0.0.9000). This means that, despite intense testing, we cannot guarantee that functions will work as intended under all circumstances and for all environments used. To report a bug, or ask a question, please contact **Mathias** (mathias.harrer@tum.de).
 
 <br></br>
 

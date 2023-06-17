@@ -3,10 +3,14 @@ url: http://dmetar.protectlab.org
 template:
   bootstrap: 5
   includes:
-    in_header: <link rel="stylesheet" href="../costum.css"><link rel="stylesheet" href="costum.css">
+    in_header: |
+      <link rel="stylesheet" href="../costum.css">
+      <link rel="stylesheet" href="costum.css">
+      <script src="../logo.js" defer></script>
+      <script src="logo.js" defer></script>
   bslib:
-      base_font: {google: "Fira Sans"}
-      heading_font: {google: "Fira Sans"}
+      base_font: {google: "Fira Sans", wght = "200..900"}
+      heading_font: {google: "Fira Sans", wght = "200..900"}
       code_font: {google: "Fira Code"}
       primary: "#3382b2"
       bg: "#fffefa"
@@ -26,10 +30,6 @@ navbar:
     href: reference/index.html
   - text: Book
     href: https://bookdown.org/MathiasHarrer/Doing_Meta_Analysis_in_R/
-  - text: Protect Lab
-    href: https://protectlab.org/en
-  - icon: fa-twitter
-    href: https://twitter.com/MathiasHarrer
 
 reference:
   - title: Effect size calculation

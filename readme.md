@@ -64,4 +64,4 @@ Guide**](https://bookdown.org/MathiasHarrer/Doing_Meta_Analysis_in_R/)
 ## Questions & Bugs
 
 For questions concerning the **dmetar** package, or to report bugs,
-please contact **Mathias** (<mathias.harrer@fau.de>).
+please contact **Mathias** (<mathias.harrer@tum.de>).

@@ -1,7 +1,7 @@
 Package: dmetar
 Title: Companion R Package for the Guide 'Doing Meta-Analysis in R'
 Author: Mathias Harrer, Pim Cuijpers, Toshi Furukawa, David Daniel Ebert
-Version: 0.0.9000
+Version: 0.1.0
 Authors@R: c(
     person("Mathias", "Harrer", email = "mathias.h.harrer@gmail.com", role = "cre", comment = c(ORCID = "0000-0001-7016-2687")),
     person("Pim", "Cuijpers", email = "p.cuijpers@vu.nl", role = "aut", comment = c(ORCID = "0000-0001-5497-2743")),

@@ -6,4 +6,5 @@
 ^docs$
 ^index.Rmd
 ^index.md
+^readme.md
 ^pkgdown$
