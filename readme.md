@@ -1,3 +1,4 @@
+<br>
 <img src="man/figures/logo.png"  align="left" alt="" width="100" />
 
 ## dmetar
@@ -13,6 +14,7 @@
 [![GitHub last commit](https://img.shields.io/github/last-commit/MathiasHarrer/dmetar)](https://img.shields.io/github/last-commit/MathiasHarrer/dmetar)
 [![R CMD Check](https://img.shields.io/badge/R%20CMD%20Check-passing-success)](https://img.shields.io/badge/R%20CMD%20Check-passing-success)
 
+<br>
 
 > **NOTE:** This is a read-only repository. For questions concerning the **dmetar** package, or to report bugs,
 please contact us via [mail](https://github.com/MathiasHarrer/dmetar/tree/master#questions--bugs).
