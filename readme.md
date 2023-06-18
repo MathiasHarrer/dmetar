@@ -12,7 +12,7 @@
 please contact us via [mail](https://github.com/MathiasHarrer/dmetar/tree/master#questions--bugs).
 
 
-The **dmetar** package serves as the companion R package for the guide
+The [**dmetar**](dmetar.protectlab.org) package serves as the companion R package for the guide
 [**Doing Meta-Analysis in
 R**](https://bookdown.org/MathiasHarrer/Doing_Meta_Analysis_in_R/) by
 Mathias Harrer, Pim Cuijpers, Toshi Furukawa and David Daniel Ebert. The
