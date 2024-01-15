@@ -24,6 +24,6 @@
 
 plot.eggers.test = function(x, ...){
 
-  meta::funnel.meta(x$meta.obj, ...)
+  meta::funnel(x$meta.obj, ...)
 
 }

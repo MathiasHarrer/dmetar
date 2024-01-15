@@ -66,7 +66,8 @@
 #' @export subgroup.analysis.mixed.effects
 #' @export sgame
 #'
-#' @importFrom meta forest metagen update.meta
+#' @import meta
+#' @import utils
 #'
 #' @seealso \code{\link{multimodel.inference}}
 #'
@@ -147,6 +148,7 @@
 
 subgroup.analysis.mixed.effects = sgame = function(x, subgroups, exclude = "none") {
 
+    update.meta = getFromNamespace("update.meta", "meta")
 
     # Define variables
     m = x

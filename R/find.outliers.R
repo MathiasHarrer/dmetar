@@ -49,7 +49,8 @@
 #' removed (using the same settings as in the meta-analysis object provided).
 #'}
 #' @importFrom metafor rma.uni
-#' @importFrom meta update.meta
+#' @import meta
+#' @import utils
 #'
 #' @export find.outliers
 #'
@@ -88,6 +89,7 @@
 
 find.outliers = spot.outliers.random = spot.outliers.fixed = function(x, ...){
 
+  update.meta = getFromNamespace("update.meta", "meta")
 
   if (class(x)[1] %in% c("rma.uni", "rma")){
 

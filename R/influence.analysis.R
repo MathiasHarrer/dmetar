@@ -84,7 +84,8 @@
 #' @import ggplot2 ggrepel grid
 #' @importFrom gridExtra grid.arrange arrangeGrob
 #' @importFrom metafor rma.uni influence.rma.uni
-#' @importFrom meta metainf
+#' @import meta
+#' @import utils
 #' @importFrom graphics abline axis lines mtext par plot points rect segments text
 #' @importFrom stats as.formula hat influence ks.test optimize pbinom pchisq pf pnorm pt punif qchisq qf qnorm qt reformulate reorder setNames uniroot
 #'
@@ -132,10 +133,12 @@ InfluenceAnalysis = function(x, random = FALSE, subplot.heights = c(30, 18),
                              forest.lims = "default", return.separate.plots = FALSE,
                              text.scale = 1) {
 
+    update.meta = getFromNamespace("update.meta", "meta")
+
     # Validate
     x = x
     if (class(x)[1] %in% c("meta", "metabin", "metagen", "metacont", "metacor", "metainc", "metaprop", "metarate")) {
-      x <- update(x, subset = !(is.na(x$TE) | is.na(x$seTE)))
+      x <- update.meta(x, subset = !(is.na(x$TE) | is.na(x$seTE)))
     } else {
         stop("Object 'x' must be of class 'meta', 'metabin', 'metagen', 'metacont', 'metacor', 'metainc', or 'metaprop'")
     }

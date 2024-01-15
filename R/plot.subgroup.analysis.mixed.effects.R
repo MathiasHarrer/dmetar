@@ -20,7 +20,7 @@
 #' @author Mathias Harrer & David Daniel Ebert
 #'
 #'
-#' @importFrom meta forest.meta
+#' @importFrom meta forest
 #' @importFrom stats as.formula hat influence ks.test optimize pbinom pchisq pf pnorm pt punif qchisq qf qnorm qt reformulate reorder setNames uniroot
 #'
 #' @export
@@ -29,20 +29,20 @@
 
 plot.subgroup.analysis.mixed.effects = function(x, ...){
 
-    meta::forest.meta(x$m.random, text.random = "Fixed effects (plural) model",
-                      text.random.w = "Random effects model",
-                      print.byvar = FALSE,
-                      leftcols = c("studlab"),
-                      rightcols = c("effect", "ci"),
-                      leftlabs = "Subgroup",
-                      print.I2.ci = TRUE,
-                      print.Q.subgroup = FALSE,
-                      print.Q = TRUE,
-                      print.tau2 = FALSE,
-                      resid.hetstat = FALSE,
-                      colgap.forest.left = "14mm",
-                      hetlab="",
-                      col.by = "black",
-                      ...)
+    meta::forest(x$m.random, text.random = "Fixed effects (plural) model",
+                 text.random.w = "Random effects model",
+                 print.byvar = FALSE,
+                 leftcols = c("studlab"),
+                 rightcols = c("effect", "ci"),
+                 leftlabs = "Subgroup",
+                 print.I2.ci = TRUE,
+                 print.Q.subgroup = FALSE,
+                 print.Q = TRUE,
+                 print.tau2 = FALSE,
+                 resid.hetstat = FALSE,
+                 colgap.forest.left = "14mm",
+                 hetlab="",
+                 col.by = "black",
+                 ...)
 
   }

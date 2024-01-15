@@ -20,7 +20,7 @@
 #'
 #'
 #' @importFrom stats as.formula hat influence ks.test optimize pbinom pchisq pf pnorm pt punif qchisq qf qnorm qt reformulate reorder setNames uniroot
-#' @importFrom meta forest.meta
+#' @importFrom meta forest
 #' @importFrom metafor forest.rma
 #'
 #' @method forest find.outliers
@@ -32,10 +32,10 @@ forest.find.outliers = function(x, ...){
   # meta
   if (!(class(x)[2] %in% c("mf", "mf.null"))){
 
-    if (class(x)[2] == "ftrf" | class(x)[2] == "null.ftrf"){meta::forest.meta(x$m.fixed, ...)}
-    if (class(x)[2] == "ffrt" | class(x)[2] == "null.ffrt"){meta::forest.meta(x$m.random, ...)}
-    if (class(x)[2] == "ftrt" | class(x)[2] == "null.ftrt"){meta::forest.meta(x$m.fixed, ...)
-      meta::forest.meta(x$m.random, ...)}
+    if (class(x)[2] == "ftrf" | class(x)[2] == "null.ftrf"){meta::forest(x$m.fixed, ...)}
+    if (class(x)[2] == "ffrt" | class(x)[2] == "null.ffrt"){meta::forest(x$m.random, ...)}
+    if (class(x)[2] == "ftrt" | class(x)[2] == "null.ftrt"){meta::forest(x$m.fixed, ...)
+      meta::forest(x$m.random, ...)}
 
   } else {
 
