@@ -94,14 +94,13 @@
 #' @seealso \code{\link[metafor]{influence.rma.uni}}, \code{\link[meta]{metainf}}, \code{\link[meta]{baujat}}
 #'
 #' @examples
-#'
 #' \dontrun{
 #' # Load 'ThirdWave' data
 #' data(ThirdWave)
 #'
 #' # Create 'meta' meta-analysis object
-#' suppressPackageStartupMessages(library(meta))
-#' meta = metagen(TE, seTE, studlab = paste(ThirdWave$Author), data=ThirdWave)
+#' library(meta)
+#' meta = metagen(TE, seTE, studlab = Author, data=ThirdWave)
 #'
 #' # Run influence analysis; specify to return separate plots when plotted
 #' inf.an = InfluenceAnalysis(meta, random = TRUE,
@@ -123,7 +122,8 @@
 #' plot(inf.an, "ES")
 #'
 #' # For forest plot sorted by I-squared
-#' plot(inf.an, "I2")}
+#' plot(inf.an, "I2")
+#' }
 
 
 ### Influence Analysis function for fixed-effect-model meta-analyses

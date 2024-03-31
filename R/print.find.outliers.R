@@ -28,7 +28,7 @@ print.find.outliers = function(x, ...){
 
 
   # Meta
-  if (class(x$m.fixed)[1] %in% c("metagen", "metapropr",
+  if (class(x$m.fixed)[1] %in% c("metagen", "metapropr", "metamean",
                                  "metacor", "metainc", "metacont",
                                  "metaprop", "metabin", "metabin")){
 

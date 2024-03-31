@@ -194,7 +194,7 @@ power.analysis = function(d, OR, k, n1, n2, p = 0.05, heterogeneity = "fixed") {
     if (odds == FALSE) {
         plotdat = as.data.frame(cbind(dvec, powvect))
         plot = ggplot(data = plotdat, aes(x = dvec, y = powvect)) + geom_line(color = "blue", size = 2) +
-            geom_point(aes(x = es, y = power), color = "red", size = 5) + theme_minimal() + geom_hline(yintercept = 0.8,
+            annotate("point", x = es, y = power, color = "red", size = 5) + theme_minimal() + geom_hline(yintercept = 0.8,
             color = "black", linetype = "dashed") + ylab("Power") + xlab("Effect size (SMD)")
     } else {
         dvecs = exp(dvec * (pi/sqrt(3)))
@@ -203,7 +203,7 @@ power.analysis = function(d, OR, k, n1, n2, p = 0.05, heterogeneity = "fixed") {
         powvect = as.vector(rbind(powvect, powvect))
         plotdat = as.data.frame(cbind(dvec, powvect))
         plot = ggplot(data = plotdat, aes(x = dvec, y = powvect)) + geom_line(color = "blue", size = 2) +
-            geom_point(aes(x = exp(es * (pi/sqrt(3))), y = power), color = "red", size = 5) + theme_minimal() +
+            annotate("point", x = exp(es * (pi/sqrt(3))), y = power, color = "red", size = 5) + theme_minimal() +
             geom_hline(yintercept = 0.8, color = "black", linetype = "dashed") + ylab("Power") + xlab("Effect size (OR)") +
             scale_x_log10()
     }

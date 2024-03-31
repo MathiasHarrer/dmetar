@@ -116,9 +116,13 @@ data("NetDataNetmeta")
 
 ## Power Analysis
 
-The `dmetar` package contains two functions for *a priori* [power analyses](https://bookdown.org/MathiasHarrer/Doing_Meta_Analysis_in_R/power-analysis.html) of a meta-analysis: [`power.analysis`](www.dmetar.protectlab.org/reference/power.analysis.html) and [`power.analysis.subgroups`](www.dmetar.protectlab.org&/reference/power.analysis.subgroup.html). Let us assume that researchers expect to have approximately 18 studies in their meta-analysis, with moderate between-group heterogeneity and about 50 participants per arm and study. Will there be sufficient power to detect an assumed minimally important difference of $d=0.18$? The `power.analysis` function can be used to answer this question.
+The `dmetar` package contains two functions for *a priori* [power analyses](https://bookdown.org/MathiasHarrer/Doing_Meta_Analysis_in_R/power-analysis.html) of a meta-analysis: [`power.analysis`](www.dmetar.protectlab.org/reference/power.analysis.html) and [`power.analysis.subgroups`](www.dmetar.protectlab.org&/reference/power.analysis.subgroup.html). Let us assume that researchers expect to have approximately 18 studies in their meta-analysis, with moderate between-group heterogeneity and about 50 participants per arm and study. Will there be sufficient power to detect an assumed minimally important difference of $d=$ 0.18? The `power.analysis` function can be used to answer this question.
 
-```{r, fig.align='center'}
+```{r, fig.align='center', warning=FALSE, message=FALSE, echo=FALSE}
+suppressWarnings( power.analysis(d = .18, k = 18, n1 = 50, n2 = 50, heterogeneity = "moderate"))
+```
+
+```{r, fig.align='center', warning=FALSE, message=FALSE, eval=FALSE}
 power.analysis(d = .18, k = 18, n1 = 50, n2 = 50, heterogeneity = "moderate")
 ```
 

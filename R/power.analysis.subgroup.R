@@ -121,7 +121,7 @@ power.analysis.subgroup = function(TE1, TE2, seTE1, seTE2,
 
         plotdat = as.data.frame(cbind(gammas, powervec))
         plot = ggplot(data = plotdat, aes(x = gammas, y = powervec)) + geom_line(color = "blue", size = 2) +
-            geom_point(aes(x = gamma, y = twotail), color = "red", size = 5) + theme_minimal() + geom_hline(yintercept = 0.8,
+            annotate("point", x = gamma, y = twotail, color = "red", size = 5) + theme_minimal() + geom_hline(yintercept = 0.8,
             color = "black", linetype = "dashed") + ylab("Power") + xlab("Effect size difference")
 
         returnlist = list(Power = twotail,
@@ -160,7 +160,7 @@ power.analysis.subgroup = function(TE1, TE2, seTE1, seTE2,
 
         plotdat = as.data.frame(cbind(gammas, powervec))
         plot = ggplot(data = plotdat, aes(x = gammas, y = powervec)) + geom_line(color = "blue", size = 2) +
-            geom_point(aes(x = gamma, y = onetail), color = "red", size = 5) + theme_minimal() + geom_hline(yintercept = 0.8,
+            annotate("point", x = gamma, y = onetail, color = "red", size = 5) + theme_minimal() + geom_hline(yintercept = 0.8,
             color = "black", linetype = "dashed") + ylab("Power") + xlab("Effect size difference")
 
         returnlist = list(Power = onetail,

@@ -87,6 +87,46 @@ reference:
     - TherapyFormatsGeMTC
     - ThirdWave
 
+  - title: S3 methods
+    contents:
+    - forest.find.outliers
+    - forest.subgroup.analysis.mixed.effects
+    - plot.InfluenceAnalysis
+    - plot.direct.evidence.plot
+    - plot.eggers.test
+    - plot.find.outliers
+    - plot.gosh.diagnostics
+    - plot.mlm.variance.distribution
+    - plot.multimodel.inference
+    - plot.power.analysis
+    - plot.power.analysis.subgroup
+    - plot.subgroup.analysis.mixed.effects
+    - plot.sucra
+    - print.InfluenceAnalysis
+    - print.NNT
+    - print.direct.evidence.plot
+    - print.eggers.test
+    - print.find.outliers
+    - print.gosh.diagnostics
+    - print.mlm.variance.distribution
+    - print.multimodel.inference
+    - print.pcurve
+    - print.power.analysis
+    - print.power.analysis.subgroup
+    - print.subgroup.analysis.mixed.effects
+    - print.sucra
+    - summary.InfluenceAnalysis
+    - summary.direct.evidence.plot
+    - summary.eggers.test
+    - summary.find.outliers
+    - summary.gosh.diagnostics
+    - summary.mlm.variance.distribution
+    - summary.multimodel.inference
+    - summary.pcurve
+    - summary.power.analysis
+    - summary.power.analysis.subgroup
+    - summary.subgroup.analysis.mixed.effects
+
 
   - title: Package
     contents:
