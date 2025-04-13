@@ -76,7 +76,7 @@ rob.summary = function (data, name.high = "High", name.unclear = "Unclear",
                         name.low = "Low", studies, name.missing, table = FALSE) {
 
 
-  if (class(data) != "data.frame") {
+  if (!("data.frame" %in% class(data))) {
     stop("'data' must be of class 'data.frame'.")
   }
   if (missing(name.missing)) {
@@ -120,12 +120,13 @@ rob.summary = function (data, name.high = "High", name.unclear = "Unclear",
       robby$condition = gsub("_", " ", robby$condition)
       robby$condition = gsub("-", " ", robby$condition)
       robby$condition = gsub("\\.", " ", robby$condition)
+      robby$condition = gsub("  ", " ", robby$condition)
       robby[robby$measurement == "Low", "measurement"] = "+"
       robby[robby$measurement == "Unclear", "measurement"] = "?"
       robby[robby$measurement == "High", "measurement"] = "-"
       robby$study = factor(robby$study, levels = unique(studies)[rev(order(unique(robby$study)))])
       rob.table = ggplot(data = robby, aes(y = study, x = condition)) +
-        geom_tile(color = "black", fill = "white", size = 0.8) +
+        geom_tile(color = "black", fill = "white", linewidth = 0.8) +
         geom_point(aes(color = as.factor(measurement)),
                    size = 20) + geom_text(aes(label = measurement),
                                           size = 8) + scale_x_discrete(position = "top") +
@@ -148,6 +149,8 @@ rob.summary = function (data, name.high = "High", name.unclear = "Unclear",
     rob.long$measurement = as.factor(rob.long$measurement)
     rob.long$measurement = factor(rob.long$measurement,
                                   levels(rob.long$measurement)[c(1, 3, 2)])
+    rob.long$condition = factor(rob.long$condition,
+                                levels = rev(sort(unique(rob.long$condition))))
     rob.plot = ggplot(data = rob.long) +
       geom_bar(mapping = aes(x = condition, fill = measurement),
                width = 0.7, position = "fill", color = "black") +
@@ -164,7 +167,7 @@ rob.summary = function (data, name.high = "High", name.unclear = "Unclear",
       theme(axis.title.x = element_blank(), axis.title.y = element_blank(),
             axis.ticks.y = element_blank(), axis.text.y = element_text(size = 18,
                                                                        color = "black"), axis.line.x = element_line(colour = "black",
-                                                                                                                    size = 0.5, linetype = "solid"), legend.position = "bottom",
+                                                                                                                    linewidth = 0.5, linetype = "solid"), legend.position = "bottom",
             panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
             panel.background = element_blank(), legend.background = element_rect(linetype = "solid",
                                                                                  colour = "black"), legend.title = element_blank(),
@@ -221,7 +224,7 @@ rob.summary = function (data, name.high = "High", name.unclear = "Unclear",
       robby[robby$measurement == "Missing", "measurement"] = " "
       robby$study = factor(robby$study, levels = unique(studies)[rev(order(unique(robby$study)))])
       rob.table = ggplot(data = robby, aes(y = study, x = condition)) +
-        geom_tile(color = "black", fill = "white", size = 0.8) +
+        geom_tile(color = "black", fill = "white", linewidth = 0.8) +
         geom_point(aes(color = as.factor(measurement)),
                    size = 20) + geom_text(aes(label = measurement),
                                           size = 8) + scale_x_discrete(position = "top") +
@@ -244,6 +247,8 @@ rob.summary = function (data, name.high = "High", name.unclear = "Unclear",
     rob.long$measurement = as.factor(rob.long$measurement)
     rob.long$measurement = factor(rob.long$measurement, levels(rob.long$measurement)[c(3,
                                                                                        1, 4, 2)])
+    rob.long$condition = factor(rob.long$condition,
+                                levels = rev(sort(unique(rob.long$condition))))
     rob.plot = ggplot(data = rob.long) + geom_bar(mapping = aes(x = condition,
                                                                 fill = measurement), width = 0.7, position = "fill",
                                                   color = "black") + coord_flip(ylim = c(0, 1)) + guides(fill = guide_legend(reverse = TRUE)) +
@@ -258,7 +263,7 @@ rob.summary = function (data, name.high = "High", name.unclear = "Unclear",
       scale_y_continuous(labels = scales::percent) + theme(axis.title.x = element_blank(),
                                                            axis.title.y = element_blank(), axis.ticks.y = element_blank(),
                                                            axis.text.y = element_text(size = 18, color = "black"),
-                                                           axis.line.x = element_line(colour = "black", size = 0.5,
+                                                           axis.line.x = element_line(colour = "black", linewidth = 0.5,
                                                                                       linetype = "solid"), legend.position = "bottom",
                                                            panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
                                                            panel.background = element_blank(), legend.background = element_rect(linetype = "solid",
