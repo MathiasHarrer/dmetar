@@ -58,24 +58,24 @@
 
 
 mlm.variance.distribution = var.comp = function(x){
-
+  
   m = x
-
+  
   # Check class
   if (!(class(m)[1] %in% c("rma.mv", "rma"))){
     stop("x must be of class 'rma.mv'.")
   }
-
-  # Check for three level model
-  if (m$sigma2s != 2){
-    stop("The model you provided does not seem to be a three-level model. This function can only be used for three-level models.")
+  
+  # Check for four level model
+  if (!(m$sigma2s %in% c(2, 3))){
+    stop("The model you provided does not seem to be a three or four-level model. This function can only be used for three or four-level models.")
   }
-
+  
   # Check for right specification (nested model)
   if (sum(grepl("/", as.character(m$random[[1]]))) < 1){
     stop("Model must contain nested random effects. Did you use the '~ 1 | cluster/effect-within-cluster' notation in 'random'? See ?metafor::rma.mv for more details.")
   }
-
+  
   # Get variance diagonal and calculate total variance
   n = m$k.eff
   vector.inv.var = 1/(diag(m$V))
@@ -86,36 +86,45 @@ mlm.variance.distribution = var.comp = function(x){
   num = (n-1)*sum.inv.var
   den = sum.sq.inv.var - sum.inv.var.sq
   est.samp.var = num/den
-
+  
   # Calculate variance proportions
-  level1=((est.samp.var)/(m$sigma2[1]+m$sigma2[2]+est.samp.var)*100)
-  level2=((m$sigma2[2])/(m$sigma2[1]+m$sigma2[2]+est.samp.var)*100)
-  level3=((m$sigma2[1])/(m$sigma2[1]+m$sigma2[2]+est.samp.var)*100)
-
+  level1=((est.samp.var)/(sum(m$sigma2)+est.samp.var)*100)
+  level2=((m$sigma2[length(m$sigma2)])/(sum(m$sigma2)+est.samp.var)*100)
+  level3=((m$sigma2[length(m$sigma2)-1])/(sum(m$sigma2)+est.samp.var)*100)
+  if (length(names(m$s.names))==3){
+    level4=((m$sigma2[length(m$sigma2)-2])/(sum(m$sigma2)+est.samp.var)*100)}
+  
   # Prepare df for return
-  Level=c("Level 1", "Level 2", "Level 3")
-  Variance=c(level1, level2, level3)
+  Level = paste("Level", seq(1,m$sigma2s+1))
+  Variance = c(level1, level2, level3, if(length(m$sigma2) == 3) level4 else NULL)
   df.res=data.frame(Variance)
   colnames(df.res) = c("% of total variance")
   rownames(df.res) = Level
-  I2 = c("---", round(Variance[2:3], 2))
+  I2 = c("---", round(Variance[2:length(Variance)], 2))
   df.res = as.data.frame(cbind(df.res, I2))
-
-  totalI2 = Variance[2] + Variance[3]
-
-
+  
+  totalI2 = sum(Variance[2:length(Variance)])
+  
   # Generate plot
   df1 = data.frame("Level" = c("Sampling Error", "Total Heterogeneity"),
-                  "Variance" = c(df.res[1,1], df.res[2,1]+df.res[3,1]),
-                  "Type" = rep(1,2))
-
+                   "Variance" = c(df.res[1,1], sum(df.res[2:length(Variance),1])),
+                   "Type" = rep(1,2))
+  
   df2 = data.frame("Level" = rownames(df.res),
                    "Variance" = df.res[,1],
-                   "Type" = rep(2,3))
-
+                   "Type" = rep(2,length(Variance)))
+  
   df = as.data.frame(rbind(df1, df2))
-
-
+  
+  
+  if (length(Variance) == 4) {
+    color_palette <- c("darkseagreen2", "pink1", "pink2", "pink3",
+                       "darkseagreen3", "pink4")
+  } else {
+    color_palette <- c("darkseagreen2", "pink1", "pink2",
+                       "darkseagreen3", "pink4")
+  }
+  
   g = ggplot(df, aes(fill=Level, y=Variance, x=as.factor(Type))) +
     coord_cartesian(ylim = c(0,1), clip = "off") +
     geom_bar(stat="identity", position="fill", width = 1, color="black") +
@@ -138,47 +147,51 @@ mlm.variance.distribution = var.comp = function(x){
           legend.key.size = unit(0.75,"cm"),
           axis.ticks.length=unit(.25, "cm"),
           plot.margin = unit(c(1,3,1,1), "lines")) +
-    scale_fill_manual(values = c("darkseagreen3", "deepskyblue3", "darkseagreen2",
-                                 "deepskyblue1", "deepskyblue2")) +
-
+         scale_fill_manual(values = color_palette) +
+    
     # Add Annotation
-
+    
     # Total Variance
     annotate("text", x = 1.5, y = 1.05,
              label = paste("Total Variance:",
-                           round(m$sigma2[1]+m$sigma2[2]+est.samp.var, 3))) +
-
+                           round(sum(m$sigma2)+est.samp.var, 3))) +
+    
     # Sampling Error
     annotate("text", x = 1, y = (df[1,2]/2+df[2,2])/100,
              label = paste("Sampling Error Variance: \n", round(est.samp.var, 3)), size = 3) +
-
+    
     # Total I2
     annotate("text", x = 1, y = ((df[2,2])/100)/2-0.02,
              label = bquote("Total"~italic(I)^2*":"~.(round(df[2,2],2))*"%"), size = 3) +
     annotate("text", x = 1, y = ((df[2,2])/100)/2+0.05,
-             label = paste("Variance not attributable \n to sampling error: \n", round(m$sigma2[1]+m$sigma2[2],3)), size = 3) +
-
+             label = paste("Variance not attributable \n to sampling error: \n", round(sum(m$sigma2),3)), size = 3) +
+    
     # Level 1
     annotate("text", x = 2, y = (df[1,2]/2+df[2,2])/100, label = paste("Level 1: \n",
                                                                        round(df$Variance[3],2), "%", sep=""), size = 3) +
-
+    
     # Level 2
-    annotate("text", x = 2, y = (df[5,2]+(df[4,2]/2))/100,
-             label = bquote(italic(I)[Level2]^2*":"~.(round(df[4,2],2))*"%"), size = 3) +
-
+    annotate("text", x = 2, y = (if(length(Variance) == 4) df[6,2] else 0+df[5,2]+(df[4,2]/2))/100,
+           label = bquote(italic(I)[Level2]^2*":"~.(round(df[4,2],2))*"%"), size = 3) +
+    
     # Level 3
-    annotate("text", x = 2, y = (df[5,2]/2)/100,
-             label = bquote(italic(I)[Level3]^2*":"~.(round(df[5,2],2))*"%"), size = 3)
-
+    annotate("text", x = 2, y = (if(length(Variance) == 4) df[6,2] else 0+(df[5,2]/2))/100,
+             label = bquote(italic(I)[Level3]^2*":"~.(round(df[5,2],2))*"%"), size = 3) +
+    
+    # Level 4
+    if(length(Variance) == 4) {
+      annotate("text", x = 2, y = (df[6,2]/2)/100,
+               label = bquote(italic(I)[Level4]^2*":"~.(round(df[6,2],2))*"%"), size = 3)
+    }
+  
   returnlist = list(results = df.res,
                     totalI2 = totalI2,
                     plot = g)
   class(returnlist) = c("mlm.variance.distribution", "list")
-
+  
   invisible(returnlist)
-
+  
   returnlist
-
+  
 }
-
 
