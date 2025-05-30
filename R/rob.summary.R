@@ -146,6 +146,7 @@ rob.summary = function (data, name.high = "High", name.unclear = "Unclear",
     rob.long$condition = gsub("_", " ", rob.long$condition)
     rob.long$condition = gsub("-", " ", rob.long$condition)
     rob.long$condition = gsub("\\.", " ", rob.long$condition)
+    rob.long$condition = gsub("  ", " ", rob.long$condition)
     rob.long$measurement = as.factor(rob.long$measurement)
     rob.long$measurement = factor(rob.long$measurement,
                                   levels(rob.long$measurement)[c(1, 3, 2)])

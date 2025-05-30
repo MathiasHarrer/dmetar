@@ -292,7 +292,7 @@ InfluenceAnalysis = function(x, random = FALSE, subplot.heights = c(30, 18),
         # Create Sortdat data set for sorting
         sortdat = data.frame(studlab = meta.inf$studlab, mean = exp(meta.inf$TE), lower = exp(meta.inf$lower),
             upper = exp(meta.inf$upper), i2 = meta.inf$I2)
-        sortdat2 = sortdat[1:(nrow(sortdat) - 2), ]
+        sortdat2 = sortdat[1:(nrow(sortdat)), ]
         lastline = sortdat[nrow(sortdat), ]
 
         # Change summary label
@@ -403,7 +403,7 @@ InfluenceAnalysis = function(x, random = FALSE, subplot.heights = c(30, 18),
       # Create Sortdat data set for sorting
       sortdat = data.frame(studlab = meta.inf$studlab, mean = meta.inf$TE, lower = meta.inf$lower,
                            upper = meta.inf$upper, i2 = meta.inf$I2)
-      sortdat2 = sortdat[1:(nrow(sortdat) - 2), ]
+      sortdat2 = sortdat[1:(nrow(sortdat)), ]
       lastline = sortdat[nrow(sortdat), ]
 
       # Change summary label
@@ -752,7 +752,7 @@ InfluenceAnalysis = function(x, random = FALSE, subplot.heights = c(30, 18),
           sortdat = data.frame(studlab = meta.inf$studlab, mean = exp(meta.inf$TE), lower = exp(meta.inf$lower),
                                upper = exp(meta.inf$upper), i2 = meta.inf$I2)
         }
-        sortdat2 = sortdat[1:(nrow(sortdat) - 2), ]
+        sortdat2 = sortdat[1:(nrow(sortdat)), ]
         lastline = sortdat[nrow(sortdat), ]
 
         # Change summary label
