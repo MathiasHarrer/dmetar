@@ -345,7 +345,7 @@ pcurve = function(x, effect.estimation = FALSE, N, dmin = 0, dmax = 1){
   ppr.half=pbound(ppr.half)
 
   # Power of 33%
-  ncp33=mapply(getncp,df1=df1,df2=df2,power=1/3,family=family)
+  ncp33=.pcurve_getncps(getncp,df1=df1,df2=df2,power=1/3,family=family)
 
   # Full-p-curve
   pp33=ifelse(family=="f" & p<.05,3*(pf(value, df1=df1, df2=df2, ncp=ncp33)-2/3),NA)
@@ -435,7 +435,7 @@ pcurve = function(x, effect.estimation = FALSE, N, dmin = 0, dmax = 1){
 
   powerfit=function(power_est)
   {
-    ncp_est=mapply(getncp,df1=df1,df2=df2,power=power_est,family=family)
+    ncp_est=.pcurve_getncps(getncp,df1=df1,df2=df2,power=power_est,family=family)
     pp_est=ifelse(family=="f" & p<.05,(pf(value,df1=df1,df2=df2,ncp=ncp_est)-(1-power_est))/power_est,NA)
     pp_est=ifelse(family=="c" & p<.05,(pchisq(value,df=df1,ncp=ncp_est)-(1-power_est))/power_est,pp_est)
     pp_est=pbound(pp_est)
@@ -903,4 +903,15 @@ pcurve = function(x, effect.estimation = FALSE, N, dmin = 0, dmax = 1){
 
 }
 
+# Internal: power is scalar and parameter vectors have equal lengths at both
+# call sites. Hexadecimal keys keep distinct doubles distinct, including NA
+# df2 for chi-square tests. Keep first-occurrence order so numerical errors are
+# encountered in the same order; expand roots back to the original effect rows.
+.pcurve_getncps = function(FUN, df1, df2, power, family){
+  keys = paste(family, sprintf("%a", df1), sprintf("%a", df2), sep = "|")
+  first = which(!duplicated(keys))
+  values = mapply(FUN, df1=df1[first], df2=df2[first], power=power,
+                  family=family[first])
+  unname(values[match(keys, keys[first])])
+}
 
