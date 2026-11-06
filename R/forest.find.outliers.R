@@ -5,7 +5,7 @@
 #' \code{subgroup.analysis.mixed.effects}, and \code{sucra}.
 #'
 #' @param x An object of class \code{find.outliers}.
-#' @param ... Other arguments of the \code{meta.forest} or \code{metafor}'s code{\link[metafor]{forest}}
+#' @param ... Other arguments of the \code{meta.forest} or \code{metafor}'s \code{\link[metafor]{forest}}
 #' function. Can be used for styling the generated forest plot.
 #'
 #' @details
@@ -13,7 +13,7 @@
 #' \code{summary}, \code{plot} and \code{forest}. Outputs from \code{print} and \code{summary} are always identical.
 #' When both \code{plot} and \code{forest} are available for a class, outputs of both functions are identical (i.e., a forest
 #' plot is returned). The \code{forest}/\code{plot} function allows additional arguments of the \code{meta.forest} or
-#' \code{metafor}'s code{\link[metafor]{forest}} function (depending on the class of the meta-analysis object on which prior
+#' \code{metafor}'s \code{\link[metafor]{forest}} function (depending on the class of the meta-analysis object on which prior
 #' calculations are based on). These can be used for further styling of the forest plot.
 #'
 #' @author Mathias Harrer & David Daniel Ebert

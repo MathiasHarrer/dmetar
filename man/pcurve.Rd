@@ -67,7 +67,7 @@ to detect \eqn{p}-hacking and publication bias in meta-analyses.
 
 \eqn{P}-Curve assumes that publication bias
 is not only generated because researchers do not publish non-significant results,
-but also because analysts “play” around with their data ("\eqn{p}-hacking"; e.g., selectively removing outliers,
+but also because analysts "play" around with their data ("\eqn{p}-hacking"; e.g., selectively removing outliers,
 choosing different outcomes, controlling for different variables) until a non-significant
 finding becomes significant (i.e., \eqn{p<0.05}).
 
@@ -89,7 +89,7 @@ results (\href{http://www.p-curve.com/Supplement/}{link}).
 To generate the \eqn{p}-curve and conduct the analysis, this function reuses parts of the \emph{R} code underlying
 the \href{http://p-curve.com/app4/pcurve_app4.052.r}{P-curve App 4.052} (Simonsohn, 2017). The effect sizes
 included in the \code{meta} object or \code{data.frame} provided for \code{x} are transformed
-into \eqn{z}-values internally, which are then used to calculate {p}-values and conduct the
+into \eqn{z}-values internally, which are then used to calculate \eqn{p}-values and conduct the
 Stouffer and Binomial test used for the \eqn{p}-curve analysis. Interpretations of the function
 concerning the presence or absence/inadequateness of evidential value are made according to the
 guidelines described by Simonsohn, Simmons and Nelson (2015):
@@ -147,14 +147,14 @@ pcurve(sim)
 \references{
 Harrer, M., Cuijpers, P., Furukawa, T.A, & Ebert, D. D. (2019).
 \emph{Doing Meta-Analysis in R: A Hands-on Guide}. DOI: 10.5281/zenodo.2551803.
-\href{https://bookdown.org/MathiasHarrer/Doing_Meta_Analysis_in_R/pcurve.html}{Chapter 9.2}.
+\href{https://doing-meta.guide/pcurve.html}{Chapter 9.2}.
 
 Simonsohn, U., Nelson, L. D., & Simmons, J. P. (2014a). P-curve: a Key to the File-drawer.
 \emph{Journal of Experimental Psychology, 143}(2), 534.
 
 Simonsohn, U., Nelson, L. D. & Simmons, J. P. (2014b). P-Curve and Effect Size:
 Correcting for Publication Bias Using Only Significant Results.
-\emph{Perspectives on Psychological Science 9}(6), 666–81.
+\emph{Perspectives on Psychological Science 9}(6), 666-81.
 
 Simonsohn, U., Nelson, L. D. & Simmons, J. P. (2015). Better P-Curves: Making P-Curve
 Analysis More Robust to Errors, Fraud, and Ambitious P-Hacking, a Reply to Ulrich and Miller (2015).

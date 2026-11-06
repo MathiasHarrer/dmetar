@@ -17,7 +17,7 @@
 #' @references
 #'
 #' Harrer, M., Cuijpers, P., Furukawa, T.A, & Ebert, D. D. (2019).
-#' \emph{Doing Meta-Analysis in R: A Hands-on Guide}. DOI: 10.5281/zenodo.2551803. \href{https://bookdown.org/MathiasHarrer/Doing_Meta_Analysis_in_R/smallstudyeffects.html}{Chapter 9.1}
+#' \emph{Doing Meta-Analysis in R: A Hands-on Guide}. DOI: 10.5281/zenodo.2551803. \href{https://doing-meta.guide/smallstudyeffects.html}{Chapter 9.1}
 #'
 #' Egger M, Smith GD, Schneider M & Minder C (1997), Bias in meta-analysis detected by a simple,
 #' graphical test. \emph{BMJ}, 315, 629–634.
@@ -52,7 +52,7 @@
 #' suppressPackageStartupMessages(library(meta))
 #' data(ThirdWave)
 #' m = metagen(TE, seTE, studlab = paste(Author),
-#'     data = ThirdWave, random = TRUE, hakn=TRUE)
+#'     data = ThirdWave, random = TRUE, method.random.ci = "HK")
 #'
 #' # Plug result into 'eggers.test' function
 #' res.et <- eggers.test(m)
@@ -78,7 +78,7 @@ eggers.test = function(x) {
 
     }
 
-    if (class(x)[1] %in% c("meta", "metabin", "metagen", "metacont", "metacor", "metainc", "metaprop")) {
+    if (inherits(x, c("meta", "metabin", "metagen", "metacont", "metacor", "metainc", "metaprop"))) {
 
         # Conduct metabias
         eggers = meta::metabias(x, k.min = 3, method = "linreg")

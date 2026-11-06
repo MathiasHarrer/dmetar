@@ -21,7 +21,7 @@
 #' the \code{forest} function.
 #'
 #' @references Harrer, M., Cuijpers, P., Furukawa, T.A, & Ebert, D. D. (2019).
-#' \emph{Doing Meta-Analysis in R: A Hands-on Guide}. DOI: 10.5281/zenodo.2551803. \href{https://bookdown.org/MathiasHarrer/Doing_Meta_Analysis_in_R/detecting-outliers-influential-cases.html}{Chapter 6.2}
+#' \emph{Doing Meta-Analysis in R: A Hands-on Guide}. DOI: 10.5281/zenodo.2551803. \href{https://doing-meta.guide/detecting-outliers-influential-cases.html}{Chapter 6.2}
 #'
 #' @author Mathias Harrer & David Daniel Ebert
 #'
@@ -54,8 +54,6 @@
 #'
 #' @export find.outliers
 #'
-#' @aliases spot.outliers.random spot.outliers.fixed spot.outliers
-#'
 #' @seealso \code{\link[metafor]{influence.rma.uni}}, \code{\link[meta]{metainf}}, \code{\link[meta]{baujat}}
 #'
 #' @examples
@@ -87,11 +85,11 @@
 #' }
 
 
-find.outliers = spot.outliers.random = spot.outliers.fixed = function(x, ...){
+find.outliers = function(x, ...){
 
   update.meta = getFromNamespace("update.meta", "meta")
 
-  if (class(x)[1] %in% c("rma.uni", "rma")){
+  if (inherits(x, c("rma.uni", "rma"))){
 
     token = "metafor"
 
@@ -125,9 +123,9 @@ find.outliers = spot.outliers.random = spot.outliers.fixed = function(x, ...){
 
   }
 
-  if (class(x)[1] %in% c("metagen", "metapropr", "metamean",
-                         "metacor", "metainc", "metacont",
-                         "metaprop", "metabin", "metabin")){
+  if (inherits(x, c("metagen", "metaprop", "metamean",
+                    "metacor", "metainc", "metacont",
+                    "metabin"))){
 
     token = "meta"
 
@@ -138,15 +136,15 @@ find.outliers = spot.outliers.random = spot.outliers.fixed = function(x, ...){
     }
 
 
-    if (class(x)[1] == "metaprop"){
+    if (inherits(x, "metaprop")){
 
       lower = x$TE - 1.96*x$seTE
       upper = x$TE + 1.96*x$seTE
 
       # Generate mask with outliers (fixed/random)
       mask.fixed =
-        (!is.na(upper) & upper < x$lower.fixed) |
-        (!is.na(lower) & lower > x$upper.fixed)
+        (!is.na(upper) & upper < x$lower.common) |
+        (!is.na(lower) & lower > x$upper.common)
       mask.random =
         (!is.na(upper) & upper < x$lower.random) |
         (!is.na(lower) & lower > x$upper.random)
@@ -155,8 +153,8 @@ find.outliers = spot.outliers.random = spot.outliers.fixed = function(x, ...){
 
       # Generate mask with outliers (fixed/random)
       mask.fixed =
-        (!is.na(x$upper) & x$upper < x$lower.fixed) |
-        (!is.na(x$lower) & x$lower > x$upper.fixed)
+        (!is.na(x$upper) & x$upper < x$lower.common) |
+        (!is.na(x$lower) & x$lower > x$upper.common)
       mask.random =
         (!is.na(x$upper) & x$upper < x$lower.random) |
         (!is.na(x$lower) & x$lower > x$upper.random)
@@ -222,10 +220,9 @@ find.outliers = spot.outliers.random = spot.outliers.fixed = function(x, ...){
 
   }
 
-  if (!class(x)[1] %in% c("rma.uni", "rma", "metacont",
-                          "metagen", "metapropr", "metamean",
-                          "metacor", "metainc",
-                          "metaprop", "metabin", "metabin")){
+  if (!inherits(x, c("rma.uni", "rma", "metacont",
+                     "metagen", "metaprop", "metamean",
+                     "metacor", "metainc", "metabin"))){
 
     message("Input must be of class 'meta' or 'rma.uni'")
 

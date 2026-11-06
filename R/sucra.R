@@ -42,7 +42,7 @@
 #'
 #' @references Harrer, M., Cuijpers, P., Furukawa, T.A, & Ebert, D. D. (2019).
 #' \emph{Doing Meta-Analysis in R: A Hands-on Guide}. DOI: 10.5281/zenodo.2551803.
-#' \href{https://bookdown.org/MathiasHarrer/Doing_Meta_Analysis_in_R/bayesian-network-meta-analysis.html}{Chapter 11.2}.
+#' \href{https://doing-meta.guide/bayesian-network-meta-analysis.html}{Chapter 11.2}.
 #'
 #'Salanti, G., Ades, A. E. & Ioannidis, J.P.A. (2011). Graphical Methods and Numerical Summaries for
 #'Presenting Results from Multiple-Treatment Meta-Analysis: An Overview and Tutorial.

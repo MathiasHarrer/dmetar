@@ -18,7 +18,7 @@
 #' @references
 #'
 #' Harrer, M., Cuijpers, P., Furukawa, T.A, & Ebert, D. D. (2019).
-#' \emph{Doing Meta-Analysis in R: A Hands-on Guide}. DOI: 10.5281/zenodo.2551803. \href{https://bookdown.org/MathiasHarrer/Doing_Meta_Analysis_in_R/mlma.html}{Chapter 12}.
+#' \emph{Doing Meta-Analysis in R: A Hands-on Guide}. DOI: 10.5281/zenodo.2551803. \href{https://doing-meta.guide/mlma.html}{Chapter 12}.
 #'
 #'Cheung, M. W. L. (2014). Modeling dependent effect sizes with three-level meta-analyses: a structural equation modeling approach. \emph{Psychological Methods, 19}(2), 211.
 #'
@@ -62,7 +62,7 @@ mlm.variance.distribution = var.comp = function(x){
   m = x
 
   # Check class
-  if (!(class(m)[1] %in% c("rma.mv", "rma"))){
+  if (!inherits(m, c("rma.mv", "rma"))){
     stop("x must be of class 'rma.mv'.")
   }
 
@@ -154,7 +154,7 @@ mlm.variance.distribution = var.comp = function(x){
 
     # Total I2
     annotate("text", x = 1, y = ((df[2,2])/100)/2-0.02,
-             label = bquote("Total"~italic(I)^2*":"~.(round(df[2,2],2))*"%"), size = 3) +
+             label = as.expression(bquote("Total"~italic(I)^2*":"~.(round(df[2,2],2))*"%")), size = 3) +
     annotate("text", x = 1, y = ((df[2,2])/100)/2+0.05,
              label = paste("Variance not attributable \n to sampling error: \n", round(m$sigma2[1]+m$sigma2[2],3)), size = 3) +
 
@@ -164,11 +164,11 @@ mlm.variance.distribution = var.comp = function(x){
 
     # Level 2
     annotate("text", x = 2, y = (df[5,2]+(df[4,2]/2))/100,
-             label = bquote(italic(I)[Level2]^2*":"~.(round(df[4,2],2))*"%"), size = 3) +
+             label = as.expression(bquote(italic(I)[Level2]^2*":"~.(round(df[4,2],2))*"%")), size = 3) +
 
     # Level 3
     annotate("text", x = 2, y = (df[5,2]/2)/100,
-             label = bquote(italic(I)[Level3]^2*":"~.(round(df[5,2],2))*"%"), size = 3)
+             label = as.expression(bquote(italic(I)[Level3]^2*":"~.(round(df[5,2],2))*"%")), size = 3)
 
   returnlist = list(results = df.res,
                     totalI2 = totalI2,

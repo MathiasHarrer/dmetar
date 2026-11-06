@@ -74,7 +74,7 @@ m1 <- metagen(TE = TE,
               seTE = seTE,
               studlab = paste(ThirdWave$Author),
               data=ThirdWave,
-              comb.fixed = FALSE,
+              common = FALSE,
               method.tau = "PM",
               sm = "SMD")
 
@@ -138,7 +138,7 @@ forest(sgame4)
 }
 \references{
 Harrer, M., Cuijpers, P., Furukawa, T.A, & Ebert, D. D. (2019).
-\emph{Doing Meta-Analysis in R: A Hands-on Guide}. DOI: 10.5281/zenodo.2551803. \href{https://bookdown.org/MathiasHarrer/Doing_Meta_Analysis_in_R/subgroup.html}{Chapter 7}.
+\emph{Doing Meta-Analysis in R: A Hands-on Guide}. DOI: 10.5281/zenodo.2551803. \href{https://doing-meta.guide/subgroup.html}{Chapter 7}.
 
 Borenstein, M. & Higgins, J. P. T. (2013). Meta-Analysis and Subgroups. \emph{Prevention Science, 14} (2): 134–43.
 }

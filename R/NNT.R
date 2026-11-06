@@ -48,7 +48,7 @@
 #' @references
 #'
 #' Harrer, M., Cuijpers, P., Furukawa, T.A, & Ebert, D. D. (2019).
-#' \emph{Doing Meta-Analysis in R: A Hands-on Guide}. DOI: 10.5281/zenodo.2551803. \href{https://bookdown.org/MathiasHarrer/Doing_Meta_Analysis_in_R/smallstudyeffects.html}{Chapter 9.1}.
+#' \emph{Doing Meta-Analysis in R: A Hands-on Guide}. DOI: 10.5281/zenodo.2551803. \href{https://doing-meta.guide/smallstudyeffects.html}{Chapter 9.1}.
 #'
 #'Furukawa, T. A., & Leucht, S. (2011). How to obtain NNT from Cohen's d: comparison of two methods. \emph{PloS one, 6}(4), e19070.
 #'
@@ -102,7 +102,7 @@ NNT = function (d, CER = NULL, event.e = NULL, n.e = NULL, event.c = NULL,
                 else {
                 }
                 if (method == "Furukawa") {
-                    if (missing(CER) | class(CER) != "numeric") {
+                    if (missing(CER) | !is.numeric(CER)) {
                         stop("To use Furukawa's method, provide a numeric value for CER. \n")
                     }
                     else {
@@ -116,7 +116,7 @@ NNT = function (d, CER = NULL, event.e = NULL, n.e = NULL, event.c = NULL,
         }
     }
     else {
-        if (class(event.e) == "numeric" & missing(d)) {
+        if (is.numeric(event.e) & missing(d)) {
             EER = event.e/n.e
             CER = event.c/n.c
             NNT = abs(1/(EER - CER))

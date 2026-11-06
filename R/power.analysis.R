@@ -48,7 +48,7 @@
 #' @references
 #'
 #' Harrer, M., Cuijpers, P., Furukawa, T.A, & Ebert, D. D. (2019).
-#' \emph{Doing Meta-Analysis in R: A Hands-on Guide}. DOI: 10.5281/zenodo.2551803. \href{https://bookdown.org/MathiasHarrer/Doing_Meta_Analysis_in_R/power-analysis.html}{Chapter 13}
+#' \emph{Doing Meta-Analysis in R: A Hands-on Guide}. DOI: 10.5281/zenodo.2551803. \href{https://doing-meta.guide/power-analysis.html}{Chapter 13}
 #'
 #'Cuijpers, P., Turner, E.H., Koole, S. L., Van Dijke, A., & Smit, F. (2014).
 #'What Is the Threshold for a Clinically Relevant Effect? The Case of Major Depressive Disorders.
@@ -193,7 +193,7 @@ power.analysis = function(d, OR, k, n1, n2, p = 0.05, heterogeneity = "fixed") {
 
     if (odds == FALSE) {
         plotdat = as.data.frame(cbind(dvec, powvect))
-        plot = ggplot(data = plotdat, aes(x = dvec, y = powvect)) + geom_line(color = "blue", size = 2) +
+        plot = ggplot(data = plotdat, aes(x = dvec, y = powvect)) + geom_line(color = "blue", linewidth = 2) +
             annotate("point", x = es, y = power, color = "red", size = 5) + theme_minimal() + geom_hline(yintercept = 0.8,
             color = "black", linetype = "dashed") + ylab("Power") + xlab("Effect size (SMD)")
     } else {
@@ -202,7 +202,7 @@ power.analysis = function(d, OR, k, n1, n2, p = 0.05, heterogeneity = "fixed") {
         dvec = as.vector(rbind(dvec.inv, dvecs))
         powvect = as.vector(rbind(powvect, powvect))
         plotdat = as.data.frame(cbind(dvec, powvect))
-        plot = ggplot(data = plotdat, aes(x = dvec, y = powvect)) + geom_line(color = "blue", size = 2) +
+        plot = ggplot(data = plotdat, aes(x = dvec, y = powvect)) + geom_line(color = "blue", linewidth = 2) +
             annotate("point", x = exp(es * (pi/sqrt(3))), y = power, color = "red", size = 5) + theme_minimal() +
             geom_hline(yintercept = 0.8, color = "black", linetype = "dashed") + ylab("Power") + xlab("Effect size (OR)") +
             scale_x_log10()

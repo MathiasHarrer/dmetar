@@ -14,7 +14,7 @@ please contact us via [mail](https://github.com/MathiasHarrer/dmetar/tree/master
 
 The [**dmetar**](https://dmetar.protectlab.org) package serves as the companion R package for the guide
 [**Doing Meta-Analysis in
-R**](https://bookdown.org/MathiasHarrer/Doing_Meta_Analysis_in_R/) by
+R**](https://doing-meta.guide/) by
 Mathias Harrer, Pim Cuijpers, Toshi Furukawa and David Daniel Ebert. The
 package contains utility functions to facilitate the conduction of
 meta-analyses using the **meta**, **metafor**, **netmeta** and **gemtc**
@@ -51,7 +51,7 @@ combination with go-to meta-analysis packages such as **metafor** or
 **meta**.
 
 [**View the
-Guide**](https://bookdown.org/MathiasHarrer/Doing_Meta_Analysis_in_R/)
+Guide**](https://doing-meta.guide/)
 
 
 

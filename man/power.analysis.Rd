@@ -81,7 +81,7 @@ plot(pa)
 }
 \references{
 Harrer, M., Cuijpers, P., Furukawa, T.A, & Ebert, D. D. (2019).
-\emph{Doing Meta-Analysis in R: A Hands-on Guide}. DOI: 10.5281/zenodo.2551803. \href{https://bookdown.org/MathiasHarrer/Doing_Meta_Analysis_in_R/power-analysis.html}{Chapter 13}
+\emph{Doing Meta-Analysis in R: A Hands-on Guide}. DOI: 10.5281/zenodo.2551803. \href{https://doing-meta.guide/power-analysis.html}{Chapter 13}
 
 Cuijpers, P., Turner, E.H., Koole, S. L., Van Dijke, A., & Smit, F. (2014).
 What Is the Threshold for a Clinically Relevant Effect? The Case of Major Depressive Disorders.

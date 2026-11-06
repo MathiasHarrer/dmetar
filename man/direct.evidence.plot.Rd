@@ -67,7 +67,7 @@ data(Senn2013)
 
 # Conduct network meta-analysis (fixed-effects model)
 nma = netmeta(TE, seTE, treat1, treat2, studlab,
-              data=Senn2013, sm='MD', comb.random=FALSE)
+              data=Senn2013, sm='MD', random=FALSE)
 
 # Generate the plot
 dep = direct.evidence.plot(nma, random=FALSE, comparison.label.size = 1,
@@ -76,7 +76,7 @@ dep}
 }
 \references{
 Harrer, M., Cuijpers, P., Furukawa, T.A, & Ebert, D. D. (2019).
-\emph{Doing Meta-Analysis in R: A Hands-on Guide}. DOI: 10.5281/zenodo.2551803. \href{https://bookdown.org/MathiasHarrer/Doing_Meta_Analysis_in_R/frequentist-network-meta-analysis.html}{Chapter 11.1}
+\emph{Doing Meta-Analysis in R: A Hands-on Guide}. DOI: 10.5281/zenodo.2551803. \href{https://doing-meta.guide/frequentist-network-meta-analysis.html}{Chapter 11.1}
 
 König J., Krahn U., Binder H. (2013): Visualizing the flow of evidence in network meta-analysis and
 characterizing mixed treatment comparisons. \emph{Statistics in Medicine, 32}, 5414–29

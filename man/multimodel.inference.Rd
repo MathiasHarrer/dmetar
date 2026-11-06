@@ -116,7 +116,7 @@ multimodel.inference(TE = 'TE', seTE = 'seTE', data = ThirdWave,
 }
 \references{
 Harrer, M., Cuijpers, P., Furukawa, T.A, & Ebert, D. D. (2019).
-\emph{Doing Meta-Analysis in R: A Hands-on Guide}. DOI: 10.5281/zenodo.2551803. \href{https://bookdown.org/MathiasHarrer/Doing_Meta_Analysis_in_R/smallstudyeffects.html}{Chapter 9.1}
+\emph{Doing Meta-Analysis in R: A Hands-on Guide}. DOI: 10.5281/zenodo.2551803. \href{https://doing-meta.guide/smallstudyeffects.html}{Chapter 9.1}
 
 Knapp, G., & Hartung, J. (2003). Improved tests for a random effects meta-regression with a single covariate.
 \emph{Statistics in Medicine, 22}, 2693–2710.

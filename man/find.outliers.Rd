@@ -2,9 +2,6 @@
 % Please edit documentation in R/find.outliers.R
 \name{find.outliers}
 \alias{find.outliers}
-\alias{spot.outliers.random}
-\alias{spot.outliers.fixed}
-\alias{spot.outliers}
 \title{Find Statistical Outliers in a Meta-Analysis}
 \usage{
 find.outliers(x, ...)
@@ -84,7 +81,7 @@ forest(fo2, cex = .8, col = "lightblue")
 }
 \references{
 Harrer, M., Cuijpers, P., Furukawa, T.A, & Ebert, D. D. (2019).
-\emph{Doing Meta-Analysis in R: A Hands-on Guide}. DOI: 10.5281/zenodo.2551803. \href{https://bookdown.org/MathiasHarrer/Doing_Meta_Analysis_in_R/detecting-outliers-influential-cases.html}{Chapter 6.2}
+\emph{Doing Meta-Analysis in R: A Hands-on Guide}. DOI: 10.5281/zenodo.2551803. \href{https://doing-meta.guide/detecting-outliers-influential-cases.html}{Chapter 6.2}
 }
 \seealso{
 \code{\link[metafor]{influence.rma.uni}}, \code{\link[meta]{metainf}}, \code{\link[meta]{baujat}}

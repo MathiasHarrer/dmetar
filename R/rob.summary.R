@@ -34,7 +34,7 @@
 #'
 #' @references Harrer, M., Cuijpers, P., Furukawa, T.A, & Ebert, D. D. (2019).
 #' \emph{Doing Meta-Analysis in R: A Hands-on Guide}. DOI: 10.5281/zenodo.2551803.
-#' \href{https://bookdown.org/MathiasHarrer/Doing_Meta_Analysis_in_R/creating-a-revman-style-risk-of-bias-summary.html}{Chapter 10}
+#' \href{https://doing-meta.guide/creating-a-revman-style-risk-of-bias-summary.html}{Chapter 10}
 #'
 #' @author Mathias Harrer & David Daniel Ebert
 #'

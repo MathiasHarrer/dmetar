@@ -7,7 +7,7 @@
 #'
 #'
 #' @param x An object of class \code{subgroup.analysis.mixed.effects}.
-#' @param ... Other arguments of the \code{meta.forest} or \code{metafor}'s code{\link[metafor]{forest}}
+#' @param ... Other arguments of the \code{meta.forest} or \code{metafor}'s \code{\link[metafor]{forest}}
 #' function. Can be used for styling the generated forest plot.
 #'
 #' @details
@@ -15,7 +15,7 @@
 #' \code{summary}, \code{plot} and \code{forest}. Outputs from \code{print} and \code{summary} are always identical.
 #' When both \code{plot} and \code{forest} are available for a class, outputs of both functions are identical (i.e., a forest
 #' plot is returned). The \code{forest}/\code{plot} function allows additional arguments of the \code{meta.forest} or
-#' \code{metafor}'s code{\link[metafor]{forest}} function (depending on the class of the meta-analysis object on which prior
+#' \code{metafor}'s \code{\link[metafor]{forest}} function (depending on the class of the meta-analysis object on which prior
 #' calculations are based on). These can be used for further styling of the forest plot.
 #'
 #' @author Mathias Harrer & David Daniel Ebert
@@ -34,7 +34,7 @@ forest.subgroup.analysis.mixed.effects = function(x, ...){
 
   meta::forest(x$m.random, text.random = "Fixed effects (plural) model",
                text.random.w = "Random effects model",
-               print.byvar = FALSE,
+               print.subgroup.name = FALSE,
                leftcols = c("studlab"),
                rightcols = c("effect", "ci"),
                leftlabs = "Subgroup",

@@ -40,7 +40,7 @@ print.InfluenceAnalysis = function(x, ...){
   cat("\n")
   cat("Influence Diagnostics", "\n",
       "-------------------", "\n")
-  infl.data = data.frame(x$Data[,c(6:9,11:13)] %>% round(3),
+  infl.data = data.frame(round(x$Data[,c(6:9,11:13)], 3),
                          "infl" = x$Data$inf)
   rownames(infl.data) = x$Data$Author
   print(infl.data)
@@ -50,7 +50,7 @@ print.InfluenceAnalysis = function(x, ...){
   cat("\n")
   cat("Baujat Diagnostics (sorted by Heterogeneity Contribution)", "\n",
       "-------------------------------------------------------", "\n")
-  baujat.data = data.frame(x$Data[,16:17] %>% round(3))
+  baujat.data = data.frame(round(x$Data[,16:17], 3))
   rownames(baujat.data) = x$Data$Author
   baujat.data = baujat.data[order(-baujat.data$HetContrib),]
   print(baujat.data)

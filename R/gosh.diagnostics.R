@@ -177,7 +177,7 @@ gosh.diagnostics = function(data,
   set.seed(seed)
 
   # Check input
-  if (class(data)[1] != "gosh.rma"){
+  if (!inherits(data, "gosh.rma")){
     stop("Argument 'data' provided does not have class 'gosh.rma'.")
   }
   if (do.km == FALSE & do.db == FALSE & do.gmm == FALSE){

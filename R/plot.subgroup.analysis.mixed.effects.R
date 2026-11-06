@@ -31,7 +31,7 @@ plot.subgroup.analysis.mixed.effects = function(x, ...){
 
     meta::forest(x$m.random, text.random = "Fixed effects (plural) model",
                  text.random.w = "Random effects model",
-                 print.byvar = FALSE,
+                 print.subgroup.name = FALSE,
                  leftcols = c("studlab"),
                  rightcols = c("effect", "ci"),
                  leftlabs = "Subgroup",

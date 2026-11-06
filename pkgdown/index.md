@@ -26,7 +26,7 @@ output: github_document
 
 <br></br>
 
-The **dmetar** package serves as the companion R package for the guide [**Doing Meta-Analysis in R**](https://bookdown.org/MathiasHarrer/Doing_Meta_Analysis_in_R/) by Mathias Harrer, Pim Cuijpers, Toshi Furukawa and David Daniel Ebert. The package contains utility functions to facilitate the conduction of meta-analyses using the **meta**, **metafor**, **netmeta** and **gemtc** packages.
+The **dmetar** package serves as the companion R package for the guide [**Doing Meta-Analysis in R**](https://doing-meta.guide/) by Mathias Harrer, Pim Cuijpers, Toshi Furukawa and David Daniel Ebert. The package contains utility functions to facilitate the conduction of meta-analyses using the **meta**, **metafor**, **netmeta** and **gemtc** packages.
 
 <br></br>
 
@@ -49,7 +49,7 @@ The **dmetar** package was developed for the online guide **Doing Meta-Analysis 
 
 The guide was designed to serve as a low-threshold entry point for researchers who want to learn about meta-analysis using R. **No prior knowledge of R or RStudio is required**. The guide provides a more detailed overview of **dmetar** functions and how they can be used in combination with go-to meta-analysis packages such as **metafor** or **meta**.
 
-[**View the Guide**](https://bookdown.org/MathiasHarrer/Doing_Meta_Analysis_in_R/)
+[**View the Guide**](https://doing-meta.guide/)
 
 <br></br>
 

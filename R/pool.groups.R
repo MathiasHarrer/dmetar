@@ -44,7 +44,7 @@
 #' calculated with the data from the third group.
 #'
 #' @references Harrer, M., Cuijpers, P., Furukawa, T.A, & Ebert, D. D. (2019).
-#' \emph{Doing Meta-Analysis in R: A Hands-on Guide}. DOI: 10.5281/zenodo.2551803. \href{https://bookdown.org/MathiasHarrer/Doing_Meta_Analysis_in_R/i.html}{Chapter 13.9}
+#' \emph{Doing Meta-Analysis in R: A Hands-on Guide}. DOI: 10.5281/zenodo.2551803. \href{https://doing-meta.guide/i.html}{Chapter 13.9}
 #'
 #' @author Mathias Harrer & David Daniel Ebert
 #'

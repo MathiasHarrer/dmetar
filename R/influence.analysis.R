@@ -58,7 +58,7 @@
 #'}
 #'
 #' @references Harrer, M., Cuijpers, P., Furukawa, T.A, & Ebert, D. D. (2019).
-#' \emph{Doing Meta-Analysis in R: A Hands-on Guide}. DOI: 10.5281/zenodo.2551803. \href{https://bookdown.org/MathiasHarrer/Doing_Meta_Analysis_in_R/influenceanalyses.html}{Chapter 6.3}
+#' \emph{Doing Meta-Analysis in R: A Hands-on Guide}. DOI: 10.5281/zenodo.2551803. \href{https://doing-meta.guide/influenceanalyses.html}{Chapter 6.3}
 #'
 #' DerSimonian R. & Laird N. (1986), Meta-analysis in clinical trials. \emph{Controlled Clinical Trials, 7}, 177–188.
 #'
@@ -137,7 +137,7 @@ InfluenceAnalysis = function(x, random = FALSE, subplot.heights = c(30, 18),
 
     # Validate
     x = x
-    if (class(x)[1] %in% c("meta", "metabin", "metamean", "metagen", "metacont", "metacor", "metainc", "metaprop", "metarate")) {
+    if (inherits(x, c("meta", "metabin", "metamean", "metagen", "metacont", "metacor", "metainc", "metaprop", "metarate"))) {
       x <- update.meta(x, subset = !(is.na(x$TE) | is.na(x$seTE)))
     } else {
         stop("Object 'x' must be of class 'meta', 'metabin', 'metamean', 'metagen', 'metacont', 'metacor', 'metainc', or 'metaprop'")
@@ -158,7 +158,7 @@ InfluenceAnalysis = function(x, random = FALSE, subplot.heights = c(30, 18),
 
     forest.lims = forest.lims
 
-    if (forest.lims[1] == "default" | (class(forest.lims[1]) == "numeric" & class(forest.lims[2]) == "numeric")) {
+    if (forest.lims[1] == "default" | (is.numeric(forest.lims[1]) & is.numeric(forest.lims[2]))) {
 
     } else {
         stop("'forest.lims' must either be 'default' or two concatenated numerics for ymin and ymax.")
@@ -172,13 +172,13 @@ InfluenceAnalysis = function(x, random = FALSE, subplot.heights = c(30, 18),
 
 
     heights = subplot.heights
-    if (class(heights[1]) == "numeric" & class(heights[2]) == "numeric") {
+    if (is.numeric(heights[1]) & is.numeric(heights[2])) {
     } else {
         stop("'subplot.heights' must be two concatenated numerics.")
     }
 
     widths = subplot.widths
-    if (class(widths[1]) == "numeric" & class(widths[2]) == "numeric") {
+    if (is.numeric(widths[1]) & is.numeric(widths[2])) {
     } else {
         stop("'widths' must be two concatenated numerics.")
     }
@@ -199,7 +199,7 @@ InfluenceAnalysis = function(x, random = FALSE, subplot.heights = c(30, 18),
 
     if (random == FALSE) {
         method.rma = "FE"
-        method.meta = "fixed"
+        method.meta = "common"
     } else {
         if (x$method.tau %in% c("DL", "HE", "SJ", "ML", "REML", "EB", "HS", "GENQ", "PM")) {
             method.rma = x$method.tau
@@ -339,10 +339,10 @@ InfluenceAnalysis = function(x, random = FALSE, subplot.heights = c(30, 18),
             max = forest.lims[2] + 4
         }
 
-        if (method.meta == "fixed"){
-          plot.sum.effect = exp(x$TE.fixed)
-          plot.sum.lower =  exp(x$lower.fixed)
-          plot.sum.upper =  exp(x$upper.fixed)
+        if (method.meta == "common"){
+          plot.sum.effect = exp(x$TE.common)
+          plot.sum.lower =  exp(x$lower.common)
+          plot.sum.upper =  exp(x$upper.common)
         } else {
           plot.sum.effect = exp(x$TE.random)
           plot.sum.lower =  exp(x$lower.random)
@@ -375,9 +375,9 @@ InfluenceAnalysis = function(x, random = FALSE, subplot.heights = c(30, 18),
             axis.ticks.x = element_line(color = "black"), axis.text.x = element_text(color = "black", size = 9 *
                 text.scale)) + scale_y_continuous(trans = "log2", limits = c(min, max)) +
           geom_rect(aes(ymin=plot.sum.lower, ymax=plot.sum.upper, xmin=0, xmax=Inf), alpha=0.08, fill="lightgreen", color=NA) +
-          geom_hline(yintercept = plot.sum.effect, color = "darkgreen", linetype="dotted", size=0.5) +
+          geom_hline(yintercept = plot.sum.effect, color = "darkgreen", linetype="dotted", linewidth=0.5) +
           geom_point(shape = 15, size = 4.5, color = "grey") +
-          geom_linerange(size = 0.9) +
+          geom_linerange(linewidth = 0.9) +
           geom_pointrange(shape = 3, size = 0.3)
 
         forest.i2 = ggplot(sortdat.i2, aes(x = studlab, y = mean, ymin = lower, ymax = upper)) +
@@ -389,13 +389,13 @@ InfluenceAnalysis = function(x, random = FALSE, subplot.heights = c(30, 18),
             axis.ticks.x = element_line(color = "black"), axis.text.x = element_text(color = "black", size = 9 *
                 text.scale)) + scale_y_continuous(trans = "log2", limits = c(min, max)) +
           geom_rect(aes(ymin=plot.sum.lower, ymax=plot.sum.upper, xmin=0, xmax=Inf), alpha=0.08, fill="lightgreen", color=NA) +
-          geom_hline(yintercept = plot.sum.effect, color = "darkgreen", linetype="dotted", size=0.5) +
+          geom_hline(yintercept = plot.sum.effect, color = "darkgreen", linetype="dotted", linewidth=0.5) +
           geom_point(shape = 15, size = 4.5, color = "grey") +
-          geom_linerange(size = 0.9) +
+          geom_linerange(linewidth = 0.9) +
           geom_pointrange(shape = 3, size = 0.3)
 
 
-    } else if (class(x)[1] %in% c("metacor", "metaprop", "metarate")) {
+    } else if (inherits(x, c("metacor", "metaprop", "metarate"))) {
 
       effect = x$sm
       n.studies = n.studies
@@ -599,7 +599,7 @@ InfluenceAnalysis = function(x, random = FALSE, subplot.heights = c(30, 18),
 
       }
 
-      if (class(x)[1] %in% c("metaprop", "metacor")){
+      if (inherits(x, c("metaprop", "metacor"))){
         n.h.m = meta.inf$n.harmonic.mean[1:(length(meta.inf$n.harmonic.mean)-2)]
         n.h.m.tot = meta.inf$n.harmonic.mean[length(meta.inf$n.harmonic.mean)]
         n.h.m.es = n.h.m[order(sortdat.es$mean)]
@@ -611,10 +611,10 @@ InfluenceAnalysis = function(x, random = FALSE, subplot.heights = c(30, 18),
         sortdat.i2$lower = backtransformer(sortdat.i2$lower, sm=effect, n=n.h.m.i2)
         sortdat.i2$upper = backtransformer(sortdat.i2$upper, sm=effect, n=n.h.m.i2)
 
-        if (method.meta == "fixed"){
-          plot.sum.effect = backtransformer(x$TE.fixed, sm=effect, n=n.h.m.tot)
-          plot.sum.lower = backtransformer(x$lower.fixed, sm=effect, n=n.h.m.tot)
-          plot.sum.upper = backtransformer(x$upper.fixed, sm=effect, n=n.h.m.tot)
+        if (method.meta == "common"){
+          plot.sum.effect = backtransformer(x$TE.common, sm=effect, n=n.h.m.tot)
+          plot.sum.lower = backtransformer(x$lower.common, sm=effect, n=n.h.m.tot)
+          plot.sum.upper = backtransformer(x$upper.common, sm=effect, n=n.h.m.tot)
         } else {
           plot.sum.effect = backtransformer(x$TE.random, sm=effect, n=n.h.m.tot)
           plot.sum.lower = backtransformer(x$lower.random, sm=effect, n=n.h.m.tot)
@@ -636,10 +636,10 @@ InfluenceAnalysis = function(x, random = FALSE, subplot.heights = c(30, 18),
           sortdat.i2$lower = backtransformer(sortdat.i2$lower, sm=effect, n=n.h.m.i2)
           sortdat.i2$upper = backtransformer(sortdat.i2$upper, sm=effect, n=n.h.m.i2)
 
-          if (method.meta == "fixed"){
-            plot.sum.effect = backtransformer(x$TE.fixed, sm=effect, n=n.h.m.tot)
-            plot.sum.lower = backtransformer(x$lower.fixed, sm=effect, n=n.h.m.tot)
-            plot.sum.upper = backtransformer(x$upper.fixed, sm=effect, n=n.h.m.tot)
+          if (method.meta == "common"){
+            plot.sum.effect = backtransformer(x$TE.common, sm=effect, n=n.h.m.tot)
+            plot.sum.lower = backtransformer(x$lower.common, sm=effect, n=n.h.m.tot)
+            plot.sum.upper = backtransformer(x$upper.common, sm=effect, n=n.h.m.tot)
           } else {
             plot.sum.effect = backtransformer(x$TE.random, sm=effect, n=n.h.m.tot)
             plot.sum.lower = backtransformer(x$lower.random, sm=effect, n=n.h.m.tot)
@@ -656,10 +656,10 @@ InfluenceAnalysis = function(x, random = FALSE, subplot.heights = c(30, 18),
           sortdat.i2$lower = backtransformer(sortdat.i2$lower, sm=effect, n=NULL)
           sortdat.i2$upper = backtransformer(sortdat.i2$upper, sm=effect, n=NULL)
 
-          if (method.meta == "fixed"){
-            plot.sum.effect = backtransformer(x$TE.fixed, sm=effect, n=n.h.m.tot)
-            plot.sum.lower = backtransformer(x$lower.fixed, sm=effect, n=n.h.m.tot)
-            plot.sum.upper = backtransformer(x$upper.fixed, sm=effect, n=n.h.m.tot)
+          if (method.meta == "common"){
+            plot.sum.effect = backtransformer(x$TE.common, sm=effect, n=n.h.m.tot)
+            plot.sum.lower = backtransformer(x$lower.common, sm=effect, n=n.h.m.tot)
+            plot.sum.upper = backtransformer(x$upper.common, sm=effect, n=n.h.m.tot)
           } else {
             plot.sum.effect = backtransformer(x$TE.random, sm=effect, n=n.h.m.tot)
             plot.sum.lower = backtransformer(x$lower.random, sm=effect, n=n.h.m.tot)
@@ -672,7 +672,7 @@ InfluenceAnalysis = function(x, random = FALSE, subplot.heights = c(30, 18),
 
       # Generate Forest Plots
       if (forest.lims[1] == "default") {
-        if (class(x)[1] == "metacor"){
+        if (inherits(x, "metacor")){
           min = min(sortdat.es$mean)-0.2
         } else {
           min = -0.2
@@ -686,9 +686,9 @@ InfluenceAnalysis = function(x, random = FALSE, subplot.heights = c(30, 18),
       }
 
       # Set ggtitles
-      if (class(x)[1] == "metaprop"){
+      if (inherits(x, "metaprop")){
         ggtitl = as.character("Proportion")
-      } else if (class(x)[1] == "metacor"){
+      } else if (inherits(x, "metacor")){
         ggtitl = as.character("Correlation")
       } else {
         ggtitl = as.character("Rate")
@@ -722,9 +722,9 @@ InfluenceAnalysis = function(x, random = FALSE, subplot.heights = c(30, 18),
         theme(axis.title.y = element_blank(), axis.title.x = element_text(color = "black", size = 12, face = "bold"), axis.text.y = element_text(color = "black", size = 9 * text.scale), plot.title = element_text(face = "bold", hjust = 0.5), axis.line.x = element_line(color = "black"), axis.ticks.x = element_line(color = "black"), axis.text.x = element_text(color = "black", size = 9 * text.scale)) +
         scale_y_continuous(limits = c(min, max)) +
         geom_rect(aes(ymin=plot.sum.lower, ymax=plot.sum.upper, xmin=0, xmax=Inf), alpha=0.08, fill="lightgreen", color=NA) +
-        geom_hline(yintercept = plot.sum.effect, color = "darkgreen", linetype="dotted", size=0.5) +
+        geom_hline(yintercept = plot.sum.effect, color = "darkgreen", linetype="dotted", linewidth=0.5) +
         geom_point(shape = 15, size = 4.5, color = "grey") +
-        geom_linerange(size = 0.9) +
+        geom_linerange(linewidth = 0.9) +
         geom_pointrange(shape = 3, size = 0.3)
 
       forest.i2 = ggplot(sortdat.i2, aes(x = studlab, y = mean, ymin = lower, ymax = upper)) +
@@ -736,9 +736,9 @@ InfluenceAnalysis = function(x, random = FALSE, subplot.heights = c(30, 18),
         theme(axis.title.y = element_blank(), axis.title.x = element_text(color = "black", size = 12, face = "bold"), axis.text.y = element_text(color = "black", size = 9 * text.scale), plot.title = element_text(face = "bold", hjust = 0.5), axis.line.x = element_line(color = "black"), axis.ticks.x = element_line(color = "black"), axis.text.x = element_text(color = "black", size = 9 * text.scale)) +
         scale_y_continuous(limits = c(min, max)) +
         geom_rect(aes(ymin=plot.sum.lower, ymax=plot.sum.upper, xmin=0, xmax=Inf), alpha=0.08, fill="lightgreen", color=NA) +
-        geom_hline(yintercept = plot.sum.effect, color = "darkgreen", linetype="dotted", size=0.5) +
+        geom_hline(yintercept = plot.sum.effect, color = "darkgreen", linetype="dotted", linewidth=0.5) +
         geom_point(shape = 15, size = 4.5, color = "grey") +
-        geom_linerange(size = 0.9) +
+        geom_linerange(linewidth = 0.9) +
         geom_pointrange(shape = 3, size = 0.3)
 
 
@@ -783,10 +783,10 @@ InfluenceAnalysis = function(x, random = FALSE, subplot.heights = c(30, 18),
             max = forest.lims[2]
         }
 
-        if (method.meta == "fixed"){
-          plot.sum.effect = x$TE.fixed
-          plot.sum.lower = x$lower.fixed
-          plot.sum.upper = x$upper.fixed
+        if (method.meta == "common"){
+          plot.sum.effect = x$TE.common
+          plot.sum.lower = x$lower.common
+          plot.sum.upper = x$upper.common
         } else {
           plot.sum.effect = x$TE.random
           plot.sum.lower = x$lower.random
@@ -819,9 +819,9 @@ InfluenceAnalysis = function(x, random = FALSE, subplot.heights = c(30, 18),
             axis.ticks.x = element_line(color = "black"), axis.text.x = element_text(color = "black", size = 9 *
                 text.scale)) +
           geom_rect(aes(ymin=plot.sum.lower, ymax=plot.sum.upper, xmin=0, xmax=Inf), alpha=0.08, fill="lightgreen", color=NA) +
-          geom_hline(yintercept = plot.sum.effect, color = "darkgreen", linetype="dotted", size=0.5) +
+          geom_hline(yintercept = plot.sum.effect, color = "darkgreen", linetype="dotted", linewidth=0.5) +
           geom_point(shape = 15, size = 4.5, color = "grey") +
-          geom_linerange(size = 0.9) +
+          geom_linerange(linewidth = 0.9) +
           geom_pointrange(shape = 3, size = 0.3)
 
         forest.i2 = ggplot(sortdat.i2, aes(x = studlab, y = mean, ymin = lower, ymax = upper)) +
@@ -833,9 +833,9 @@ InfluenceAnalysis = function(x, random = FALSE, subplot.heights = c(30, 18),
           axis.line.x = element_line(color = "black"),
           axis.ticks.x = element_line(color = "black"), axis.text.x = element_text(color = "black", size = 9 * text.scale)) +
           geom_rect(aes(ymin=plot.sum.lower, ymax=plot.sum.upper, xmin=0, xmax=Inf), alpha=0.08, fill="lightgreen", color=NA) +
-          geom_hline(yintercept = plot.sum.effect, color = "darkgreen", linetype="dotted", size=0.5) +
+          geom_hline(yintercept = plot.sum.effect, color = "darkgreen", linetype="dotted", linewidth=0.5) +
           geom_point(shape = 15, size = 4.5, color = "grey") +
-          geom_linerange(size = 0.9) +
+          geom_linerange(linewidth = 0.9) +
           geom_pointrange(shape = 3, size = 0.3)
     }
 
@@ -845,19 +845,19 @@ InfluenceAnalysis = function(x, random = FALSE, subplot.heights = c(30, 18),
 
         TE = x$TE
         seTE = x$seTE
-        TE.fixed = metagen(TE, seTE, exclude = x$exclude)$TE.fixed
+        TE.common = metagen(TE, seTE, exclude = x$exclude)$TE.common
         k = x$k
         studlab = x$studlab
         SE = x$seTE
 
-        m.inf = metainf(x, pooled = "fixed")
+        m.inf = metainf(x, pooled = "common")
         TE.inf = m.inf$TE[1:length(TE)]
         seTE.inf = m.inf$seTE[1:length(TE)]
 
-        ys = (TE.inf - TE.fixed)^2/seTE.inf^2
+        ys = (TE.inf - TE.common)^2/seTE.inf^2
         ys = ys * yscale
 
-        xs = (TE - TE.fixed)^2/seTE^2
+        xs = (TE - TE.common)^2/seTE^2
 
         if (!is.null(x$exclude))
             xs[x$exclude] = 0

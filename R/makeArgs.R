@@ -2,14 +2,15 @@
 # makeArgs.rma          #
 # # # # # # # # # # # # #
 
-makeArgs.default = utils::getFromNamespace("makeArgs.default", "MuMIn")
-makeArgs = utils::getFromNamespace("makeArgs", "MuMIn")
+# Internal MuMIn generic (not exported by MuMIn); required for S3method(makeArgs, rma)
+makeArgs <- utils::getFromNamespace("makeArgs", "MuMIn")
 
 #' @export
 #' @method makeArgs rma
-makeArgs.rma = function(obj, termNames, comb, opt, ...) {
+makeArgs.rma = function(obj, termNames, opt, ...) {
 
-  return <- makeArgs.default(obj, termNames, comb, opt)
+  makeArgs.default <- utils::getFromNamespace("makeArgs.default", "MuMIn")
+  return <- makeArgs.default(obj, termNames, opt, ...)
   names(return)[1L] = "mods"
   return
 

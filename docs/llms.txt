@@ -1,0 +1,292 @@
+  
+  
+![](reference/figures/logo.png)  
+  
+  
+  
+
+## dmetar
+
+**Doing Meta-Analysis in R**
+
+![](reference/figures/front.png)
+
+  
+
+The **dmetar** package serves as the companion R package for the guide
+[**Doing Meta-Analysis in R**](https://doing-meta.guide/) by Mathias
+Harrer, Pim Cuijpers, Toshi Furukawa and David Daniel Ebert. The package
+contains utility functions to facilitate the conduction of meta-analyses
+using the **meta**, **metafor**, **netmeta** and **gemtc** packages.
+
+  
+
+## Installation
+
+The latest development version can be installed from **GitHub** using
+[**remotes**](https://remotes.r-lib.org/).
+
+``` r
+if (!require("remotes")) {
+  install.packages("remotes")
+}
+remotes::install_github("MathiasHarrer/dmetar")
+```
+
+  
+
+## Learning More
+
+The **dmetar** package was developed for the online guide **Doing
+Meta-Analysis in R** by Mathias Harrer, Pim Cuijpers, Toshi Furukawa and
+David Daniel Ebert. This guide gives an introduction on how
+meta-analyses can be conducted in R, with a focus on biomedical and
+psychological research.
+
+The guide was designed to serve as a low-threshold entry point for
+researchers who want to learn about meta-analysis using R. **No prior
+knowledge of R or RStudio is required**. The guide provides a more
+detailed overview of **dmetar** functions and how they can be used in
+combination with go-to meta-analysis packages such as **metafor** or
+**meta**.
+
+[**View the Guide**](https://doing-meta.guide/)
+
+  
+
+## Questions & Bugs
+
+For questions concerning the **dmetar** package, or to report bugs,
+please contact **Mathias** (<mathias.harrer@tum.de>).
+
+# Package index
+
+## Effect size calculation
+
+- [`NNT()`](http://dmetar.protectlab.org/reference/NNT.md) : Calculate
+  the number needed to treat (NNT)
+- [`se.from.p()`](http://dmetar.protectlab.org/reference/se.from.p.md) :
+  Calculate the standard error from the effect size and p-value
+- [`pool.groups()`](http://dmetar.protectlab.org/reference/pool.groups.md)
+  : Pool the results of two treatment arms
+
+## Small-study effects & Publication bias
+
+- [`eggers.test()`](http://dmetar.protectlab.org/reference/eggers.test.md)
+  : Perform Egger's test of the intercept
+
+- [`find.outliers()`](http://dmetar.protectlab.org/reference/find.outliers.md)
+  : Find Statistical Outliers in a Meta-Analysis
+
+- [`InfluenceAnalysis()`](http://dmetar.protectlab.org/reference/InfluenceAnalysis.md)
+  : Influence Diagnostics
+
+- [`gosh.diagnostics()`](http://dmetar.protectlab.org/reference/gosh.diagnostics.md)
+  : Identify studies contributing to heterogeneity patterns found in
+  GOSH plots
+
+- [`pcurve()`](http://dmetar.protectlab.org/reference/pcurve.md) :
+
+  Perform a *p*-curve analysis
+
+## Power analysis
+
+- [`power.analysis()`](http://dmetar.protectlab.org/reference/power.analysis.md)
+  : A priori power calculator
+- [`power.analysis.subgroup()`](http://dmetar.protectlab.org/reference/power.analysis.subgroup.md)
+  : A priori power calculator for subgroup contrasts
+
+## Meta-regression & Subgroups
+
+- [`multimodel.inference()`](http://dmetar.protectlab.org/reference/multimodel.inference.md)
+  : Perform multimodel inference with a meta-regression model
+- [`subgroup.analysis.mixed.effects()`](http://dmetar.protectlab.org/reference/subgroup.analysis.mixed.effects.md)
+  : Subgroup analysis using a mixed-effects model
+
+## Multilevel Meta-Analysis
+
+- [`mlm.variance.distribution()`](http://dmetar.protectlab.org/reference/mlm.variance.distribution.md)
+  : Calculate I-squared values and variance distribution for multilevel
+  meta-analysis models
+
+## Network Meta-Analysis
+
+- [`direct.evidence.plot()`](http://dmetar.protectlab.org/reference/direct.evidence.plot.md)
+  :
+
+  Plot for direct evidence proportions in a network meta-analysis using
+  `netmeta`
+
+- [`sucra()`](http://dmetar.protectlab.org/reference/sucra.md) :
+  Calculate the Surface Under the Cumulative Ranking score of from a
+  network meta-analysis
+
+## Risk of bias
+
+- [`rob.summary()`](http://dmetar.protectlab.org/reference/rob.summary.md)
+  : Create a RevMan-style risk of bias summary chart
+
+## Data sets
+
+- [`BdiScores`](http://dmetar.protectlab.org/reference/BdiScores.md) :
+  BDI-II and HAM-D Scores in Clinical Depression Trials
+- [`Chernobyl`](http://dmetar.protectlab.org/reference/Chernobyl.md) :
+  Ionizing Radiation from Chernobyl and Mutation Rates in Humans dataset
+- [`DepressionMortality`](http://dmetar.protectlab.org/reference/DepressionMortality.md)
+  : Effect of Depression on All-Cause Mortality
+- [`EatingDisorderPrevention`](http://dmetar.protectlab.org/reference/EatingDisorderPrevention.md)
+  : Prevention of Eating Disorders at Universities dataset
+- [`HealthWellbeing`](http://dmetar.protectlab.org/reference/HealthWellbeing.md)
+  : Association of Health and Well-being dataset
+- [`m.gosh`](http://dmetar.protectlab.org/reference/m.gosh.md) : GOSH
+  plot dataset
+- [`MVRegressionData`](http://dmetar.protectlab.org/reference/MVRegressionData.md)
+  : Toy Dataset for Multivariate Meta-Regression
+- [`NetDataGemtc`](http://dmetar.protectlab.org/reference/NetDataGemtc.md)
+  : Toy Dataset for Network Meta-Analyses using the gemtc package
+- [`NetDataNetmeta`](http://dmetar.protectlab.org/reference/NetDataNetmeta.md)
+  : Toy Dataset for Network Meta-Analysis using the netmeta package
+- [`OpioidMisuse`](http://dmetar.protectlab.org/reference/OpioidMisuse.md)
+  : Prevalence of Prescription Opioid Misuse in US Adolescents and Young
+  Adults dataset
+- [`SleepProblems`](http://dmetar.protectlab.org/reference/SleepProblems.md)
+  : Factor Structure of Sleep Complaints data set
+- [`SuicidePrevention`](http://dmetar.protectlab.org/reference/SuicidePrevention.md)
+  : Effects of Suicide Prevention on Suicidal Ideation (toy dataset)
+- [`TherapyFormats`](http://dmetar.protectlab.org/reference/TherapyFormats.md)
+  : Differential Effects of Cognitive Behavioral Therapy Delivery
+  Formats in Depressive Patients dataset
+- [`TherapyFormatsGeMTC`](http://dmetar.protectlab.org/reference/TherapyFormatsGeMTC.md)
+  : Differential Effects of Cognitive Behavioral Therapy Delivery
+  Formats in Depressive Patients dataset
+- [`ThirdWave`](http://dmetar.protectlab.org/reference/ThirdWave.md) :
+  'Third-Wave' cognitive behavioral interventions for perceived stress
+  in college students dataset
+
+## S3 methods
+
+- [`forest(`*`<find.outliers>`*`)`](http://dmetar.protectlab.org/reference/forest.find.outliers.md)
+  : Print, summary and plot methods for objects created using 'dmetar'
+  functions
+- [`forest(`*`<subgroup.analysis.mixed.effects>`*`)`](http://dmetar.protectlab.org/reference/forest.subgroup.analysis.mixed.effects.md)
+  : Print, summary and plot methods for objects created using 'dmetar'
+  functions
+- [`plot(`*`<InfluenceAnalysis>`*`)`](http://dmetar.protectlab.org/reference/plot.InfluenceAnalysis.md)
+  : Print, summary and plot methods for objects created using 'dmetar'
+  functions
+- [`plot(`*`<direct.evidence.plot>`*`)`](http://dmetar.protectlab.org/reference/plot.direct.evidence.plot.md)
+  : Print, summary and plot methods for objects created using 'dmetar'
+  functions
+- [`plot(`*`<eggers.test>`*`)`](http://dmetar.protectlab.org/reference/plot.eggers.test.md)
+  : Print, summary and plot methods for objects created using 'dmetar'
+  functions
+- [`plot(`*`<find.outliers>`*`)`](http://dmetar.protectlab.org/reference/plot.find.outliers.md)
+  : Print, summary and plot methods for objects created using 'dmetar'
+  functions
+- [`plot(`*`<gosh.diagnostics>`*`)`](http://dmetar.protectlab.org/reference/plot.gosh.diagnostics.md)
+  : Print, summary and plot methods for objects created using 'dmetar'
+  functions
+- [`plot(`*`<mlm.variance.distribution>`*`)`](http://dmetar.protectlab.org/reference/plot.mlm.variance.distribution.md)
+  : Print, summary and plot methods for objects created using 'dmetar'
+  functions
+- [`plot(`*`<multimodel.inference>`*`)`](http://dmetar.protectlab.org/reference/plot.multimodel.inference.md)
+  : Print, summary and plot methods for objects created using 'dmetar'
+  functions
+- [`plot(`*`<power.analysis>`*`)`](http://dmetar.protectlab.org/reference/plot.power.analysis.md)
+  : Print, summary and plot methods for objects created using 'dmetar'
+  functions
+- [`plot(`*`<power.analysis.subgroup>`*`)`](http://dmetar.protectlab.org/reference/plot.power.analysis.subgroup.md)
+  : Print, summary and plot methods for objects created using 'dmetar'
+  functions
+- [`plot(`*`<subgroup.analysis.mixed.effects>`*`)`](http://dmetar.protectlab.org/reference/plot.subgroup.analysis.mixed.effects.md)
+  : Print, summary and plot methods for objects created using 'dmetar'
+  functions
+- [`plot(`*`<sucra>`*`)`](http://dmetar.protectlab.org/reference/plot.sucra.md)
+  : Print, summary and plot methods for objects created using 'dmetar'
+  functions
+- [`print(`*`<InfluenceAnalysis>`*`)`](http://dmetar.protectlab.org/reference/print.InfluenceAnalysis.md)
+  : Print, summary and plot methods for objects created using 'dmetar'
+  functions
+- [`print(`*`<NNT>`*`)`](http://dmetar.protectlab.org/reference/print.NNT.md)
+  : Print, summary and plot methods for objects created using 'dmetar'
+  functions
+- [`print(`*`<direct.evidence.plot>`*`)`](http://dmetar.protectlab.org/reference/print.direct.evidence.plot.md)
+  : Print, summary and plot methods for objects created using 'dmetar'
+  functions
+- [`print(`*`<eggers.test>`*`)`](http://dmetar.protectlab.org/reference/print.eggers.test.md)
+  : Print, summary and plot methods for objects created using 'dmetar'
+  functions
+- [`print(`*`<find.outliers>`*`)`](http://dmetar.protectlab.org/reference/print.find.outliers.md)
+  : Print, summary and plot methods for objects created using 'dmetar'
+  functions
+- [`print(`*`<gosh.diagnostics>`*`)`](http://dmetar.protectlab.org/reference/print.gosh.diagnostics.md)
+  : Print, summary and plot methods for objects created using 'dmetar'
+  functions
+- [`print(`*`<mlm.variance.distribution>`*`)`](http://dmetar.protectlab.org/reference/print.mlm.variance.distribution.md)
+  : Print, summary and plot methods for objects created using 'dmetar'
+  functions
+- [`print(`*`<multimodel.inference>`*`)`](http://dmetar.protectlab.org/reference/print.multimodel.inference.md)
+  : Print, summary and plot methods for objects created using 'dmetar'
+  functions
+- [`print(`*`<pcurve>`*`)`](http://dmetar.protectlab.org/reference/print.pcurve.md)
+  : Print, summary and plot methods for objects created using 'dmetar'
+  functions
+- [`print(`*`<power.analysis>`*`)`](http://dmetar.protectlab.org/reference/print.power.analysis.md)
+  : Print, summary and plot methods for objects created using 'dmetar'
+  functions
+- [`print(`*`<power.analysis.subgroup>`*`)`](http://dmetar.protectlab.org/reference/print.power.analysis.subgroup.md)
+  : Print, summary and plot methods for objects created using 'dmetar'
+  functions
+- [`print(`*`<subgroup.analysis.mixed.effects>`*`)`](http://dmetar.protectlab.org/reference/print.subgroup.analysis.mixed.effects.md)
+  : Print, summary and plot methods for objects created using 'dmetar'
+  functions
+- [`print(`*`<sucra>`*`)`](http://dmetar.protectlab.org/reference/print.sucra.md)
+  : Print, summary and plot methods for objects created using 'dmetar'
+  functions
+- [`summary(`*`<InfluenceAnalysis>`*`)`](http://dmetar.protectlab.org/reference/summary.InfluenceAnalysis.md)
+  : Print, summary and plot methods for objects created using 'dmetar'
+  functions
+- [`summary(`*`<direct.evidence.plot>`*`)`](http://dmetar.protectlab.org/reference/summary.direct.evidence.plot.md)
+  : Print, summary and plot methods for objects created using 'dmetar'
+  functions
+- [`summary(`*`<eggers.test>`*`)`](http://dmetar.protectlab.org/reference/summary.eggers.test.md)
+  : Print, summary and plot methods for objects created using 'dmetar'
+  functions
+- [`summary(`*`<find.outliers>`*`)`](http://dmetar.protectlab.org/reference/summary.find.outliers.md)
+  : Print, summary and plot methods for objects created using 'dmetar'
+  functions
+- [`summary(`*`<gosh.diagnostics>`*`)`](http://dmetar.protectlab.org/reference/summary.gosh.diagnostics.md)
+  : Print, summary and plot methods for objects created using 'dmetar'
+  functions
+- [`summary(`*`<mlm.variance.distribution>`*`)`](http://dmetar.protectlab.org/reference/summary.mlm.variance.distribution.md)
+  : Print, summary and plot methods for objects created using 'dmetar'
+  functions
+- [`summary(`*`<multimodel.inference>`*`)`](http://dmetar.protectlab.org/reference/summary.multimodel.inference.md)
+  : Print, summary and plot methods for objects created using 'dmetar'
+  functions
+- [`summary(`*`<pcurve>`*`)`](http://dmetar.protectlab.org/reference/summary.pcurve.md)
+  : Print, summary and plot methods for objects created using 'dmetar'
+  functions
+- [`summary(`*`<power.analysis>`*`)`](http://dmetar.protectlab.org/reference/summary.power.analysis.md)
+  : Print, summary and plot methods for objects created using 'dmetar'
+  functions
+- [`summary(`*`<power.analysis.subgroup>`*`)`](http://dmetar.protectlab.org/reference/summary.power.analysis.subgroup.md)
+  : Print, summary and plot methods for objects created using 'dmetar'
+  functions
+- [`summary(`*`<subgroup.analysis.mixed.effects>`*`)`](http://dmetar.protectlab.org/reference/summary.subgroup.analysis.mixed.effects.md)
+  : Print, summary and plot methods for objects created using 'dmetar'
+  functions
+
+## Package
+
+- [`dmetar-package`](http://dmetar.protectlab.org/reference/dmetar.md)
+  [`dmetar`](http://dmetar.protectlab.org/reference/dmetar.md) : dmetar:
+  Companion R package for the guide 'Doing Meta-Analysis in R'
+
+# Articles
+
+### All vignettes
+
+- [Get Started](http://dmetar.protectlab.org/articles/dmetar.md):
+- [dmetar
+  Vignette](http://dmetar.protectlab.org/articles/dmetar_vignette.md):

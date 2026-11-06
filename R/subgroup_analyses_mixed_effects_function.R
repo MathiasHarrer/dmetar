@@ -39,7 +39,7 @@
 #' @references
 #'
 #' Harrer, M., Cuijpers, P., Furukawa, T.A, & Ebert, D. D. (2019).
-#' \emph{Doing Meta-Analysis in R: A Hands-on Guide}. DOI: 10.5281/zenodo.2551803. \href{https://bookdown.org/MathiasHarrer/Doing_Meta_Analysis_in_R/subgroup.html}{Chapter 7}.
+#' \emph{Doing Meta-Analysis in R: A Hands-on Guide}. DOI: 10.5281/zenodo.2551803. \href{https://doing-meta.guide/subgroup.html}{Chapter 7}.
 #'
 #' Borenstein, M. & Higgins, J. P. T. (2013). Meta-Analysis and Subgroups. \emph{Prevention Science, 14} (2): 134–43.
 #'
@@ -82,7 +82,7 @@
 #'               seTE = seTE,
 #'               studlab = paste(ThirdWave$Author),
 #'               data=ThirdWave,
-#'               comb.fixed = FALSE,
+#'               common = FALSE,
 #'               method.tau = "PM",
 #'               sm = "SMD")
 #'
@@ -204,8 +204,8 @@ subgroup.analysis.mixed.effects = sgame = function(x, subgroups, exclude = "none
 
     # Fixed Meta-Analysis betweens subgroups
     meta = metagen(TE, seTE, data = me.data,
-                   comb.fixed = TRUE, comb.random = FALSE,
-                   byvar = Subgroup, hakn = FALSE)
+                   common = TRUE, random = FALSE,
+                   subgroup = Subgroup, method.random.ci = "classic")
 
     # Create full output dataset
 
@@ -251,7 +251,7 @@ subgroup.analysis.mixed.effects = sgame = function(x, subgroups, exclude = "none
                                       row.names = "Between groups")
 
     # Create Forest plot data
-    forest.m = update.meta(m, byvar=subgroups, comb.fixed = FALSE)
+    forest.m = update.meta(m, subgroup=subgroups, common = FALSE)
 
     if (exclude[1] != "none"){
 
@@ -259,13 +259,13 @@ subgroup.analysis.mixed.effects = sgame = function(x, subgroups, exclude = "none
       exclude.nums = which(subgroups %in% exclude.level)
       not.exclude.nums = 1:m$k
       not.exclude.nums = not.exclude.nums[!(not.exclude.nums %in% exclude.nums)]
-      forest.m = update.meta(m, byvar=subgroups, comb.fixed = FALSE, subset = not.exclude.nums)
+      forest.m = update.meta(m, subgroup=subgroups, common = FALSE, subset = not.exclude.nums)
 
     }
 
-    forest.m$TE.random = meta$TE.fixed
-    forest.m$lower.random = meta$lower.fixed
-    forest.m$upper.random = meta$upper.fixed
+    forest.m$TE.random = meta$TE.common
+    forest.m$lower.random = meta$lower.common
+    forest.m$upper.random = meta$upper.common
     forest.m$Q = meta$Q
     forest.m$df.Q = meta$df.Q
     forest.m$pval.Q = meta$pval.Q
