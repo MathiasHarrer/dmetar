@@ -190,7 +190,7 @@ Science, 11*(5), 713-729.
 
 ## See also
 
-[`eggers.test`](http://dmetar.protectlab.org/reference/eggers.test.md)
+[`eggers.test`](https://dmetar.protectlab.org/reference/eggers.test.md)
 
 ## Author
 

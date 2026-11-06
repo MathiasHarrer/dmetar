@@ -45,16 +45,13 @@ Currently, the `dmetar` package is still under development (version 0.1.1). This
 
 ## Installation
 
-Given that `dmetar` is currently under development, the package is only available from [**GitHub**](https://github.com/MathiasHarrer/dmetar) right now. To install the development version, you can use the
-`install_github` function from the [`devtools`](https://www.rstudio.com/products/rpackages/devtools/) package. Given that the package already passes the `R CMD Check`, we aim to submit the package to *CRAN* in the near future after the development process has been completed.
+Given that `dmetar` is currently under development, the package is only available from [**GitHub**](https://github.com/MathiasHarrer/dmetar) right now. To install the development version, you can use [`pak`](https://pak.r-lib.org/). Given that the package already passes the `R CMD Check`, we aim to submit the package to *CRAN* in the near future after the development process has been completed.
 
 **Use the code below to install the package:**
 
 ```{r eval=FALSE}
-if (!require("devtools")) {
-  install.packages("devtools")
-}
-devtools::install_github("MathiasHarrer/dmetar")
+install.packages("pak")
+pak::pak("MathiasHarrer/dmetar")
 ```
 
 The package can then be loaded as usual using the `library()` function.

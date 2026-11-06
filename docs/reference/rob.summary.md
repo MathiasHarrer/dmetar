@@ -75,7 +75,7 @@ Meta-Analysis in R: A Hands-on Guide*. DOI: 10.5281/zenodo.2551803.
 
 ## See also
 
-[`direct.evidence.plot`](http://dmetar.protectlab.org/reference/direct.evidence.plot.md)
+[`direct.evidence.plot`](https://dmetar.protectlab.org/reference/direct.evidence.plot.md)
 
 ## Author
 

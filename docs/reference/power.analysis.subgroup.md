@@ -94,7 +94,7 @@ meta-analysis. *Psychological methods, 6*(3), 203.
 
 ## See also
 
-[`power.analysis`](http://dmetar.protectlab.org/reference/power.analysis.md)
+[`power.analysis`](https://dmetar.protectlab.org/reference/power.analysis.md)
 
 ## Author
 

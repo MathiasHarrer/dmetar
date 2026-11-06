@@ -1,79 +1,160 @@
-/* Modify the backgorund color */
-/* navbar */
-.navbar-default {
-    background-color: #3282b2;
-    border-color: #3282b2;
+/* dmetar pkgdown facelift (Bootstrap 5) */
+
+:root {
+  --dmetar-brand: #3382b2;
+  --dmetar-brand-dark: #2a6d96;
+  --dmetar-hairline: rgba(27, 27, 27, 0.12);
+  --dmetar-code-border: rgba(27, 27, 27, 0.14);
+  --dmetar-link: #336f93;
+  --dmetar-link-dark: #7eb8d9;
 }
 
-/* Title */
-.navbar-default .navbar-brand {
-    color: #777;
-}
-.navbar-default .navbar-brand:hover,
-.navbar-default .navbar-brand:focus {
-    color: #5E5E5E;
-}
-/* Link */
-.navbar-default .navbar-nav > li > a {
-    color: #ffffff;
-}
-.navbar-default .navbar-nav > li > a:hover,
-.navbar-default .navbar-nav > li > a:focus {
-    color: #333;
-}
-.navbar-default .navbar-nav > .active > a,
-.navbar-default .navbar-nav > .active > a:hover,
-.navbar-default .navbar-nav > .active > a:focus {
-    color: #ffffff;
-    background-color: #336f93;
-}
-.navbar-default .navbar-nav > .open > a,
-.navbar-default .navbar-nav > .open > a:hover,
-.navbar-default .navbar-nav > .open > a:focus {
-    color: #ffffff;
-    background-color: #336f93;
-}
-/* Caret */
-.navbar-default .navbar-nav > .dropdown > a .caret {
-    border-top-color: #ffffff;
-    border-bottom-color: #ffffff;
-}
-.navbar-default .navbar-nav > .dropdown > a:hover .caret,
-.navbar-default .navbar-nav > .dropdown > a:focus .caret {
-    border-top-color: #333;
-    border-bottom-color: #333;
-}
-.navbar-default .navbar-nav > .open > a .caret,
-.navbar-default .navbar-nav > .open > a:hover .caret,
-.navbar-default .navbar-nav > .open > a:focus .caret {
-    border-top-color: #ffffff;
-    border-bottom-color: #ffffff;
+/* ---- Navbar contrast on brand blue ---- */
+.navbar.fixed-top,
+.navbar.bg-primary {
+  background-color: var(--dmetar-brand) !important;
+  min-height: 4.75rem;
+  padding-top: 1.1rem !important;
+  padding-bottom: 1.1rem !important;
 }
 
-/* unvisited link */
-a:link {
-  color: #336f93;
+.navbar .navbar-brand,
+.navbar .nav-link,
+.navbar .nav-text {
+  color: rgba(255, 255, 255, 0.95) !important;
 }
 
-/* visited link */
-a:visited {
-  color: #336f93;
+.navbar .navbar-brand {
+  font-size: 1.15rem;
 }
 
-/* mouse over link */
-a:hover {
-  color: #336f93;
+.navbar .nav-link {
+  padding-top: 0.55rem;
+  padding-bottom: 0.55rem;
 }
 
-/* selected link */
+.navbar .navbar-brand:hover,
+.navbar .navbar-brand:focus,
+.navbar .nav-link:hover,
+.navbar .nav-link:focus,
+.navbar .nav-link.active {
+  color: #ffffff !important;
+}
+
+.navbar .nav-text.text-muted {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+.navbar .navbar-toggler {
+  border-color: rgba(255, 255, 255, 0.45);
+}
+
+.navbar .navbar-toggler-icon {
+  filter: invert(1) grayscale(100%);
+}
+
+/* Light-switch icons on blue navbar */
+.navbar .nav-link svg,
+.navbar .bi {
+  color: rgba(255, 255, 255, 0.95);
+}
+
+/* ---- Content spacing below fixed navbar ---- */
+/* Body clears the taller fixed navbar; keep a small gap above main content */
+body {
+  padding-top: 5.25rem !important; /* match taller navbar */
+}
+
+.navbar + .container,
+.navbar.fixed-top ~ .container {
+  padding-top: 0.15rem;
+}
+
+/* Home hero: logo + title */
+.pkg-hero {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  margin: 0.5rem 0 1.25rem;
+}
+
+.pkg-hero img {
+  width: 100px;
+  height: auto;
+  flex-shrink: 0;
+}
+
+.pkg-hero-text h1,
+.pkg-hero-text h2 {
+  margin: 0 0 0.25rem;
+}
+
+.pkg-hero-text p {
+  margin: 0;
+}
+
+.pkg-section {
+  margin-bottom: 1.5rem;
+}
+
+/* ---- Code chunk hairlines ---- */
+div.sourceCode {
+  border: 1px solid var(--dmetar-code-border);
+  border-radius: 0.375rem;
+  overflow: hidden;
+  background-clip: padding-box;
+}
+
+div.sourceCode pre,
+pre.sourceCode,
+pre.downlit {
+  border: 0;
+  margin-bottom: 0;
+}
+
+code {
+  border-radius: 0.2rem;
+}
+
+[data-bs-theme="dark"] {
+  --dmetar-hairline: rgba(255, 255, 255, 0.16);
+  --dmetar-code-border: rgba(255, 255, 255, 0.18);
+}
+
+[data-bs-theme="dark"] div.sourceCode {
+  border-color: var(--dmetar-code-border);
+}
+
+/* ---- Links ---- */
+a:link,
+a:visited,
+a:hover,
 a:active {
-  color: #336f93;
+  color: var(--dmetar-link);
 }
 
+[data-bs-theme="dark"] a:link,
+[data-bs-theme="dark"] a:visited,
+[data-bs-theme="dark"] a:hover,
+[data-bs-theme="dark"] a:active {
+  color: var(--dmetar-link-dark);
+}
 
+/* Keep navbar links white even with global link rules */
+.navbar a:link,
+.navbar a:visited,
+.navbar a:hover,
+.navbar a:active {
+  color: rgba(255, 255, 255, 0.95);
+}
 
+.navbar a:hover,
+.navbar a:focus,
+.navbar a.active {
+  color: #ffffff;
+}
 
-
-
-
-
+/* Search field contrast on blue navbar */
+.navbar .form-control {
+  border: 1px solid rgba(255, 255, 255, 0.35);
+}

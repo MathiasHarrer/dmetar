@@ -76,7 +76,7 @@ Epidemiology, 64* (2): 163–71.
 
 ## See also
 
-[`direct.evidence.plot`](http://dmetar.protectlab.org/reference/direct.evidence.plot.md)
+[`direct.evidence.plot`](https://dmetar.protectlab.org/reference/direct.evidence.plot.md)
 
 ## Author
 

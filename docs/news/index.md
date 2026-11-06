@@ -5,9 +5,9 @@
 ### Bug fixes
 
 - Fix [`plot()`](https://rdrr.io/r/graphics/plot.default.html) for
-  [`var.comp()`](http://dmetar.protectlab.org/reference/mlm.variance.distribution.md)
+  [`var.comp()`](https://dmetar.protectlab.org/reference/mlm.variance.distribution.md)
   /
-  [`mlm.variance.distribution()`](http://dmetar.protectlab.org/reference/mlm.variance.distribution.md)
+  [`mlm.variance.distribution()`](https://dmetar.protectlab.org/reference/mlm.variance.distribution.md)
   under ggplot2 \>= 3.5/4.0 by wrapping
   [`bquote()`](https://rdrr.io/r/base/bquote.html) annotation labels in
   [`as.expression()`](https://rdrr.io/r/base/expression.html).
@@ -21,7 +21,7 @@
   [`metainf()`](https://rdrr.io/pkg/meta/man/metainf.html) in influence
   analyses.
 - Fix fragile `class(x) != "netmeta"` check in
-  [`direct.evidence.plot()`](http://dmetar.protectlab.org/reference/direct.evidence.plot.md).
+  [`direct.evidence.plot()`](https://dmetar.protectlab.org/reference/direct.evidence.plot.md).
 - Fix `"metapropr"` typo in outlier print/summary class checks.
 - Remove undocumented `%>%` usage from InfluenceAnalysis print/summary
   methods (no magrittr import).

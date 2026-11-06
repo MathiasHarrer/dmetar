@@ -171,7 +171,7 @@ DBSCAN Revisited, Revisited: Why and How You Should (Still) Use DBSCAN.
 
 ## See also
 
-[`InfluenceAnalysis`](http://dmetar.protectlab.org/reference/InfluenceAnalysis.md)
+[`InfluenceAnalysis`](https://dmetar.protectlab.org/reference/InfluenceAnalysis.md)
 
 ## Author
 

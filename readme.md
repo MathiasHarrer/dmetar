@@ -24,13 +24,11 @@ packages.
 
 ## Installation
 
-The latest development version can be installed from **GitHub** using [**remotes**](https://remotes.r-lib.org/).
+The latest development version can be installed from **GitHub** using [**pak**](https://pak.r-lib.org/).
 
 ``` r
-if (!require("remotes")) {
-  install.packages("remotes")
-}
-remotes::install_github("MathiasHarrer/dmetar")
+install.packages("pak")
+pak::pak("MathiasHarrer/dmetar")
 ```
 
 

@@ -1,35 +1,32 @@
-url: http://dmetar.protectlab.org
+url: https://dmetar.protectlab.org
 
 template:
   bootstrap: 5
-  includes:
-    in_header: |
-      <link rel="stylesheet" href="../costum.css">
-      <link rel="stylesheet" href="costum.css">
-      <script src="../logo.js" defer></script>
-      <script src="logo.js" defer></script>
+  light-switch: true
+  math-rendering: mathjax
+  theme: arrow-light
+  theme-dark: arrow-dark
   bslib:
-      base_font: {google: "Fira Sans", wght = "200..900"}
-      heading_font: {google: "Fira Sans", wght = "200..900"}
-      code_font: {google: "Fira Code"}
-      primary: "#3382b2"
-      bg: "#fffefa"
-      fg: "black"
-  params:
-    bootswatch: flatly
-    docsearch:
-      api_key: 358a758fa720ccb381dab79f60a2b3a4
-      index_name: dmetar
+    base_font: {google: "Fira Sans"}
+    heading_font: {google: "Fira Sans"}
+    code_font: {google: "Fira Code"}
+    primary: "#3382b2"
+    bg: "#fffefa"
+    fg: "#1b1b1b"
+    navbar-bg: "#3382b2"
+    navbar-light-bg: "#3382b2"
+    navbar-dark-bg: "#3382b2"
 
 navbar:
-  type: default
+  bg: primary
+  type: dark
   left:
   - text: Get Started
     href: articles/dmetar.html
   - text: Documentation
     href: reference/index.html
   - text: Book
-    href: https://bookdown.org/MathiasHarrer/Doing_Meta_Analysis_in_R/
+    href: https://doing-meta.guide/
 
 reference:
   - title: Effect size calculation
@@ -127,13 +124,6 @@ reference:
     - summary.power.analysis.subgroup
     - summary.subgroup.analysis.mixed.effects
 
-
   - title: Package
     contents:
     - dmetar
-
-
-
-
-
-

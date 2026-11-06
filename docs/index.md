@@ -1,9 +1,4 @@
-  
-  
-![](reference/figures/logo.png)  
-  
-  
-  
+![dmetar logo](reference/figures/logo.png)
 
 ## dmetar
 
@@ -11,7 +6,7 @@
 
 ![](reference/figures/front.png)
 
-  
+Example plots from dmetar
 
 The **dmetar** package serves as the companion R package for the guide
 [**Doing Meta-Analysis in R**](https://doing-meta.guide/) by Mathias
@@ -19,21 +14,15 @@ Harrer, Pim Cuijpers, Toshi Furukawa and David Daniel Ebert. The package
 contains utility functions to facilitate the conduction of meta-analyses
 using the **meta**, **metafor**, **netmeta** and **gemtc** packages.
 
-  
-
 ## Installation
 
 The latest development version can be installed from **GitHub** using
-[**remotes**](https://remotes.r-lib.org/).
+[**pak**](https://pak.r-lib.org/).
 
 ``` r
-if (!require("remotes")) {
-  install.packages("remotes")
-}
-remotes::install_github("MathiasHarrer/dmetar")
+install.packages("pak")
+pak::pak("MathiasHarrer/dmetar")
 ```
-
-  
 
 ## Learning More
 
@@ -51,8 +40,6 @@ combination with go-to meta-analysis packages such as **metafor** or
 **meta**.
 
 [**View the Guide**](https://doing-meta.guide/)
-
-  
 
 ## Questions & Bugs
 

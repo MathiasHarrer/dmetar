@@ -115,7 +115,7 @@ Borenstein, M., Hedges, L.V., Higgins, J.P.T. and Rothstein, H.R.
 
 ## See also
 
-[`power.analysis.subgroup`](http://dmetar.protectlab.org/reference/power.analysis.subgroup.md)
+[`power.analysis.subgroup`](https://dmetar.protectlab.org/reference/power.analysis.subgroup.md)
 
 ## Author
 

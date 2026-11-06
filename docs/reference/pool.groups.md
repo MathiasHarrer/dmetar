@@ -96,7 +96,7 @@ Meta-Analysis in R: A Hands-on Guide*. DOI: 10.5281/zenodo.2551803.
 
 ## See also
 
-[`se.from.p`](http://dmetar.protectlab.org/reference/se.from.p.md)
+[`se.from.p`](https://dmetar.protectlab.org/reference/se.from.p.md)
 
 ## Author
 

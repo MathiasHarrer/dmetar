@@ -109,7 +109,7 @@ importance to clinical research and practice. *Biol. Psychiatry 59*:
 
 ## See also
 
-[`se.from.p`](http://dmetar.protectlab.org/reference/se.from.p.md)
+[`se.from.p`](https://dmetar.protectlab.org/reference/se.from.p.md)
 
 ## Author
 

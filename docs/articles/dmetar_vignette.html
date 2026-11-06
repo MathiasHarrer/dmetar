@@ -11,7 +11,13 @@
 <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
 <link rel="icon" sizes="any" href="../favicon.ico">
 <link rel="manifest" href="../site.webmanifest">
-<script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- mathjax math --><script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js" integrity="sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI=" crossorigin="anonymous"></script><script>
+  window.MathJax = {
+    chtml: {
+      fontURL: "https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/output/chtml/fonts/woff-v2"
+    }
+  };
+</script><script src="../lightswitch.js"></script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/Fira_Sans-0.4.10/font.css" rel="stylesheet">
 <link href="../deps/Fira_Code-0.4.10/font.css" rel="stylesheet">
@@ -19,15 +25,12 @@
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
 <meta property="og:title" content="dmetar Vignette">
-<link rel="stylesheet" href="../costum.css">
-<link rel="stylesheet" href="costum.css">
-<script src="../logo.js" defer></script><script src="logo.js" defer></script>
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
 
-    <nav class="navbar navbar-expand-lg fixed-top bg-primary" data-bs-theme="default" aria-label="Site navigation"><div class="container">
+    <nav class="navbar navbar-expand-lg fixed-top " aria-label="Site navigation"><div class="container">
 
     <a class="navbar-brand me-2" href="../index.html">dmetar</a>
 
@@ -42,12 +45,20 @@
       <ul class="navbar-nav me-auto">
 <li class="nav-item"><a class="nav-link" href="../articles/dmetar.html">Get Started</a></li>
 <li class="nav-item"><a class="nav-link" href="../reference/index.html">Documentation</a></li>
-<li class="nav-item"><a class="external-link nav-link" href="https://bookdown.org/MathiasHarrer/Doing_Meta_Analysis_in_R/">Book</a></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://doing-meta.guide/">Book</a></li>
       </ul>
 <ul class="navbar-nav">
 <li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json">
 </form></li>
+<li class="nav-item dropdown">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-lightswitch" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true" aria-label="Light switch"><span class="fa fa-sun"></span></button>
+  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown-lightswitch">
+<li><button class="dropdown-item" data-bs-theme-value="light"><span class="fa fa-sun"></span> Light</button></li>
+    <li><button class="dropdown-item" data-bs-theme-value="dark"><span class="fa fa-moon"></span> Dark</button></li>
+    <li><button class="dropdown-item" data-bs-theme-value="auto"><span class="fa fa-adjust"></span> Auto</button></li>
+  </ul>
+</li>
       </ul>
 </div>
 
@@ -64,7 +75,7 @@
                         <h4 data-toc-skip class="author">Mathias Harrer
 &amp; David Daniel Ebert</h4>
             
-            <h4 data-toc-skip class="date">2026-11-05</h4>
+            <h4 data-toc-skip class="date">2026-11-06</h4>
       
 
       <div class="d-none name"><code>dmetar_vignette.Rmd</code></div>
@@ -102,7 +113,7 @@ functionalities of the package. An in-depth introduction into the
 package and how its functions can be applied to “real-world”
 meta-analyses can be found in the online version of the guide. To get
 detailed documentation of specific functions, you can consult the
-<code>dmetar</code> <a href="https://dmetar.protectlab.org/reference/index.html" class="external-link">reference
+<code>dmetar</code> <a href="https://dmetar.protectlab.org/reference/index.html">reference
 page</a>.</p>
 <p>Currently, the <code>dmetar</code> package is still under development
 (version 0.1.1). This means that, despite intense testing, we cannot
@@ -117,21 +128,18 @@ please contact <strong>Mathias</strong> (<a href="mailto:mathias.harrer@fau.de" 
 </h2>
 <p>Given that <code>dmetar</code> is currently under development, the
 package is only available from <a href="https://github.com/MathiasHarrer/dmetar" class="external-link"><strong>GitHub</strong></a>
-right now. To install the development version, you can use the
-<code>install_github</code> function from the <a href="https://www.rstudio.com/products/rpackages/devtools/" class="external-link"><code>devtools</code></a>
-package. Given that the package already passes the
-<code>R CMD Check</code>, we aim to submit the package to <em>CRAN</em>
-in the near future after the development process has been completed.</p>
+right now. To install the development version, you can use <a href="https://pak.r-lib.org/" class="external-link"><code>pak</code></a>. Given that the
+package already passes the <code>R CMD Check</code>, we aim to submit
+the package to <em>CRAN</em> in the near future after the development
+process has been completed.</p>
 <p><strong>Use the code below to install the package:</strong></p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="st"><a href="https://devtools.r-lib.org/" class="external-link">"devtools"</a></span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"devtools"</span><span class="op">)</span></span>
-<span><span class="op">}</span></span>
-<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"MathiasHarrer/dmetar"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"pak"</span><span class="op">)</span></span>
+<span><span class="fu">pak</span><span class="fu">::</span><span class="fu"><a href="https://pak.r-lib.org/reference/pak.html" class="external-link">pak</a></span><span class="op">(</span><span class="st">"MathiasHarrer/dmetar"</span><span class="op">)</span></span></code></pre></div>
 <p>The package can then be loaded as usual using the
 <code><a href="https://rdrr.io/r/base/library.html" class="external-link">library()</a></code> function.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dmetar.protectlab.org" class="external-link">dmetar</a></span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dmetar.protectlab.org">dmetar</a></span><span class="op">)</span></span></code></pre></div>
 <div class="section level3">
 <h3 id="installation-errors">Installation Errors<a class="anchor" aria-label="anchor" href="#installation-errors"></a>
 </h3>
@@ -185,15 +193,13 @@ package, we will use three datasets which come shipped with the package:
 </h2>
 <p>The <code>dmetar</code> package contains two functions for <em>a
 priori</em> <a href="https://doing-meta.guide/power-analysis.html" class="external-link">power
-analyses</a> of a meta-analysis: <a href="https://dmetar.protectlab.org/reference/power.analysis.html" class="external-link"><code>power.analysis</code></a>
-and <a href="https://dmetar.protectlab.org/reference/power.analysis.subgroup.html" class="external-link"><code>power.analysis.subgroup</code></a>.
+analyses</a> of a meta-analysis: <a href="https://dmetar.protectlab.org/reference/power.analysis.html"><code>power.analysis</code></a>
+and <a href="https://dmetar.protectlab.org/reference/power.analysis.subgroup.html"><code>power.analysis.subgroup</code></a>.
 Let us assume that researchers expect to have approximately 18 studies
 in their meta-analysis, with moderate between-group heterogeneity and
 about 50 participants per arm and study. Will there be sufficient power
-to detect an assumed minimally important difference of
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi><mo>=</mo></mrow><annotation encoding="application/x-tex">d=</annotation></semantics></math>
-0.18? The <code>power.analysis</code> function can be used to answer
-this question.</p>
+to detect an assumed minimally important difference of <span class="math inline">\(d=\)</span> 0.18? The <code>power.analysis</code>
+function can be used to answer this question.</p>
 <pre><code><span><span class="co">#&gt; Random-effects model used (moderate heterogeneity assumed).</span></span></code></pre>
 <p><img src="dmetar_vignette_files/figure-html/unnamed-chunk-8-1.png" class="r-plt" alt="" width="700" style="display: block; margin: auto;"></p>
 <pre><code><span><span class="co">#&gt; Power: 83.86%</span></span></code></pre>
@@ -206,50 +212,34 @@ this question.</p>
 <h2 id="effect-size-calculation">Effect Size Calculation<a class="anchor" aria-label="anchor" href="#effect-size-calculation"></a>
 </h2>
 <p>The <code>dmetar</code> package includes several functions to
-calculate effect sizes needed for meta-analyses: <a href="https://dmetar.protectlab.org/reference/NNT.html" class="external-link"><code>NNT</code></a>,
-<a href="https://dmetar.protectlab.org/reference/se.from.p.html" class="external-link"><code>se.from.p</code></a>
-and <a href="https://dmetar.protectlab.org/reference/pool.groups.html" class="external-link"><code>pool.groups</code></a>.</p>
+calculate effect sizes needed for meta-analyses: <a href="https://dmetar.protectlab.org/reference/NNT.html"><code>NNT</code></a>,
+<a href="https://dmetar.protectlab.org/reference/se.from.p.html"><code>se.from.p</code></a>
+and <a href="https://dmetar.protectlab.org/reference/pool.groups.html"><code>pool.groups</code></a>.</p>
 <p>Using the <code>NNT</code> function, we can calculate the number
-needed to treat
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mi>N</mi><mi>T</mi></mrow><annotation encoding="application/x-tex">NNT</annotation></semantics></math>
-for the first effect size in <code>ThirdWave</code>
-(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>g</mi><annotation encoding="application/x-tex">g</annotation></semantics></math>=0.71).
-In this example, we use Furukawa’s method (Furukawa &amp; Leucht, 2011),
-assuming a control group event ratio (<code>CER</code>) of 0.2</p>
+needed to treat <span class="math inline">\(NNT\)</span> for the first
+effect size in <code>ThirdWave</code> (<span class="math inline">\(g\)</span>=0.71). In this example, we use
+Furukawa’s method (Furukawa &amp; Leucht, 2011), assuming a control
+group event ratio (<code>CER</code>) of 0.2</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/NNT.html">NNT</a></span><span class="op">(</span><span class="fl">0.71</span>, CER <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Furukawa &amp; Leucht method used. </span></span>
 <span><span class="co">#&gt; [1] 4.038088</span></span></code></pre></div>
 <p>We can also pool together two groups of a study into one group using
-the <code>pool.groups</code> function once we have obtained the
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>n</mi><annotation encoding="application/x-tex">n</annotation></semantics></math>,
-mean and SD of each arm. This can be helpful if we want to avoid a <a href="https://handbook-5-1.cochrane.org/chapter_9/9_3_1_unit_of_analysis_issues.htm" class="external-link">unit-of-analysis
+the <code>pool.groups</code> function once we have obtained the <span class="math inline">\(n\)</span>, mean and SD of each arm. This can be
+helpful if we want to avoid a <a href="https://handbook-5-1.cochrane.org/chapter_9/9_3_1_unit_of_analysis_issues.htm" class="external-link">unit-of-analysis
 error</a>. Here is an example:</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/pool.groups.html">pool.groups</a></span><span class="op">(</span>n1 <span class="op">=</span> <span class="fl">50</span>, n2 <span class="op">=</span> <span class="fl">65</span>, m1 <span class="op">=</span> <span class="fl">12.3</span>, m2 <span class="op">=</span> <span class="fl">14.8</span>, sd1 <span class="op">=</span> <span class="fl">2.45</span>, sd2 <span class="op">=</span> <span class="fl">2.89</span><span class="op">)</span></span>
 <span><span class="co">#&gt;    Mpooled SDpooled Npooled</span></span>
 <span><span class="co">#&gt; 1 13.71304 2.969564     115</span></span></code></pre></div>
 <p>When extracting effect size data, studies sometimes only report an
-effect size of interest, and its
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>p</mi><annotation encoding="application/x-tex">p</annotation></semantics></math>-value.
-To pool effect sizes using functions such as the <a href="https://www.rdocumentation.org/packages/meta/versions/4.9-6/topics/metagen" class="external-link"><code>metagen</code></a>
-function, however, we need some dispersion measure (e.g.,
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mi>E</mi></mrow><annotation encoding="application/x-tex">SE</annotation></semantics></math>,
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mi>D</mi></mrow><annotation encoding="application/x-tex">SD</annotation></semantics></math>
-or the variance). The <code>se.from.p</code> function can be used to
-calculate the standard error
-(<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mi>E</mi></mrow><annotation encoding="application/x-tex">SE</annotation></semantics></math>),
-which can the be used directly for pooling using, for example, the
-<code>metagen</code> function. Here is an example assuming an effect of
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi><mo>=</mo><mn>0.38</mn></mrow><annotation encoding="application/x-tex">d=0.38</annotation></semantics></math>,
-a
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>p</mi><annotation encoding="application/x-tex">p</annotation></semantics></math>-value
-of
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>0.0456</mn><annotation encoding="application/x-tex">0.0456</annotation></semantics></math>
-and a total
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>N</mi><annotation encoding="application/x-tex">N</annotation></semantics></math>
-of
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mn>83</mn><annotation encoding="application/x-tex">83</annotation></semantics></math>:</p>
+effect size of interest, and its <span class="math inline">\(p\)</span>-value. To pool effect sizes using
+functions such as the <a href="https://www.rdocumentation.org/packages/meta/versions/4.9-6/topics/metagen" class="external-link"><code>metagen</code></a>
+function, however, we need some dispersion measure (e.g., <span class="math inline">\(SE\)</span>, <span class="math inline">\(SD\)</span> or the variance). The
+<code>se.from.p</code> function can be used to calculate the standard
+error (<span class="math inline">\(SE\)</span>), which can the be used
+directly for pooling using, for example, the <code>metagen</code>
+function. Here is an example assuming an effect of <span class="math inline">\(d=0.38\)</span>, a <span class="math inline">\(p\)</span>-value of <span class="math inline">\(0.0456\)</span> and a total <span class="math inline">\(N\)</span> of <span class="math inline">\(83\)</span>:</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/se.from.p.html">se.from.p</a></span><span class="op">(</span>effect.size <span class="op">=</span> <span class="fl">0.38</span>, p <span class="op">=</span> <span class="fl">0.0456</span>, N <span class="op">=</span> <span class="fl">83</span><span class="op">)</span></span>
 <span><span class="co">#&gt;   EffectSize StandardError StandardDeviation        LLCI      ULCI</span></span>
@@ -272,7 +262,7 @@ unnecessary extra time; lastly, using RevMan to generate Risk of Bias
 summary plots also reduces the reproducibility of your meta-analysis if
 you decide to make all your other <em>R</em> analyses fully reproducible
 using tools such as <a href="https://rmarkdown.rstudio.com/" class="external-link"><strong>RMarkdown</strong></a>.</p>
-<p>The <a href="https://dmetar.protectlab.org/reference/rob.summary.html" class="external-link"><code>rob.summary</code></a>
+<p>The <a href="https://dmetar.protectlab.org/reference/rob.summary.html"><code>rob.summary</code></a>
 function allows you to generate RevMan-style Risk of Bias charts based
 on <code>ggplot2</code> graphics directly in <em>R</em> from a
 <em>R</em> data frame. Here is an example:</p>
@@ -288,8 +278,8 @@ on <code>ggplot2</code> graphics directly in <em>R</em> from a
 </h2>
 <p>The <code>dmetar</code> package contains two functions related to the
 topic of <strong>moderator variables</strong> of meta-analysis results:
-<a href="https://dmetar.protectlab.org/reference/subgroup.analysis.mixed.effects.html" class="external-link"><code>subgroup.analysis.mixed.effects</code></a>
-and <a href="https://dmetar.protectlab.org/reference/multimodel.inference.html" class="external-link"><code>multimodel.inference</code></a>.</p>
+<a href="https://dmetar.protectlab.org/reference/subgroup.analysis.mixed.effects.html"><code>subgroup.analysis.mixed.effects</code></a>
+and <a href="https://dmetar.protectlab.org/reference/multimodel.inference.html"><code>multimodel.inference</code></a>.</p>
 <p><br></p>
 <p><strong>Mixed-Effects Subgroup Analysis</strong></p>
 <p>The first function, <code>subgroup.analysis.mixed.effects</code>
@@ -337,7 +327,7 @@ into <code>forest</code>.</p>
 <p><br></p>
 <p><strong>Multimodel Inference</strong></p>
 <p>The <code>multimodel.inference</code> function, on the other hand,
-can be used to perform <a href="https://dmetar.protectlab.org/reference/multimodel.inference.html#details" class="external-link"><strong>Multimodel
+can be used to perform <a href="https://dmetar.protectlab.org/reference/multimodel.inference.html#details"><strong>Multimodel
 Inference</strong></a> for a meta-regression model.</p>
 <p>Here is an example using the <code>MVRegressionData</code> dataset,
 using <code>pubyear</code>, <code>quality</code>,
@@ -463,7 +453,7 @@ sensitivity analysis, or</li>
 meaning that the overall effect size may change considerably when this
 one study is removed.</li>
 </ul>
-<p>The <a href="https://dmetar.protectlab.org/reference/InfluenceAnalysis.html" class="external-link"><code>InfluenceAnalysis</code></a>
+<p>The <a href="https://dmetar.protectlab.org/reference/InfluenceAnalysis.html"><code>InfluenceAnalysis</code></a>
 is a wrapper around several influence analysis function included in the
 <code>meta</code> and <code>metafor</code> package. It provides four
 types of influence diagnostics in one single plot. The function works
@@ -475,7 +465,7 @@ can then be directly used as input for the function:</p>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">infan</span><span class="op">)</span></span></code></pre></div>
 <p><img src="dmetar_vignette_files/figure-html/unnamed-chunk-21-1.png" class="r-plt" alt="" width="960"></p>
 <p><br></p>
-<p>Additionally, the <a href="https://dmetar.protectlab.org/reference/gosh.diagnostics.html" class="external-link"><code>gosh.diagnostics</code></a>
+<p>Additionally, the <a href="https://dmetar.protectlab.org/reference/gosh.diagnostics.html"><code>gosh.diagnostics</code></a>
 can be used to analyze influence patterns using objects generated by
 <code>metafor</code>s <code>gosh</code> function. The
 <code>gosh.diagnostics</code> function uses unsupervised learning
@@ -513,8 +503,8 @@ meta-analysis data. We can use <code>dmetars</code> in-built
 <h2 id="publication-bias">Publication Bias<a class="anchor" aria-label="anchor" href="#publication-bias"></a>
 </h2>
 <p>The package contains two functions to assess the potential presence
-of publication bias in a meta-analysis: <a href="https://dmetar.protectlab.org/reference/eggers.test.html" class="external-link"><code>eggers.test</code></a>
-and <a href="https://dmetar.protectlab.org/reference/pcurve.html" class="external-link"><code>pcurve</code></a>.
+of publication bias in a meta-analysis: <a href="https://dmetar.protectlab.org/reference/eggers.test.html"><code>eggers.test</code></a>
+and <a href="https://dmetar.protectlab.org/reference/pcurve.html"><code>pcurve</code></a>.
 Both methods are optimized for conducting meta-analyses using the
 <code>meta</code> package, and only have to be provided with a
 <code>meta</code> meta-analysis results object.</p>
@@ -564,7 +554,7 @@ Both methods are optimized for conducting meta-analyses using the
 using the <code>gemtc</code> (Van Valkenhoef &amp; Kuiper, 2016) and
 <code>netmeta</code> (Rücker, Krahn, König, Efthimiou &amp; Schwarzer,
 2019) packages.</p>
-<p>The first one, <a href="https://dmetar.protectlab.org/reference/direct.evidence.plot.html" class="external-link"><code>direct.evidence.plot</code></a>
+<p>The first one, <a href="https://dmetar.protectlab.org/reference/direct.evidence.plot.html"><code>direct.evidence.plot</code></a>
 creates a plot for the direct evidence proportion of comparisons
 included in a network meta-analysis model and displays diagnostics
 proposed by König, Krahn and Binder (2013). It only requires a network
@@ -583,13 +573,12 @@ input. We will use <code>dmetar</code>s in-built
 <span><span class="fu"><a href="../reference/direct.evidence.plot.html">direct.evidence.plot</a></span><span class="op">(</span><span class="va">nmeta</span><span class="op">)</span></span></code></pre></div>
 <p><img src="fig/directevidence.png" class="r-plt" alt="" width="500" style="display: block; margin: auto;"></p>
 <p><br></p>
-<p>The second, <a href="https://dmetar.protectlab.org/reference/sucra.html" class="external-link"><code>sucra</code></a>,
-calculates the
-<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>S</mi><mi>U</mi><mi>C</mi><mi>R</mi><mi>A</mi></mrow><annotation encoding="application/x-tex">SUCRA</annotation></semantics></math>
-for each treatment when provided with a
-<code>mtc.rank.probability</code> network meta-analysis results object,
-or a matrix containing rank probabilities. In this example, we will use
-<code>dmetar</code>s in-built <code>NetDataGemtc</code> data set.</p>
+<p>The second, <a href="https://dmetar.protectlab.org/reference/sucra.html"><code>sucra</code></a>,
+calculates the <span class="math inline">\(SUCRA\)</span> for each
+treatment when provided with a <code>mtc.rank.probability</code> network
+meta-analysis results object, or a matrix containing rank probabilities.
+In this example, we will use <code>dmetar</code>s in-built
+<code>NetDataGemtc</code> data set.</p>
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/gertvv/gemtc" class="external-link">gemtc</a></span><span class="op">)</span></span>
 <span></span>

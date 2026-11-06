@@ -53,20 +53,16 @@ environments used. To report a bug, or ask a question, please contact
 
 Given that `dmetar` is currently under development, the package is only
 available from [**GitHub**](https://github.com/MathiasHarrer/dmetar)
-right now. To install the development version, you can use the
-`install_github` function from the
-[`devtools`](https://www.rstudio.com/products/rpackages/devtools/)
-package. Given that the package already passes the `R CMD Check`, we aim
-to submit the package to *CRAN* in the near future after the development
-process has been completed.
+right now. To install the development version, you can use
+[`pak`](https://pak.r-lib.org/). Given that the package already passes
+the `R CMD Check`, we aim to submit the package to *CRAN* in the near
+future after the development process has been completed.
 
 **Use the code below to install the package:**
 
 ``` r
-if (!require("devtools")) {
-  install.packages("devtools")
-}
-devtools::install_github("MathiasHarrer/dmetar")
+install.packages("pak")
+pak::pak("MathiasHarrer/dmetar")
 ```
 
 The package can then be loaded as usual using the
@@ -142,8 +138,8 @@ and
 Let us assume that researchers expect to have approximately 18 studies
 in their meta-analysis, with moderate between-group heterogeneity and
 about 50 participants per arm and study. Will there be sufficient power
-to detect an assumed minimally important difference of $d =$ 0.18? The
-`power.analysis` function can be used to answer this question.
+to detect an assumed minimally important difference of \\(d=\\) 0.18?
+The `power.analysis` function can be used to answer this question.
 
     #> Random-effects model used (moderate heterogeneity assumed).
 
@@ -169,9 +165,9 @@ and
 [`pool.groups`](https://dmetar.protectlab.org/reference/pool.groups.html).
 
 Using the `NNT` function, we can calculate the number needed to treat
-$NNT$ for the first effect size in `ThirdWave` ($g$=0.71). In this
-example, we use Furukawa’s method (Furukawa & Leucht, 2011), assuming a
-control group event ratio (`CER`) of 0.2
+\\(NNT\\) for the first effect size in `ThirdWave` (\\(g\\)=0.71). In
+this example, we use Furukawa’s method (Furukawa & Leucht, 2011),
+assuming a control group event ratio (`CER`) of 0.2
 
 ``` r
 NNT(0.71, CER = 0.2)
@@ -180,7 +176,7 @@ NNT(0.71, CER = 0.2)
 ```
 
 We can also pool together two groups of a study into one group using the
-`pool.groups` function once we have obtained the $n$, mean and SD of
+`pool.groups` function once we have obtained the \\(n\\), mean and SD of
 each arm. This can be helpful if we want to avoid a [unit-of-analysis
 error](https://handbook-5-1.cochrane.org/chapter_9/9_3_1_unit_of_analysis_issues.htm).
 Here is an example:
@@ -192,14 +188,15 @@ pool.groups(n1 = 50, n2 = 65, m1 = 12.3, m2 = 14.8, sd1 = 2.45, sd2 = 2.89)
 ```
 
 When extracting effect size data, studies sometimes only report an
-effect size of interest, and its $p$-value. To pool effect sizes using
-functions such as the
+effect size of interest, and its \\(p\\)-value. To pool effect sizes
+using functions such as the
 [`metagen`](https://www.rdocumentation.org/packages/meta/versions/4.9-6/topics/metagen)
-function, however, we need some dispersion measure (e.g., $SE$, $SD$ or
-the variance). The `se.from.p` function can be used to calculate the
-standard error ($SE$), which can the be used directly for pooling using,
-for example, the `metagen` function. Here is an example assuming an
-effect of $d = 0.38$, a $p$-value of $0.0456$ and a total $N$ of $83$:
+function, however, we need some dispersion measure (e.g., \\(SE\\),
+\\(SD\\) or the variance). The `se.from.p` function can be used to
+calculate the standard error (\\(SE\\)), which can the be used directly
+for pooling using, for example, the `metagen` function. Here is an
+example assuming an effect of \\(d=0.38\\), a \\(p\\)-value of
+\\(0.0456\\) and a total \\(N\\) of \\(83\\):
 
 ``` r
 se.from.p(effect.size = 0.38, p = 0.0456, N = 83)
@@ -594,7 +591,7 @@ direct.evidence.plot(nmeta)
 
 The second,
 [`sucra`](https://dmetar.protectlab.org/reference/sucra.html),
-calculates the $SUCRA$ for each treatment when provided with a
+calculates the \\(SUCRA\\) for each treatment when provided with a
 `mtc.rank.probability` network meta-analysis results object, or a matrix
 containing rank probabilities. In this example, we will use `dmetar`s
 in-built `NetDataGemtc` data set.

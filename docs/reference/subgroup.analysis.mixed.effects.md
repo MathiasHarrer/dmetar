@@ -96,7 +96,7 @@ Borenstein, M. & Higgins, J. P. T. (2013). Meta-Analysis and Subgroups.
 
 ## See also
 
-[`multimodel.inference`](http://dmetar.protectlab.org/reference/multimodel.inference.md)
+[`multimodel.inference`](https://dmetar.protectlab.org/reference/multimodel.inference.md)
 
 ## Author
 

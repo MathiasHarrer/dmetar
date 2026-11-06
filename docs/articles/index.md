@@ -2,6 +2,6 @@
 
 ### All vignettes
 
-- [Get Started](http://dmetar.protectlab.org/articles/dmetar.md):
+- [Get Started](https://dmetar.protectlab.org/articles/dmetar.md):
 - [dmetar
-  Vignette](http://dmetar.protectlab.org/articles/dmetar_vignette.md):
+  Vignette](https://dmetar.protectlab.org/articles/dmetar_vignette.md):
